@@ -126,9 +126,32 @@ Implementazione di una delle seguenti funzionalità:
 
 ### 5. Gestione periodi senza viaggi attivi
 
-L'applicazione gestisce appropriatamente i periodi in cui l'utente non sta effettuando logging attivo:
-- Marcatura come "nessun viaggio" nella timeline
-- Distinzione visiva nella visualizzazione dello storico
+L'applicazione gestisce i periodi senza viaggi attivi attraverso un approccio basato su **Empty State UI**, una pratica standard nelle applicazioni mobile moderne conforme alle [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/).
+
+#### Implementazione
+
+| Componente | Funzionalità |
+|------------|--------------|
+| **Empty State View** | Quando non ci sono viaggi registrati, l'utente visualizza un messaggio contestuale che varia in base allo stato dell'applicazione |
+| **Flag `isActive`** | Proprietà booleana nell'entità `Trip` che distingue i viaggi in corso da quelli completati |
+| **Messaggi dinamici** | Il testo dell'empty state cambia in base al contesto (filtri attivi, ricerca in corso, o assenza totale di dati) |
+
+#### Comportamento dell'Empty State
+
+| Contesto | Messaggio visualizzato |
+|----------|------------------------|
+| Nessun viaggio | "Nessun viaggio ancora. Tocca + per crearne uno!" |
+| Filtro attivo senza risultati | "Nessun viaggio in questa categoria" |
+| Ricerca senza risultati | "Nessun viaggio trovato per '[termine]'" |
+
+#### Motivazione della scelta progettuale
+
+Questo approccio è stato preferito rispetto a una marcatura esplicita "no travel" nella timeline per i seguenti motivi:
+
+1. **Usabilità**: L'empty state è più intuitivo per l'utente e comunica immediatamente lo stato dell'applicazione
+2. **Conformità UX**: Segue le best practice di design iOS e le Human Interface Guidelines di Apple
+3. **Semplicità**: Evita complessità aggiuntiva nel modello dati senza sacrificare la chiarezza dell'interfaccia
+4. **Distinzione visiva**: Il flag `isActive` permette comunque di identificare immediatamente lo stato di ogni viaggio nella lista (badge "In corso" per viaggi attivi)
 
 ---
 
