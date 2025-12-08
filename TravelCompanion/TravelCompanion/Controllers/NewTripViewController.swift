@@ -167,6 +167,7 @@ class NewTripViewController: UIViewController {
         // Add scroll view
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        scrollView.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.scrollView
 
         // Add components to content view
         contentView.addSubview(destinationLabel)
@@ -187,6 +188,14 @@ class NewTripViewController: UIViewController {
 
         // Setup delegates
         destinationTextField.delegate = self
+
+        // Setup accessibility identifiers
+        destinationTextField.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.destinationTextField
+        startDatePicker.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.startDatePicker
+        endDatePicker.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.endDatePicker
+        tripTypeSegment.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.tripTypeSegment
+        startTrackingSwitch.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.startTrackingSwitch
+        createButton.accessibilityIdentifier = AccessibilityIdentifiers.NewTrip.createButton
 
         // Add tap gesture to dismiss keyboard
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapToDismiss))

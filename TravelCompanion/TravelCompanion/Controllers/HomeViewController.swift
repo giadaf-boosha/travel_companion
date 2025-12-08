@@ -113,6 +113,7 @@ class HomeViewController: UIViewController {
         newTripButton.backgroundColor = .systemBlue
         newTripButton.layer.cornerRadius = 12
         newTripButton.addTarget(self, action: #selector(newTripButtonTapped), for: .touchUpInside)
+        newTripButton.accessibilityIdentifier = AccessibilityIdentifiers.Home.newTripButton
 
         // Add shadow
         newTripButton.layer.shadowColor = UIColor.black.cgColor
@@ -130,6 +131,7 @@ class HomeViewController: UIViewController {
         continueTripButton.layer.cornerRadius = 12
         continueTripButton.addTarget(self, action: #selector(continueTripButtonTapped), for: .touchUpInside)
         continueTripButton.isHidden = true // Initially hidden
+        continueTripButton.accessibilityIdentifier = AccessibilityIdentifiers.Home.continueTripButton
 
         // Add shadow
         continueTripButton.layer.shadowColor = UIColor.black.cgColor
@@ -141,6 +143,7 @@ class HomeViewController: UIViewController {
     private func setupStatsCard() {
         statsCard.translatesAutoresizingMaskIntoConstraints = false
         setupCard(statsCard)
+        statsCard.accessibilityIdentifier = AccessibilityIdentifiers.Home.statsCard
 
         // Title
         statsCardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -152,6 +155,7 @@ class HomeViewController: UIViewController {
         // Total trips
         totalTripsLabel.translatesAutoresizingMaskIntoConstraints = false
         totalTripsLabel.text = "0"
+        totalTripsLabel.accessibilityIdentifier = AccessibilityIdentifiers.Home.totalTripsLabel
         totalTripsLabel.font = .systemFont(ofSize: 32, weight: .bold)
         totalTripsLabel.textColor = .label
         totalTripsLabel.textAlignment = .center
@@ -170,6 +174,7 @@ class HomeViewController: UIViewController {
         totalDistanceLabel.font = .systemFont(ofSize: 24, weight: .semibold)
         totalDistanceLabel.textColor = .systemBlue
         totalDistanceLabel.textAlignment = .center
+        totalDistanceLabel.accessibilityIdentifier = AccessibilityIdentifiers.Home.totalDistanceLabel
         statsCard.addSubview(totalDistanceLabel)
 
         totalDistanceDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -207,6 +212,7 @@ class HomeViewController: UIViewController {
     private func setupLastTripCard() {
         lastTripCard.translatesAutoresizingMaskIntoConstraints = false
         setupCard(lastTripCard)
+        lastTripCard.accessibilityIdentifier = AccessibilityIdentifiers.Home.lastTripCard
 
         // Icon
         let iconImageView = UIImageView()
@@ -276,6 +282,7 @@ class HomeViewController: UIViewController {
     private func setupEmptyState() {
         emptyStateView.translatesAutoresizingMaskIntoConstraints = false
         emptyStateView.isHidden = true
+        emptyStateView.accessibilityIdentifier = AccessibilityIdentifiers.Home.emptyStateView
 
         // Image
         emptyStateImageView.translatesAutoresizingMaskIntoConstraints = false

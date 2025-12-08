@@ -51,6 +51,7 @@ class TripListViewController: UIViewController {
         // Create Search Bar
         searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.accessibilityIdentifier = AccessibilityIdentifiers.TripList.searchBar
         view.addSubview(searchBar)
 
         // Create Filter Segment
@@ -58,17 +59,20 @@ class TripListViewController: UIViewController {
         filterSegment.translatesAutoresizingMaskIntoConstraints = false
         filterSegment.selectedSegmentIndex = 0
         filterSegment.addTarget(self, action: #selector(filterChanged), for: .valueChanged)
+        filterSegment.accessibilityIdentifier = AccessibilityIdentifiers.TripList.filterSegment
         view.addSubview(filterSegment)
 
         // Create Table View
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = AccessibilityIdentifiers.TripList.tableView
         view.addSubview(tableView)
 
         // Create Empty State View
         emptyStateView = UIView()
         emptyStateView.translatesAutoresizingMaskIntoConstraints = false
         emptyStateView.isHidden = true
+        emptyStateView.accessibilityIdentifier = AccessibilityIdentifiers.TripList.emptyStateView
         view.addSubview(emptyStateView)
 
         // Create Empty State Label
@@ -79,6 +83,7 @@ class TripListViewController: UIViewController {
         emptyStateLabel.textColor = .secondaryLabel
         emptyStateLabel.textAlignment = .center
         emptyStateLabel.numberOfLines = 0
+        emptyStateLabel.accessibilityIdentifier = AccessibilityIdentifiers.TripList.emptyStateLabel
         emptyStateView.addSubview(emptyStateLabel)
 
         // Setup Constraints
