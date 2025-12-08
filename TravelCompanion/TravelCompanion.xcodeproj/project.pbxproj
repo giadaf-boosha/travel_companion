@@ -34,6 +34,7 @@
 		/* Utilities */
 		UTL001 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC017; };
 		UTL002 /* DistanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC018; };
+		UTL003 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC040; };
 
 		/* Config */
 		CFG001 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC019; };
@@ -59,10 +60,41 @@
 		/* Resources */
 		RES001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = RSC001; };
 		RES002 /* TravelCompanion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = RSC002; };
+
+		/* Unit Tests */
+		TST001 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC001; };
+		TST002 /* DistanceCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC002; };
+		TST003 /* TripTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC003; };
+		TST004 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC004; };
+		TST005 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC005; };
+		TST006 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC006; };
+
+		/* UI Tests */
+		UIT001 /* TravelCompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UISRC001; };
+		UIT002 /* TravelCompanionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UISRC002; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CIP001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PRJ001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGT001;
+			remoteInfo = TravelCompanion;
+		};
+		CIP002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PRJ001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGT001;
+			remoteInfo = TravelCompanion;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		PRD001 /* TravelCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		PRD002 /* TravelCompanionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelCompanionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		PRD003 /* TravelCompanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelCompanionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 
 		/* Application */
 		SRC001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +123,7 @@
 		/* Utilities */
 		SRC017 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		SRC018 /* DistanceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCalculator.swift; sourceTree = "<group>"; };
+		SRC040 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 
 		/* Config */
 		SRC019 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -117,10 +150,36 @@
 		RSC001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		RSC002 /* TravelCompanion.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodeld; path = TravelCompanion.xcdatamodeld; sourceTree = "<group>"; };
 		RSC003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+
+		/* Unit Test Files */
+		TSRC001 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		TSRC002 /* DistanceCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCalculatorTests.swift; sourceTree = "<group>"; };
+		TSRC003 /* TripTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTypeTests.swift; sourceTree = "<group>"; };
+		TSRC004 /* ChatServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceTests.swift; sourceTree = "<group>"; };
+		TSRC005 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
+		TSRC006 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
+
+		/* UI Test Files */
+		UISRC001 /* TravelCompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCompanionUITests.swift; sourceTree = "<group>"; };
+		UISRC002 /* TravelCompanionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCompanionUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FRM001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FRM002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FRM003 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -134,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				GRP001 /* TravelCompanion */,
+				GRP200 /* TravelCompanionTests */,
+				GRP300 /* TravelCompanionUITests */,
 				GRP100 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -228,6 +289,7 @@
 			children = (
 				SRC017 /* Constants.swift */,
 				SRC018 /* DistanceCalculator.swift */,
+				SRC040 /* AccessibilityIdentifiers.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -265,8 +327,32 @@
 			isa = PBXGroup;
 			children = (
 				PRD001 /* TravelCompanion.app */,
+				PRD002 /* TravelCompanionTests.xctest */,
+				PRD003 /* TravelCompanionUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		GRP200 /* TravelCompanionTests */ = {
+			isa = PBXGroup;
+			children = (
+				TSRC001 /* CoreDataManagerTests.swift */,
+				TSRC002 /* DistanceCalculatorTests.swift */,
+				TSRC003 /* TripTypeTests.swift */,
+				TSRC004 /* ChatServiceTests.swift */,
+				TSRC005 /* StringExtensionsTests.swift */,
+				TSRC006 /* DateExtensionsTests.swift */,
+			);
+			path = TravelCompanionTests;
+			sourceTree = "<group>";
+		};
+		GRP300 /* TravelCompanionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				UISRC001 /* TravelCompanionUITests.swift */,
+				UISRC002 /* TravelCompanionUITestsLaunchTests.swift */,
+			);
+			path = TravelCompanionUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +375,42 @@
 			productReference = PRD001 /* TravelCompanion.app */;
 			productType = "com.apple.product-type.application";
 		};
+		TGT002 /* TravelCompanionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCL002 /* Build configuration list for PBXNativeTarget "TravelCompanionTests" */;
+			buildPhases = (
+				SRC200 /* Sources */,
+				FRM002 /* Frameworks */,
+				RSC200 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEP001 /* PBXTargetDependency */,
+			);
+			name = TravelCompanionTests;
+			productName = TravelCompanionTests;
+			productReference = PRD002 /* TravelCompanionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		TGT003 /* TravelCompanionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCL003 /* Build configuration list for PBXNativeTarget "TravelCompanionUITests" */;
+			buildPhases = (
+				SRC300 /* Sources */,
+				FRM003 /* Frameworks */,
+				RSC300 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEP002 /* PBXTargetDependency */,
+			);
+			name = TravelCompanionUITests;
+			productName = TravelCompanionUITests;
+			productReference = PRD003 /* TravelCompanionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -301,6 +423,14 @@
 				TargetAttributes = {
 					TGT001 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					TGT002 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = TGT001;
+					};
+					TGT003 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = TGT001;
 					};
 				};
 			};
@@ -319,6 +449,8 @@
 			projectRoot = "";
 			targets = (
 				TGT001 /* TravelCompanion */,
+				TGT002 /* TravelCompanionTests */,
+				TGT003 /* TravelCompanionUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,6 +461,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				RES001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		RSC200 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		RSC300 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +503,7 @@
 				EXT005 /* String+Extensions.swift in Sources */,
 				UTL001 /* Constants.swift in Sources */,
 				UTL002 /* DistanceCalculator.swift in Sources */,
+				UTL003 /* AccessibilityIdentifiers.swift in Sources */,
 				CFG001 /* Config.swift in Sources */,
 				CTR001 /* HomeViewController.swift in Sources */,
 				CTR002 /* TripListViewController.swift in Sources */,
@@ -376,7 +523,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		SRC200 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TST001 /* CoreDataManagerTests.swift in Sources */,
+				TST002 /* DistanceCalculatorTests.swift in Sources */,
+				TST003 /* TripTypeTests.swift in Sources */,
+				TST004 /* ChatServiceTests.swift in Sources */,
+				TST005 /* StringExtensionsTests.swift in Sources */,
+				TST006 /* DateExtensionsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		SRC300 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				UIT001 /* TravelCompanionUITests.swift in Sources */,
+				UIT002 /* TravelCompanionUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DEP001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = TGT001 /* TravelCompanion */;
+			targetProxy = CIP001 /* PBXContainerItemProxy */;
+		};
+		DEP002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = TGT001 /* TravelCompanion */;
+			targetProxy = CIP002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CFG101 /* Debug */ = {
@@ -554,6 +736,76 @@
 			};
 			name = Release;
 		};
+		CFG301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibo.lam.TravelCompanionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TravelCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TravelCompanion";
+			};
+			name = Debug;
+		};
+		CFG302 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibo.lam.TravelCompanionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TravelCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TravelCompanion";
+			};
+			name = Release;
+		};
+		CFG401 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibo.lam.TravelCompanionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TravelCompanion;
+			};
+			name = Debug;
+		};
+		CFG402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibo.lam.TravelCompanionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TravelCompanion;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -571,6 +823,24 @@
 			buildConfigurations = (
 				CFG201 /* Debug */,
 				CFG202 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCL002 /* Build configuration list for PBXNativeTarget "TravelCompanionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFG301 /* Debug */,
+				CFG302 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCL003 /* Build configuration list for PBXNativeTarget "TravelCompanionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFG401 /* Debug */,
+				CFG402 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
