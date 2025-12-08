@@ -54,3 +54,12 @@ DerivedData/
 *.swp
 *.swo
 *~
+
+# Secrets and API Keys - NEVER commit these
+# Only ignore Secrets.xcconfig specifically, NOT the .example file
+**/Secrets.xcconfig
+
+# Environment files
+.env
+.env.local
+.env.*.local

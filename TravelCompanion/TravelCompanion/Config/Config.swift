@@ -4,15 +4,33 @@ struct Config {
 
     // MARK: - OpenAI API Configuration
 
-    /// API key per OpenAI - IMPORTANTE: sostituire con la propria chiave
-    /// Non committare mai questo file con la chiave reale nel repository
-    static let openAIApiKey = "YOUR_OPENAI_API_KEY"
+    /// API key per OpenAI - Loaded from Secrets.xcconfig or Info.plist
+    /// The key is stored securely and not committed to version control
+    static var openAIApiKey: String {
+        // First try to get from Info.plist (set via xcconfig)
+        if let key = Bundle.main.infoDictionary?["OPENAI_API_KEY"] as? String,
+           !key.isEmpty,
+           key != "YOUR_API_KEY_HERE",
+           !key.contains("$(") {
+            return key
+        }
+
+        // Fallback: try to get from environment variable (useful for CI/CD)
+        if let key = ProcessInfo.processInfo.environment["OPENAI_API_KEY"],
+           !key.isEmpty {
+            return key
+        }
+
+        // Return empty string if no key found - ChatService will handle the error
+        print("⚠️ Warning: OpenAI API key not configured. Please set up Secrets.xcconfig")
+        return ""
+    }
 
     /// URL base per le API OpenAI
     static let openAIBaseURL = "https://api.openai.com/v1/chat/completions"
 
     /// Modello GPT da utilizzare
-    static let openAIModel = "gpt-5-nano-2025-08-07"
+    static let openAIModel = "gpt-4.1-nano-2025-04-14"
 
     /// Timeout per le richieste API in secondi
     static let apiTimeout: TimeInterval = 30.0

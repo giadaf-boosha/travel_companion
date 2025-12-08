@@ -825,20 +825,40 @@ cd travel_companion
 ### 2. Aprire il progetto in Xcode
 
 ```bash
-open TravelCompanion.xcodeproj
+open TravelCompanion/TravelCompanion.xcodeproj
 ```
 
-### 3. Configurare l'API key di OpenAI
+### 3. Configurare l'API key di OpenAI (IMPORTANTE)
 
-Creare il file `Config/Config.swift` con la propria API key:
+L'API key di OpenAI **non è inclusa nel repository** per motivi di sicurezza. Per configurarla:
 
-```swift
-struct Config {
-    static let openAIApiKey = "YOUR_OPENAI_API_KEY"
-}
+1. Copia il file di esempio:
+   ```bash
+   cp TravelCompanion/TravelCompanion/Config/Secrets.xcconfig.example \
+      TravelCompanion/TravelCompanion/Config/Secrets.xcconfig
+   ```
+
+2. Modifica `Secrets.xcconfig` con la tua API key:
+   ```
+   OPENAI_API_KEY = sk-proj-YOUR_ACTUAL_API_KEY_HERE
+   ```
+
+3. In Xcode, vai su **Project Settings > Info** e aggiungi una nuova riga:
+   - Key: `OPENAI_API_KEY`
+   - Value: `$(OPENAI_API_KEY)`
+
+4. Assicurati che `Secrets.xcconfig` sia nel tuo `.gitignore` (già configurato)
+
+> **Nota:** Il file `Secrets.xcconfig` contiene dati sensibili e **non deve mai essere committato** nel repository. Solo il file `.example` è tracciato da git.
+
+#### Alternativa: Variabile d'ambiente
+
+Puoi anche configurare l'API key come variabile d'ambiente:
+```bash
+export OPENAI_API_KEY="sk-proj-YOUR_ACTUAL_API_KEY_HERE"
 ```
 
-> **Nota:** Non committare mai l'API key nel repository. Aggiungerla al `.gitignore`.
+Questa opzione è utile per CI/CD e ambienti di sviluppo condivisi.
 
 ### 4. Build e run
 
