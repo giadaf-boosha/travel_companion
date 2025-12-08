@@ -94,6 +94,42 @@ final class TravelCompanionUITests: XCTestCase {
         add(attachment)
     }
 
+    /// Navigate back to Home screen from any screen
+    func navigateToHome() {
+        // Check if TabBar is visible
+        let tabBar = app.tabBars.firstMatch
+        if tabBar.exists {
+            let homeTab = tabBar.buttons.element(boundBy: 0)
+            if homeTab.exists {
+                homeTab.tap()
+                return
+            }
+        }
+
+        // If no TabBar, try back button (we might be in ActiveTrip or detail view)
+        let backButton = app.navigationBars.buttons.firstMatch
+        if backButton.exists {
+            backButton.tap()
+            sleep(1)
+            // Recursively try to get home
+            navigateToHome()
+            return
+        }
+
+        // Try "Stop" or "Ferma" button if we're in ActiveTrip
+        let stopButton = app.buttons["Ferma Tracking"]
+        let stopButtonEN = app.buttons["Stop Tracking"]
+        if stopButton.exists {
+            stopButton.tap()
+            sleep(1)
+            navigateToHome()
+        } else if stopButtonEN.exists {
+            stopButtonEN.tap()
+            sleep(1)
+            navigateToHome()
+        }
+    }
+
     // MARK: - 1. App Launch Tests
 
     func test01_AppLaunches_Successfully() {
@@ -358,8 +394,12 @@ final class TravelCompanionUITests: XCTestCase {
             takeScreenshot(name: "14_NewTripForm_Destination")
         }
 
-        // Dismiss keyboard
-        app.keyboards.buttons["Done"].tap()
+        // Dismiss keyboard - try multiple methods
+        if app.keyboards.count > 0 {
+            // Try tapping outside the keyboard
+            app.tap()
+            sleep(1)
+        }
 
         // Try to tap create button
         let createButton = app.buttons[IDs.NewTrip.createButton]
@@ -1097,8 +1137,20 @@ final class TravelCompanionUITests: XCTestCase {
             sleep(1)
             takeScreenshot(name: "38_Search_Roma")
 
-            // Clear search
-            searchBar.buttons["Clear text"].tap()
+            // Clear search - try multiple button names (English and Italian)
+            let clearButton = searchBar.buttons["Clear text"]
+            let clearButtonIT = searchBar.buttons["Cancella testo"]
+
+            if clearButton.exists {
+                clearButton.tap()
+            } else if clearButtonIT.exists {
+                clearButtonIT.tap()
+            } else {
+                // Fallback: clear by selecting all and deleting
+                searchBar.tap()
+                searchBar.doubleTap()
+                usleep(500000)
+            }
             sleep(1)
 
             // Search for another term
@@ -1108,7 +1160,15 @@ final class TravelCompanionUITests: XCTestCase {
 
             // Dismiss keyboard
             if app.keyboards.count > 0 {
-                app.keyboards.buttons["Search"].tap()
+                let searchKey = app.keyboards.buttons["Search"]
+                let searchKeyIT = app.keyboards.buttons["Cerca"]
+                if searchKey.exists {
+                    searchKey.tap()
+                } else if searchKeyIT.exists {
+                    searchKeyIT.tap()
+                } else {
+                    app.tap() // Tap outside to dismiss
+                }
             }
         }
 
@@ -1450,8 +1510,8 @@ final class TravelCompanionUITests: XCTestCase {
         for i in 1...3 {
             let newTripButton = app.buttons["Nuovo Viaggio"]
             if !waitForElement(newTripButton, timeout: 3) {
-                // Maybe we're on a different screen, go home
-                app.tabBars.buttons.element(boundBy: 0).tap()
+                // Maybe we're on a different screen, try to go home
+                navigateToHome()
                 sleep(1)
                 continue
             }
@@ -1469,20 +1529,21 @@ final class TravelCompanionUITests: XCTestCase {
                 app.tap()
             }
 
-            // Disable tracking to speed up
+            // Disable tracking to speed up and avoid ActiveTrip screen
             let trackingSwitch = app.switches.firstMatch
             if trackingSwitch.exists && trackingSwitch.value as? String == "1" {
                 trackingSwitch.tap()
             }
+            usleep(500000)
 
             let createButton = app.buttons["Crea Viaggio"]
             if createButton.exists {
                 createButton.tap()
-                sleep(1)
+                sleep(2)
             }
 
-            // Go back to home
-            app.tabBars.buttons.element(boundBy: 0).tap()
+            // Go back to home - handle various screens
+            navigateToHome()
             sleep(1)
         }
 
