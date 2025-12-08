@@ -199,6 +199,16 @@ class ActiveTripViewController: UIViewController, LocationManagerDelegate, MKMap
         statsPanel.addSubview(noteButton)
         view.addSubview(gpsIndicator)
         gpsIndicator.addSubview(gpsLabel)
+
+        // Setup accessibility identifiers
+        mapView.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.mapView
+        trackingButton.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.trackingButton
+        photoButton.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.photoButton
+        noteButton.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.noteButton
+        destinationLabel.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.destinationLabel
+        timerLabel.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.timerLabel
+        distanceLabel.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.distanceLabel
+        speedLabel.accessibilityIdentifier = AccessibilityIdentifiers.ActiveTrip.speedLabel
     }
 
     private func setupConstraints() {

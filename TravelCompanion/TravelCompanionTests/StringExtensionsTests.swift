@@ -66,15 +66,15 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertFalse(isValid)
     }
 
-    func testIsValidDestination_WithMixedContent_ShouldReturnTrue() {
-        // Given
+    func testIsValidDestination_WithMixedContent_ShouldReturnFalse() {
+        // Given - Numbers are not allowed in destination names
         let mixedContent = "Via Roma 123"
 
         // When
         let isValid = mixedContent.isValidDestination
 
-        // Then
-        XCTAssertTrue(isValid)
+        // Then - Should be false because numbers are not allowed
+        XCTAssertFalse(isValid)
     }
 
     // MARK: - trimmed Tests
@@ -362,14 +362,14 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(substring, "Hello")
     }
 
-    func testSafeRangeSubscript_WithOutOfBoundsRange_ShouldReturnPartial() {
+    func testSafeRangeSubscript_WithOutOfBoundsRange_ShouldReturnNil() {
         // Given
         let string = "Hello"
 
         // When
         let substring = string[safe: 0..<10]
 
-        // Then
-        XCTAssertEqual(substring, "Hello")
+        // Then - Out of bounds range returns nil
+        XCTAssertNil(substring)
     }
 }

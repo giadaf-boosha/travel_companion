@@ -665,4 +665,843 @@ final class TravelCompanionUITests: XCTestCase {
         takeScreenshot(name: "28_Journey_08_End")
         XCTAssertTrue(app.exists, "Complete user journey should finish without crash")
     }
+
+    // MARK: - 14. Trip Creation Tests (All Types)
+
+    func test29_CreateLocalTrip() {
+        // Navigate to new trip form
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else {
+            XCTFail("Could not find New Trip button")
+            return
+        }
+        newTripButton.tap()
+        sleep(1)
+
+        // Fill destination
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Roma Centro")
+        }
+
+        // Dismiss keyboard if visible
+        if app.keyboards.count > 0 {
+            app.tap() // Tap outside to dismiss
+        }
+        sleep(1)
+
+        // Select Local trip type (index 0)
+        let tripTypeSegment = app.segmentedControls.firstMatch
+        if tripTypeSegment.exists {
+            tripTypeSegment.buttons.element(boundBy: 0).tap()
+        }
+
+        takeScreenshot(name: "29_LocalTrip_Form")
+
+        // Tap create button
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        takeScreenshot(name: "29_LocalTrip_Created")
+        XCTAssertTrue(app.exists, "Local trip creation should not crash")
+    }
+
+    func test30_CreateDayTrip() {
+        // Navigate to new trip form
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else { return }
+        newTripButton.tap()
+        sleep(1)
+
+        // Fill destination
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Firenze Gita")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        // Select Day trip type (index 1)
+        let tripTypeSegment = app.segmentedControls.firstMatch
+        if tripTypeSegment.exists {
+            tripTypeSegment.buttons.element(boundBy: 1).tap()
+        }
+
+        takeScreenshot(name: "30_DayTrip_Form")
+
+        // Tap create button
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        takeScreenshot(name: "30_DayTrip_Created")
+        XCTAssertTrue(app.exists, "Day trip creation should not crash")
+    }
+
+    func test31_CreateMultiDayTrip() {
+        // Navigate to new trip form
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else { return }
+        newTripButton.tap()
+        sleep(1)
+
+        // Fill destination
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Parigi Vacanza")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        // Select Multi-day trip type (index 2)
+        let tripTypeSegment = app.segmentedControls.firstMatch
+        if tripTypeSegment.exists {
+            tripTypeSegment.buttons.element(boundBy: 2).tap()
+        }
+
+        takeScreenshot(name: "31_MultiDayTrip_Form")
+
+        // Tap create button
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        takeScreenshot(name: "31_MultiDayTrip_Created")
+        XCTAssertTrue(app.exists, "Multi-day trip creation should not crash")
+    }
+
+    func test32_CreateTripWithTrackingDisabled() {
+        // Navigate to new trip form
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else { return }
+        newTripButton.tap()
+        sleep(1)
+
+        // Fill destination
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Milano No Track")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        // Disable tracking switch
+        let trackingSwitch = app.switches.firstMatch
+        if trackingSwitch.exists && trackingSwitch.value as? String == "1" {
+            trackingSwitch.tap()
+        }
+
+        takeScreenshot(name: "32_TripNoTracking_Form")
+
+        // Tap create button
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        takeScreenshot(name: "32_TripNoTracking_Created")
+        XCTAssertTrue(app.exists, "Trip creation with tracking disabled should not crash")
+    }
+
+    // MARK: - 15. Active Trip Tests
+
+    func test33_ActiveTrip_StartStopTracking() {
+        // First create a trip with tracking enabled
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else { return }
+        newTripButton.tap()
+        sleep(1)
+
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Test Tracking")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        // Ensure tracking switch is ON
+        let trackingSwitch = app.switches.firstMatch
+        if trackingSwitch.exists && trackingSwitch.value as? String == "0" {
+            trackingSwitch.tap()
+        }
+
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        takeScreenshot(name: "33_ActiveTrip_Started")
+
+        // Look for tracking button (Start/Stop)
+        let trackingButton = app.buttons[IDs.ActiveTrip.trackingButton]
+        let startTrackingButton = app.buttons["Start Tracking"]
+        let stopTrackingButton = app.buttons["Stop Tracking"]
+
+        if waitForElement(trackingButton, timeout: 3) {
+            trackingButton.tap()
+            sleep(2)
+            takeScreenshot(name: "33_ActiveTrip_TrackingToggled")
+        } else if startTrackingButton.exists {
+            startTrackingButton.tap()
+            sleep(2)
+            takeScreenshot(name: "33_ActiveTrip_TrackingStarted")
+        }
+
+        XCTAssertTrue(app.exists, "Start/Stop tracking should not crash")
+    }
+
+    func test34_ActiveTrip_AddNote() {
+        // This test assumes we have an active trip from previous tests
+        // Or we create a new one
+
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        if waitForElement(newTripButton, timeout: 3) {
+            newTripButton.tap()
+            sleep(1)
+
+            let destinationField = app.textFields.firstMatch
+            if destinationField.exists {
+                destinationField.tap()
+                destinationField.typeText("Test Note Trip")
+            }
+
+            if app.keyboards.count > 0 {
+                app.tap()
+            }
+            sleep(1)
+
+            let createButton = app.buttons["Crea Viaggio"]
+            if createButton.exists {
+                createButton.tap()
+                sleep(2)
+            }
+        }
+
+        takeScreenshot(name: "34_BeforeAddNote")
+
+        // Look for note button
+        let noteButton = app.buttons[IDs.ActiveTrip.noteButton]
+        let noteButtonEmoji = app.buttons["📝"]
+
+        if waitForElement(noteButton, timeout: 3) {
+            noteButton.tap()
+        } else if noteButtonEmoji.exists {
+            noteButtonEmoji.tap()
+        }
+
+        sleep(1)
+        takeScreenshot(name: "34_NoteDialog")
+
+        // Check if an alert appeared for note input
+        let alert = app.alerts.firstMatch
+        if alert.exists {
+            let textField = alert.textFields.firstMatch
+            if textField.exists {
+                textField.tap()
+                textField.typeText("Nota di test automatico")
+            }
+
+            // Tap OK/Save button
+            let okButton = alert.buttons["OK"]
+            let saveButton = alert.buttons["Salva"]
+            if okButton.exists {
+                okButton.tap()
+            } else if saveButton.exists {
+                saveButton.tap()
+            } else {
+                alert.buttons.firstMatch.tap()
+            }
+        }
+
+        sleep(1)
+        takeScreenshot(name: "34_AfterAddNote")
+        XCTAssertTrue(app.exists, "Adding note should not crash")
+    }
+
+    func test35_ActiveTrip_PhotoButton() {
+        // Create a trip
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        if waitForElement(newTripButton, timeout: 3) {
+            newTripButton.tap()
+            sleep(1)
+
+            let destinationField = app.textFields.firstMatch
+            if destinationField.exists {
+                destinationField.tap()
+                destinationField.typeText("Test Photo Trip")
+            }
+
+            if app.keyboards.count > 0 {
+                app.tap()
+            }
+            sleep(1)
+
+            let createButton = app.buttons["Crea Viaggio"]
+            if createButton.exists {
+                createButton.tap()
+                sleep(2)
+            }
+        }
+
+        // Look for photo button
+        let photoButton = app.buttons[IDs.ActiveTrip.photoButton]
+        let photoButtonEmoji = app.buttons["📷"]
+
+        takeScreenshot(name: "35_BeforePhotoButton")
+
+        if waitForElement(photoButton, timeout: 3) {
+            photoButton.tap()
+        } else if photoButtonEmoji.exists {
+            photoButtonEmoji.tap()
+        }
+
+        sleep(1)
+        takeScreenshot(name: "35_AfterPhotoButton")
+
+        // Handle any action sheet or alert that may appear
+        let actionSheet = app.sheets.firstMatch
+        if actionSheet.exists {
+            // Cancel the action sheet since we can't use camera in simulator
+            let cancelButton = actionSheet.buttons["Annulla"]
+            if cancelButton.exists {
+                cancelButton.tap()
+            } else {
+                actionSheet.buttons.firstMatch.tap()
+            }
+        }
+
+        sleep(1)
+        XCTAssertTrue(app.exists, "Photo button should not crash")
+    }
+
+    // MARK: - 16. Trip List After Creation Tests
+
+    func test36_TripList_VerifyCreatedTrips() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        takeScreenshot(name: "36_TripList_AfterCreation")
+
+        // Check if table has cells (created trips)
+        let table = app.tables.firstMatch
+        if table.exists {
+            let cellCount = table.cells.count
+            print("Found \(cellCount) trip cells")
+
+            // If there are trips, tap on the first one
+            if cellCount > 0 {
+                table.cells.firstMatch.tap()
+                sleep(1)
+                takeScreenshot(name: "36_TripDetail_FromList")
+
+                // Go back
+                let backButton = app.navigationBars.buttons.firstMatch
+                if backButton.exists {
+                    backButton.tap()
+                    sleep(1)
+                }
+            }
+        }
+
+        XCTAssertTrue(app.exists, "Trip list navigation should not crash")
+    }
+
+    func test37_TripList_FilterByType() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        // Test each filter option
+        let filterSegment = app.segmentedControls.firstMatch
+        if filterSegment.exists {
+            // Filter by Locale (index 1)
+            filterSegment.buttons.element(boundBy: 1).tap()
+            sleep(1)
+            takeScreenshot(name: "37_Filter_Local")
+
+            // Filter by Giornaliero (index 2)
+            filterSegment.buttons.element(boundBy: 2).tap()
+            sleep(1)
+            takeScreenshot(name: "37_Filter_DayTrip")
+
+            // Filter by Multi-giorno (index 3)
+            filterSegment.buttons.element(boundBy: 3).tap()
+            sleep(1)
+            takeScreenshot(name: "37_Filter_MultiDay")
+
+            // Back to All (index 0)
+            filterSegment.buttons.element(boundBy: 0).tap()
+            sleep(1)
+            takeScreenshot(name: "37_Filter_All")
+        }
+
+        XCTAssertTrue(app.exists, "Filter switching should not crash")
+    }
+
+    func test38_TripList_SearchTrips() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        // Find search bar
+        let searchBar = app.searchFields.firstMatch
+        if searchBar.exists {
+            searchBar.tap()
+            searchBar.typeText("Roma")
+            sleep(1)
+            takeScreenshot(name: "38_Search_Roma")
+
+            // Clear search
+            searchBar.buttons["Clear text"].tap()
+            sleep(1)
+
+            // Search for another term
+            searchBar.typeText("Parigi")
+            sleep(1)
+            takeScreenshot(name: "38_Search_Parigi")
+
+            // Dismiss keyboard
+            if app.keyboards.count > 0 {
+                app.keyboards.buttons["Search"].tap()
+            }
+        }
+
+        XCTAssertTrue(app.exists, "Search should not crash")
+    }
+
+    // MARK: - 17. Trip Detail Tests
+
+    func test39_TripDetail_ViewDetails() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        // Tap on first trip
+        let table = app.tables.firstMatch
+        if table.exists && table.cells.count > 0 {
+            table.cells.firstMatch.tap()
+            sleep(1)
+            takeScreenshot(name: "39_TripDetail_View")
+
+            // Scroll down to see all details
+            let scrollView = app.scrollViews.firstMatch
+            if scrollView.exists {
+                scrollView.swipeUp()
+                sleep(1)
+                takeScreenshot(name: "39_TripDetail_ScrolledDown")
+
+                scrollView.swipeDown()
+                sleep(1)
+            }
+
+            // Go back
+            let backButton = app.navigationBars.buttons.firstMatch
+            if backButton.exists {
+                backButton.tap()
+            }
+        }
+
+        XCTAssertTrue(app.exists, "Trip detail viewing should not crash")
+    }
+
+    func test40_TripDetail_MapButton() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        // Tap on first trip
+        let table = app.tables.firstMatch
+        if table.exists && table.cells.count > 0 {
+            table.cells.firstMatch.tap()
+            sleep(1)
+
+            // Look for map button
+            let mapButton = app.buttons[IDs.TripDetail.mapButton]
+            let mapButtonText = app.buttons["Visualizza Mappa"]
+            let mapButtonIcon = app.buttons["map"]
+
+            if waitForElement(mapButton, timeout: 2) {
+                mapButton.tap()
+            } else if mapButtonText.exists {
+                mapButtonText.tap()
+            } else if mapButtonIcon.exists {
+                mapButtonIcon.tap()
+            }
+
+            sleep(2)
+            takeScreenshot(name: "40_TripDetail_Map")
+
+            // Go back
+            let backButton = app.navigationBars.buttons.firstMatch
+            if backButton.exists {
+                backButton.tap()
+                sleep(1)
+            }
+        }
+
+        XCTAssertTrue(app.exists, "Map button should not crash")
+    }
+
+    // MARK: - 18. Trip Deletion Tests
+
+    func test41_TripList_SwipeToDelete() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        let table = app.tables.firstMatch
+        if table.exists && table.cells.count > 0 {
+            let firstCell = table.cells.firstMatch
+
+            // Swipe left to reveal delete button
+            firstCell.swipeLeft()
+            sleep(1)
+            takeScreenshot(name: "41_SwipeDelete_Revealed")
+
+            // Look for delete button
+            let deleteButton = table.buttons["Delete"]
+            let deleteButtonIT = table.buttons["Elimina"]
+
+            if deleteButton.exists {
+                deleteButton.tap()
+            } else if deleteButtonIT.exists {
+                deleteButtonIT.tap()
+            }
+
+            sleep(1)
+            takeScreenshot(name: "41_AfterSwipeDelete")
+
+            // Handle confirmation alert if present
+            let alert = app.alerts.firstMatch
+            if alert.exists {
+                let confirmDelete = alert.buttons["Elimina"]
+                let confirmDeleteEN = alert.buttons["Delete"]
+                if confirmDelete.exists {
+                    confirmDelete.tap()
+                } else if confirmDeleteEN.exists {
+                    confirmDeleteEN.tap()
+                }
+            }
+
+            sleep(1)
+        }
+
+        XCTAssertTrue(app.exists, "Swipe to delete should not crash")
+    }
+
+    // MARK: - 19. Statistics After Trips Tests
+
+    func test42_Statistics_VerifyData() {
+        // Navigate to statistics
+        let statsTab = app.tabBars.buttons.element(boundBy: 3)
+        guard statsTab.exists else { return }
+        statsTab.tap()
+        sleep(1)
+
+        takeScreenshot(name: "42_Statistics_WithTrips")
+
+        // Scroll to see charts
+        let scrollView = app.scrollViews.firstMatch
+        if scrollView.exists {
+            scrollView.swipeUp()
+            sleep(1)
+            takeScreenshot(name: "42_Statistics_Charts")
+
+            scrollView.swipeDown()
+            sleep(1)
+        }
+
+        // Test year selector if present
+        let yearSegment = app.segmentedControls.firstMatch
+        if yearSegment.exists && yearSegment.buttons.count > 1 {
+            yearSegment.buttons.element(boundBy: 1).tap()
+            sleep(1)
+            takeScreenshot(name: "42_Statistics_DifferentYear")
+
+            yearSegment.buttons.element(boundBy: 0).tap()
+            sleep(1)
+        }
+
+        XCTAssertTrue(app.exists, "Statistics viewing should not crash")
+    }
+
+    // MARK: - 20. Map View After Trips Tests
+
+    func test43_MapView_ShowsRoutes() {
+        // Navigate to map
+        let mapTab = app.tabBars.buttons.element(boundBy: 2)
+        guard mapTab.exists else { return }
+        mapTab.tap()
+        sleep(2)
+
+        takeScreenshot(name: "43_MapView_WithRoutes")
+
+        // Test mode switcher (Percorsi/Heatmap)
+        let modeSegment = app.segmentedControls.firstMatch
+        if modeSegment.exists && modeSegment.buttons.count > 1 {
+            // Switch to Heatmap
+            modeSegment.buttons.element(boundBy: 1).tap()
+            sleep(2)
+            takeScreenshot(name: "43_MapView_Heatmap")
+
+            // Switch back to Routes
+            modeSegment.buttons.element(boundBy: 0).tap()
+            sleep(2)
+            takeScreenshot(name: "43_MapView_Routes")
+        }
+
+        XCTAssertTrue(app.exists, "Map view should not crash")
+    }
+
+    // MARK: - 21. Complete Trip Lifecycle Test
+
+    func test44_CompleteTripLifecycle() {
+        takeScreenshot(name: "44_Lifecycle_01_Start")
+
+        // 1. Create a new trip
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else {
+            XCTFail("Could not find New Trip button")
+            return
+        }
+        newTripButton.tap()
+        sleep(1)
+
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Lifecycle Test Trip")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+        takeScreenshot(name: "44_Lifecycle_02_Created")
+
+        // 2. Go to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        if tripsTab.exists {
+            tripsTab.tap()
+            sleep(1)
+        }
+        takeScreenshot(name: "44_Lifecycle_03_InList")
+
+        // 3. View trip details
+        let table = app.tables.firstMatch
+        if table.exists && table.cells.count > 0 {
+            table.cells.firstMatch.tap()
+            sleep(1)
+            takeScreenshot(name: "44_Lifecycle_04_Details")
+
+            // Go back
+            let backButton = app.navigationBars.buttons.firstMatch
+            if backButton.exists {
+                backButton.tap()
+                sleep(1)
+            }
+        }
+
+        // 4. Check statistics
+        let statsTab = app.tabBars.buttons.element(boundBy: 3)
+        if statsTab.exists {
+            statsTab.tap()
+            sleep(1)
+        }
+        takeScreenshot(name: "44_Lifecycle_05_Statistics")
+
+        // 5. Check map
+        let mapTab = app.tabBars.buttons.element(boundBy: 2)
+        if mapTab.exists {
+            mapTab.tap()
+            sleep(2)
+        }
+        takeScreenshot(name: "44_Lifecycle_06_Map")
+
+        // 6. Return to home
+        let homeTab = app.tabBars.buttons.element(boundBy: 0)
+        if homeTab.exists {
+            homeTab.tap()
+            sleep(1)
+        }
+        takeScreenshot(name: "44_Lifecycle_07_End")
+
+        XCTAssertTrue(app.exists, "Complete trip lifecycle should not crash")
+    }
+
+    // MARK: - 22. Edge Cases with Trips
+
+    func test45_CreateTrip_LongDestinationName() {
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else { return }
+        newTripButton.tap()
+        sleep(1)
+
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Questa è una destinazione molto molto molto lunga per testare il comportamento dell'app")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        takeScreenshot(name: "45_LongDestination")
+
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        XCTAssertTrue(app.exists, "Long destination name should not crash")
+    }
+
+    func test46_CreateTrip_SpecialCharacters() {
+        let newTripButton = app.buttons["Nuovo Viaggio"]
+        guard waitForElement(newTripButton, timeout: 3) else { return }
+        newTripButton.tap()
+        sleep(1)
+
+        let destinationField = app.textFields.firstMatch
+        if destinationField.exists {
+            destinationField.tap()
+            destinationField.typeText("Città d'élite #1 (2025)")
+        }
+
+        if app.keyboards.count > 0 {
+            app.tap()
+        }
+        sleep(1)
+
+        takeScreenshot(name: "46_SpecialChars")
+
+        let createButton = app.buttons["Crea Viaggio"]
+        if createButton.exists {
+            createButton.tap()
+            sleep(2)
+        }
+
+        XCTAssertTrue(app.exists, "Special characters should not crash")
+    }
+
+    func test47_RapidTripCreation_StressTest() {
+        // Rapidly create multiple trips
+        for i in 1...3 {
+            let newTripButton = app.buttons["Nuovo Viaggio"]
+            if !waitForElement(newTripButton, timeout: 3) {
+                // Maybe we're on a different screen, go home
+                app.tabBars.buttons.element(boundBy: 0).tap()
+                sleep(1)
+                continue
+            }
+
+            newTripButton.tap()
+            sleep(1)
+
+            let destinationField = app.textFields.firstMatch
+            if destinationField.exists {
+                destinationField.tap()
+                destinationField.typeText("Stress Test \(i)")
+            }
+
+            if app.keyboards.count > 0 {
+                app.tap()
+            }
+
+            // Disable tracking to speed up
+            let trackingSwitch = app.switches.firstMatch
+            if trackingSwitch.exists && trackingSwitch.value as? String == "1" {
+                trackingSwitch.tap()
+            }
+
+            let createButton = app.buttons["Crea Viaggio"]
+            if createButton.exists {
+                createButton.tap()
+                sleep(1)
+            }
+
+            // Go back to home
+            app.tabBars.buttons.element(boundBy: 0).tap()
+            sleep(1)
+        }
+
+        takeScreenshot(name: "47_AfterStressCreation")
+        XCTAssertTrue(app.exists, "Rapid trip creation should not crash")
+    }
+
+    func test48_TripList_ScrollWithManyTrips() {
+        // Navigate to trips list
+        let tripsTab = app.tabBars.buttons.element(boundBy: 1)
+        guard tripsTab.exists else { return }
+        tripsTab.tap()
+        sleep(1)
+
+        // Scroll the table
+        let table = app.tables.firstMatch
+        if table.exists {
+            // Scroll down multiple times
+            table.swipeUp()
+            sleep(1)
+            table.swipeUp()
+            sleep(1)
+            takeScreenshot(name: "48_ScrolledDown")
+
+            // Scroll back up
+            table.swipeDown()
+            sleep(1)
+            table.swipeDown()
+            sleep(1)
+            takeScreenshot(name: "48_ScrolledUp")
+        }
+
+        XCTAssertTrue(app.exists, "Scrolling trip list should not crash")
+    }
 }

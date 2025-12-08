@@ -108,14 +108,14 @@ final class TripTypeTests: XCTestCase {
 
     // MARK: - Icon Tests
 
-    func testTripType_AllTypes_ShouldHaveIcon() {
+    func testTripType_AllTypes_ShouldHaveIconName() {
         // Given
         let allTypes: [TripType] = [.local, .dayTrip, .multiDay]
 
         // When & Then
         for tripType in allTypes {
-            let icon = tripType.icon
-            XCTAssertFalse(icon.isEmpty, "TripType \(tripType.rawValue) should have an icon")
+            let iconName = tripType.iconName
+            XCTAssertFalse(iconName.isEmpty, "TripType \(tripType.rawValue) should have an iconName")
         }
     }
 

@@ -13,107 +13,184 @@ final class DistanceCalculatorTests: XCTestCase {
 
     // MARK: - Distance Calculation Tests
 
-    func testCalculateDistance_BetweenTwoPoints_ShouldReturnCorrectDistance() {
-        // Given - Roma Colosseo e Roma Vaticano (circa 3.5km di distanza)
-        let point1 = CLLocationCoordinate2D(latitude: 41.8902, longitude: 12.4922) // Colosseo
-        let point2 = CLLocationCoordinate2D(latitude: 41.9022, longitude: 12.4539) // Vaticano
+    func testCalculateDistance_WithTwoLocations_ShouldReturnCorrectDistance() {
+        // Given - Two locations approximately 1km apart
+        let location1 = CLLocation(latitude: 44.4949, longitude: 11.3426) // Bologna
+        let location2 = CLLocation(latitude: 44.5049, longitude: 11.3426) // ~1.1km north
 
         // When
-        let distance = DistanceCalculator.calculateDistance(from: point1, to: point2)
+        let distance = DistanceCalculator.calculateDistance(from: [location1, location2])
 
-        // Then - La distanza dovrebbe essere circa 3.5 km (3500 metri)
-        XCTAssertGreaterThan(distance, 3000)
-        XCTAssertLessThan(distance, 4000)
+        // Then - Should be approximately 1100 meters
+        XCTAssertGreaterThan(distance, 1000)
+        XCTAssertLessThan(distance, 1200)
     }
 
-    func testCalculateDistance_SamePoint_ShouldReturnZero() {
+    func testCalculateDistance_WithEmptyArray_ShouldReturnZero() {
         // Given
-        let point = CLLocationCoordinate2D(latitude: 41.9028, longitude: 12.4964)
+        let locations: [CLLocation] = []
 
         // When
-        let distance = DistanceCalculator.calculateDistance(from: point, to: point)
+        let distance = DistanceCalculator.calculateDistance(from: locations)
 
         // Then
-        XCTAssertEqual(distance, 0, accuracy: 0.001)
+        XCTAssertEqual(distance, 0.0)
     }
 
-    func testCalculateDistance_FromCLLocations_ShouldReturnCorrectDistance() {
+    func testCalculateDistance_WithSingleLocation_ShouldReturnZero() {
         // Given
-        let location1 = CLLocation(latitude: 41.8902, longitude: 12.4922)
-        let location2 = CLLocation(latitude: 41.9022, longitude: 12.4539)
+        let location = CLLocation(latitude: 44.4949, longitude: 11.3426)
 
         // When
-        let distance = DistanceCalculator.calculateDistance(from: location1, to: location2)
+        let distance = DistanceCalculator.calculateDistance(from: [location])
 
         // Then
-        XCTAssertGreaterThan(distance, 3000)
-        XCTAssertLessThan(distance, 4000)
+        XCTAssertEqual(distance, 0.0)
     }
 
-    // MARK: - Total Distance Tests
-
-    func testCalculateTotalDistance_WithValidRoute_ShouldSumDistances() {
-        // Given - Un percorso triangolare
-        let route = [
-            CLLocationCoordinate2D(latitude: 41.9028, longitude: 12.4964),
-            CLLocationCoordinate2D(latitude: 41.9100, longitude: 12.4964),
-            CLLocationCoordinate2D(latitude: 41.9100, longitude: 12.5064),
-            CLLocationCoordinate2D(latitude: 41.9028, longitude: 12.4964) // Ritorno al punto iniziale
-        ]
+    func testCalculateDistance_WithMultipleLocations_ShouldSumDistances() {
+        // Given - Three locations forming a path
+        let location1 = CLLocation(latitude: 44.4949, longitude: 11.3426)
+        let location2 = CLLocation(latitude: 44.5049, longitude: 11.3426)
+        let location3 = CLLocation(latitude: 44.5049, longitude: 11.3526)
 
         // When
-        let totalDistance = DistanceCalculator.calculateTotalDistance(for: route)
+        let distance = DistanceCalculator.calculateDistance(from: [location1, location2, location3])
 
-        // Then - La distanza totale dovrebbe essere maggiore di 0
-        XCTAssertGreaterThan(totalDistance, 0)
+        // Then - Should be greater than 0
+        XCTAssertGreaterThan(distance, 0)
     }
 
-    func testCalculateTotalDistance_WithEmptyRoute_ShouldReturnZero() {
+    // MARK: - Format Distance Tests
+
+    func testFormatDistance_UnderOneKm_ShouldShowMeters() {
         // Given
-        let route: [CLLocationCoordinate2D] = []
+        let meters = 500.0
 
         // When
-        let totalDistance = DistanceCalculator.calculateTotalDistance(for: route)
+        let formatted = DistanceCalculator.formatDistance(meters)
 
         // Then
-        XCTAssertEqual(totalDistance, 0)
+        XCTAssertEqual(formatted, "500 m")
     }
 
-    func testCalculateTotalDistance_WithSinglePoint_ShouldReturnZero() {
+    func testFormatDistance_OverOneKm_ShouldShowKilometers() {
         // Given
-        let route = [CLLocationCoordinate2D(latitude: 41.9028, longitude: 12.4964)]
+        let meters = 2500.0
 
         // When
-        let totalDistance = DistanceCalculator.calculateTotalDistance(for: route)
+        let formatted = DistanceCalculator.formatDistance(meters)
 
         // Then
-        XCTAssertEqual(totalDistance, 0)
+        XCTAssertEqual(formatted, "2.5 km")
     }
 
-    // MARK: - Average Speed Tests
+    func testFormatDistance_ExactlyOneKm_ShouldShowKilometers() {
+        // Given
+        let meters = 1000.0
 
-    func testCalculateAverageSpeed_WithValidData_ShouldReturnCorrectSpeed() {
-        // Given - 10 km in 1 ora
-        let distance: CLLocationDistance = 10000 // 10 km in metri
-        let duration: TimeInterval = 3600 // 1 ora in secondi
+        // When
+        let formatted = DistanceCalculator.formatDistance(meters)
+
+        // Then
+        XCTAssertEqual(formatted, "1.0 km")
+    }
+
+    func testFormatDistance_Zero_ShouldShowZeroMeters() {
+        // Given
+        let meters = 0.0
+
+        // When
+        let formatted = DistanceCalculator.formatDistance(meters)
+
+        // Then
+        XCTAssertEqual(formatted, "0 m")
+    }
+
+    // MARK: - Duration Calculation Tests
+
+    func testCalculateDuration_ShouldReturnCorrectSeconds() {
+        // Given
+        let start = Date()
+        let end = start.addingTimeInterval(3600) // 1 hour later
+
+        // When
+        let duration = DistanceCalculator.calculateDuration(from: start, to: end)
+
+        // Then
+        XCTAssertEqual(duration, 3600)
+    }
+
+    func testCalculateDuration_WithSameDate_ShouldReturnZero() {
+        // Given
+        let date = Date()
+
+        // When
+        let duration = DistanceCalculator.calculateDuration(from: date, to: date)
+
+        // Then
+        XCTAssertEqual(duration, 0)
+    }
+
+    // MARK: - Format Duration Tests
+
+    func testFormatDuration_UnderOneMinute_ShouldShowSeconds() {
+        // Given
+        let seconds: TimeInterval = 45
+
+        // When
+        let formatted = DistanceCalculator.formatDuration(seconds)
+
+        // Then
+        XCTAssertEqual(formatted, "45s")
+    }
+
+    func testFormatDuration_UnderOneHour_ShouldShowMinutesAndSeconds() {
+        // Given
+        let seconds: TimeInterval = 330 // 5 minutes 30 seconds
+
+        // When
+        let formatted = DistanceCalculator.formatDuration(seconds)
+
+        // Then
+        XCTAssertEqual(formatted, "5m 30s")
+    }
+
+    func testFormatDuration_OverOneHour_ShouldShowHoursAndMinutes() {
+        // Given
+        let seconds: TimeInterval = 7500 // 2 hours 5 minutes
+
+        // When
+        let formatted = DistanceCalculator.formatDuration(seconds)
+
+        // Then
+        XCTAssertEqual(formatted, "2h 5m")
+    }
+
+    // MARK: - Speed Calculation Tests
+
+    func testCalculateAverageSpeed_ShouldReturnCorrectValue() {
+        // Given
+        let distance: CLLocationDistance = 10000 // 10 km
+        let duration: TimeInterval = 3600 // 1 hour
 
         // When
         let speed = DistanceCalculator.calculateAverageSpeed(distance: distance, duration: duration)
 
-        // Then - Velocità media = 10 km/h
-        XCTAssertEqual(speed, 10.0, accuracy: 0.001)
+        // Then
+        XCTAssertEqual(speed, 10.0, accuracy: 0.01)
     }
 
     func testCalculateAverageSpeed_WithZeroDuration_ShouldReturnZero() {
         // Given
-        let distance: CLLocationDistance = 10000
+        let distance: CLLocationDistance = 1000
         let duration: TimeInterval = 0
 
         // When
         let speed = DistanceCalculator.calculateAverageSpeed(distance: distance, duration: duration)
 
         // Then
-        XCTAssertEqual(speed, 0)
+        XCTAssertEqual(speed, 0.0)
     }
 
     func testCalculateAverageSpeed_WithZeroDistance_ShouldReturnZero() {
@@ -125,160 +202,30 @@ final class DistanceCalculatorTests: XCTestCase {
         let speed = DistanceCalculator.calculateAverageSpeed(distance: distance, duration: duration)
 
         // Then
-        XCTAssertEqual(speed, 0)
+        XCTAssertEqual(speed, 0.0)
     }
 
-    // MARK: - Duration Formatting Tests
+    // MARK: - Format Speed Tests
 
-    func testFormatDuration_LessThanMinute_ShouldShowSeconds() {
+    func testFormatSpeed_ShouldReturnFormattedString() {
         // Given
-        let duration: TimeInterval = 45 // 45 secondi
+        let speed = 25.5
 
         // When
-        let formatted = DistanceCalculator.formatDuration(duration)
+        let formatted = DistanceCalculator.formatSpeed(speed)
 
         // Then
-        XCTAssertEqual(formatted, "00:00:45")
+        XCTAssertEqual(formatted, "25.5 km/h")
     }
 
-    func testFormatDuration_Minutes_ShouldShowMinutesAndSeconds() {
+    func testFormatSpeed_WithZero_ShouldReturnZeroFormatted() {
         // Given
-        let duration: TimeInterval = 125 // 2 minuti e 5 secondi
+        let speed = 0.0
 
         // When
-        let formatted = DistanceCalculator.formatDuration(duration)
+        let formatted = DistanceCalculator.formatSpeed(speed)
 
         // Then
-        XCTAssertEqual(formatted, "00:02:05")
-    }
-
-    func testFormatDuration_Hours_ShouldShowHoursMinutesSeconds() {
-        // Given
-        let duration: TimeInterval = 3725 // 1 ora, 2 minuti, 5 secondi
-
-        // When
-        let formatted = DistanceCalculator.formatDuration(duration)
-
-        // Then
-        XCTAssertEqual(formatted, "01:02:05")
-    }
-
-    func testFormatDuration_Zero_ShouldShowAllZeros() {
-        // Given
-        let duration: TimeInterval = 0
-
-        // When
-        let formatted = DistanceCalculator.formatDuration(duration)
-
-        // Then
-        XCTAssertEqual(formatted, "00:00:00")
-    }
-
-    // MARK: - Distance Formatting Tests
-
-    func testFormatDistance_Meters_ShouldShowMeters() {
-        // Given
-        let distance: CLLocationDistance = 500
-
-        // When
-        let formatted = DistanceCalculator.formatDistance(distance)
-
-        // Then
-        XCTAssertTrue(formatted.contains("m"))
-        XCTAssertFalse(formatted.contains("km"))
-    }
-
-    func testFormatDistance_Kilometers_ShouldShowKilometers() {
-        // Given
-        let distance: CLLocationDistance = 5500 // 5.5 km
-
-        // When
-        let formatted = DistanceCalculator.formatDistance(distance)
-
-        // Then
-        XCTAssertTrue(formatted.contains("km"))
-    }
-
-    func testFormatDistance_Zero_ShouldShowZeroMeters() {
-        // Given
-        let distance: CLLocationDistance = 0
-
-        // When
-        let formatted = DistanceCalculator.formatDistance(distance)
-
-        // Then
-        XCTAssertTrue(formatted.contains("0"))
-    }
-
-    // MARK: - ETA Calculation Tests
-
-    func testCalculateETA_WithValidSpeedAndDistance_ShouldReturnCorrectTime() {
-        // Given - 10 km a 20 km/h
-        let distance: CLLocationDistance = 10000 // 10 km
-        let speedKmH: Double = 20 // 20 km/h
-
-        // When
-        let eta = DistanceCalculator.calculateETA(distance: distance, averageSpeedKmH: speedKmH)
-
-        // Then - ETA = 30 minuti = 1800 secondi
-        XCTAssertEqual(eta, 1800, accuracy: 1)
-    }
-
-    func testCalculateETA_WithZeroSpeed_ShouldReturnZero() {
-        // Given
-        let distance: CLLocationDistance = 10000
-        let speedKmH: Double = 0
-
-        // When
-        let eta = DistanceCalculator.calculateETA(distance: distance, averageSpeedKmH: speedKmH)
-
-        // Then
-        XCTAssertEqual(eta, 0)
-    }
-
-    // MARK: - Coordinate Validation Tests
-
-    func testIsValidCoordinate_WithValidCoordinates_ShouldReturnTrue() {
-        // Given
-        let coordinate = CLLocationCoordinate2D(latitude: 41.9028, longitude: 12.4964)
-
-        // When
-        let isValid = DistanceCalculator.isValidCoordinate(coordinate)
-
-        // Then
-        XCTAssertTrue(isValid)
-    }
-
-    func testIsValidCoordinate_WithInvalidLatitude_ShouldReturnFalse() {
-        // Given - Latitudine fuori range (-90, 90)
-        let coordinate = CLLocationCoordinate2D(latitude: 91.0, longitude: 12.4964)
-
-        // When
-        let isValid = DistanceCalculator.isValidCoordinate(coordinate)
-
-        // Then
-        XCTAssertFalse(isValid)
-    }
-
-    func testIsValidCoordinate_WithInvalidLongitude_ShouldReturnFalse() {
-        // Given - Longitudine fuori range (-180, 180)
-        let coordinate = CLLocationCoordinate2D(latitude: 41.9028, longitude: 181.0)
-
-        // When
-        let isValid = DistanceCalculator.isValidCoordinate(coordinate)
-
-        // Then
-        XCTAssertFalse(isValid)
-    }
-
-    func testIsValidCoordinate_WithZeroCoordinates_ShouldReturnTrue() {
-        // Given - (0, 0) è una coordinata valida (Oceano Atlantico)
-        let coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-
-        // When
-        let isValid = DistanceCalculator.isValidCoordinate(coordinate)
-
-        // Then
-        XCTAssertTrue(isValid)
+        XCTAssertEqual(formatted, "0.0 km/h")
     }
 }

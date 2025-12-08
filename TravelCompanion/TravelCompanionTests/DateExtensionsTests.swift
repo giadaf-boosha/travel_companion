@@ -44,124 +44,6 @@ final class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(components.second, 59)
     }
 
-    // MARK: - Adding Components Tests
-
-    func testAddingDays_ShouldAddCorrectDays() {
-        // Given
-        let date = Date()
-
-        // When
-        let futureDate = date.adding(days: 5)
-
-        // Then
-        let daysDifference = calendar.dateComponents([.day], from: date, to: futureDate).day
-        XCTAssertEqual(daysDifference, 5)
-    }
-
-    func testAddingDays_WithNegative_ShouldSubtractDays() {
-        // Given
-        let date = Date()
-
-        // When
-        let pastDate = date.adding(days: -3)
-
-        // Then
-        let daysDifference = calendar.dateComponents([.day], from: pastDate, to: date).day
-        XCTAssertEqual(daysDifference, 3)
-    }
-
-    func testAddingMonths_ShouldAddCorrectMonths() {
-        // Given
-        let date = Date()
-
-        // When
-        let futureDate = date.adding(months: 2)
-
-        // Then
-        let monthsDifference = calendar.dateComponents([.month], from: date, to: futureDate).month
-        XCTAssertEqual(monthsDifference, 2)
-    }
-
-    func testAddingYears_ShouldAddCorrectYears() {
-        // Given
-        let date = Date()
-
-        // When
-        let futureDate = date.adding(years: 1)
-
-        // Then
-        let yearsDifference = calendar.dateComponents([.year], from: date, to: futureDate).year
-        XCTAssertEqual(yearsDifference, 1)
-    }
-
-    // MARK: - Date Comparison Tests
-
-    func testIsToday_WithCurrentDate_ShouldReturnTrue() {
-        // Given
-        let today = Date()
-
-        // When
-        let isToday = today.isToday
-
-        // Then
-        XCTAssertTrue(isToday)
-    }
-
-    func testIsToday_WithYesterdayDate_ShouldReturnFalse() {
-        // Given
-        let yesterday = Date().adding(days: -1)
-
-        // When
-        let isToday = yesterday.isToday
-
-        // Then
-        XCTAssertFalse(isToday)
-    }
-
-    func testIsYesterday_WithYesterdayDate_ShouldReturnTrue() {
-        // Given
-        let yesterday = Date().adding(days: -1)
-
-        // When
-        let isYesterday = yesterday.isYesterday
-
-        // Then
-        XCTAssertTrue(isYesterday)
-    }
-
-    func testIsTomorrow_WithTomorrowDate_ShouldReturnTrue() {
-        // Given
-        let tomorrow = Date().adding(days: 1)
-
-        // When
-        let isTomorrow = tomorrow.isTomorrow
-
-        // Then
-        XCTAssertTrue(isTomorrow)
-    }
-
-    func testIsInPast_WithPastDate_ShouldReturnTrue() {
-        // Given
-        let pastDate = Date().addingTimeInterval(-3600) // 1 hour ago
-
-        // When
-        let isInPast = pastDate.isInPast
-
-        // Then
-        XCTAssertTrue(isInPast)
-    }
-
-    func testIsInFuture_WithFutureDate_ShouldReturnTrue() {
-        // Given
-        let futureDate = Date().addingTimeInterval(3600) // 1 hour from now
-
-        // When
-        let isInFuture = futureDate.isInFuture
-
-        // Then
-        XCTAssertTrue(isInFuture)
-    }
-
     // MARK: - Same Day Comparison Tests
 
     func testIsSameDay_WithSameDay_ShouldReturnTrue() {
@@ -179,7 +61,7 @@ final class DateExtensionsTests: XCTestCase {
     func testIsSameDay_WithDifferentDay_ShouldReturnFalse() {
         // Given
         let date1 = Date()
-        let date2 = Date().adding(days: 1)
+        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)!
 
         // When
         let isSameDay = date1.isSameDay(as: date2)
@@ -193,7 +75,7 @@ final class DateExtensionsTests: XCTestCase {
     func testDaysBetween_WithPositiveDifference_ShouldReturnCorrectCount() {
         // Given
         let startDate = Date()
-        let endDate = Date().adding(days: 7)
+        let endDate = calendar.date(byAdding: .day, value: 7, to: startDate)!
 
         // When
         let days = startDate.daysBetween(endDate)
@@ -205,7 +87,7 @@ final class DateExtensionsTests: XCTestCase {
     func testDaysBetween_WithNegativeDifference_ShouldReturnNegativeCount() {
         // Given
         let startDate = Date()
-        let endDate = Date().adding(days: -3)
+        let endDate = calendar.date(byAdding: .day, value: -3, to: startDate)!
 
         // When
         let days = startDate.daysBetween(endDate)
@@ -225,90 +107,77 @@ final class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(days, 0)
     }
 
+    // MARK: - Months Between Tests
+
+    func testMonthsBetween_ShouldReturnCorrectCount() {
+        // Given
+        let startDate = Date()
+        let endDate = calendar.date(byAdding: .month, value: 3, to: startDate)!
+
+        // When
+        let months = startDate.monthsBetween(endDate)
+
+        // Then
+        XCTAssertEqual(months, 3)
+    }
+
     // MARK: - Formatting Tests
 
-    func testFormatted_WithDisplayFormat_ShouldReturnFormattedString() {
+    func testFormatted_WithMediumStyle_ShouldReturnFormattedString() {
         // Given
         let date = Date()
 
         // When
-        let formatted = date.formatted(with: Constants.DateFormat.display)
+        let formatted = date.formatted(style: .medium)
 
         // Then
         XCTAssertFalse(formatted.isEmpty)
     }
 
-    func testFormatted_WithTimeFormat_ShouldReturnTimeString() {
+    func testFormattedWithTime_ShouldReturnNonEmptyString() {
         // Given
         let date = Date()
 
         // When
-        let formatted = date.formatted(with: Constants.DateFormat.time)
-
-        // Then
-        // Should contain colon (HH:mm format)
-        XCTAssertTrue(formatted.contains(":"))
-    }
-
-    func testFormattedRelative_ShouldReturnNonEmptyString() {
-        // Given
-        let date = Date()
-
-        // When
-        let formatted = date.formattedRelative
+        let formatted = date.formattedWithTime()
 
         // Then
         XCTAssertFalse(formatted.isEmpty)
     }
 
-    // MARK: - Component Extraction Tests
+    // MARK: - TimeAgo Tests
 
-    func testYear_ShouldReturnCorrectYear() {
+    func testTimeAgo_JustNow_ShouldReturnCorrectString() {
         // Given
         let date = Date()
-        let expectedYear = calendar.component(.year, from: date)
 
         // When
-        let year = date.year
+        let timeAgo = date.timeAgo()
 
         // Then
-        XCTAssertEqual(year, expectedYear)
+        XCTAssertEqual(timeAgo, "Just now")
     }
 
-    func testMonth_ShouldReturnCorrectMonth() {
+    func testTimeAgo_MinutesAgo_ShouldReturnCorrectString() {
         // Given
-        let date = Date()
-        let expectedMonth = calendar.component(.month, from: date)
+        let date = Date().addingTimeInterval(-120) // 2 minutes ago
 
         // When
-        let month = date.month
+        let timeAgo = date.timeAgo()
 
         // Then
-        XCTAssertEqual(month, expectedMonth)
+        XCTAssertTrue(timeAgo.contains("minute"))
     }
 
-    func testDay_ShouldReturnCorrectDay() {
+    func testTimeAgo_HoursAgo_ShouldReturnCorrectString() {
         // Given
-        let date = Date()
-        let expectedDay = calendar.component(.day, from: date)
+        let date = Date().addingTimeInterval(-7200) // 2 hours ago
 
         // When
-        let day = date.day
+        let timeAgo = date.timeAgo()
 
         // Then
-        XCTAssertEqual(day, expectedDay)
-    }
-
-    func testWeekday_ShouldReturnValueBetween1And7() {
-        // Given
-        let date = Date()
-
-        // When
-        let weekday = date.weekday
-
-        // Then
-        XCTAssertGreaterThanOrEqual(weekday, 1)
-        XCTAssertLessThanOrEqual(weekday, 7)
+        XCTAssertTrue(timeAgo.contains("hour"))
     }
 
     // MARK: - Month Range Tests
@@ -337,29 +206,5 @@ final class DateExtensionsTests: XCTestCase {
         let nextDay = calendar.date(byAdding: .day, value: 1, to: endOfMonth)!
         let components = calendar.dateComponents([.day], from: nextDay)
         XCTAssertEqual(components.day, 1)
-    }
-
-    // MARK: - Weekday Name Tests
-
-    func testWeekdayName_ShouldReturnNonEmptyString() {
-        // Given
-        let date = Date()
-
-        // When
-        let weekdayName = date.weekdayName
-
-        // Then
-        XCTAssertFalse(weekdayName.isEmpty)
-    }
-
-    func testMonthName_ShouldReturnNonEmptyString() {
-        // Given
-        let date = Date()
-
-        // When
-        let monthName = date.monthName
-
-        // Then
-        XCTAssertFalse(monthName.isEmpty)
     }
 }

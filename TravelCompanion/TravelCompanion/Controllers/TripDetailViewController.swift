@@ -219,6 +219,17 @@ class TripDetailViewController: UIViewController {
         contentView.addSubview(separator3)
         contentView.addSubview(mapButton)
 
+        // Setup accessibility identifiers
+        scrollView.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.scrollView
+        destinationLabel.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.destinationLabel
+        dateLabel.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.dateLabel
+        tripTypeLabel.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.tripTypeLabel
+        statusLabel.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.statusLabel
+        distanceLabel.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.distanceLabel
+        photosCollectionView.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.photosCollectionView
+        notesTableView.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.notesTableView
+        mapButton.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.mapButton
+
         // Setup constraints
         setupConstraints()
 
