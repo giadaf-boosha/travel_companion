@@ -495,10 +495,8 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func settingsButtonTapped() {
-        // Navigate to settings
-        let alert = UIAlertController(title: "Impostazioni", message: "Funzionalità in arrivo", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        let settingsVC = SettingsViewController()
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
 
     // MARK: - Navigation

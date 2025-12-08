@@ -276,22 +276,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     private func getTripColor(for trip: Trip) -> UIColor {
-        guard let type = trip.tripTypeRaw else { return .systemBlue }
-
-        switch type {
-        case "car":
-            return .systemBlue
-        case "bike":
-            return .systemGreen
-        case "walk":
-            return .systemOrange
-        case "train":
-            return .systemPurple
-        case "plane":
-            return .systemRed
-        default:
+        guard let tripTypeRaw = trip.tripTypeRaw,
+              let tripType = TripType(rawValue: tripTypeRaw) else {
             return .systemBlue
         }
+        return tripType.color
     }
 
     private func findTripForPolyline(_ polyline: MKPolyline) -> Trip? {
