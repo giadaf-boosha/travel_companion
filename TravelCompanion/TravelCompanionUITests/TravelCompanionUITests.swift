@@ -46,6 +46,19 @@ final class TravelCompanionUITests: XCTestCase {
             static let photoButton = "activeTrip_button_photo"
             static let noteButton = "activeTrip_button_note"
         }
+
+        struct TripDetail {
+            static let scrollView = "tripDetail_scrollView"
+            static let destinationLabel = "tripDetail_label_destination"
+            static let dateLabel = "tripDetail_label_date"
+            static let tripTypeLabel = "tripDetail_label_tripType"
+            static let statusLabel = "tripDetail_label_status"
+            static let distanceLabel = "tripDetail_label_distance"
+            static let photosCollectionView = "tripDetail_collectionView_photos"
+            static let notesTableView = "tripDetail_tableView_notes"
+            static let mapButton = "tripDetail_button_map"
+            static let deleteButton = "tripDetail_button_delete"
+        }
     }
 
     // MARK: - Setup & Teardown
