@@ -934,10 +934,5 @@ Usa questa checklist per verificare di aver testato tutto:
 | [README.md](README.md) | Documentazione principale del progetto |
 | [VERIFICA_REQUISITI.md](VERIFICA_REQUISITI.md) | Verifica conformità requisiti universitari |
 
----
-
-**Made with ❤️ for LAM Course - Università di Bologna**
-
-![UniBO](https://img.shields.io/badge/Alma_Mater_Studiorum-Università_di_Bologna-A31F34.svg?style=for-the-badge)
 
 </div>
