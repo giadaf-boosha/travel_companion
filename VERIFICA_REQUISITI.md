@@ -16,10 +16,7 @@
 | Display Charts | 6 | 6 | 0 | 🟢 **COMPLETO** |
 | Background Jobs | 8 | 8 | 0 | 🟢 **COMPLETO** |
 | Requisiti Tecnici | 6 | 6 | 0 | 🟢 **COMPLETO** |
-| **TOTALE BASE** | **34** | **34** | **0** | 🟢 **100%** |
-| --- | --- | --- | --- | --- |
-| Funzionalità AI Extra | 6 | 6 | 0 | 🟢 **BONUS** |
-| **TOTALE CON BONUS** | **40** | **40** | **0** | 🟢 **117%** |
+| Funzionalità AI Extra | 6 | 6 | 0 | 🟢 **EXTRA** |
 
 ### 🎯 Verdetto Finale: **TUTTI I REQUISITI RISPETTATI + 6 FUNZIONALITÀ AI EXTRA** ✅
 
@@ -417,8 +414,7 @@ func scheduleLoggingReminder(daysInterval: Int = 7) {
 
 ## 🤖 Sezione 5: Funzionalità AI (Apple Foundation Models)
 
-> **Nota:** Questa sezione documenta le funzionalità extra implementate con Apple Foundation Models (iOS 26+).
-> Queste funzionalità **non sono richieste** dai requisiti del corso ma dimostrano competenze avanzate.
+> **Nota:** Questa sezione documenta le funzionalità in più implementate con Apple Foundation Models (iOS 26+).
 
 ### 5.1 Panoramica Tecnologia
 
@@ -473,7 +469,7 @@ func scheduleLoggingReminder(daysInterval: Int = 7) {
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### 5.3 Funzionalità AI Implementate
+### 5.3 Funzionalità AI implementate
 
 | # | Funzionalità | Descrizione | File di Riferimento |
 |:-:|--------------|-------------|---------------------|
@@ -659,7 +655,7 @@ if #available(iOS 26.0, *) {
 
 ---
 
-## 🎁 Funzionalità Extra (Non Richieste)
+## 🎁 Funzionalità in più
 
 | Feature | Descrizione | File | Test |
 |---------|-------------|------|:----:|
@@ -675,7 +671,7 @@ if #available(iOS 26.0, *) {
 
 ---
 
-## 📚 Conformità con Materiale Didattico
+## 📚 Conformità con materiale didattico
 
 | Argomento Lezione | Utilizzo nel Progetto | Stato |
 |-------------------|----------------------|:-----:|
@@ -702,7 +698,7 @@ if #available(iOS 26.0, *) {
 
 ---
 
-## 📄 Struttura Progetto Completa
+## 📄 Struttura progetto completa
 
 ```
 TravelCompanion/
@@ -810,7 +806,7 @@ TravelCompanion/
 - [x] App nativa iOS (Swift/UIKit)
 - [x] Permessi privacy configurati
 
-## ✅ Checklist Funzionalità AI Bonus
+## ✅ Checklist Funzionalità AI in più
 
 - [x] FoundationModelService singleton
 - [x] @Generable structures
@@ -828,7 +824,7 @@ TravelCompanion/
 
 ---
 
-## 📝 Note per la Discussione
+## 📝 Note per la discussione
 
 1. **Approccio Empty State UI**: Per la gestione dei periodi senza viaggi attivi, è stato adottato il pattern "Empty State UI" raccomandato dalle Human Interface Guidelines di Apple.
 
