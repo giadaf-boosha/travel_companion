@@ -439,7 +439,7 @@ final class CoreDataManager {
         event.id = UUID()
         event.eventTypeRaw = eventType.rawValue
         event.timestamp = Date()
-        event.zone = zone
+        event.geofenceZone = zone
 
         saveContext()
 
@@ -452,7 +452,7 @@ final class CoreDataManager {
     /// Recupera gli eventi per una zona
     func fetchEvents(for zone: GeofenceZone) -> [GeofenceEvent] {
         let request: NSFetchRequest<GeofenceEvent> = GeofenceEvent.fetchRequest()
-        request.predicate = NSPredicate(format: "zone == %@", zone)
+        request.predicate = NSPredicate(format: "geofenceZone == %@", zone)
         request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
 
         do {

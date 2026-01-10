@@ -5,7 +5,6 @@ import FoundationModels
 #endif
 
 /// Servizio singleton per la gestione delle funzionalita AI con Apple Foundation Models
-@available(iOS 26.0, *)
 final class FoundationModelService {
 
     // MARK: - Singleton

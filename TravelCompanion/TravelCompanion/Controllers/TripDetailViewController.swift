@@ -173,52 +173,52 @@ class TripDetailViewController: UIViewController {
     }()
 
     private let itineraryAIButton: UIButton = {
-        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+        config.baseForegroundColor = .systemBlue
+        let button = UIButton(configuration: config)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemBlue.withAlphaComponent(0.1)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiItineraryButton
         return button
     }()
 
     private let packingListAIButton: UIButton = {
-        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+        config.baseForegroundColor = .systemOrange
+        let button = UIButton(configuration: config)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemOrange.withAlphaComponent(0.1)
-        button.setTitleColor(.systemOrange, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiPackingListButton
         return button
     }()
 
     private let briefingAIButton: UIButton = {
-        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+        config.baseForegroundColor = .systemPurple
+        let button = UIButton(configuration: config)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemPurple.withAlphaComponent(0.1)
-        button.setTitleColor(.systemPurple, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiBriefingButton
         return button
     }()
 
     private let summaryAIButton: UIButton = {
-        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+        config.baseForegroundColor = .systemTeal
+        let button = UIButton(configuration: config)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemTeal.withAlphaComponent(0.1)
-        button.setTitleColor(.systemTeal, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiSummaryButton
         return button
@@ -289,16 +289,16 @@ class TripDetailViewController: UIViewController {
         contentView.addSubview(notesTableView)
         contentView.addSubview(separator3)
 
-        // AI Section (only on iOS 26+)
-        if #available(iOS 26.0, *) {
-            contentView.addSubview(aiSectionLabel)
-            contentView.addSubview(aiButtonsStackView)
-            aiButtonsStackView.addArrangedSubview(itineraryAIButton)
-            aiButtonsStackView.addArrangedSubview(packingListAIButton)
-            aiButtonsStackView.addArrangedSubview(briefingAIButton)
-            aiButtonsStackView.addArrangedSubview(summaryAIButton)
-            contentView.addSubview(separator4)
-        }
+        // AI Section (requires FoundationModels)
+        #if canImport(FoundationModels)
+        contentView.addSubview(aiSectionLabel)
+        contentView.addSubview(aiButtonsStackView)
+        aiButtonsStackView.addArrangedSubview(itineraryAIButton)
+        aiButtonsStackView.addArrangedSubview(packingListAIButton)
+        aiButtonsStackView.addArrangedSubview(briefingAIButton)
+        aiButtonsStackView.addArrangedSubview(summaryAIButton)
+        contentView.addSubview(separator4)
+        #endif
 
         contentView.addSubview(mapButton)
 
@@ -359,7 +359,7 @@ class TripDetailViewController: UIViewController {
         ])
 
         // Photos section
-        guard let separator1 = contentView.subviews.first(where: { $0.backgroundColor == .separator && $0.frame.origin.y == 0 }) as? UIView else { return }
+        guard let separator1 = contentView.subviews.first(where: { $0.backgroundColor == .separator && $0.frame.origin.y == 0 }) else { return }
         NSLayoutConstraint.activate([
             separator1.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 24),
             separator1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -382,7 +382,7 @@ class TripDetailViewController: UIViewController {
         ])
 
         // Notes section
-        guard let separator2 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst().first as? UIView else { return }
+        guard let separator2 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst().first else { return }
         NSLayoutConstraint.activate([
             separator2.topAnchor.constraint(equalTo: photosCollectionView.bottomAnchor, constant: 24),
             separator2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -405,7 +405,7 @@ class TripDetailViewController: UIViewController {
         ])
 
         // Separator after notes
-        guard let separator3 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst(2).first as? UIView else { return }
+        guard let separator3 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst(2).first else { return }
         NSLayoutConstraint.activate([
             separator3.topAnchor.constraint(equalTo: notesTableView.bottomAnchor, constant: 24),
             separator3.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -413,52 +413,52 @@ class TripDetailViewController: UIViewController {
             separator3.heightAnchor.constraint(equalToConstant: 1)
         ])
 
-        // AI Section (only on iOS 26+)
-        if #available(iOS 26.0, *) {
-            NSLayoutConstraint.activate([
-                aiSectionLabel.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
-                aiSectionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                aiSectionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-            ])
+        // AI Section (requires FoundationModels)
+        #if canImport(FoundationModels)
+        NSLayoutConstraint.activate([
+            aiSectionLabel.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
+            aiSectionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            aiSectionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
 
-            NSLayoutConstraint.activate([
-                aiButtonsStackView.topAnchor.constraint(equalTo: aiSectionLabel.bottomAnchor, constant: 12),
-                aiButtonsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                aiButtonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-            ])
+        NSLayoutConstraint.activate([
+            aiButtonsStackView.topAnchor.constraint(equalTo: aiSectionLabel.bottomAnchor, constant: 12),
+            aiButtonsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            aiButtonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
 
-            // Height constraints for AI buttons
-            [itineraryAIButton, packingListAIButton, briefingAIButton, summaryAIButton].forEach { button in
-                button.heightAnchor.constraint(equalToConstant: 48).isActive = true
-            }
-
-            // Separator after AI section
-            guard let separator4 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst(3).first as? UIView else { return }
-            NSLayoutConstraint.activate([
-                separator4.topAnchor.constraint(equalTo: aiButtonsStackView.bottomAnchor, constant: 24),
-                separator4.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                separator4.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                separator4.heightAnchor.constraint(equalToConstant: 1)
-            ])
-
-            // Map button after AI section
-            NSLayoutConstraint.activate([
-                mapButton.topAnchor.constraint(equalTo: separator4.bottomAnchor, constant: 24),
-                mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                mapButton.heightAnchor.constraint(equalToConstant: 50),
-                mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
-            ])
-        } else {
-            // Map button directly after notes (iOS < 26)
-            NSLayoutConstraint.activate([
-                mapButton.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
-                mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                mapButton.heightAnchor.constraint(equalToConstant: 50),
-                mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
-            ])
+        // Height constraints for AI buttons
+        [itineraryAIButton, packingListAIButton, briefingAIButton, summaryAIButton].forEach { button in
+            button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         }
+
+        // Separator after AI section
+        guard let separator4 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst(3).first else { return }
+        NSLayoutConstraint.activate([
+            separator4.topAnchor.constraint(equalTo: aiButtonsStackView.bottomAnchor, constant: 24),
+            separator4.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            separator4.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            separator4.heightAnchor.constraint(equalToConstant: 1)
+        ])
+
+        // Map button after AI section
+        NSLayoutConstraint.activate([
+            mapButton.topAnchor.constraint(equalTo: separator4.bottomAnchor, constant: 24),
+            mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            mapButton.heightAnchor.constraint(equalToConstant: 50),
+            mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+        ])
+        #else
+        // Map button directly after notes (no FoundationModels)
+        NSLayoutConstraint.activate([
+            mapButton.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
+            mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            mapButton.heightAnchor.constraint(equalToConstant: 50),
+            mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+        ])
+        #endif
     }
 
     private func createSeparator() -> UIView {
@@ -504,13 +504,13 @@ class TripDetailViewController: UIViewController {
     private func setupActions() {
         mapButton.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside)
 
-        // AI button actions (iOS 26+)
-        if #available(iOS 26.0, *) {
-            itineraryAIButton.addTarget(self, action: #selector(itineraryAIButtonTapped), for: .touchUpInside)
-            packingListAIButton.addTarget(self, action: #selector(packingListAIButtonTapped), for: .touchUpInside)
-            briefingAIButton.addTarget(self, action: #selector(briefingAIButtonTapped), for: .touchUpInside)
-            summaryAIButton.addTarget(self, action: #selector(summaryAIButtonTapped), for: .touchUpInside)
-        }
+        // AI button actions (requires FoundationModels)
+        #if canImport(FoundationModels)
+        itineraryAIButton.addTarget(self, action: #selector(itineraryAIButtonTapped), for: .touchUpInside)
+        packingListAIButton.addTarget(self, action: #selector(packingListAIButtonTapped), for: .touchUpInside)
+        briefingAIButton.addTarget(self, action: #selector(briefingAIButtonTapped), for: .touchUpInside)
+        summaryAIButton.addTarget(self, action: #selector(summaryAIButtonTapped), for: .touchUpInside)
+        #endif
     }
 
     // MARK: - Data Loading
@@ -531,13 +531,13 @@ class TripDetailViewController: UIViewController {
         // Update map button visibility
         mapButton.isHidden = routes.isEmpty
 
-        // Update AI button states (iOS 26+)
-        if #available(iOS 26.0, *) {
-            updateAIButtonStates()
-        }
+        // Update AI button states (requires FoundationModels)
+        #if canImport(FoundationModels)
+        updateAIButtonStates()
+        #endif
     }
 
-    @available(iOS 26.0, *)
+    #if canImport(FoundationModels)
     private func updateAIButtonStates() {
         // Check if itinerary exists
         let hasItinerary = CoreDataManager.shared.fetchItinerary(for: trip) != nil
@@ -559,6 +559,7 @@ class TripDetailViewController: UIViewController {
             summaryAIButton.setTitle(hasSummary ? "Vedi Riassunto" : "Genera Riassunto", for: .normal)
         }
     }
+    #endif
 
     private func updateTripInfo() {
         // Destination
@@ -700,7 +701,6 @@ class TripDetailViewController: UIViewController {
     // MARK: - AI Actions
 
     #if canImport(FoundationModels)
-    @available(iOS 26.0, *)
     @objc private func itineraryAIButtonTapped() {
         // Check if itinerary already exists
         if let existingItinerary = CoreDataManager.shared.fetchItinerary(for: trip) {
@@ -718,7 +718,6 @@ class TripDetailViewController: UIViewController {
         }
     }
 
-    @available(iOS 26.0, *)
     @objc private func packingListAIButtonTapped() {
         let packingVC = PackingListViewController()
         packingVC.associatedTrip = trip
@@ -732,7 +731,6 @@ class TripDetailViewController: UIViewController {
         present(nav, animated: true)
     }
 
-    @available(iOS 26.0, *)
     @objc private func briefingAIButtonTapped() {
         let briefingVC = BriefingDetailViewController()
         briefingVC.destination = trip.destination ?? ""
@@ -747,7 +745,6 @@ class TripDetailViewController: UIViewController {
         present(nav, animated: true)
     }
 
-    @available(iOS 26.0, *)
     @objc private func summaryAIButtonTapped() {
         guard !trip.isActive else {
             showAlert(title: "Viaggio in Corso", message: "Completa il viaggio per generare il riassunto.")

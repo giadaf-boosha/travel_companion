@@ -2,7 +2,6 @@ import UIKit
 
 /// Controller principale per il tab AI Assistente
 /// Mostra 6 pulsanti per le funzionalita AI disponibili
-@available(iOS 26.0, *)
 final class AIAssistantViewController: UIViewController {
 
     // MARK: - Properties

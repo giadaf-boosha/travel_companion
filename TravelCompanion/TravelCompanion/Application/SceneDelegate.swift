@@ -152,12 +152,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
 
         // Tab 5: AI Assistente
-        let aiAssistantVC: UIViewController
-        if #available(iOS 26.0, *) {
-            aiAssistantVC = AIAssistantViewController()
-        } else {
-            aiAssistantVC = AIAssistantFallbackViewController()
-        }
+        let aiAssistantVC = AIAssistantViewController()
         let aiNav = UINavigationController(rootViewController: aiAssistantVC)
         aiNav.tabBarItem = UITabBarItem(
             title: "AI Assistente",

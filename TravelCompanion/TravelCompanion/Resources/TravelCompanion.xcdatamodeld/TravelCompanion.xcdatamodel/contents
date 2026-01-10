@@ -4,7 +4,7 @@
         <attribute name="eventTypeRaw" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="zone" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeofenceZone" inverseName="events" inverseEntity="GeofenceZone"/>
+        <relationship name="geofenceZone" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeofenceZone" inverseName="events" inverseEntity="GeofenceZone"/>
     </entity>
     <entity name="GeofenceZone" representedClassName="GeofenceZone" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>

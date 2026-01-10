@@ -2,7 +2,6 @@ import UIKit
 import CoreLocation
 
 /// Controller per la preview e modifica di una nota strutturata dall'AI
-@available(iOS 26.0, *)
 final class StructuredNotePreviewViewController: UIViewController {
 
     // MARK: - Properties
@@ -710,7 +709,6 @@ final class StructuredNotePreviewViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 
-@available(iOS 26.0, *)
 extension StructuredNotePreviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

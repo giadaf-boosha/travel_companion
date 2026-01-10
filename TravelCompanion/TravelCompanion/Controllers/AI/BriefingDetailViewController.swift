@@ -1,7 +1,6 @@
 import UIKit
 
 /// Controller per visualizzare il briefing di destinazione generato dall'AI
-@available(iOS 26.0, *)
 final class BriefingDetailViewController: UIViewController {
 
     // MARK: - Properties

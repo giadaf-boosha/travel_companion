@@ -7,7 +7,6 @@ protocol TripSummaryDelegate: AnyObject {
 }
 
 /// Controller per la visualizzazione e generazione del riassunto del viaggio
-@available(iOS 26.0, *)
 final class TripSummaryViewController: UIViewController {
 
     // MARK: - Delegate

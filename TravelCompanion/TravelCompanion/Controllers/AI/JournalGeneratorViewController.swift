@@ -8,7 +8,6 @@ protocol JournalGeneratorDelegate: AnyObject {
 }
 
 /// Controller per la generazione del diario di viaggio giornaliero
-@available(iOS 26.0, *)
 final class JournalGeneratorViewController: UIViewController {
 
     // MARK: - Delegate
@@ -763,7 +762,6 @@ final class JournalGeneratorViewController: UIViewController {
 
 // MARK: - UIPickerViewDelegate & DataSource
 
-@available(iOS 26.0, *)
 extension JournalGeneratorViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

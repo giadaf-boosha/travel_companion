@@ -8,7 +8,6 @@ protocol VoiceNoteDelegate: AnyObject {
 }
 
 /// Controller per la registrazione di note vocali con trascrizione
-@available(iOS 26.0, *)
 final class VoiceNoteViewController: UIViewController {
 
     // MARK: - Properties
@@ -481,7 +480,6 @@ final class VoiceNoteViewController: UIViewController {
 
 // MARK: - SpeechRecognizerDelegate
 
-@available(iOS 26.0, *)
 extension VoiceNoteViewController: SpeechRecognizerDelegate {
     func speechRecognizer(_ service: SpeechRecognizerService, didReceivePartialResult text: String) {
         transcriptionTextView.text = text
@@ -512,7 +510,6 @@ extension VoiceNoteViewController: SpeechRecognizerDelegate {
 
 // MARK: - UITextFieldDelegate
 
-@available(iOS 26.0, *)
 extension VoiceNoteViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

@@ -1,7 +1,6 @@
 import UIKit
 
 /// Controller per la visualizzazione e gestione della packing list generata dall'AI
-@available(iOS 26.0, *)
 final class PackingListViewController: UIViewController {
 
     // MARK: - Properties
@@ -602,7 +601,6 @@ final class PackingListViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-@available(iOS 26.0, *)
 extension PackingListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return items.count
@@ -632,7 +630,6 @@ extension PackingListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-@available(iOS 26.0, *)
 extension PackingListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -689,7 +686,6 @@ extension PackingListViewController: UITableViewDelegate {
 
 // MARK: - PackingItemCell
 
-@available(iOS 26.0, *)
 private class PackingItemCell: UITableViewCell {
 
     private let checkmarkImageView: UIImageView = {

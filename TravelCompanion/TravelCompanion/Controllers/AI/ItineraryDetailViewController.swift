@@ -1,7 +1,6 @@
 import UIKit
 
 /// Controller per visualizzare i dettagli di un itinerario generato
-@available(iOS 26.0, *)
 final class ItineraryDetailViewController: UIViewController {
 
     // MARK: - Properties

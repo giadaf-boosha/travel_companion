@@ -7,7 +7,6 @@ protocol ItineraryGeneratorDelegate: AnyObject {
 }
 
 /// Controller per la generazione di un nuovo itinerario AI
-@available(iOS 26.0, *)
 final class ItineraryGeneratorViewController: UIViewController {
 
     // MARK: - Delegate
@@ -569,7 +568,6 @@ final class ItineraryGeneratorViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 
-@available(iOS 26.0, *)
 extension ItineraryGeneratorViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
