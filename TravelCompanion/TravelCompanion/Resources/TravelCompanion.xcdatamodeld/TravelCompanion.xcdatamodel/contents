@@ -16,13 +16,46 @@
         <attribute name="radius" attributeType="Double" defaultValueString="100" usesScalarValueType="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GeofenceEvent" inverseName="zone" inverseEntity="GeofenceEvent"/>
     </entity>
-    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
-        <attribute name="content" attributeType="String"/>
+    <entity name="Itinerary" representedClassName="Itinerary" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dailyPlansJSON" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="destination" attributeType="String"/>
+        <attribute name="generalTips" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="totalDays" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="travelStyle" attributeType="String"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="itinerary" inverseEntity="Trip"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="content" attributeType="String"/>
+        <attribute name="cost" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isJournalEntry" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isStructured" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="notes" inverseEntity="Trip"/>
+    </entity>
+    <entity name="PackingItem" representedClassName="PackingItem" syncable="YES" codeGenerationType="class">
+        <attribute name="category" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isChecked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isCustom" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="packingList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PackingList" inverseName="items" inverseEntity="PackingList"/>
+    </entity>
+    <entity name="PackingList" representedClassName="PackingList" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="destination" attributeType="String"/>
+        <attribute name="duration" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PackingItem" inverseName="packingList" inverseEntity="PackingItem"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="packingList" inverseEntity="Trip"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="caption" optional="YES" attributeType="String"/>
@@ -52,8 +85,36 @@
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="totalDistance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="tripTypeRaw" attributeType="String"/>
+        <relationship name="briefing" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TripBriefing" inverseName="trip" inverseEntity="TripBriefing"/>
+        <relationship name="itinerary" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Itinerary" inverseName="trip" inverseEntity="Itinerary"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="trip" inverseEntity="Note"/>
+        <relationship name="packingList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PackingList" inverseName="trip" inverseEntity="PackingList"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="trip" inverseEntity="Photo"/>
         <relationship name="routes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Route" inverseName="trip" inverseEntity="Route"/>
+        <relationship name="summary" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TripSummary" inverseName="trip" inverseEntity="TripSummary"/>
+    </entity>
+    <entity name="TripBriefing" representedClassName="TripBriefing" syncable="YES" codeGenerationType="class">
+        <attribute name="climateInfo" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="culturalTips" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="destination" attributeType="String"/>
+        <attribute name="foodCulture" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="quickFactsJSON" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="safetyNotes" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="usefulPhrasesJSON" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="briefing" inverseEntity="Trip"/>
+    </entity>
+    <entity name="TripSummary" representedClassName="TripSummary" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="highlights" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="narrative" attributeType="String"/>
+        <attribute name="nextTripSuggestion" attributeType="String"/>
+        <attribute name="statsNarrative" attributeType="String"/>
+        <attribute name="tagline" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="variant" optional="YES" attributeType="String"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="summary" inverseEntity="Trip"/>
     </entity>
 </model>

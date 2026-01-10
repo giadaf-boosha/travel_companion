@@ -80,4 +80,18 @@ struct Config {
 
     /// Abilita notifiche POI
     static let enablePOINotifications = true
+
+    // MARK: - Apple Foundation Models Configuration
+
+    /// Abilita le funzionalita AI con Apple Foundation Models (iOS 26+)
+    static let enableFoundationModels = true
+
+    /// Timeout per la generazione AI in secondi
+    static let aiGenerationTimeout: TimeInterval = 30.0
+
+    /// Numero massimo di tentativi per le richieste AI
+    static let aiMaxRetryAttempts = 3
+
+    /// Delay tra i retry in secondi
+    static let aiRetryDelay: TimeInterval = 0.5
 }

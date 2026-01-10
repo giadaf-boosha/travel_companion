@@ -118,5 +118,116 @@ struct AccessibilityIdentifiers {
         static let mapTab = "tabBar_tab_map"
         static let statisticsTab = "tabBar_tab_statistics"
         static let chatTab = "tabBar_tab_chat"
+        static let aiAssistantTab = "tabBar_tab_aiAssistant"
+    }
+
+    // MARK: - AI Assistant Screen
+    struct AIAssistant {
+        static let welcomeLabel = "aiAssistant_label_welcome"
+        static let starterButton = "aiAssistant_button_starter"
+        static let itineraryButton = "aiAssistant_button_itinerary"
+        static let packingListButton = "aiAssistant_button_packingList"
+        static let briefingButton = "aiAssistant_button_briefing"
+        static let journalButton = "aiAssistant_button_journal"
+        static let voiceNoteButton = "aiAssistant_button_voiceNote"
+        static let summaryButton = "aiAssistant_button_summary"
+    }
+
+    // MARK: - Itinerary Generator Screen
+    struct ItineraryGenerator {
+        static let scrollView = "itineraryGenerator_scrollView"
+        static let destinationTextField = "itineraryGenerator_textField_destination"
+        static let durationPicker = "itineraryGenerator_picker_duration"
+        static let tripTypeSegment = "itineraryGenerator_segment_tripType"
+        static let travelStylePicker = "itineraryGenerator_picker_travelStyle"
+        static let generateButton = "itineraryGenerator_button_generate"
+        static let cancelButton = "itineraryGenerator_button_cancel"
+        static let loadingIndicator = "itineraryGenerator_indicator_loading"
+    }
+
+    // MARK: - Itinerary Detail Screen
+    struct ItineraryDetail {
+        static let scrollView = "itineraryDetail_scrollView"
+        static let destinationLabel = "itineraryDetail_label_destination"
+        static let daysLabel = "itineraryDetail_label_days"
+        static let styleLabel = "itineraryDetail_label_style"
+        static let dayCard = "itineraryDetail_card_day"
+        static let tipsSection = "itineraryDetail_section_tips"
+        static let regenerateButton = "itineraryDetail_button_regenerate"
+        static let aiDisclaimer = "itineraryDetail_label_aiDisclaimer"
+    }
+
+    // MARK: - Packing List Screen
+    struct PackingList {
+        static let tableView = "packingList_tableView"
+        static let categoryHeader = "packingList_header_category"
+        static let itemCell = "packingList_cell_item"
+        static let checkboxButton = "packingList_button_checkbox"
+        static let addItemButton = "packingList_button_addItem"
+        static let regenerateButton = "packingList_button_regenerate"
+        static let progressLabel = "packingList_label_progress"
+        static let loadingIndicator = "packingList_indicator_loading"
+    }
+
+    // MARK: - Briefing Detail Screen
+    struct BriefingDetail {
+        static let scrollView = "briefingDetail_scrollView"
+        static let destinationLabel = "briefingDetail_label_destination"
+        static let quickFactsCard = "briefingDetail_card_quickFacts"
+        static let culturalTipsSection = "briefingDetail_section_culturalTips"
+        static let phrasesSection = "briefingDetail_section_phrases"
+        static let climateSection = "briefingDetail_section_climate"
+        static let foodSection = "briefingDetail_section_food"
+        static let safetySection = "briefingDetail_section_safety"
+        static let regenerateButton = "briefingDetail_button_regenerate"
+        static let aiDisclaimer = "briefingDetail_label_aiDisclaimer"
+        static let loadingIndicator = "briefingDetail_indicator_loading"
+    }
+
+    // MARK: - Voice Note Screen
+    struct VoiceNote {
+        static let microphoneButton = "voiceNote_button_microphone"
+        static let waveformView = "voiceNote_view_waveform"
+        static let transcriptionLabel = "voiceNote_label_transcription"
+        static let textFallbackField = "voiceNote_textField_fallback"
+        static let processButton = "voiceNote_button_process"
+        static let cancelButton = "voiceNote_button_cancel"
+    }
+
+    // MARK: - Structured Note Preview Screen
+    struct StructuredNotePreview {
+        static let scrollView = "structuredNotePreview_scrollView"
+        static let categoryPicker = "structuredNotePreview_picker_category"
+        static let placeNameTextField = "structuredNotePreview_textField_placeName"
+        static let ratingPicker = "structuredNotePreview_picker_rating"
+        static let costTextField = "structuredNotePreview_textField_cost"
+        static let summaryTextView = "structuredNotePreview_textView_summary"
+        static let tagsView = "structuredNotePreview_view_tags"
+        static let saveButton = "structuredNotePreview_button_save"
+        static let cancelButton = "structuredNotePreview_button_cancel"
+    }
+
+    // MARK: - Journal Generator Screen
+    struct JournalGenerator {
+        static let dayPicker = "journalGenerator_picker_day"
+        static let generateButton = "journalGenerator_button_generate"
+        static let previewView = "journalGenerator_view_preview"
+        static let saveButton = "journalGenerator_button_save"
+        static let loadingIndicator = "journalGenerator_indicator_loading"
+        static let emptyStateView = "journalGenerator_view_emptyState"
+    }
+
+    // MARK: - Trip Summary Screen
+    struct TripSummary {
+        static let scrollView = "tripSummary_scrollView"
+        static let titleLabel = "tripSummary_label_title"
+        static let taglineLabel = "tripSummary_label_tagline"
+        static let narrativeView = "tripSummary_view_narrative"
+        static let highlightsSection = "tripSummary_section_highlights"
+        static let statsSection = "tripSummary_section_stats"
+        static let suggestionSection = "tripSummary_section_suggestion"
+        static let variantPicker = "tripSummary_picker_variant"
+        static let regenerateButton = "tripSummary_button_regenerate"
+        static let loadingIndicator = "tripSummary_indicator_loading"
     }
 }

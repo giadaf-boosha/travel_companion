@@ -50,6 +50,13 @@ struct Constants {
         static let geofenceExited = Notification.Name("geofenceExited")
         static let photoAdded = Notification.Name("photoAdded")
         static let noteAdded = Notification.Name("noteAdded")
+
+        // AI Feature Notifications
+        static let itineraryGenerated = Notification.Name("itineraryGenerated")
+        static let packingListGenerated = Notification.Name("packingListGenerated")
+        static let briefingGenerated = Notification.Name("briefingGenerated")
+        static let journalGenerated = Notification.Name("journalGenerated")
+        static let summaryGenerated = Notification.Name("summaryGenerated")
     }
 
     // MARK: - Local Notification Identifiers
@@ -118,5 +125,33 @@ struct Constants {
         static let maxDestinationLength = 100
         static let maxNoteLength = 1000
         static let maxChatMessageLength = 500
+    }
+
+    // MARK: - AI Assistant
+    struct AIAssistant {
+        static let maxRetryAttempts = 3
+        static let retryDelay: TimeInterval = 0.5
+        static let generationTimeout: TimeInterval = 30.0
+        static let maxInputLength = 2000
+        static let tokenLimit = 4096
+
+        // Packing List Categories
+        static let packingCategories = [
+            "documents",
+            "clothing",
+            "toiletries",
+            "electronics",
+            "specialItems",
+            "healthKit"
+        ]
+
+        static let packingCategoryDisplayNames: [String: String] = [
+            "documents": "Documenti",
+            "clothing": "Abbigliamento",
+            "toiletries": "Igiene Personale",
+            "electronics": "Elettronica",
+            "specialItems": "Articoli Speciali",
+            "healthKit": "Kit Medico"
+        ]
     }
 }

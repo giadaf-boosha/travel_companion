@@ -77,6 +77,10 @@
     <string>Travel Companion accede alla libreria foto per salvare e visualizzare le foto scattate durante i viaggi.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>Travel Companion salva le foto dei tuoi viaggi nella libreria foto.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Travel Companion usa il riconoscimento vocale per trascrivere le tue note di viaggio in modo rapido e comodo.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Travel Companion usa il microfono per registrare note vocali durante i tuoi viaggi.</string>
 
     <!-- Background Modes -->
     <key>UIBackgroundModes</key>

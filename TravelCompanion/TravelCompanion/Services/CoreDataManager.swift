@@ -596,4 +596,414 @@ final class CoreDataManager {
             return nil
         }
     }
+
+    // MARK: - Itinerary Operations
+
+    /// Crea un nuovo itinerario
+    func createItinerary(
+        destination: String,
+        totalDays: Int,
+        travelStyle: String,
+        dailyPlansData: Data?,
+        generalTips: [String],
+        for trip: Trip? = nil
+    ) -> Itinerary {
+        let itinerary = Itinerary(context: context)
+        itinerary.id = UUID()
+        itinerary.destination = destination
+        itinerary.totalDays = Int16(totalDays)
+        itinerary.travelStyle = travelStyle
+        itinerary.dailyPlansJSON = dailyPlansData as? NSObject
+        itinerary.generalTips = generalTips as NSObject
+        itinerary.createdAt = Date()
+        itinerary.trip = trip
+
+        saveContext()
+        NotificationCenter.default.post(name: Constants.NotificationName.itineraryGenerated, object: itinerary)
+        return itinerary
+    }
+
+    /// Recupera l'itinerario per un viaggio
+    func fetchItinerary(for trip: Trip) -> Itinerary? {
+        return trip.itinerary
+    }
+
+    /// Recupera tutti gli itinerari
+    func fetchAllItineraries() -> [Itinerary] {
+        let request: NSFetchRequest<Itinerary> = Itinerary.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching itineraries: \(error)")
+            return []
+        }
+    }
+
+    /// Elimina un itinerario
+    func deleteItinerary(_ itinerary: Itinerary) {
+        context.delete(itinerary)
+        saveContext()
+    }
+
+    // MARK: - PackingList Operations
+
+    /// Crea una nuova packing list
+    func createPackingList(
+        destination: String,
+        duration: Int,
+        for trip: Trip? = nil
+    ) -> PackingList {
+        let packingList = PackingList(context: context)
+        packingList.id = UUID()
+        packingList.destination = destination
+        packingList.duration = Int16(duration)
+        packingList.createdAt = Date()
+        packingList.trip = trip
+
+        saveContext()
+        NotificationCenter.default.post(name: Constants.NotificationName.packingListGenerated, object: packingList)
+        return packingList
+    }
+
+    /// Recupera la packing list per un viaggio
+    func fetchPackingList(for trip: Trip) -> PackingList? {
+        return trip.packingList
+    }
+
+    /// Recupera tutte le packing list
+    func fetchAllPackingLists() -> [PackingList] {
+        let request: NSFetchRequest<PackingList> = PackingList.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching packing lists: \(error)")
+            return []
+        }
+    }
+
+    /// Elimina una packing list
+    func deletePackingList(_ packingList: PackingList) {
+        context.delete(packingList)
+        saveContext()
+    }
+
+    // MARK: - PackingItem Operations
+
+    /// Aggiunge un item alla packing list
+    func addPackingItem(
+        to packingList: PackingList,
+        category: String,
+        name: String,
+        isCustom: Bool = false
+    ) -> PackingItem {
+        let item = PackingItem(context: context)
+        item.id = UUID()
+        item.category = category
+        item.name = name
+        item.isChecked = false
+        item.isCustom = isCustom
+        item.sortOrder = Int16(fetchPackingItems(for: packingList, category: category).count)
+        item.packingList = packingList
+
+        saveContext()
+        return item
+    }
+
+    /// Recupera tutti gli item di una packing list
+    func fetchPackingItems(for packingList: PackingList) -> [PackingItem] {
+        let request: NSFetchRequest<PackingItem> = PackingItem.fetchRequest()
+        request.predicate = NSPredicate(format: "packingList == %@", packingList)
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "category", ascending: true),
+            NSSortDescriptor(key: "sortOrder", ascending: true)
+        ]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching packing items: \(error)")
+            return []
+        }
+    }
+
+    /// Recupera gli item di una categoria specifica
+    func fetchPackingItems(for packingList: PackingList, category: String) -> [PackingItem] {
+        let request: NSFetchRequest<PackingItem> = PackingItem.fetchRequest()
+        request.predicate = NSPredicate(format: "packingList == %@ AND category == %@", packingList, category)
+        request.sortDescriptors = [NSSortDescriptor(key: "sortOrder", ascending: true)]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching packing items by category: \(error)")
+            return []
+        }
+    }
+
+    /// Toggle stato checked di un item
+    func togglePackingItem(_ item: PackingItem) {
+        item.isChecked = !item.isChecked
+        saveContext()
+    }
+
+    /// Aggiorna un packing item
+    func updatePackingItem(_ item: PackingItem, name: String? = nil, isChecked: Bool? = nil) {
+        if let name = name {
+            item.name = name
+        }
+        if let isChecked = isChecked {
+            item.isChecked = isChecked
+        }
+        saveContext()
+    }
+
+    /// Elimina un packing item
+    func deletePackingItem(_ item: PackingItem) {
+        context.delete(item)
+        saveContext()
+    }
+
+    /// Aggiunge tutti gli item generati dall'AI a una packing list
+    func addGeneratedItems(to packingList: PackingList, items: [(category: String, name: String)]) {
+        var sortOrders: [String: Int16] = [:]
+
+        for (category, name) in items {
+            let item = PackingItem(context: context)
+            item.id = UUID()
+            item.category = category
+            item.name = name
+            item.isChecked = false
+            item.isCustom = false
+            item.sortOrder = sortOrders[category, default: 0]
+            item.packingList = packingList
+
+            sortOrders[category, default: 0] += 1
+        }
+
+        saveContext()
+    }
+
+    // MARK: - TripBriefing Operations
+
+    /// Crea un nuovo briefing
+    func createTripBriefing(
+        destination: String,
+        quickFactsData: Data?,
+        culturalTips: [String],
+        usefulPhrasesData: Data?,
+        climateInfo: String,
+        foodCulture: [String],
+        safetyNotes: [String],
+        for trip: Trip
+    ) -> TripBriefing {
+        // Rimuovi briefing esistente se presente
+        if let existingBriefing = trip.briefing {
+            context.delete(existingBriefing)
+        }
+
+        let briefing = TripBriefing(context: context)
+        briefing.id = UUID()
+        briefing.destination = destination
+        briefing.quickFactsJSON = quickFactsData as? NSObject
+        briefing.culturalTips = culturalTips as NSObject
+        briefing.usefulPhrasesJSON = usefulPhrasesData as? NSObject
+        briefing.climateInfo = climateInfo
+        briefing.foodCulture = foodCulture as NSObject
+        briefing.safetyNotes = safetyNotes as NSObject
+        briefing.createdAt = Date()
+        briefing.trip = trip
+
+        saveContext()
+        NotificationCenter.default.post(name: Constants.NotificationName.briefingGenerated, object: briefing)
+        return briefing
+    }
+
+    /// Recupera il briefing per un viaggio
+    func fetchBriefing(for trip: Trip) -> TripBriefing? {
+        return trip.briefing
+    }
+
+    /// Elimina un briefing
+    func deleteBriefing(_ briefing: TripBriefing) {
+        context.delete(briefing)
+        saveContext()
+    }
+
+    // MARK: - TripSummary Operations
+
+    /// Crea un nuovo riassunto del viaggio
+    func createTripSummary(
+        title: String,
+        tagline: String,
+        narrative: String,
+        highlights: [String],
+        statsNarrative: String,
+        nextTripSuggestion: String,
+        variant: String?,
+        for trip: Trip
+    ) -> TripSummary {
+        // Rimuovi summary esistente se presente
+        if let existingSummary = trip.summary {
+            context.delete(existingSummary)
+        }
+
+        let summary = TripSummary(context: context)
+        summary.id = UUID()
+        summary.title = title
+        summary.tagline = tagline
+        summary.narrative = narrative
+        summary.highlights = highlights as NSObject
+        summary.statsNarrative = statsNarrative
+        summary.nextTripSuggestion = nextTripSuggestion
+        summary.variant = variant
+        summary.createdAt = Date()
+        summary.trip = trip
+
+        saveContext()
+        NotificationCenter.default.post(name: Constants.NotificationName.summaryGenerated, object: summary)
+        return summary
+    }
+
+    /// Recupera il riassunto per un viaggio
+    func fetchSummary(for trip: Trip) -> TripSummary? {
+        return trip.summary
+    }
+
+    /// Elimina un riassunto
+    func deleteSummary(_ summary: TripSummary) {
+        context.delete(summary)
+        saveContext()
+    }
+
+    // MARK: - Structured Note Operations
+
+    /// Crea una nota strutturata
+    func createStructuredNote(
+        for trip: Trip,
+        content: String,
+        category: String,
+        placeName: String?,
+        rating: Int?,
+        cost: String?,
+        tags: [String],
+        latitude: Double? = nil,
+        longitude: Double? = nil
+    ) -> Note {
+        let note = Note(context: context)
+        note.id = UUID()
+        note.content = content
+        note.category = category
+        note.rating = Int16(rating ?? 0)
+        note.cost = cost
+        note.tags = tags as NSObject
+        note.isStructured = true
+        note.isJournalEntry = false
+        note.timestamp = Date()
+        note.trip = trip
+
+        if let lat = latitude, let lon = longitude {
+            note.latitude = lat
+            note.longitude = lon
+        } else if let currentLocation = LocationManager.shared.currentLocation {
+            note.latitude = currentLocation.coordinate.latitude
+            note.longitude = currentLocation.coordinate.longitude
+        }
+
+        saveContext()
+        NotificationCenter.default.post(name: Constants.NotificationName.noteAdded, object: note)
+        return note
+    }
+
+    /// Crea una journal entry
+    func createJournalEntry(
+        for trip: Trip,
+        title: String,
+        narrative: String,
+        highlight: String,
+        statsNarrative: String,
+        date: Date
+    ) -> Note {
+        // Formatta il contenuto del journal
+        let content = """
+        # \(title)
+
+        \(narrative)
+
+        **Momento memorabile:** \(highlight)
+
+        **Statistiche:** \(statsNarrative)
+        """
+
+        let note = Note(context: context)
+        note.id = UUID()
+        note.content = content
+        note.category = "journal"
+        note.isStructured = true
+        note.isJournalEntry = true
+        note.timestamp = date
+        note.trip = trip
+
+        if let currentLocation = LocationManager.shared.currentLocation {
+            note.latitude = currentLocation.coordinate.latitude
+            note.longitude = currentLocation.coordinate.longitude
+        }
+
+        saveContext()
+        NotificationCenter.default.post(name: Constants.NotificationName.journalGenerated, object: note)
+        return note
+    }
+
+    /// Recupera le note strutturate per un viaggio
+    func fetchStructuredNotes(for trip: Trip) -> [Note] {
+        let request: NSFetchRequest<Note> = Note.fetchRequest()
+        request.predicate = NSPredicate(format: "trip == %@ AND isStructured == YES AND isJournalEntry == NO", trip)
+        request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching structured notes: \(error)")
+            return []
+        }
+    }
+
+    /// Recupera le journal entries per un viaggio
+    func fetchJournalEntries(for trip: Trip) -> [Note] {
+        let request: NSFetchRequest<Note> = Note.fetchRequest()
+        request.predicate = NSPredicate(format: "trip == %@ AND isJournalEntry == YES", trip)
+        request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching journal entries: \(error)")
+            return []
+        }
+    }
+
+    /// Verifica se esiste gia una journal entry per una data specifica
+    func hasJournalEntry(for trip: Trip, date: Date) -> Bool {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+
+        let request: NSFetchRequest<Note> = Note.fetchRequest()
+        request.predicate = NSPredicate(
+            format: "trip == %@ AND isJournalEntry == YES AND timestamp >= %@ AND timestamp < %@",
+            trip, startOfDay as NSDate, endOfDay as NSDate
+        )
+        request.fetchLimit = 1
+
+        do {
+            let count = try context.count(for: request)
+            return count > 0
+        } catch {
+            print("Error checking journal entry: \(error)")
+            return false
+        }
+    }
 }
