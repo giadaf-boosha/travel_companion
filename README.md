@@ -1,924 +1,709 @@
-# Travel Companion
+<div align="center">
 
-Applicazione mobile iOS per pianificare, tracciare e documentare esperienze di viaggio.
+# ✈️ Travel Companion
 
-**Corso:** Laboratorio di applicazioni mobili (LAM)
-**Università:** Alma Mater Studiorum - Università di Bologna
-**Anno accademico:** 2024/2025
-**Docenti:** Federico Montori, Lorenzo Gigli
+### 🌍 La tua app iOS intelligente per pianificare, tracciare e documentare viaggi
 
----
+<br/>
 
-## Indice
+[![Swift](https://img.shields.io/badge/Swift-5.9-F05138.svg?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
+[![iOS](https://img.shields.io/badge/iOS-17.0+-007AFF.svg?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
+[![Xcode](https://img.shields.io/badge/Xcode-16.0+-147EFB.svg?style=for-the-badge&logo=xcode&logoColor=white)](https://developer.apple.com/xcode/)
+[![License](https://img.shields.io/badge/License-MIT-34C759.svg?style=for-the-badge)](LICENSE)
 
-1. [Panoramica](#panoramica)
-2. [Requisiti funzionali](#requisiti-funzionali)
-3. [Architettura](#architettura)
-4. [Componenti iOS](#componenti-ios)
-5. [Database locale](#database-locale)
-6. [Funzionalità aggiuntiva: AI travel assistant](#funzionalità-aggiuntiva-ai-travel-assistant)
-7. [Struttura del progetto](#struttura-del-progetto)
-8. [Requisiti di sistema](#requisiti-di-sistema)
-9. [Installazione e configurazione](#installazione-e-configurazione)
-10. [Testing](#testing)
+<br/>
+
+[![Core Data](https://img.shields.io/badge/Core_Data-Persistence-5856D6.svg?style=flat-square&logo=apple)](https://developer.apple.com/documentation/coredata)
+[![MapKit](https://img.shields.io/badge/MapKit-Maps-FF3B30.svg?style=flat-square&logo=apple)](https://developer.apple.com/documentation/mapkit)
+[![CoreLocation](https://img.shields.io/badge/CoreLocation-GPS-34C759.svg?style=flat-square&logo=apple)](https://developer.apple.com/documentation/corelocation)
+[![Foundation Models](https://img.shields.io/badge/Foundation_Models-AI-FF9500.svg?style=flat-square&logo=apple)](https://developer.apple.com/documentation/foundationmodels)
 
 ---
 
-## Panoramica
+**📚 Progetto universitario per il corso "Laboratorio di Applicazioni Mobili"**
 
-Travel Companion è un'applicazione iOS nativa sviluppata in Swift con UIKit e storyboard che permette agli utenti di:
+**🏛️ Alma Mater Studiorum - Università di Bologna**
 
-- Creare piani di viaggio con destinazione e date
-- Tracciare percorsi tramite GPS durante i viaggi
-- Allegare foto e note a momenti specifici del viaggio
-- Visualizzare lo storico dei viaggi attraverso mappe e statistiche
-- Ricevere notifiche su punti di interesse nelle vicinanze
-- Pianificare viaggi con l'assistenza di un chatbot AI
+**📅 Anno Accademico 2024/2025**
 
-L'applicazione segue il pattern architetturale **Model-View-Controller (MVC)** come richiesto dallo sviluppo iOS con UIKit.
+<br/>
 
----
+[📱 Funzionalità](#-funzionalità-principali) •
+[🤖 AI Features](#-funzionalità-ai-ios-26) •
+[🏗️ Architettura](#️-architettura) •
+[📋 Requisiti](#-requisiti-di-sistema) •
+[🚀 Installazione](#-installazione) •
+[🧪 Testing](#-testing)
 
-## Requisiti funzionali
-
-### 1. Registrazione delle attività
-
-#### 1.1 Creazione piano di viaggio
-- Interfaccia per inserire destinazione e date di viaggio
-- Selezione del tipo di viaggio
-- Salvataggio del piano nel database locale
-
-#### 1.2 Tipi di viaggio supportati
-L'applicazione supporta i seguenti tipi di viaggio obbligatori:
-
-| Tipo | Descrizione | Caratteristiche |
-|------|-------------|-----------------|
-| **Local trip** | Viaggio in città | Breve durata, stesso giorno |
-| **Day trip** | Escursione giornaliera | Fuori città, ritorno in giornata |
-| **Multi-day trip** | Vacanza | Più giorni, calcolo distanza totale |
-
-#### 1.3 Logging del percorso GPS
-- Pulsante start/stop per avviare e terminare il tracciamento
-- Registrazione delle coordinate GPS lungo il percorso
-- Calcolo del tempo di viaggio
-- Per i viaggi multi-day: calcolo e visualizzazione della distanza totale percorsa
-
-#### 1.4 Allegati multimediali
-- Scatto foto tramite fotocamera del dispositivo durante il viaggio
-- Aggiunta di note testuali a momenti specifici
-- Associazione automatica della posizione GPS agli allegati
-- Salvataggio di foto e note nel database locale
-
-#### 1.5 Persistenza dati
-Tutti i dati relativi ai viaggi vengono salvati in un database locale:
-- Piani di viaggio
-- Percorsi GPS (lista di coordinate con timestamp)
-- Foto (riferimento al file locale)
-- Note testuali
-
-### 2. Visualizzazione dei viaggi
-
-#### 2.1 Lista viaggi
-- Elenco di tutti i viaggi passati con UITableView
-- Filtro per:
-  - Data
-  - Destinazione
-  - Tipo di viaggio
-
-#### 2.2 Mappa viaggi
-- Visualizzazione dei percorsi registrati su mappa (MapKit)
-- Possibilità di selezionare un viaggio specifico per visualizzarne il dettaglio
-
-### 3. Visualizzazioni statistiche
-
-L'applicazione include almeno due visualizzazioni interattive dei dati di viaggio:
-
-#### 3.1 Map view
-- Visualizzazione dei percorsi registrati sulla mappa
-- Heatmap delle località visitate in un periodo selezionato (es. ultimo mese)
-- Marker interattivi per foto e note
-
-#### 3.2 Bar chart / timeline
-- Numero di viaggi effettuati per mese
-- Distanza totale percorsa per mese
-- Grafici interattivi con possibilità di selezione del periodo
-
-### 4. Operazioni in background
-
-#### 4.1 Notifiche periodiche
-Implementazione di almeno un tipo di notifica ricorrente:
-
-- **Punti di interesse nelle vicinanze**: alert basati sulla posizione GPS corrente dell'utente che segnalano landmark o attrazioni nelle vicinanze
-- **Promemoria di logging**: notifica se l'utente non ha registrato viaggi di recente
-
-#### 4.2 Operazione background aggiuntiva
-Implementazione di una delle seguenti funzionalità:
-
-**Opzione A - Automatic journey tracking:**
-- Utilizzo dell'Activity Recognition per rilevare quando l'utente è in movimento (camminata, guida)
-- Prompt per avviare il logging del viaggio o avvio automatico della registrazione
-- Richiesta occasionale di conferma del tipo di viaggio
-
-**Opzione B - Geofencing:**
-- Definizione di aree di interesse da parte dell'utente (casa, destinazioni frequenti)
-- Registrazione degli eventi di ingresso/uscita dalle zone tramite Geofencing API
-- Salvataggio degli eventi separatamente dai log di viaggio (timestamp, tipo evento)
-
-### 5. Gestione periodi senza viaggi attivi
-
-L'applicazione gestisce i periodi senza viaggi attivi attraverso un approccio basato su **Empty State UI**, una pratica standard nelle applicazioni mobile moderne conforme alle [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/).
-
-#### Implementazione
-
-| Componente | Funzionalità |
-|------------|--------------|
-| **Empty State View** | Quando non ci sono viaggi registrati, l'utente visualizza un messaggio contestuale che varia in base allo stato dell'applicazione |
-| **Flag `isActive`** | Proprietà booleana nell'entità `Trip` che distingue i viaggi in corso da quelli completati |
-| **Messaggi dinamici** | Il testo dell'empty state cambia in base al contesto (filtri attivi, ricerca in corso, o assenza totale di dati) |
-
-#### Comportamento dell'Empty State
-
-| Contesto | Messaggio visualizzato |
-|----------|------------------------|
-| Nessun viaggio | "Nessun viaggio ancora. Tocca + per crearne uno!" |
-| Filtro attivo senza risultati | "Nessun viaggio in questa categoria" |
-| Ricerca senza risultati | "Nessun viaggio trovato per '[termine]'" |
-
-#### Motivazione della scelta progettuale
-
-Questo approccio è stato preferito rispetto a una marcatura esplicita "no travel" nella timeline per i seguenti motivi:
-
-1. **Usabilità**: L'empty state è più intuitivo per l'utente e comunica immediatamente lo stato dell'applicazione
-2. **Conformità UX**: Segue le best practice di design iOS e le Human Interface Guidelines di Apple
-3. **Semplicità**: Evita complessità aggiuntiva nel modello dati senza sacrificare la chiarezza dell'interfaccia
-4. **Distinzione visiva**: Il flag `isActive` permette comunque di identificare immediatamente lo stato di ogni viaggio nella lista (badge "In corso" per viaggi attivi)
+</div>
 
 ---
 
-## Architettura
+## 📑 Indice
 
-### Pattern MVC (Model-View-Controller)
-
-L'applicazione segue rigorosamente il pattern MVC come richiesto per lo sviluppo iOS con UIKit:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      CONTROLLER                              │
-│                   (ViewController)                           │
-│                                                              │
-│  ┌─────────────┐                      ┌─────────────┐       │
-│  │   Target    │◄────────────────────►│   Outlet    │       │
-│  └─────────────┘                      └─────────────┘       │
-│         ▲                                    │               │
-│         │ Action                             │               │
-│         │                                    ▼               │
-└─────────┼────────────────────────────────────┼───────────────┘
-          │                                    │
-          │                                    │
-┌─────────┴─────────┐              ┌───────────┴───────────┐
-│       VIEW        │              │        MODEL          │
-│   (Storyboard)    │              │   (Data structures)   │
-│                   │              │                       │
-│ - UITableView     │              │ - Trip                │
-│ - UIButton        │              │ - Route               │
-│ - UILabel         │              │ - Photo               │
-│ - MKMapView       │              │ - Note                │
-│ - UIImageView     │              │ - Location            │
-└───────────────────┘              └───────────────────────┘
-```
-
-### Comunicazione tra componenti
-
-| Da | A | Meccanismo |
-|----|---|------------|
-| Controller | View | Outlet (`@IBOutlet`) |
-| View | Controller | Action (`@IBAction`) con target |
-| Controller | Model | Accesso diretto |
-| Model | Controller | Notifications / KVO |
-| View | Model | **Mai** (comunicazione vietata) |
+1. [Panoramica](#-panoramica)
+2. [Funzionalità Principali](#-funzionalità-principali)
+3. [Funzionalità AI (iOS 26+)](#-funzionalità-ai-ios-26)
+4. [Screenshot](#-screenshot)
+5. [Architettura](#️-architettura)
+6. [Struttura del Progetto](#-struttura-del-progetto)
+7. [Requisiti di Sistema](#-requisiti-di-sistema)
+8. [Installazione](#-installazione)
+9. [Configurazione](#️-configurazione)
+10. [Testing](#-testing)
+11. [Tecnologie Utilizzate](#-tecnologie-utilizzate)
+12. [Conformità Requisiti Universitari](#-conformità-requisiti-universitari)
+13. [Documentazione del Codice](#-documentazione-del-codice)
+14. [Autori](#-autori)
+15. [Licenza](#-licenza)
 
 ---
 
-## Componenti iOS
-
-### UIKit e storyboard
-
-L'applicazione utilizza UIKit con storyboard come interfaccia grafica, seguendo l'approccio tradizionale iOS:
-
-#### ViewController e scene
-- Ogni schermata corrisponde a una scene nello storyboard
-- Ogni scene è associata a un ViewController dedicato
-- Utilizzo di `@IBOutlet` per collegare elementi UI al codice
-- Utilizzo di `@IBAction` per gestire eventi utente
-
-#### Elementi UI utilizzati
-
-| Componente | Utilizzo |
-|------------|----------|
-| `UIViewController` | Controller base per ogni schermata |
-| `UINavigationController` | Navigazione tra schermate con stack |
-| `UITableView` | Lista viaggi, lista note |
-| `UITableViewCell` | Celle personalizzate per i viaggi |
-| `UIButton` | Azioni (start/stop tracking, scatta foto) |
-| `UILabel` | Testi e informazioni |
-| `UITextField` | Input destinazione |
-| `UIDatePicker` | Selezione date viaggio |
-| `UISegmentedControl` | Selezione tipo viaggio |
-| `UIImageView` | Visualizzazione foto |
-| `UITextView` | Input/visualizzazione note |
-| `UISwitch` | Toggle impostazioni |
-| `UIStackView` | Organizzazione layout |
-
-### AutoLayout
-
-Utilizzo di AutoLayout per garantire responsività su diversi dispositivi iOS:
-
-- Constraint basati su Safe Area
-- Supporto per variazioni di size class (compact/regular)
-- Utilizzo di `UIStackView` per layout flessibili
-- Constraint con priorità per gestire conflitti
-
-### Navigazione
-
-```
-┌──────────────────┐
-│ Navigation       │
-│ Controller       │
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐     Segue      ┌──────────────────┐
-│   Home View      │───────────────►│  Trip Detail     │
-│   Controller     │                │  ViewController  │
-└────────┬─────────┘                └──────────────────┘
-         │
-         │ Segue
-         ▼
-┌──────────────────┐     Segue      ┌──────────────────┐
-│   Trip List      │───────────────►│  Map View        │
-│   ViewController │                │  Controller      │
-└──────────────────┘                └──────────────────┘
-```
-
-- Utilizzo di segue per transizioni tra schermate
-- Passaggio parametri tramite `prepare(for:sender:)`
-- Back button automatico gestito dal Navigation Controller
-- Identificatori stringa per ogni segue
-
-### UITableView e prototype cell
-
-Implementazione della lista viaggi con UITableView:
-
-```swift
-// Classe per la cella personalizzata
-class TripCell: UITableViewCell {
-    @IBOutlet weak var destinationLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var tripTypeLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-}
-
-// ViewController come delegate e dataSource
-extension TripListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        return trips.count
-    }
-
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "TripCell"
-        ) as! TripCell
-        // Configurazione cella
-        return cell
-    }
-}
-
-extension TripListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
-        // Navigazione al dettaglio
-    }
-}
-```
-
-### Lifecycle del ViewController
-
-Gestione del ciclo di vita delle schermate:
-
-| Metodo | Utilizzo |
-|--------|----------|
-| `viewDidLoad()` | Inizializzazione una tantum (simile a `onCreate`) |
-| `viewWillAppear(_:)` | Preparazione prima della visualizzazione |
-| `viewDidAppear(_:)` | Schermata completamente visibile |
-| `viewWillDisappear(_:)` | Preparazione prima della scomparsa |
-| `viewDidDisappear(_:)` | Schermata non più visibile |
-| `traitCollectionDidChange(_:)` | Gestione rotazione schermo |
-
-### MapKit
-
-Integrazione mappe native iOS:
-
-```swift
-import MapKit
-
-class MapViewController: UIViewController {
-    @IBOutlet weak var mapView: MKMapView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-    }
-
-    func displayRoute(_ coordinates: [CLLocationCoordinate2D]) {
-        let polyline = MKPolyline(coordinates: coordinates,
-                                   count: coordinates.count)
-        mapView.addOverlay(polyline)
-    }
-}
-
-extension MapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView,
-                 rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let polyline = overlay as? MKPolyline {
-            let renderer = MKPolylineRenderer(polyline: polyline)
-            renderer.strokeColor = .systemBlue
-            renderer.lineWidth = 3
-            return renderer
-        }
-        return MKOverlayRenderer(overlay: overlay)
-    }
-}
-```
-
-### Core Location
-
-Gestione GPS e geolocalizzazione:
-
-```swift
-import CoreLocation
-
-class LocationManager: NSObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
-    var onLocationUpdate: ((CLLocation) -> Void)?
-
-    override init() {
-        super.init()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-    }
-
-    func startTracking() {
-        locationManager.startUpdatingLocation()
-    }
-
-    func stopTracking() {
-        locationManager.stopUpdatingLocation()
-    }
-
-    func locationManager(_ manager: CLLocationManager,
-                         didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        onLocationUpdate?(location)
-    }
-}
-```
-
-### Camera e foto
-
-Integrazione fotocamera per scattare foto durante il viaggio:
-
-```swift
-import UIKit
-
-class PhotoCaptureViewController: UIViewController,
-                                   UIImagePickerControllerDelegate,
-                                   UINavigationControllerDelegate {
-
-    func capturePhoto() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            return
-        }
-
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            // Salva foto con coordinate GPS correnti
-        }
-        dismiss(animated: true)
-    }
-}
-```
-
-### Notifiche locali
-
-Implementazione notifiche periodiche:
-
-```swift
-import UserNotifications
-
-class NotificationManager {
-    static let shared = NotificationManager()
-
-    func requestAuthorization() {
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: [.alert, .sound, .badge]
-        ) { granted, error in
-            // Gestione risposta
-        }
-    }
-
-    func scheduleNearbyPOINotification(poiName: String) {
-        let content = UNMutableNotificationContent()
-        content.title = "Punto di interesse nelle vicinanze"
-        content.body = "Sei vicino a \(poiName). Vuoi aggiungerlo al tuo viaggio?"
-        content.sound = .default
-
-        let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: 1,
-            repeats: false
-        )
-
-        let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
-            content: content,
-            trigger: trigger
-        )
-
-        UNUserNotificationCenter.current().add(request)
-    }
-
-    func scheduleReminderNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = "Registra il tuo viaggio"
-        content.body = "Non hai registrato viaggi di recente. Stai pianificando qualcosa?"
-        content.sound = .default
-
-        // Notifica periodica ogni 3 giorni
-        var dateComponents = DateComponents()
-        dateComponents.hour = 10
-
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: dateComponents,
-            repeats: true
-        )
-
-        let request = UNNotificationRequest(
-            identifier: "reminder",
-            content: content,
-            trigger: trigger
-        )
-
-        UNUserNotificationCenter.current().add(request)
-    }
-}
-```
-
-### Background processing
-
-#### Geofencing (opzione implementata)
-
-```swift
-import CoreLocation
-
-class GeofenceManager: NSObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
-
-    func setupGeofence(center: CLLocationCoordinate2D,
-                       radius: CLLocationDistance,
-                       identifier: String) {
-        let region = CLCircularRegion(
-            center: center,
-            radius: radius,
-            identifier: identifier
-        )
-        region.notifyOnEntry = true
-        region.notifyOnExit = true
-
-        locationManager.startMonitoring(for: region)
-    }
-
-    func locationManager(_ manager: CLLocationManager,
-                         didEnterRegion region: CLRegion) {
-        // Salva evento ingresso nel database
-        saveGeofenceEvent(regionId: region.identifier, eventType: .enter)
-    }
-
-    func locationManager(_ manager: CLLocationManager,
-                         didExitRegion region: CLRegion) {
-        // Salva evento uscita nel database
-        saveGeofenceEvent(regionId: region.identifier, eventType: .exit)
-    }
-}
-```
+## 🎯 Panoramica
+
+**Travel Companion** è un'applicazione iOS nativa sviluppata in **Swift** con **UIKit** che assiste gli utenti nella:
+
+| Funzione | Descrizione |
+|----------|-------------|
+| 📍 **Pianificazione** | Crea piani di viaggio con destinazione, date e tipo |
+| 🛤️ **Tracciamento** | Registra percorsi GPS in tempo reale durante i viaggi |
+| 📸 **Documentazione** | Allega foto e note geolocalizzate ai momenti del viaggio |
+| 📊 **Visualizzazione** | Esplora statistiche, mappe e grafici della cronologia viaggi |
+| 🔔 **Notifiche** | Ricevi alert su POI vicini e reminder per registrare viaggi |
+| 🤖 **AI Assistant** | Genera itinerari, packing list e briefing con Apple Intelligence |
+
+L'applicazione segue il pattern architetturale **MVC (Model-View-Controller)** ed è costruita interamente con **UIKit programmatico** (senza Storyboard) per massima manutenibilità.
 
 ---
 
-## Database locale
+## ✨ Funzionalità Principali
 
-### Core Data
+### 🗺️ Gestione Viaggi
 
-Utilizzo di Core Data per la persistenza dei dati:
+<table>
+<tr>
+<td width="50%">
 
-#### Modello dati
+#### Creazione Viaggio
+- ✅ Campo destinazione con validazione
+- ✅ Selettore date (inizio/fine)
+- ✅ 3 tipi viaggio obbligatori
+- ✅ Opzione tracking automatico
+
+</td>
+<td width="50%">
+
+#### Tracking GPS
+- ✅ Start/Stop manuale
+- ✅ Coordinate in tempo reale
+- ✅ Timer durata viaggio
+- ✅ Calcolo distanza totale
+
+</td>
+</tr>
+</table>
+
+### 📸 Documentazione Multimediale
+
+| Funzionalità | Descrizione | Geolocalizzazione |
+|--------------|-------------|:-----------------:|
+| **Foto via Camera** | Cattura foto durante il viaggio | ✅ Automatica |
+| **Foto da Galleria** | Importa foto esistenti | ✅ Se disponibile |
+| **Note Testuali** | Aggiungi note ai momenti | ✅ Automatica |
+| **Timestamp** | Data/ora automatici | ✅ |
+
+### 📊 Visualizzazioni Interattive
 
 ```
-┌─────────────────┐       ┌─────────────────┐
-│      Trip       │       │     Route       │
-├─────────────────┤       ├─────────────────┤
-│ id: UUID        │       │ id: UUID        │
-│ destination     │1     *│ tripId: UUID    │
-│ startDate       │───────│ timestamp       │
-│ endDate         │       │ latitude        │
-│ tripType        │       │ longitude       │
-│ totalDistance   │       └─────────────────┘
-└────────┬────────┘
-         │
-         │ 1
-         │
-         │ *
-┌────────┴────────┐       ┌─────────────────┐
-│     Photo       │       │      Note       │
-├─────────────────┤       ├─────────────────┤
-│ id: UUID        │       │ id: UUID        │
-│ tripId: UUID    │       │ tripId: UUID    │
-│ imagePath       │       │ content         │
-│ latitude        │       │ latitude        │
-│ longitude       │       │ longitude       │
-│ timestamp       │       │ timestamp       │
-└─────────────────┘       └─────────────────┘
-
-┌─────────────────┐       ┌─────────────────┐
-│  GeofenceZone   │       │ GeofenceEvent   │
-├─────────────────┤       ├─────────────────┤
-│ id: UUID        │1     *│ id: UUID        │
-│ name            │───────│ zoneId: UUID    │
-│ latitude        │       │ eventType       │
-│ longitude       │       │ timestamp       │
-│ radius          │       └─────────────────┘
-└─────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                    MAP VIEW                              │
+│  ┌─────────────────────────────────────────────────┐    │
+│  │     🗺️ Percorsi GPS colorati per tipo           │    │
+│  │     🔥 Heatmap zone visitate                    │    │
+│  │     📍 Marker foto e note                       │    │
+│  └─────────────────────────────────────────────────┘    │
+├─────────────────────────────────────────────────────────┤
+│                   BAR CHARTS                             │
+│  ┌─────────────────────────────────────────────────┐    │
+│  │     📊 Viaggi per mese                          │    │
+│  │     📈 Distanza percorsa per mese               │    │
+│  │     🎯 Selezione anno interattiva               │    │
+│  └─────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────┘
 ```
 
-#### Enum per tipi di viaggio
+### 🔔 Background Jobs
 
-```swift
-enum TripType: String, CaseIterable {
-    case local = "Local trip"
-    case dayTrip = "Day trip"
-    case multiDay = "Multi-day trip"
-}
-```
+| Job | Tipo | Trigger |
+|-----|------|---------|
+| **POI Nearby** | Notifica locale | GPS vicino a landmark |
+| **Logging Reminder** | Notifica periodica | Giornaliera ore 10:00 |
+| **Geofencing** | Background task | Entry/Exit da zone definite |
+
+### 📍 Tipi di Viaggio Supportati
+
+| Tipo | Icona | Colore | Descrizione |
+|------|:-----:|:------:|-------------|
+| **Local Trip** | 🏠 | 🟢 Verde | Viaggio in città |
+| **Day Trip** | 🚗 | 🟠 Arancione | Escursione giornaliera |
+| **Multi-day Trip** | ✈️ | 🟣 Viola | Vacanza di più giorni |
 
 ---
 
-## Funzionalità aggiuntiva: AI travel assistant
+## 🤖 Funzionalità AI (iOS 26+)
 
-### Descrizione
+> ⚡ **Powered by Apple Foundation Models** - Esecuzione on-device, privacy garantita
 
-L'applicazione include un chatbot integrato basato su **GPT-5.1-mini** di OpenAI che assiste l'utente nella pianificazione dei viaggi.
+<table>
+<tr>
+<td width="33%" align="center">
 
-### Funzionalità del chatbot
+### 📋 Smart Itinerary
+Genera itinerari personalizzati giorno per giorno con attività, orari e consigli
 
-| Funzionalità | Descrizione |
-|--------------|-------------|
-| Suggerimenti destinazioni | Propone destinazioni basate sulle preferenze dell'utente |
-| Pianificazione itinerari | Crea itinerari giornalieri per le destinazioni scelte |
-| Informazioni locali | Fornisce info su attrazioni, ristoranti, trasporti |
-| Consigli pratici | Suggerimenti su meteo, abbigliamento, documenti necessari |
+</td>
+<td width="33%" align="center">
 
-### Architettura del chatbot
+### 🧳 Packing List
+Lista valigia intelligente basata su destinazione, durata e tipo viaggio
+
+</td>
+<td width="33%" align="center">
+
+### 🌍 Destination Briefing
+Info culturali, frasi utili, clima, cucina e consigli di sicurezza
+
+</td>
+</tr>
+<tr>
+<td width="33%" align="center">
+
+### 🎙️ Voice Notes
+Trascrizione vocale e strutturazione automatica delle note
+
+</td>
+<td width="33%" align="center">
+
+### 📔 Smart Journal
+Genera diario di viaggio dalle attività e foto del giorno
+
+</td>
+<td width="33%" align="center">
+
+### 📝 Trip Summary
+Narrativa completa del viaggio concluso con highlights
+
+</td>
+</tr>
+</table>
+
+### Architettura AI
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    ChatViewController                        │
-│                                                              │
-│  ┌─────────────────┐         ┌─────────────────────────┐   │
-│  │  UITableView    │         │    UITextField          │   │
-│  │  (messaggi)     │         │    (input utente)       │   │
-│  └─────────────────┘         └─────────────────────────┘   │
-└──────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    ChatService                               │
-│                                                              │
-│  - Gestione conversazione                                   │
-│  - Chiamata API OpenAI                                      │
-└──────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    OpenAI API                                │
-│                    (GPT-5.1-mini)                            │
-└──────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                  AI ASSISTANT TAB                        │
+│                                                          │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐             │
+│   │Itinerario│  │ Packing  │  │ Briefing │             │
+│   └────┬─────┘  └────┬─────┘  └────┬─────┘             │
+│        │             │             │                    │
+│   ┌────┴─────┐  ┌────┴─────┐  ┌────┴─────┐             │
+│   │ Voice    │  │ Journal  │  │ Summary  │             │
+│   │ Note     │  │          │  │          │             │
+│   └────┬─────┘  └────┬─────┘  └────┴─────┘             │
+│        │             │             │                    │
+│        └─────────────┴─────────────┘                    │
+│                      │                                   │
+│              ┌───────▼───────┐                          │
+│              │FoundationModel│                          │
+│              │   Service     │                          │
+│              └───────────────┘                          │
+│                      │                                   │
+│              ┌───────▼───────┐                          │
+│              │Apple Foundation│                         │
+│              │    Models     │                          │
+│              │  (On-Device)  │                          │
+│              └───────────────┘                          │
+└─────────────────────────────────────────────────────────┘
 ```
 
-### Implementazione
+### Strutture @Generable
 
-```swift
-import Foundation
-
-class ChatService {
-    private let apiKey: String
-    private let baseURL = "https://api.openai.com/v1/chat/completions"
-    private var conversationHistory: [Message] = []
-
-    struct Message: Codable {
-        let role: String
-        let content: String
-    }
-
-    init(apiKey: String) {
-        self.apiKey = apiKey
-        setupSystemPrompt()
-    }
-
-    private func setupSystemPrompt() {
-        let systemPrompt = """
-        Sei un assistente di viaggio esperto e amichevole.
-        Aiuti gli utenti a pianificare viaggi, suggerire destinazioni,
-        creare itinerari e fornire consigli pratici.
-        Rispondi sempre in italiano in modo conciso e utile.
-        """
-        conversationHistory.append(Message(role: "system", content: systemPrompt))
-    }
-
-    func sendMessage(_ userMessage: String,
-                     completion: @escaping (Result<String, Error>) -> Void) {
-
-        conversationHistory.append(Message(role: "user", content: userMessage))
-
-        // Prepara richiesta API
-        var request = URLRequest(url: URL(string: baseURL)!)
-        request.httpMethod = "POST"
-        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let requestBody: [String: Any] = [
-            "model": "gpt-5.1-mini",
-            "messages": conversationHistory.map { ["role": $0.role, "content": $0.content] },
-            "max_tokens": 500,
-            "temperature": 0.7
-        ]
-
-        request.httpBody = try? JSONSerialization.data(withJSONObject: requestBody)
-
-        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data,
-                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let choices = json["choices"] as? [[String: Any]],
-                  let firstChoice = choices.first,
-                  let message = firstChoice["message"] as? [String: Any],
-                  let content = message["content"] as? String else {
-                completion(.failure(NSError(domain: "", code: -1)))
-                return
-            }
-
-            self?.conversationHistory.append(Message(role: "assistant", content: content))
-            completion(.success(content))
-        }.resume()
-    }
-
-    func clearHistory() {
-        conversationHistory.removeAll()
-        setupSystemPrompt()
-    }
-}
-```
-
-### Interfaccia utente del chatbot
-
-```swift
-class ChatViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var messageTextField: UITextField!
-    @IBOutlet weak var sendButton: UIButton!
-
-    private var messages: [(role: String, content: String)] = []
-    private let chatService = ChatService(apiKey: Config.openAIApiKey)
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTableView()
-        setupKeyboardHandling()
-    }
-
-    @IBAction func sendButtonTapped(_ sender: UIButton) {
-        guard let text = messageTextField.text, !text.isEmpty else { return }
-
-        // Aggiungi messaggio utente
-        messages.append((role: "user", content: text))
-        tableView.reloadData()
-        messageTextField.text = ""
-
-        // Invia al servizio
-        chatService.sendMessage(text) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self?.messages.append((role: "assistant", content: response))
-                case .failure:
-                    self?.messages.append((role: "assistant",
-                                           content: "Mi dispiace, si è verificato un errore. Riprova."))
-                }
-                self?.tableView.reloadData()
-                self?.scrollToBottom()
-            }
-        }
-    }
-}
-```
+| Struttura | Descrizione | Attributi Principali |
+|-----------|-------------|---------------------|
+| `TravelItinerary` | Itinerario completo | `dailyPlans`, `generalTips` |
+| `GeneratedPackingList` | Lista valigia | `categories`, `items` |
+| `TripBriefing` | Briefing destinazione | `quickFacts`, `phrases`, `tips` |
+| `JournalEntry` | Entry diario | `narrative`, `highlights` |
+| `StructuredNote` | Nota strutturata | `category`, `rating`, `tags` |
+| `TripSummary` | Riassunto viaggio | `tagline`, `narrative`, `stats` |
 
 ---
 
-## Struttura del progetto
+## 📱 Screenshot
+
+<div align="center">
+
+| Home | Nuovo Viaggio | Tracking Attivo |
+|:----:|:-------------:|:---------------:|
+| Dashboard con stats | Form creazione | GPS in tempo reale |
+
+| Lista Viaggi | Mappa Percorsi | Statistiche |
+|:------------:|:--------------:|:-----------:|
+| Filtri e ricerca | Polylines colorate | Charts interattivi |
+
+| AI Assistant | Itinerario AI | Packing List |
+|:------------:|:-------------:|:------------:|
+| Hub funzionalità | Piano giornaliero | Checklist interattiva |
+
+</div>
+
+> 📸 Per screenshot dettagliati, consulta la cartella `docs/screenshots/`
+
+---
+
+## 🏗️ Architettura
+
+### Pattern MVC con Services Layer
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     PRESENTATION LAYER                           │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │              UIKit ViewControllers (20+)                   │  │
+│  │  Home │ TripList │ TripDetail │ Map │ Stats │ AI │ etc.   │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │              Custom UITableViewCells (4)                   │  │
+│  │         TripCell │ PhotoCell │ NoteCell │ ChatCell        │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└──────────────────────────────┬──────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       SERVICE LAYER                              │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
+│  │CoreData     │ │Location     │ │PhotoStorage │               │
+│  │Manager      │ │Manager      │ │Manager      │               │
+│  └─────────────┘ └─────────────┘ └─────────────┘               │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
+│  │Notification │ │Geofence     │ │Foundation   │               │
+│  │Manager      │ │Manager      │ │ModelService │               │
+│  └─────────────┘ └─────────────┘ └─────────────┘               │
+│  ┌─────────────┐ ┌─────────────┐                               │
+│  │ChatService  │ │SpeechRecog  │                               │
+│  │(OpenAI)     │ │nizerService │                               │
+│  └─────────────┘ └─────────────┘                               │
+└──────────────────────────────┬──────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                        DATA LAYER                                │
+│  ┌─────────────────────────┐ ┌─────────────────────────┐       │
+│  │      Core Data          │ │      FileManager        │       │
+│  │   (SQLite Database)     │ │   (Photo Storage)       │       │
+│  │                         │ │                         │       │
+│  │  Trip │ Route │ Photo   │ │  /Documents/Photos/     │       │
+│  │  Note │ GeofenceZone    │ │  UUID.jpg               │       │
+│  │  GeofenceEvent          │ │                         │       │
+│  └─────────────────────────┘ └─────────────────────────┘       │
+│  ┌─────────────────────────┐ ┌─────────────────────────┐       │
+│  │     UserDefaults        │ │    Keychain (futuri)    │       │
+│  │   (Preferences)         │ │    (API Keys)           │       │
+│  └─────────────────────────┘ └─────────────────────────┘       │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Design Patterns Utilizzati
+
+| Pattern | Utilizzo | Esempio |
+|---------|----------|---------|
+| **Singleton** | Servizi condivisi | `CoreDataManager.shared` |
+| **Delegate** | Comunicazione VC | `NewTripViewControllerDelegate` |
+| **Observer** | Eventi globali | `NotificationCenter.default` |
+| **Repository** | Accesso dati | `CoreDataManager` CRUD |
+| **Factory** | Creazione oggetti | `TripCell.createProgrammatically()` |
+
+---
+
+## 📁 Struttura del Progetto
 
 ```
 TravelCompanion/
-├── TravelCompanion.xcodeproj
-├── TravelCompanion/
-│   ├── AppDelegate.swift
-│   ├── SceneDelegate.swift
-│   ├── Info.plist
+├── 📂 TravelCompanion/
+│   ├── 📂 Application/
+│   │   ├── AppDelegate.swift              # Entry point, Core Data stack
+│   │   └── SceneDelegate.swift            # TabBar setup, prewarm AI
 │   │
-│   ├── Models/
-│   │   ├── Trip.swift
-│   │   ├── Route.swift
-│   │   ├── Photo.swift
-│   │   ├── Note.swift
-│   │   ├── GeofenceZone.swift
-│   │   ├── GeofenceEvent.swift
-│   │   └── TripType.swift
+│   ├── 📂 Config/
+│   │   └── Config.swift                   # Configurazione centralizzata
 │   │
-│   ├── Views/
-│   │   ├── Main.storyboard
-│   │   ├── LaunchScreen.storyboard
-│   │   └── Cells/
-│   │       ├── TripCell.swift
-│   │       ├── PhotoCell.swift
-│   │       ├── NoteCell.swift
-│   │       └── ChatMessageCell.swift
+│   ├── 📂 Models/
+│   │   ├── ChatMessage.swift              # Modello messaggi chat
+│   │   ├── GeofenceEventType.swift        # Enum entry/exit
+│   │   ├── TripType.swift                 # Enum local/day/multi-day
+│   │   └── 📂 AI/
+│   │       ├── GenerableStructures.swift  # @Generable per Foundation Models
+│   │       ├── FoundationModelError.swift # Errori AI custom
+│   │       └── AITools.swift              # Tool protocol implementations
 │   │
-│   ├── Controllers/
-│   │   ├── HomeViewController.swift
-│   │   ├── TripListViewController.swift
-│   │   ├── TripDetailViewController.swift
-│   │   ├── NewTripViewController.swift
-│   │   ├── ActiveTripViewController.swift
-│   │   ├── MapViewController.swift
-│   │   ├── StatisticsViewController.swift
-│   │   ├── ChatViewController.swift
-│   │   ├── SettingsViewController.swift
-│   │   └── GeofenceViewController.swift
+│   ├── 📂 Services/
+│   │   ├── CoreDataManager.swift          # CRUD Core Data (500+ linee)
+│   │   ├── LocationManager.swift          # GPS tracking
+│   │   ├── PhotoStorageManager.swift      # Salvataggio foto
+│   │   ├── NotificationManager.swift      # Notifiche locali
+│   │   ├── GeofenceManager.swift          # Monitoraggio zone
+│   │   ├── ChatService.swift              # Integrazione OpenAI
+│   │   ├── FoundationModelService.swift   # Apple AI (iOS 26+)
+│   │   └── SpeechRecognizerService.swift  # Riconoscimento vocale
 │   │
-│   ├── Services/
-│   │   ├── LocationManager.swift
-│   │   ├── GeofenceManager.swift
-│   │   ├── NotificationManager.swift
-│   │   ├── ChatService.swift
-│   │   └── CoreDataManager.swift
+│   ├── 📂 Controllers/
+│   │   ├── HomeViewController.swift           # Dashboard principale
+│   │   ├── NewTripViewController.swift        # Form creazione viaggio
+│   │   ├── ActiveTripViewController.swift     # Tracking attivo
+│   │   ├── TripDetailViewController.swift     # Dettaglio viaggio
+│   │   ├── TripListViewController.swift       # Lista viaggi + filtri
+│   │   ├── MapViewController.swift            # Mappa + heatmap
+│   │   ├── StatisticsViewController.swift     # Grafici statistiche
+│   │   ├── ChatViewController.swift           # Chat OpenAI legacy
+│   │   ├── SettingsViewController.swift       # Impostazioni app
+│   │   ├── GeofenceViewController.swift       # Gestione zone
+│   │   ├── AIAssistantViewController.swift    # Hub AI (iOS 26+)
+│   │   └── 📂 AI/
+│   │       ├── ItineraryGeneratorViewController.swift
+│   │       ├── ItineraryDetailViewController.swift
+│   │       ├── PackingListViewController.swift
+│   │       ├── BriefingDetailViewController.swift
+│   │       ├── VoiceNoteViewController.swift
+│   │       ├── StructuredNotePreviewViewController.swift
+│   │       ├── JournalGeneratorViewController.swift
+│   │       └── TripSummaryViewController.swift
 │   │
-│   ├── Extensions/
-│   │   ├── Date+Extensions.swift
-│   │   ├── CLLocation+Extensions.swift
-│   │   └── UIViewController+Extensions.swift
+│   ├── 📂 Views/Cells/
+│   │   ├── TripCell.swift                 # Cella lista viaggi
+│   │   ├── PhotoCell.swift                # Cella galleria foto
+│   │   ├── NoteCell.swift                 # Cella lista note
+│   │   └── ChatMessageCell.swift          # Cella messaggi chat
 │   │
-│   ├── Resources/
-│   │   ├── Assets.xcassets
-│   │   └── TravelCompanion.xcdatamodeld
+│   ├── 📂 Extensions/
+│   │   ├── String+Extensions.swift        # Validazione, formatting
+│   │   ├── Date+Extensions.swift          # Tempo relativo, formati
+│   │   ├── UIColor+Extensions.swift       # Colori tema, hex
+│   │   ├── UIViewController+Extensions.swift  # Alert, loading
+│   │   └── CLLocation+Extensions.swift    # Coordinate formatting
 │   │
-│   └── Config/
-│       └── Config.swift
+│   ├── 📂 Utilities/
+│   │   ├── Constants.swift                # Tutte le costanti app
+│   │   ├── DistanceCalculator.swift       # Calcoli distanza/velocità
+│   │   └── AccessibilityIdentifiers.swift # ID per UI Testing
+│   │
+│   └── 📂 Resources/
+│       ├── TravelCompanion.xcdatamodeld   # Modello Core Data
+│       ├── Assets.xcassets                # Immagini e colori
+│       ├── LaunchScreen.storyboard        # Splash screen
+│       └── Info.plist                     # Configurazione app
 │
-└── TravelCompanionTests/
-    └── TravelCompanionTests.swift
+├── 📂 TravelCompanionTests/               # 123 Unit Tests
+│   ├── StringExtensionsTests.swift        # 31 test
+│   ├── DateExtensionsTests.swift          # 14 test
+│   ├── CoreDataManagerTests.swift         # 22 test
+│   ├── ChatServiceTests.swift             # 18 test
+│   ├── DistanceCalculatorTests.swift      # 18 test
+│   └── TripTypeTests.swift                # 20 test
+│
+├── 📂 TravelCompanionUITests/             # 70+ UI Tests
+│   ├── TravelCompanionUITests.swift
+│   ├── TripCreationUITests.swift
+│   ├── TripListUITests.swift
+│   ├── TripLifecycleUITests.swift
+│   └── AIFeatureUITests.swift
+│
+├── README.md                              # Questo file
+├── VERIFICA_REQUISITI.md                  # Verifica conformità
+└── TravelCompanion.xcodeproj              # Progetto Xcode
 ```
 
 ---
 
-## Requisiti di sistema
+## 💻 Requisiti di Sistema
 
-### Sviluppo
-- macOS Sonoma 14.5 o successivo
-- Xcode 16.0 o successivo
-- Swift 5.9 o successivo
+### Ambiente di Sviluppo
 
-### Esecuzione
-- iOS 17.0 o successivo
-- Dispositivo con GPS (per funzionalità di tracking)
-- Fotocamera (per scattare foto durante i viaggi)
-- Connessione internet (per il chatbot AI)
+| Requisito | Versione Minima | Consigliata |
+|-----------|:---------------:|:-----------:|
+| **macOS** | 14.0 (Sonoma) | 15.0+ |
+| **Xcode** | 16.0 | 16.2+ |
+| **Swift** | 5.9 | 5.9+ |
+| **iOS SDK** | 17.0 | 18.0+ |
 
-### Permessi richiesti
+### Requisiti Runtime
 
-I seguenti permessi devono essere dichiarati in `Info.plist`:
+| Requisito | Base | AI Features |
+|-----------|:----:|:-----------:|
+| **iOS** | 17.0+ | 26.0+ |
+| **Dispositivo** | iPhone con GPS | iPhone 15 Pro+ |
+| **Spazio** | ~100 MB | ~150 MB |
 
-| Chiave | Descrizione |
-|--------|-------------|
-| `NSLocationWhenInUseUsageDescription` | Accesso GPS durante l'uso |
-| `NSLocationAlwaysAndWhenInUseUsageDescription` | Accesso GPS in background (geofencing) |
-| `NSCameraUsageDescription` | Accesso alla fotocamera |
-| `NSPhotoLibraryUsageDescription` | Accesso alla libreria foto |
+### Permessi Richiesti (Info.plist)
+
+| Permesso | Chiave | Motivo |
+|----------|--------|--------|
+| 📍 **Localizzazione (In Uso)** | `NSLocationWhenInUseUsageDescription` | Tracking percorsi |
+| 📍 **Localizzazione (Sempre)** | `NSLocationAlwaysAndWhenInUseUsageDescription` | Geofencing |
+| 📷 **Fotocamera** | `NSCameraUsageDescription` | Scattare foto |
+| 🖼️ **Libreria Foto** | `NSPhotoLibraryUsageDescription` | Accesso galleria |
+| 💾 **Salvataggio Foto** | `NSPhotoLibraryAddUsageDescription` | Salvare foto |
+| 🎤 **Microfono** | `NSMicrophoneUsageDescription` | Note vocali |
+| 🗣️ **Riconoscimento Vocale** | `NSSpeechRecognitionUsageDescription` | Trascrizione |
 
 ---
 
-## Installazione e configurazione
+## 🚀 Installazione
 
-### 1. Clonare il repository
+### 1️⃣ Clona il Repository
 
 ```bash
 git clone https://github.com/giadaf-boosha/travel_companion.git
 cd travel_companion
 ```
 
-### 2. Aprire il progetto in Xcode
+### 2️⃣ Apri il Progetto
 
 ```bash
 open TravelCompanion/TravelCompanion.xcodeproj
 ```
 
-### 3. Configurare l'API key di OpenAI (IMPORTANTE)
+### 3️⃣ Seleziona Target e Dispositivo
 
-L'API key di OpenAI **non è inclusa nel repository** per motivi di sicurezza. Per configurarla:
+1. In Xcode, seleziona **TravelCompanion** come scheme
+2. Scegli un simulatore o dispositivo fisico
+3. Premi `Cmd + R` per compilare ed eseguire
 
-1. Copia il file di esempio:
-   ```bash
-   cp TravelCompanion/TravelCompanion/Config/Secrets.xcconfig.example \
-      TravelCompanion/TravelCompanion/Config/Secrets.xcconfig
-   ```
+### 4️⃣ (Opzionale) Configura API Key OpenAI
 
-2. Modifica `Secrets.xcconfig` con la tua API key:
-   ```
-   OPENAI_API_KEY = sk-proj-YOUR_ACTUAL_API_KEY_HERE
-   ```
+Per la funzionalità chat legacy con OpenAI:
 
-3. In Xcode, vai su **Project Settings > Info** e aggiungi una nuova riga:
-   - Key: `OPENAI_API_KEY`
-   - Value: `$(OPENAI_API_KEY)`
-
-4. Assicurati che `Secrets.xcconfig` sia nel tuo `.gitignore` (già configurato)
-
-> **Nota:** Il file `Secrets.xcconfig` contiene dati sensibili e **non deve mai essere committato** nel repository. Solo il file `.example` è tracciato da git.
-
-#### Alternativa: Variabile d'ambiente
-
-Puoi anche configurare l'API key come variabile d'ambiente:
 ```bash
-export OPENAI_API_KEY="sk-proj-YOUR_ACTUAL_API_KEY_HERE"
+# Copia il file di esempio
+cp TravelCompanion/Config/Secrets.xcconfig.example \
+   TravelCompanion/Config/Secrets.xcconfig
+
+# Modifica con la tua API key
+open TravelCompanion/Config/Secrets.xcconfig
 ```
 
-Questa opzione è utile per CI/CD e ambienti di sviluppo condivisi.
-
-### 4. Build e run
-
-- Selezionare un simulatore o dispositivo fisico
-- Premere `Cmd + R` per compilare e avviare l'applicazione
+> ⚠️ **Nota:** Le funzionalità AI native (iOS 26+) utilizzano Apple Foundation Models e **non richiedono API key esterne**.
 
 ---
 
-## Testing
+## ⚙️ Configurazione
 
-### Test su simulatore
+### File di Configurazione
 
-L'applicazione può essere testata sul simulatore iOS incluso in Xcode. Alcune funzionalità richiedono configurazione aggiuntiva:
+| File | Descrizione | Modificabile |
+|------|-------------|:------------:|
+| `Config.swift` | Configurazione centralizzata app | ✅ |
+| `Constants.swift` | Costanti globali | ⚠️ Con cautela |
+| `Secrets.xcconfig` | API keys (non committato) | ✅ |
 
-- **GPS**: Usare `Debug > Location > Custom Location` per simulare posizioni
-- **Fotocamera**: Non disponibile su simulatore, usare libreria foto
+### Feature Flags
 
-### Test su dispositivo fisico
+```swift
+// Config.swift
 
-Per testare su dispositivo fisico è necessario:
-1. Account Apple Developer (gratuito per sviluppo)
-2. Certificato di sviluppo configurato in Xcode
-3. Dispositivo registrato nel proprio team
+// Funzionalità base
+static let enableAIChatbot = true          // Chat OpenAI legacy
+static let enableGeofencing = true         // Geofencing
+static let enablePOINotifications = true   // Notifiche POI
+
+// Funzionalità AI (iOS 26+)
+static let enableFoundationModels = true   // Apple AI
+static let aiGenerationTimeout: TimeInterval = 30.0
+static let aiMaxRetryAttempts = 3
+```
 
 ---
 
-## Riferimenti
+## 🧪 Testing
 
-- [Documentazione UIKit](https://developer.apple.com/documentation/uikit)
-- [Documentazione Core Location](https://developer.apple.com/documentation/corelocation)
-- [Documentazione MapKit](https://developer.apple.com/documentation/mapkit)
-- [Documentazione Core Data](https://developer.apple.com/documentation/coredata)
-- [OpenAI API](https://platform.openai.com/docs)
-- [Swift Language Guide](https://www.swift.org/documentation/)
+### Unit Tests (123 test)
+
+```bash
+# Esegui tutti gli unit test
+xcodebuild test \
+  -project TravelCompanion/TravelCompanion.xcodeproj \
+  -scheme TravelCompanion \
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
+  -only-testing:TravelCompanionTests
+```
+
+### UI Tests (70+ test)
+
+```bash
+# Esegui tutti gli UI test
+xcodebuild test \
+  -project TravelCompanion/TravelCompanion.xcodeproj \
+  -scheme TravelCompanion \
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
+  -only-testing:TravelCompanionUITests
+```
+
+### Coverage Test
+
+| Suite | Test | Copertura |
+|-------|:----:|:---------:|
+| **StringExtensionsTests** | 31 | ✅ 100% |
+| **DateExtensionsTests** | 14 | ✅ 100% |
+| **CoreDataManagerTests** | 22 | ✅ CRUD completo |
+| **ChatServiceTests** | 18 | ✅ 100% |
+| **DistanceCalculatorTests** | 18 | ✅ 100% |
+| **TripTypeTests** | 20 | ✅ 100% |
+| **UI Tests** | 70+ | ✅ Flussi principali |
 
 ---
 
-## Licenza
+## 🛠️ Tecnologie Utilizzate
 
-Progetto sviluppato per il corso di Laboratorio di applicazioni mobili, Università di Bologna.
+### Framework Apple
+
+| Framework | Versione | Utilizzo |
+|-----------|:--------:|----------|
+| **UIKit** | - | Interfaccia utente |
+| **Core Data** | - | Persistenza locale |
+| **MapKit** | - | Mappe e percorsi |
+| **CoreLocation** | - | GPS e geofencing |
+| **UserNotifications** | - | Notifiche locali |
+| **AVFoundation** | - | Cattura foto |
+| **Speech** | - | Riconoscimento vocale |
+| **Foundation Models** | iOS 26+ | AI on-device |
+
+### Dipendenze Esterne
+
+> 🎯 **Zero dipendenze** - L'applicazione utilizza esclusivamente framework Apple nativi.
+
+---
+
+## ✅ Conformità Requisiti Universitari
+
+L'applicazione soddisfa **tutti i 34 requisiti** specificati nel progetto "Travel Companion" per il corso LAM 2024/2025.
+
+### Riepilogo Conformità
+
+| Categoria | Requisiti | Rispettati | Status |
+|-----------|:---------:|:----------:|:------:|
+| **Record Activities** | 14 | 14 | 🟢 100% |
+| **Display Charts** | 6 | 6 | 🟢 100% |
+| **Background Jobs** | 8 | 8 | 🟢 100% |
+| **Requisiti Tecnici** | 6 | 6 | 🟢 100% |
+| **TOTALE** | **34** | **34** | 🟢 **100%** |
+
+### Requisiti Chiave
+
+| Requisito | Status | Implementazione |
+|-----------|:------:|-----------------|
+| 3 tipi viaggio | ✅ | Local, Day, Multi-day |
+| Start/Stop logging | ✅ | Pulsante toggle |
+| Foto via camera | ✅ | UIImagePickerController |
+| Note geolocalizzate | ✅ | Coordinate GPS salvate |
+| Database locale | ✅ | Core Data |
+| Map View | ✅ | Percorsi + Heatmap |
+| Bar Chart | ✅ | Viaggi/Distanza per mese |
+| Notifica POI | ✅ | Alert GPS-based |
+| Geofencing | ✅ | Entry/Exit monitoring |
+
+> 📋 Per la verifica dettagliata di ogni singolo requisito, consulta **[VERIFICA_REQUISITI.md](VERIFICA_REQUISITI.md)**
+
+---
+
+## 📖 Documentazione del Codice
+
+Tutto il codice sorgente è documentato in **italiano** seguendo le best practices Swift:
+
+### Convenzioni di Documentazione
+
+| Elemento | Formato | Esempio |
+|----------|---------|---------|
+| **File Header** | Commento blocco | Descrizione, responsabilità |
+| **Classi/Struct** | `///` DocC | Descrizione e responsabilità |
+| **Metodi Pubblici** | `///` con params | Parameters, Returns, Example |
+| **Sezioni** | `// MARK: -` | Organizzazione logica |
+| **Commenti Inline** | `//` | Solo per logica complessa |
+
+### Esempio Documentazione
+
+```swift
+/// Calcola la distanza totale percorsa da un array di posizioni GPS
+///
+/// Somma le distanze tra punti consecutivi usando il metodo geodetico.
+///
+/// - Parameter locations: Array di posizioni GPS ordinate cronologicamente
+/// - Returns: Distanza totale in metri (0.0 se meno di 2 punti)
+///
+/// - Example:
+///   ```swift
+///   let distance = DistanceCalculator.calculateDistance(from: locations)
+///   print(DistanceCalculator.formatDistance(distance)) // "2.5 km"
+///   ```
+static func calculateDistance(from locations: [CLLocation]) -> CLLocationDistance
+```
+
+---
+
+## 👥 Autori
+
+<table>
+<tr>
+<td align="center">
+<b>Giada Franceschini</b><br/>
+<sub>Sviluppatore</sub><br/>
+<a href="mailto:giada.franceschini@studio.unibo.it">📧 Email</a>
+</td>
+</tr>
+</table>
+
+### Corso
+
+| | |
+|---|---|
+| **Corso** | Laboratorio di Applicazioni Mobili (LAM) |
+| **Docenti** | Federico Montori, Lorenzo Gigli |
+| **Università** | Alma Mater Studiorum - Università di Bologna |
+| **Anno Accademico** | 2024/2025 |
+
+---
+
+## 📄 Licenza
+
+Questo progetto è sviluppato per scopi didattici nell'ambito del corso universitario LAM.
+
+```
+MIT License
+
+Copyright (c) 2025 Giada Franceschini
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+```
+
+---
+
+<div align="center">
+
+### Made with ❤️ in Bologna
+
+[![UniBO](https://img.shields.io/badge/Alma_Mater_Studiorum-Università_di_Bologna-A31F34.svg?style=for-the-badge)](https://www.unibo.it)
+
+**⭐ Se questo progetto ti è stato utile, lascia una stella!**
+
+</div>
