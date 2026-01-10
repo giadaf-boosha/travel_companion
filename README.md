@@ -22,7 +22,7 @@
 
 **📚 Progetto universitario per il corso "Laboratorio di Applicazioni Mobili"**
 
-**🏛️ Alma Mater Studiorum - Università di Bologna**
+**🏛️ Informatica per il management | Alma Mater Studiorum - Università di Bologna**
 
 **📅 Anno Accademico 2024/2025**
 
