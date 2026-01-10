@@ -23,6 +23,23 @@
 		SVC004 /* GeofenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC009; };
 		SVC005 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC010; };
 		SVC006 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC011; };
+		SVC007 /* FoundationModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC041; };
+		SVC008 /* SpeechRecognizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC042; };
+
+		/* Models/AI */
+		MDL_AI001 /* GenerableStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC043; };
+		MDL_AI002 /* AITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC044; };
+		MDL_AI003 /* FoundationModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC045; };
+
+		/* Controllers/AI */
+		CTR_AI002 /* ItineraryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC046; };
+		CTR_AI003 /* ItineraryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC047; };
+		CTR_AI004 /* PackingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC048; };
+		CTR_AI005 /* BriefingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC049; };
+		CTR_AI006 /* JournalGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC050; };
+		CTR_AI007 /* VoiceNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC051; };
+		CTR_AI008 /* TripSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC052; };
+		CTR_AI009 /* StructuredNotePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC053; };
 
 		/* Extensions */
 		EXT001 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC012; };
@@ -114,6 +131,23 @@
 		SRC009 /* GeofenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceManager.swift; sourceTree = "<group>"; };
 		SRC010 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		SRC011 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		SRC041 /* FoundationModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelService.swift; sourceTree = "<group>"; };
+		SRC042 /* SpeechRecognizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerService.swift; sourceTree = "<group>"; };
+
+		/* Models/AI */
+		SRC043 /* GenerableStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerableStructures.swift; sourceTree = "<group>"; };
+		SRC044 /* AITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITools.swift; sourceTree = "<group>"; };
+		SRC045 /* FoundationModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelError.swift; sourceTree = "<group>"; };
+
+		/* Controllers/AI */
+		SRC046 /* ItineraryGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryGeneratorViewController.swift; sourceTree = "<group>"; };
+		SRC047 /* ItineraryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailViewController.swift; sourceTree = "<group>"; };
+		SRC048 /* PackingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListViewController.swift; sourceTree = "<group>"; };
+		SRC049 /* BriefingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingDetailViewController.swift; sourceTree = "<group>"; };
+		SRC050 /* JournalGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalGeneratorViewController.swift; sourceTree = "<group>"; };
+		SRC051 /* VoiceNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteViewController.swift; sourceTree = "<group>"; };
+		SRC052 /* TripSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
+		SRC053 /* StructuredNotePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredNotePreviewViewController.swift; sourceTree = "<group>"; };
 
 		/* Extensions */
 		SRC012 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -234,8 +268,19 @@
 				SRC003 /* TripType.swift */,
 				SRC004 /* GeofenceEventType.swift */,
 				SRC005 /* ChatMessage.swift */,
+				GRP012 /* AI */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		GRP012 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				SRC043 /* GenerableStructures.swift */,
+				SRC044 /* AITools.swift */,
+				SRC045 /* FoundationModelError.swift */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 		GRP004 /* Views */ = {
@@ -260,8 +305,24 @@
 				SRC027 /* ChatViewController.swift */,
 				SRC028 /* SettingsViewController.swift */,
 				SRC029 /* GeofenceViewController.swift */,
+				GRP013 /* AI */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		GRP013 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				SRC046 /* ItineraryGeneratorViewController.swift */,
+				SRC047 /* ItineraryDetailViewController.swift */,
+				SRC048 /* PackingListViewController.swift */,
+				SRC049 /* BriefingDetailViewController.swift */,
+				SRC050 /* JournalGeneratorViewController.swift */,
+				SRC051 /* VoiceNoteViewController.swift */,
+				SRC052 /* TripSummaryViewController.swift */,
+				SRC053 /* StructuredNotePreviewViewController.swift */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 		GRP006 /* Services */ = {
@@ -273,6 +334,8 @@
 				SRC009 /* GeofenceManager.swift */,
 				SRC010 /* NotificationManager.swift */,
 				SRC011 /* ChatService.swift */,
+				SRC041 /* FoundationModelService.swift */,
+				SRC042 /* SpeechRecognizerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -527,6 +590,19 @@
 				CEL003 /* NoteCell.swift in Sources */,
 				CEL004 /* ChatMessageCell.swift in Sources */,
 				RES002 /* TravelCompanion.xcdatamodeld in Sources */,
+				SVC007 /* FoundationModelService.swift in Sources */,
+				SVC008 /* SpeechRecognizerService.swift in Sources */,
+				MDL_AI001 /* GenerableStructures.swift in Sources */,
+				MDL_AI002 /* AITools.swift in Sources */,
+				MDL_AI003 /* FoundationModelError.swift in Sources */,
+				CTR_AI002 /* ItineraryGeneratorViewController.swift in Sources */,
+				CTR_AI003 /* ItineraryDetailViewController.swift in Sources */,
+				CTR_AI004 /* PackingListViewController.swift in Sources */,
+				CTR_AI005 /* BriefingDetailViewController.swift in Sources */,
+				CTR_AI006 /* JournalGeneratorViewController.swift in Sources */,
+				CTR_AI007 /* VoiceNoteViewController.swift in Sources */,
+				CTR_AI008 /* TripSummaryViewController.swift in Sources */,
+				CTR_AI009 /* StructuredNotePreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

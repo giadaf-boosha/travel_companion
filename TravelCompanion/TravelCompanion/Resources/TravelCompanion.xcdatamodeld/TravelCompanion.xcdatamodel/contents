@@ -14,7 +14,7 @@
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="radius" attributeType="Double" defaultValueString="100" usesScalarValueType="YES"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GeofenceEvent" inverseName="zone" inverseEntity="GeofenceEvent"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GeofenceEvent" inverseName="geofenceZone" inverseEntity="GeofenceEvent"/>
     </entity>
     <entity name="Itinerary" representedClassName="Itinerary" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
