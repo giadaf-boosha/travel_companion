@@ -2,14 +2,34 @@
 //  HomeViewController.swift
 //  TravelCompanion
 //
+//  Schermata principale dell'applicazione (Home).
+//  Mostra statistiche, accesso rapido ai viaggi e navigazione alle funzionalita principali.
+//
+//  Funzionalita:
+//  - Pulsante per creare un nuovo viaggio
+//  - Pulsante per continuare un viaggio attivo (se presente)
+//  - Card statistiche con totale viaggi e distanza percorsa
+//  - Card ultimo viaggio completato per accesso rapido
+//  - Stato vuoto per nuovi utenti
+//
 //  Created by Travel Companion Team on 07/12/2025.
 //
 
 import UIKit
 
+// MARK: - Home View Controller
+
+/// Controller principale della schermata Home.
+///
+/// Responsabilita:
+/// - Visualizzare statistiche aggregate di tutti i viaggi
+/// - Fornire accesso rapido alla creazione di nuovi viaggi
+/// - Permettere la continuazione di viaggi attivi
+/// - Mostrare l'ultimo viaggio completato
+/// - Gestire la navigazione verso le altre schermate
 class HomeViewController: UIViewController {
 
-    // MARK: - UI Components
+    // MARK: - Componenti UI
     private let scrollView = UIScrollView()
     private let contentView = UIView()
 

@@ -1,10 +1,38 @@
+//
+//  AccessibilityIdentifiers.swift
+//  TravelCompanion
+//
+//  Identificatori di accessibilita per UI Testing con XCUITest.
+//  Centralizza tutti gli ID per evitare stringhe duplicate nel codice di test.
+//
+
 import Foundation
 
-/// Accessibility Identifiers for UI Testing
-/// Naming convention: [screen]_[elementType]_[elementName]
+// MARK: - Accessibility Identifiers
+
+/// Identificatori di accessibilita per i test UI automatizzati.
+///
+/// **Convenzione di naming:** `[schermata]_[tipoElemento]_[nomeElemento]`
+///
+/// Esempi:
+/// - `home_button_newTrip` - Pulsante nella Home
+/// - `tripList_tableView` - TableView nella lista viaggi
+/// - `newTrip_textField_destination` - Campo testo nella creazione viaggio
+///
+/// **Uso nei test:**
+/// ```swift
+/// let button = app.buttons[AccessibilityIdentifiers.Home.newTripButton]
+/// button.tap()
+/// ```
+///
+/// **Uso nel codice UI:**
+/// ```swift
+/// button.accessibilityIdentifier = AccessibilityIdentifiers.Home.newTripButton
+/// ```
 struct AccessibilityIdentifiers {
 
-    // MARK: - Home Screen
+    // MARK: - Schermata Home
+    /// Identificatori per la schermata Home principale
     struct Home {
         static let newTripButton = "home_button_newTrip"
         static let continueTripButton = "home_button_continueTrip"

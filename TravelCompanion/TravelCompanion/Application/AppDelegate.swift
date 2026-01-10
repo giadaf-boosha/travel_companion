@@ -1,11 +1,36 @@
+//
+//  AppDelegate.swift
+//  TravelCompanion
+//
+//  Entry point dell'applicazione iOS.
+//  Gestisce il ciclo di vita dell'app, setup iniziale e Core Data stack.
+//
+//  Responsabilita:
+//  - Configurazione iniziale dell'applicazione (notifiche, geofencing)
+//  - Gestione del persistent container Core Data
+//  - Configurazione aspetto globale (NavigationBar, TabBar)
+//  - Gestione background fetch per reminder
+//  - Delegate per notifiche locali (UNUserNotificationCenter)
+//
+
 import UIKit
 import CoreData
 import UserNotifications
 
+// MARK: - App Delegate
+
+/// Classe principale delegate dell'applicazione.
+///
+/// Gestisce:
+/// - Inizializzazione dell'app al lancio
+/// - Stack Core Data per persistenza dati
+/// - Setup notifiche locali e geofencing
+/// - Background fetch per invio reminder periodici
+/// - Configurazione aspetto UI globale
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // MARK: - Application Lifecycle
+    // MARK: - Ciclo di Vita Applicazione
 
     func application(
         _ application: UIApplication,

@@ -1,9 +1,39 @@
+//
+//  TripCell.swift
+//  TravelCompanion
+//
+//  Cella personalizzata per visualizzare un viaggio nella lista viaggi.
+//  Mostra destinazione, date, tipo viaggio, distanza e conteggio foto.
+//
+//  Caratteristiche:
+//  - Supporta sia Storyboard (IBOutlet) che creazione programmatica
+//  - Indicatore colorato del tipo di viaggio
+//  - Bordo verde per viaggi attivi
+//  - Animazione di feedback al tap
+//  - Formattazione date localizzata (italiano)
+//
+
 import UIKit
 
-/// Cella personalizzata per visualizzare un viaggio nella lista
+// MARK: - Trip Cell
+
+/// Cella UITableViewCell personalizzata per visualizzare un viaggio nella lista.
+///
+/// La cella mostra:
+/// - Indicatore colorato del tipo di viaggio
+/// - Nome della destinazione
+/// - Range di date (formattato in italiano)
+/// - Badge tipo viaggio (Locale, Giornaliero, Multi-giorno)
+/// - Distanza percorsa (se disponibile)
+/// - Conteggio foto (se disponibile)
+/// - Bordo verde se il viaggio e attualmente attivo
+///
+/// Supporta due modalita di inizializzazione:
+/// - Storyboard con IBOutlet collegati
+/// - Creazione programmatica con `createProgrammatically()`
 class TripCell: UITableViewCell {
 
-    // MARK: - IBOutlets
+    // MARK: - IBOutlets (Storyboard)
 
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

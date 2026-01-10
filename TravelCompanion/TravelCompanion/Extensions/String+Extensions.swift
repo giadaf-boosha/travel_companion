@@ -2,53 +2,70 @@
 //  String+Extensions.swift
 //  TravelCompanion
 //
+//  Estensioni per la classe String con utility di validazione e formattazione.
 //  Created on 2025-12-07.
 //
 
 import Foundation
 
+// MARK: - String Extensions
+
+/// Estensione di String con metodi di utilita per validazione, formattazione e manipolazione testo
 extension String {
 
-    /// Returns the string with leading and trailing whitespace removed
+    // MARK: - Proprieta di Trimming e Validazione Base
+
+    /// Restituisce la stringa senza spazi bianchi iniziali e finali
+    /// - Note: Rimuove sia spazi che newline
     var trimmed: String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
-    /// Checks if the string is not empty after trimming whitespace
+    /// Verifica se la stringa non e vuota dopo il trimming
+    /// - Returns: `true` se la stringa contiene almeno un carattere non-whitespace
     var isNotEmpty: Bool {
         return !self.trimmed.isEmpty
     }
 
-    /// Validates if the string is a valid destination name
-    /// A valid destination should:
-    /// - Not be empty after trimming
-    /// - Have at least 2 characters
-    /// - Not contain only numbers
-    /// - Not contain special characters except spaces, commas, periods, hyphens, and apostrophes
+    // MARK: - Validazione Destinazioni di Viaggio
+
+    /// Valida se la stringa e un nome di destinazione valido
+    ///
+    /// Una destinazione valida deve:
+    /// - Non essere vuota dopo il trimming
+    /// - Avere almeno 2 caratteri
+    /// - Non contenere solo numeri
+    /// - Contenere solo lettere, spazi e punteggiatura comune (virgole, punti, trattini, apostrofi)
+    ///
+    /// - Returns: `true` se la destinazione e valida
+    /// - Example: "Roma" -> true, "123" -> false, "P@ris!" -> false
     var isValidDestination: Bool {
         let trimmedString = self.trimmed
 
-        // Check if empty or too short
+        // Verifica se vuota o troppo corta
         guard trimmedString.count >= 2 else { return false }
 
-        // Check if contains only numbers
+        // Verifica se contiene solo numeri
         if trimmedString.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil {
             return false
         }
 
-        // Define allowed characters: letters, spaces, and common punctuation
+        // Definisce i caratteri consentiti: lettere, spazi e punteggiatura comune
         let allowedCharacters = CharacterSet.letters
             .union(.whitespaces)
             .union(CharacterSet(charactersIn: ",.'-"))
 
-        // Check if all characters are allowed
+        // Verifica che tutti i caratteri siano consentiti
         let stringCharacters = CharacterSet(charactersIn: trimmedString)
         return allowedCharacters.isSuperset(of: stringCharacters)
     }
 
-    /// Truncates the string to a specified length and adds an ellipsis if truncated
-    /// - Parameter length: The maximum length of the returned string (including ellipsis)
-    /// - Returns: The truncated string with "..." appended if it was truncated
+    // MARK: - Troncamento e Formattazione
+
+    /// Tronca la stringa a una lunghezza specificata aggiungendo ellissi se necessario
+    /// - Parameter length: Lunghezza massima della stringa risultante (inclusa ellissi)
+    /// - Returns: La stringa troncata con "..." se era piu lunga del limite
+    /// - Example: "Ciao mondo".truncated(to: 8) -> "Ciao..."
     func truncated(to length: Int) -> String {
         guard length > 3 else { return self }
 
@@ -61,47 +78,68 @@ extension String {
         return self
     }
 
-    /// Capitalizes the first letter of the string
+    /// Rende maiuscola solo la prima lettera della stringa
+    /// - Returns: Stringa con prima lettera maiuscola e resto invariato
+    /// - Example: "ciao" -> "Ciao", "CIAO" -> "CIAO"
     var capitalizedFirst: String {
         guard !self.isEmpty else { return self }
         return prefix(1).uppercased() + dropFirst()
     }
 
-    /// Checks if the string is a valid email address
+    // MARK: - Validazione Formati Specifici
+
+    /// Verifica se la stringa e un indirizzo email valido
+    /// - Returns: `true` se il formato email e corretto
+    /// - Note: Usa una regex standard per la validazione
     var isValidEmail: Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: self)
     }
 
-    /// Checks if the string contains only letters and spaces
+    /// Verifica se la stringa contiene solo lettere e spazi
+    /// - Returns: `true` se non ci sono numeri o caratteri speciali
     var isAlphabetic: Bool {
         let allowedCharacters = CharacterSet.letters.union(.whitespaces)
         let stringCharacters = CharacterSet(charactersIn: self)
         return allowedCharacters.isSuperset(of: stringCharacters) && !self.isEmpty
     }
 
-    /// Checks if the string contains only numbers
+    /// Verifica se la stringa contiene solo numeri
+    /// - Returns: `true` se la stringa e composta esclusivamente da cifre
     var isNumeric: Bool {
         return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 
-    /// Returns the string with all whitespace characters removed
+    // MARK: - Manipolazione Whitespace
+
+    /// Restituisce la stringa senza alcun carattere di spazio
+    /// - Returns: Stringa con tutti gli spazi rimossi
+    /// - Example: "Ciao mondo" -> "Ciaomondo"
     var withoutWhitespace: String {
         return self.components(separatedBy: .whitespaces).joined()
     }
 
-    /// Converts the string to a URL-safe format
+    // MARK: - Encoding e Sanitizzazione
+
+    /// Converte la stringa in un formato URL-safe
+    /// - Returns: Stringa con caratteri speciali codificati per uso in URL
     var urlEncoded: String {
         return self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self
     }
 
-    /// Removes all HTML tags from the string
+    /// Rimuove tutti i tag HTML dalla stringa
+    /// - Returns: Stringa senza markup HTML
+    /// - Example: "<p>Ciao</p>" -> "Ciao"
     var strippingHTML: String {
         return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
     }
 
-    /// Converts the string to kebab-case (lowercase with hyphens)
+    // MARK: - Conversione Case
+
+    /// Converte la stringa in kebab-case (minuscolo con trattini)
+    /// - Returns: Stringa in formato kebab-case
+    /// - Example: "CiaoMondo" -> "ciao-mondo"
     var kebabCased: String {
         let pattern = "([a-z0-9])([A-Z])"
         let regex = try? NSRegularExpression(pattern: pattern)
@@ -114,20 +152,31 @@ extension String {
         return kebabCase?.lowercased().replacingOccurrences(of: " ", with: "-") ?? self.lowercased()
     }
 
-    /// Returns the number of words in the string
+    // MARK: - Conteggio e Analisi
+
+    /// Restituisce il numero di parole nella stringa
+    /// - Returns: Conteggio delle parole separate da spazi
     var wordCount: Int {
         let components = self.components(separatedBy: .whitespacesAndNewlines)
         let words = components.filter { !$0.isEmpty }
         return words.count
     }
 
-    /// Safely subscript the string with an integer index
+    // MARK: - Subscript Sicuri
+
+    /// Accede in modo sicuro a un carattere tramite indice intero
+    /// - Parameter index: L'indice del carattere da ottenere
+    /// - Returns: Il carattere all'indice specificato, o `nil` se fuori range
+    /// - Example: "Ciao"[safe: 1] -> "i"
     subscript(safe index: Int) -> Character? {
         guard index >= 0 && index < count else { return nil }
         return self[self.index(startIndex, offsetBy: index)]
     }
 
-    /// Safely subscript the string with a range
+    /// Accede in modo sicuro a una sottostringa tramite range
+    /// - Parameter range: Il range di indici da estrarre
+    /// - Returns: La sottostringa nel range, o `nil` se fuori limiti
+    /// - Example: "Ciao"[safe: 0..<2] -> "Ci"
     subscript(safe range: Range<Int>) -> String? {
         guard range.lowerBound >= 0,
               range.upperBound <= count,

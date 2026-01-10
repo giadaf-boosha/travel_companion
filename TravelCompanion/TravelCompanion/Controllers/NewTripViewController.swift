@@ -2,19 +2,50 @@
 //  NewTripViewController.swift
 //  TravelCompanion
 //
+//  Schermata per la creazione di un nuovo viaggio.
+//  Raccoglie informazioni essenziali: destinazione, date, tipo viaggio.
+//
+//  Funzionalita:
+//  - Campo testo per la destinazione con validazione
+//  - Selettori data per inizio e fine viaggio
+//  - Selezione tipo viaggio (locale, giornaliero, multi-giorno)
+//  - Opzione per avviare automaticamente il tracking GPS
+//  - Validazione input con messaggi di errore localizzati
+//
 //  Created by Travel Companion Team on 07/12/2025.
 //
 
 import UIKit
 
+// MARK: - Protocollo Delegate
+
+/// Protocollo delegate per comunicare gli eventi di creazione viaggio
 protocol NewTripViewControllerDelegate: AnyObject {
+    /// Chiamato quando un viaggio viene creato con successo
+    /// - Parameters:
+    ///   - trip: Il viaggio creato
+    ///   - shouldStartTracking: Se avviare immediatamente il tracking GPS
     func didCreateTrip(_ trip: Trip, shouldStartTracking: Bool)
+
+    /// Chiamato quando l'utente annulla la creazione del viaggio
     func didCancelTripCreation()
 }
 
+// MARK: - New Trip View Controller
+
+/// Controller per la schermata di creazione nuovo viaggio.
+///
+/// Presenta un form con:
+/// - Destinazione (obbligatoria, min 2 caratteri)
+/// - Data inizio (default: oggi)
+/// - Data fine (default: +7 giorni)
+/// - Tipo viaggio (segmented control)
+/// - Switch per tracking automatico
+///
+/// La validazione avviene al tap su "Crea Viaggio".
 class NewTripViewController: UIViewController {
 
-    // MARK: - UI Components
+    // MARK: - Componenti UI
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false

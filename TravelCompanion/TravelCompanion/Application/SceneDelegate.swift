@@ -1,10 +1,36 @@
+//
+//  SceneDelegate.swift
+//  TravelCompanion
+//
+//  Gestisce il ciclo di vita delle scene (windows) dell'applicazione.
+//  Configura l'interfaccia utente principale e la navigazione.
+//
+//  Responsabilita:
+//  - Creazione e configurazione della UIWindow principale
+//  - Setup del TabBarController con tutti i tab dell'app
+//  - Gestione transizioni foreground/background
+//  - Salvataggio automatico Core Data in background
+//  - Prewarm del modello AI (iOS 26+)
+//  - Gestione navigazione da notifiche
+//
+
 import UIKit
 
+// MARK: - Scene Delegate
+
+/// Delegate per la gestione delle scene (windows) dell'applicazione.
+///
+/// In iOS 13+, SceneDelegate gestisce:
+/// - Ciclo di vita delle singole istanze dell'app (scene)
+/// - Configurazione iniziale dell'interfaccia utente
+/// - Risposta agli eventi di sistema (background, foreground)
+/// - State restoration per continuita dell'esperienza utente
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    /// Window principale dell'applicazione
     var window: UIWindow?
 
-    // MARK: - Scene Lifecycle
+    // MARK: - Ciclo di Vita Scene
 
     func scene(
         _ scene: UIScene,
