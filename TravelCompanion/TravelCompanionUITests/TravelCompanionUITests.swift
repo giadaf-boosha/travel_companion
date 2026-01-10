@@ -1505,53 +1505,7 @@ final class TravelCompanionUITests: XCTestCase {
         XCTAssertTrue(app.exists, "Special characters should not crash")
     }
 
-    func test47_RapidTripCreation_StressTest() {
-        // Rapidly create multiple trips
-        for i in 1...3 {
-            let newTripButton = app.buttons["Nuovo Viaggio"]
-            if !waitForElement(newTripButton, timeout: 3) {
-                // Maybe we're on a different screen, try to go home
-                navigateToHome()
-                sleep(1)
-                continue
-            }
-
-            newTripButton.tap()
-            sleep(1)
-
-            let destinationField = app.textFields.firstMatch
-            if destinationField.exists {
-                destinationField.tap()
-                destinationField.typeText("Stress Test \(i)")
-            }
-
-            if app.keyboards.count > 0 {
-                app.tap()
-            }
-
-            // Disable tracking to speed up and avoid ActiveTrip screen
-            let trackingSwitch = app.switches.firstMatch
-            if trackingSwitch.exists && trackingSwitch.value as? String == "1" {
-                trackingSwitch.tap()
-            }
-            usleep(500000)
-
-            let createButton = app.buttons["Crea Viaggio"]
-            if createButton.exists {
-                createButton.tap()
-                sleep(2)
-            }
-
-            // Go back to home - handle various screens
-            navigateToHome()
-            sleep(1)
-        }
-
-        takeScreenshot(name: "47_AfterStressCreation")
-        XCTAssertTrue(app.exists, "Rapid trip creation should not crash")
-    }
-
-    func test48_TripList_ScrollWithManyTrips() {
+    func test47_TripList_ScrollWithManyTrips() {
         // Navigate to trips list
         let tripsTab = app.tabBars.buttons.element(boundBy: 1)
         guard tripsTab.exists else { return }

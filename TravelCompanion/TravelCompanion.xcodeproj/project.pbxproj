@@ -72,6 +72,7 @@
 
 		/* UI Tests */
 		UIT001 /* TravelCompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UISRC001; };
+		AIFIT001 /* AIFeatureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AIFTSRC001; };
 		UIT002 /* TravelCompanionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UISRC002; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 
 		/* UI Test Files */
 		UISRC001 /* TravelCompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCompanionUITests.swift; sourceTree = "<group>"; };
+		AIFTSRC001 /* AIFeatureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFeatureUITests.swift; sourceTree = "<group>"; };
 		UISRC002 /* TravelCompanionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCompanionUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				UISRC001 /* TravelCompanionUITests.swift */,
+				AIFTSRC001 /* AIFeatureUITests.swift */,
 				UISRC002 /* TravelCompanionUITestsLaunchTests.swift */,
 			);
 			path = TravelCompanionUITests;
@@ -545,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				UIT001 /* TravelCompanionUITests.swift in Sources */,
+				AIFIT001 /* AIFeatureUITests.swift in Sources */,
 				UIT002 /* TravelCompanionUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
