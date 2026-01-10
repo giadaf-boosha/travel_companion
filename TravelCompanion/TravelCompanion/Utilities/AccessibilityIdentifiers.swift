@@ -64,6 +64,13 @@ struct AccessibilityIdentifiers {
         static let notesTableView = "tripDetail_tableView_notes"
         static let mapButton = "tripDetail_button_map"
         static let deleteButton = "tripDetail_button_delete"
+
+        // AI Section
+        static let aiSectionLabel = "tripDetail_label_aiSection"
+        static let aiItineraryButton = "tripDetail_button_aiItinerary"
+        static let aiPackingListButton = "tripDetail_button_aiPackingList"
+        static let aiBriefingButton = "tripDetail_button_aiBriefing"
+        static let aiSummaryButton = "tripDetail_button_aiSummary"
     }
 
     // MARK: - Map Screen

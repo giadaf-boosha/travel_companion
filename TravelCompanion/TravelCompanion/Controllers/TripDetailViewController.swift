@@ -154,6 +154,76 @@ class TripDetailViewController: UIViewController {
         return button
     }()
 
+    // AI Section
+    private let aiSectionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "AI Assistente"
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private let aiButtonsStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+
+    private let itineraryAIButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .systemBlue.withAlphaComponent(0.1)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiItineraryButton
+        return button
+    }()
+
+    private let packingListAIButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .systemOrange.withAlphaComponent(0.1)
+        button.setTitleColor(.systemOrange, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiPackingListButton
+        return button
+    }()
+
+    private let briefingAIButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .systemPurple.withAlphaComponent(0.1)
+        button.setTitleColor(.systemPurple, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiBriefingButton
+        return button
+    }()
+
+    private let summaryAIButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .systemTeal.withAlphaComponent(0.1)
+        button.setTitleColor(.systemTeal, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiSummaryButton
+        return button
+    }()
+
     // MARK: - Properties
     var trip: Trip!
     private var photos: [Photo] = []
@@ -207,6 +277,7 @@ class TripDetailViewController: UIViewController {
         let separator1 = createSeparator()
         let separator2 = createSeparator()
         let separator3 = createSeparator()
+        let separator4 = createSeparator()
 
         // Add all components to content view
         contentView.addSubview(headerStackView)
@@ -217,6 +288,18 @@ class TripDetailViewController: UIViewController {
         contentView.addSubview(notesSectionLabel)
         contentView.addSubview(notesTableView)
         contentView.addSubview(separator3)
+
+        // AI Section (only on iOS 26+)
+        if #available(iOS 26.0, *) {
+            contentView.addSubview(aiSectionLabel)
+            contentView.addSubview(aiButtonsStackView)
+            aiButtonsStackView.addArrangedSubview(itineraryAIButton)
+            aiButtonsStackView.addArrangedSubview(packingListAIButton)
+            aiButtonsStackView.addArrangedSubview(briefingAIButton)
+            aiButtonsStackView.addArrangedSubview(summaryAIButton)
+            contentView.addSubview(separator4)
+        }
+
         contentView.addSubview(mapButton)
 
         // Setup accessibility identifiers
@@ -321,7 +404,7 @@ class TripDetailViewController: UIViewController {
             notesHeightConstraint
         ])
 
-        // Map button
+        // Separator after notes
         guard let separator3 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst(2).first as? UIView else { return }
         NSLayoutConstraint.activate([
             separator3.topAnchor.constraint(equalTo: notesTableView.bottomAnchor, constant: 24),
@@ -330,13 +413,52 @@ class TripDetailViewController: UIViewController {
             separator3.heightAnchor.constraint(equalToConstant: 1)
         ])
 
-        NSLayoutConstraint.activate([
-            mapButton.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
-            mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            mapButton.heightAnchor.constraint(equalToConstant: 50),
-            mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
-        ])
+        // AI Section (only on iOS 26+)
+        if #available(iOS 26.0, *) {
+            NSLayoutConstraint.activate([
+                aiSectionLabel.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
+                aiSectionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                aiSectionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            ])
+
+            NSLayoutConstraint.activate([
+                aiButtonsStackView.topAnchor.constraint(equalTo: aiSectionLabel.bottomAnchor, constant: 12),
+                aiButtonsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                aiButtonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            ])
+
+            // Height constraints for AI buttons
+            [itineraryAIButton, packingListAIButton, briefingAIButton, summaryAIButton].forEach { button in
+                button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+            }
+
+            // Separator after AI section
+            guard let separator4 = contentView.subviews.filter({ $0.backgroundColor == .separator }).dropFirst(3).first as? UIView else { return }
+            NSLayoutConstraint.activate([
+                separator4.topAnchor.constraint(equalTo: aiButtonsStackView.bottomAnchor, constant: 24),
+                separator4.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                separator4.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                separator4.heightAnchor.constraint(equalToConstant: 1)
+            ])
+
+            // Map button after AI section
+            NSLayoutConstraint.activate([
+                mapButton.topAnchor.constraint(equalTo: separator4.bottomAnchor, constant: 24),
+                mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                mapButton.heightAnchor.constraint(equalToConstant: 50),
+                mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            ])
+        } else {
+            // Map button directly after notes (iOS < 26)
+            NSLayoutConstraint.activate([
+                mapButton.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 24),
+                mapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                mapButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                mapButton.heightAnchor.constraint(equalToConstant: 50),
+                mapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            ])
+        }
     }
 
     private func createSeparator() -> UIView {
@@ -381,6 +503,14 @@ class TripDetailViewController: UIViewController {
 
     private func setupActions() {
         mapButton.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside)
+
+        // AI button actions (iOS 26+)
+        if #available(iOS 26.0, *) {
+            itineraryAIButton.addTarget(self, action: #selector(itineraryAIButtonTapped), for: .touchUpInside)
+            packingListAIButton.addTarget(self, action: #selector(packingListAIButtonTapped), for: .touchUpInside)
+            briefingAIButton.addTarget(self, action: #selector(briefingAIButtonTapped), for: .touchUpInside)
+            summaryAIButton.addTarget(self, action: #selector(summaryAIButtonTapped), for: .touchUpInside)
+        }
     }
 
     // MARK: - Data Loading
@@ -400,6 +530,34 @@ class TripDetailViewController: UIViewController {
 
         // Update map button visibility
         mapButton.isHidden = routes.isEmpty
+
+        // Update AI button states (iOS 26+)
+        if #available(iOS 26.0, *) {
+            updateAIButtonStates()
+        }
+    }
+
+    @available(iOS 26.0, *)
+    private func updateAIButtonStates() {
+        // Check if itinerary exists
+        let hasItinerary = CoreDataManager.shared.fetchItinerary(for: trip) != nil
+        itineraryAIButton.setTitle(hasItinerary ? "Vedi Itinerario" : "Genera Itinerario", for: .normal)
+
+        // Check if packing list exists
+        let hasPackingList = CoreDataManager.shared.fetchPackingList(for: trip) != nil
+        packingListAIButton.setTitle(hasPackingList ? "Vedi Packing List" : "Genera Packing List", for: .normal)
+
+        // Check if briefing exists
+        let hasBriefing = CoreDataManager.shared.fetchBriefing(for: trip) != nil
+        briefingAIButton.setTitle(hasBriefing ? "Vedi Briefing" : "Genera Briefing", for: .normal)
+
+        // Summary only available for completed trips
+        let isCompleted = !trip.isActive
+        summaryAIButton.isHidden = trip.isActive
+        if isCompleted {
+            let hasSummary = CoreDataManager.shared.fetchSummary(for: trip) != nil
+            summaryAIButton.setTitle(hasSummary ? "Vedi Riassunto" : "Genera Riassunto", for: .normal)
+        }
     }
 
     private func updateTripInfo() {
@@ -538,6 +696,93 @@ class TripDetailViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+
+    // MARK: - AI Actions
+
+    #if canImport(FoundationModels)
+    @available(iOS 26.0, *)
+    @objc private func itineraryAIButtonTapped() {
+        // Check if itinerary already exists
+        if let existingItinerary = CoreDataManager.shared.fetchItinerary(for: trip) {
+            // Show existing itinerary
+            let detailVC = ItineraryDetailViewController()
+            detailVC.existingItinerary = existingItinerary
+            detailVC.associatedTrip = trip
+            navigationController?.pushViewController(detailVC, animated: true)
+        } else {
+            // Generate new itinerary
+            let generatorVC = ItineraryGeneratorViewController()
+            generatorVC.associatedTrip = trip
+            let nav = UINavigationController(rootViewController: generatorVC)
+            present(nav, animated: true)
+        }
+    }
+
+    @available(iOS 26.0, *)
+    @objc private func packingListAIButtonTapped() {
+        let packingVC = PackingListViewController()
+        packingVC.associatedTrip = trip
+
+        // Check if packing list already exists
+        if let existingList = CoreDataManager.shared.fetchPackingList(for: trip) {
+            packingVC.existingPackingList = existingList
+        }
+
+        let nav = UINavigationController(rootViewController: packingVC)
+        present(nav, animated: true)
+    }
+
+    @available(iOS 26.0, *)
+    @objc private func briefingAIButtonTapped() {
+        let briefingVC = BriefingDetailViewController()
+        briefingVC.destination = trip.destination ?? ""
+        briefingVC.associatedTrip = trip
+
+        // Check if briefing already exists
+        if let existingBriefing = CoreDataManager.shared.fetchBriefing(for: trip) {
+            briefingVC.existingBriefing = existingBriefing
+        }
+
+        let nav = UINavigationController(rootViewController: briefingVC)
+        present(nav, animated: true)
+    }
+
+    @available(iOS 26.0, *)
+    @objc private func summaryAIButtonTapped() {
+        guard !trip.isActive else {
+            showAlert(title: "Viaggio in Corso", message: "Completa il viaggio per generare il riassunto.")
+            return
+        }
+
+        let summaryVC = TripSummaryViewController()
+        summaryVC.associatedTrip = trip
+
+        // Check if summary already exists
+        if let existingSummary = CoreDataManager.shared.fetchSummary(for: trip) {
+            summaryVC.existingSummary = existingSummary
+        }
+
+        let nav = UINavigationController(rootViewController: summaryVC)
+        present(nav, animated: true)
+    }
+    #else
+    // Fallback per iOS < 26 o SDK non disponibile
+    @objc private func itineraryAIButtonTapped() {
+        showAlert(title: "Non Disponibile", message: "Le funzionalita AI richiedono iOS 26 o successivo.")
+    }
+
+    @objc private func packingListAIButtonTapped() {
+        showAlert(title: "Non Disponibile", message: "Le funzionalita AI richiedono iOS 26 o successivo.")
+    }
+
+    @objc private func briefingAIButtonTapped() {
+        showAlert(title: "Non Disponibile", message: "Le funzionalita AI richiedono iOS 26 o successivo.")
+    }
+
+    @objc private func summaryAIButtonTapped() {
+        showAlert(title: "Non Disponibile", message: "Le funzionalita AI richiedono iOS 26 o successivo.")
+    }
+    #endif
 }
 
 // MARK: - UICollectionViewDataSource

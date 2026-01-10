@@ -22,6 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
 
+        // Prewarm AI model se disponibile (iOS 26+)
+        #if canImport(FoundationModels)
+        if #available(iOS 26.0, *) {
+            FoundationModelService.shared.prewarmIfAvailable()
+        }
+        #endif
+
         // Gestisci eventuali notifiche che hanno aperto l'app
         if let notificationResponse = connectionOptions.notificationResponse {
             handleNotificationResponse(notificationResponse)
@@ -118,16 +125,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             selectedImage: UIImage(systemName: "chart.bar.fill")
         )
 
-        // Tab 5: Assistente
-        let chatVC = ChatViewController()
-        let chatNav = UINavigationController(rootViewController: chatVC)
-        chatNav.tabBarItem = UITabBarItem(
-            title: "Assistente",
-            image: UIImage(systemName: "bubble.left.and.bubble.right"),
-            selectedImage: UIImage(systemName: "bubble.left.and.bubble.right.fill")
+        // Tab 5: AI Assistente
+        let aiAssistantVC: UIViewController
+        if #available(iOS 26.0, *) {
+            aiAssistantVC = AIAssistantViewController()
+        } else {
+            aiAssistantVC = AIAssistantFallbackViewController()
+        }
+        let aiNav = UINavigationController(rootViewController: aiAssistantVC)
+        aiNav.tabBarItem = UITabBarItem(
+            title: "AI Assistente",
+            image: UIImage(systemName: "sparkles"),
+            selectedImage: UIImage(systemName: "sparkles")
         )
+        aiNav.tabBarItem.accessibilityIdentifier = AccessibilityIdentifiers.TabBar.aiAssistantTab
 
-        tabBarController.viewControllers = [homeNav, tripsNav, mapNav, statsNav, chatNav]
+        tabBarController.viewControllers = [homeNav, tripsNav, mapNav, statsNav, aiNav]
 
         return tabBarController
     }

@@ -43,6 +43,7 @@
 		CTR001 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC020; };
 		CTR002 /* TripListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC021; };
 		CTR003 /* TripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC022; };
+		CTR_AI001 /* AIAssistantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B40C22ACA548E3A42D9B8B /* AIAssistantViewController.swift */; };
 		CTR004 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC023; };
 		CTR005 /* ActiveTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC024; };
 		CTR006 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC025; };
@@ -132,6 +133,7 @@
 		SRC020 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		SRC021 /* TripListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListViewController.swift; sourceTree = "<group>"; };
 		SRC022 /* TripDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailViewController.swift; sourceTree = "<group>"; };
+		B4B40C22ACA548E3A42D9B8B /* AIAssistantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantViewController.swift; sourceTree = "<group>"; };
 		SRC023 /* NewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
 		SRC024 /* ActiveTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveTripViewController.swift; sourceTree = "<group>"; };
 		SRC025 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		GRP005 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4B40C22ACA548E3A42D9B8B /* AIAssistantViewController.swift */,
 				SRC020 /* HomeViewController.swift */,
 				SRC021 /* TripListViewController.swift */,
 				SRC022 /* TripDetailViewController.swift */,
@@ -485,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CTR_AI001 /* AIAssistantViewController.swift in Sources */,
 				APP001 /* AppDelegate.swift in Sources */,
 				APP002 /* SceneDelegate.swift in Sources */,
 				MDL001 /* TripType.swift in Sources */,
