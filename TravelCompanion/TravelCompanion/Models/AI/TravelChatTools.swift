@@ -26,42 +26,42 @@ struct CreateTripTool: Tool {
     @Generable
     struct Arguments {
         @Guide(description: "Nome della citta o luogo di destinazione")
-        let destination: String
+        var destination: String
 
         @Guide(description: "Data di inizio viaggio nel formato yyyy-MM-dd")
-        let startDate: String
+        var startDate: String
 
         @Guide(description: "Data di fine viaggio nel formato yyyy-MM-dd, puo essere uguale a startDate per gite giornaliere")
-        let endDate: String
+        var endDate: String
 
-        @Guide(description: "Tipo di viaggio", .anyOf(["locale", "giornaliero", "multi-giorno"]))
-        let tripType: String
+        @Guide(description: "Tipo di viaggio: locale, giornaliero, o multi-giorno")
+        var tripType: String
     }
 
-    nonisolated func call(arguments: Arguments) async throws -> ToolOutput {
+    func call(arguments: Arguments) async throws -> [String] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "it_IT")
 
         guard let startDate = dateFormatter.date(from: arguments.startDate) else {
-            return ToolOutput("Errore: formato data inizio non valido. Usa yyyy-MM-dd.")
+            return ["Errore: formato data inizio non valido. Usa yyyy-MM-dd."]
         }
 
         guard let endDate = dateFormatter.date(from: arguments.endDate) else {
-            return ToolOutput("Errore: formato data fine non valido. Usa yyyy-MM-dd.")
+            return ["Errore: formato data fine non valido. Usa yyyy-MM-dd."]
         }
 
         guard endDate >= startDate else {
-            return ToolOutput("Errore: la data di fine deve essere successiva o uguale alla data di inizio.")
+            return ["Errore: la data di fine deve essere successiva o uguale alla data di inizio."]
         }
 
         // Map trip type
-        let tripTypeValue: String
+        let tripType: TripType
         switch arguments.tripType.lowercased() {
-        case "locale": tripTypeValue = "local"
-        case "giornaliero": tripTypeValue = "dayTrip"
-        case "multi-giorno": tripTypeValue = "multiDay"
-        default: tripTypeValue = "dayTrip"
+        case "locale": tripType = .local
+        case "giornaliero": tripType = .dayTrip
+        case "multi-giorno": tripType = .multiDay
+        default: tripType = .dayTrip
         }
 
         // Create trip on main actor
@@ -70,13 +70,13 @@ struct CreateTripTool: Tool {
                 destination: arguments.destination,
                 startDate: startDate,
                 endDate: endDate,
-                type: tripTypeValue,
+                type: tripType,
                 isActive: false
             )
             return trip
         }
 
-        if let trip = result {
+        if result != nil {
             let displayFormatter = DateFormatter()
             displayFormatter.dateFormat = "dd MMMM yyyy"
             displayFormatter.locale = Locale(identifier: "it_IT")
@@ -84,17 +84,15 @@ struct CreateTripTool: Tool {
             let startStr = displayFormatter.string(from: startDate)
             let endStr = displayFormatter.string(from: endDate)
 
-            return ToolOutput("""
-                Viaggio creato con successo!
-                - Destinazione: \(arguments.destination)
-                - Date: \(startStr) - \(endStr)
-                - Tipo: \(arguments.tripType)
-                - ID: \(trip.id?.uuidString ?? "N/A")
-
-                Il viaggio e stato salvato. Puoi attivarlo dalla lista viaggi per iniziare il tracking.
-                """)
+            return [
+                "Viaggio creato con successo!",
+                "Destinazione: \(arguments.destination)",
+                "Date: \(startStr) - \(endStr)",
+                "Tipo: \(arguments.tripType)",
+                "Il viaggio e stato salvato. Puoi attivarlo dalla lista viaggi per iniziare il tracking."
+            ]
         } else {
-            return ToolOutput("Errore nella creazione del viaggio. Riprova.")
+            return ["Errore nella creazione del viaggio. Riprova."]
         }
     }
 }
@@ -114,45 +112,49 @@ struct AddNoteTool: Tool {
     @Generable
     struct Arguments {
         @Guide(description: "Contenuto della nota da salvare")
-        let content: String
+        var content: String
 
-        @Guide(description: "Categoria della nota", .anyOf(["ristorante", "attrazione", "hotel", "trasporto", "shopping", "altro"]))
-        let category: String?
+        @Guide(description: "Categoria della nota: ristorante, attrazione, hotel, trasporto, shopping, altro")
+        var category: String
     }
 
-    nonisolated func call(arguments: Arguments) async throws -> ToolOutput {
+    func call(arguments: Arguments) async throws -> [String] {
         // Check for active trip and add note on main actor
-        let result = await MainActor.run { () -> (success: Bool, message: String) in
+        let result = await MainActor.run { () -> (success: Bool, messages: [String]) in
             guard let activeTrip = CoreDataManager.shared.fetchActiveTrip() else {
-                return (false, "Nessun viaggio attivo. Attiva un viaggio dalla lista viaggi prima di aggiungere note.")
+                return (false, ["Nessun viaggio attivo.", "Attiva un viaggio dalla lista viaggi prima di aggiungere note."])
             }
 
-            // Get current location if available
+            // Get current location if available, use 0 if not
             let location = LocationManager.shared.currentLocation
+            let latitude = location?.coordinate.latitude ?? 0.0
+            let longitude = location?.coordinate.longitude ?? 0.0
 
             let note = CoreDataManager.shared.createNote(
                 for: activeTrip,
                 text: arguments.content,
-                latitude: location?.coordinate.latitude,
-                longitude: location?.coordinate.longitude
+                latitude: latitude,
+                longitude: longitude
             )
 
             if let note = note {
-                // Update category if provided
-                if let category = arguments.category {
-                    note.category = category
-                    note.isStructured = true
-                    CoreDataManager.shared.saveContext()
-                }
+                // Update category
+                note.category = arguments.category
+                note.isStructured = true
+                CoreDataManager.shared.saveContext()
 
                 let destination = activeTrip.destination ?? "viaggio"
-                return (true, "Nota aggiunta al viaggio a \(destination):\n\"\(arguments.content)\"\n\nCategoria: \(arguments.category ?? "altro")")
+                return (true, [
+                    "Nota aggiunta al viaggio a \(destination):",
+                    "\"\(arguments.content)\"",
+                    "Categoria: \(arguments.category)"
+                ])
             } else {
-                return (false, "Errore nel salvare la nota. Riprova.")
+                return (false, ["Errore nel salvare la nota. Riprova."])
             }
         }
 
-        return ToolOutput(result.message)
+        return result.messages
     }
 }
 
@@ -170,12 +172,12 @@ struct GetTripInfoTool: Tool {
 
     @Generable
     struct Arguments {
-        @Guide(description: "Tipo di informazione richiesta", .anyOf(["viaggio_attivo", "statistiche", "ultimi_viaggi"]))
-        let infoType: String
+        @Guide(description: "Tipo di informazione richiesta: viaggio_attivo, statistiche, ultimi_viaggi")
+        var infoType: String
     }
 
-    nonisolated func call(arguments: Arguments) async throws -> ToolOutput {
-        let result = await MainActor.run { () -> String in
+    func call(arguments: Arguments) async throws -> [String] {
+        let result = await MainActor.run { () -> [String] in
             switch arguments.infoType {
             case "viaggio_attivo":
                 return getActiveTripInfo()
@@ -188,12 +190,12 @@ struct GetTripInfoTool: Tool {
             }
         }
 
-        return ToolOutput(result)
+        return result
     }
 
-    private func getActiveTripInfo() -> String {
+    private func getActiveTripInfo() -> [String] {
         guard let trip = CoreDataManager.shared.fetchActiveTrip() else {
-            return "Nessun viaggio attivo al momento. Puoi crearne uno nuovo o attivare un viaggio esistente."
+            return ["Nessun viaggio attivo al momento.", "Puoi crearne uno nuovo o attivare un viaggio esistente."]
         }
 
         let photos = CoreDataManager.shared.fetchPhotos(for: trip)
@@ -207,51 +209,51 @@ struct GetTripInfoTool: Tool {
         let endStr = trip.endDate.map { formatter.string(from: $0) } ?? "N/D"
         let distance = String(format: "%.1f", trip.totalDistance / 1000)
 
-        return """
-            Viaggio attivo:
-            - Destinazione: \(trip.destination ?? "Non specificata")
-            - Date: \(startStr) - \(endStr)
-            - Tipo: \(trip.tripTypeRaw ?? "N/D")
-            - Distanza percorsa: \(distance) km
-            - Foto scattate: \(photos.count)
-            - Note registrate: \(notes.count)
-            """
+        return [
+            "Viaggio attivo:",
+            "Destinazione: \(trip.destination ?? "Non specificata")",
+            "Date: \(startStr) - \(endStr)",
+            "Tipo: \(trip.tripTypeRaw ?? "N/D")",
+            "Distanza percorsa: \(distance) km",
+            "Foto scattate: \(photos.count)",
+            "Note registrate: \(notes.count)"
+        ]
     }
 
-    private func getStatistics() -> String {
+    private func getStatistics() -> [String] {
         let totalTrips = CoreDataManager.shared.getTotalTripsCount()
         let totalPhotos = CoreDataManager.shared.getTotalPhotosCount()
         let totalNotes = CoreDataManager.shared.getTotalNotesCount()
         let totalDistance = CoreDataManager.shared.getTotalDistance()
         let distanceKm = String(format: "%.1f", totalDistance / 1000)
 
-        return """
-            Le tue statistiche di viaggio:
-            - Viaggi totali: \(totalTrips)
-            - Foto scattate: \(totalPhotos)
-            - Note registrate: \(totalNotes)
-            - Distanza totale: \(distanceKm) km
-            """
+        return [
+            "Le tue statistiche di viaggio:",
+            "Viaggi totali: \(totalTrips)",
+            "Foto scattate: \(totalPhotos)",
+            "Note registrate: \(totalNotes)",
+            "Distanza totale: \(distanceKm) km"
+        ]
     }
 
-    private func getRecentTrips() -> String {
+    private func getRecentTrips() -> [String] {
         let trips = CoreDataManager.shared.fetchAllTrips()
 
         if trips.isEmpty {
-            return "Non hai ancora registrato nessun viaggio. Inizia creandone uno nuovo!"
+            return ["Non hai ancora registrato nessun viaggio.", "Inizia creandone uno nuovo!"]
         }
 
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM yyyy"
         formatter.locale = Locale(identifier: "it_IT")
 
-        var result = "I tuoi ultimi viaggi:\n"
+        var result = ["I tuoi ultimi viaggi:"]
 
         for trip in trips.prefix(5) {
             let destination = trip.destination ?? "Destinazione sconosciuta"
             let startStr = trip.startDate.map { formatter.string(from: $0) } ?? "N/D"
             let status = trip.isActive ? "(Attivo)" : ""
-            result += "\n- \(destination) - \(startStr) \(status)"
+            result.append("- \(destination) - \(startStr) \(status)")
         }
 
         return result
@@ -265,7 +267,7 @@ struct GetTripInfoTool: Tool {
 /// Suggerimenti di conversazione per la chat AI
 struct TravelChatStarters {
 
-    /// Starter per funzionalità generali (travel expert)
+    /// Starter per funzionalita generali (travel expert)
     static let travelExpertStarters: [ChatStarterItem] = [
         ChatStarterItem(
             icon: "globe.europe.africa.fill",
