@@ -711,7 +711,39 @@ Crea 3 viaggi:
 
 ---
 
-### 📋 D1. Generazione Itinerario
+### 💬 D1. Chat AI Viaggio (con Tool Calling)
+
+```
+📍 SCENARIO: Usare la Chat AI per pianificare e agire
+
+1. 🤖 Vai al tab "AI Assistant" (5° tab)
+2. 💬 Tocca "Chat AI Viaggio" (pulsante verde)
+3. 👀 Osserva i suggerimenti di conversazione:
+
+   📘 TRAVEL EXPERT (5 suggerimenti):
+   ├── "Consiglia destinazione" - Suggerimenti personalizzati
+   ├── "Cucina locale" - Piatti tipici da provare
+   ├── "Consigli sicurezza" - Precauzioni per destinazione
+   ├── "Budget viaggio" - Pianificazione spese
+   └── "Quando visitare" - Periodo migliore dell'anno
+
+   🟢 AZIONI NELL'APP (3 suggerimenti con Tool Calling):
+   ├── "Crea viaggio" - Crea un nuovo viaggio dall'AI
+   ├── "Aggiungi nota" - Aggiungi nota al viaggio attivo
+   └── "Le mie statistiche" - Mostra statistiche viaggi
+
+4. 📝 Tocca uno starter o scrivi un messaggio
+5. ✨ L'AI risponde con consigli o esegue azioni
+
+→ VERIFICA TOOL CALLING:
+   - Prova "Crea viaggio per Roma dal 15 al 20 marzo"
+   - L'AI crea effettivamente il viaggio nell'app!
+   - Il viaggio appare nella lista viaggi
+```
+
+---
+
+### 📋 D2. Generazione Itinerario
 
 ```
 📍 SCENARIO: Generare un itinerario AI
@@ -730,7 +762,7 @@ Crea 3 viaggi:
 
 ---
 
-### 🧳 D2. Packing List
+### 🧳 D3. Packing List
 
 ```
 📍 SCENARIO: Generare una packing list AI
@@ -750,7 +782,7 @@ Crea 3 viaggi:
 
 ---
 
-### 🌍 D3. Destination Briefing
+### 🌍 D4. Destination Briefing
 
 ```
 📍 SCENARIO: Generare un briefing destinazione
@@ -765,66 +797,6 @@ Crea 3 viaggi:
    ├── 🍜 Cultura culinaria
    ├── 🏯 Consigli culturali
    └── ⚠️  Note di sicurezza
-```
-
----
-
-### 🎙️ D4. Voice Notes
-
-```
-📍 SCENARIO: Registrare e strutturare una nota vocale
-
-1. 🤖 Tab AI Assistant → "Nota Vocale"
-2. 🎙️  Tocca il microfono
-3. 🗣️  Parla: "Ho mangiato una pizza margherita fantastica
-        da Mario, costa 8 euro, lo consiglio"
-4. ⏹️  Tocca Stop
-
-→ VERIFICA: Trascrizione appare
-
-5. ✨ Tocca "Struttura con AI"
-
-→ VERIFICA: Nota strutturata con:
-   ├── 📁 Categoria: "Ristorante"
-   ├── ⭐ Rating estratto
-   ├── 💰 Costo: "8 euro"
-   └── 🏷️  Tags generati
-```
-
----
-
-### 📔 D5. Smart Journal
-
-```
-📍 SCENARIO: Generare una entry del diario
-
-1. ➕ Crea un viaggio attivo
-2. 📷 Scatta 3-4 foto
-3. 📝 Aggiungi 2 note
-4. ⏳ Dopo qualche ora...
-5. 🤖 Tab AI Assistant → "Diario di Oggi"
-6. 📅 Seleziona il giorno
-7. ✨ Tocca "Genera Entry"
-
-→ VERIFICA: Narrativa del giorno basata su foto e note
-```
-
----
-
-### 📝 D6. Trip Summary
-
-```
-📍 SCENARIO: Generare il riassunto di un viaggio
-
-1. ✅ Completa un viaggio (con tracking, foto, note)
-2. 📋 Vai al dettaglio del viaggio completato
-3. ✨ Tocca "Genera Riassunto AI"
-
-→ VERIFICA: Narrativa completa con highlights
-
-4. 🔄 Prova "Rigenera" con variante "Più dettagliato"
-
-→ VERIFICA: Versione più lunga e dettagliata
 ```
 
 ---
@@ -881,14 +853,13 @@ Usa questa checklist per verificare di aver testato tutto:
 
 | # | Test | Status |
 |:-:|------|:------:|
-| 1 | Generare itinerario | ⬜ |
-| 2 | Generare packing list | ⬜ |
-| 3 | Generare briefing destinazione | ⬜ |
-| 4 | Registrare nota vocale | ⬜ |
-| 5 | Strutturare nota con AI | ⬜ |
-| 6 | Generare journal entry | ⬜ |
-| 7 | Generare trip summary | ⬜ |
-| 8 | Rigenerare con varianti | ⬜ |
+| 1 | Chat AI Viaggio - Conversazione travel expert | ⬜ |
+| 2 | Chat AI Viaggio - Tool Calling (crea viaggio) | ⬜ |
+| 3 | Chat AI Viaggio - Tool Calling (aggiungi nota) | ⬜ |
+| 4 | Chat AI Viaggio - Tool Calling (statistiche) | ⬜ |
+| 5 | Generare itinerario | ⬜ |
+| 6 | Generare packing list | ⬜ |
+| 7 | Generare briefing destinazione | ⬜ |
 
 ---
 

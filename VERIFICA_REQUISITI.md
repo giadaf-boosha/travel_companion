@@ -16,9 +16,9 @@
 | Display Charts | 6 | 6 | 0 | 🟢 **COMPLETO** |
 | Background Jobs | 8 | 8 | 0 | 🟢 **COMPLETO** |
 | Requisiti Tecnici | 6 | 6 | 0 | 🟢 **COMPLETO** |
-| Funzionalità AI Extra | 6 | 6 | 0 | 🟢 **EXTRA** |
+| Funzionalità AI Extra | 4 | 4 | 0 | 🟢 **EXTRA** |
 
-### 🎯 Verdetto Finale: **TUTTI I REQUISITI RISPETTATI + 6 FUNZIONALITÀ AI EXTRA** ✅
+### 🎯 Verdetto Finale: **TUTTI I REQUISITI RISPETTATI + 4 FUNZIONALITÀ AI EXTRA** ✅
 
 ---
 
@@ -40,8 +40,7 @@ TravelCompanionTests/
 ├── PhotoStorageManagerTests.swift      # 10 test - Storage immagini
 ├── DistanceCalculatorTests.swift       # 18 test - Calcoli distanza
 ├── DateExtensionTests.swift            # 22 test - Formattazione date
-├── StringExtensionTests.swift          # 18 test - Validazione stringhe
-└── FoundationModelServiceTests.swift   # NEW - Test AI service
+└── StringExtensionTests.swift          # 18 test - Validazione stringhe
 
 TravelCompanionUITests/
 ├── TripCreationUITests.swift           # Flusso creazione viaggio
@@ -49,7 +48,7 @@ TravelCompanionUITests/
 ├── MapViewUITests.swift                # Interazione mappa
 ├── StatisticsUITests.swift             # Grafici statistiche
 ├── GeofenceUITests.swift               # Zone geofence
-├── AIAssistantUITests.swift            # NEW - Tab AI
+├── AIFeatureUITests.swift              # Tab AI
 └── TripLifecycleUITests.swift          # Ciclo vita completo
 ```
 
@@ -439,10 +438,7 @@ func scheduleLoggingReminder(daysInterval: Int = 7) {
 │  │  - prewarmIfAvailable() → Prewarm model on app launch   │    │
 │  │  - generateItinerary() → TravelItinerary                │    │
 │  │  - generatePackingList() → GeneratedPackingList         │    │
-│  │  - generateBriefing() → TripBriefing                    │    │
-│  │  - generateJournalEntry() → JournalEntry                │    │
-│  │  - structureNote() → StructuredNote                     │    │
-│  │  - generateTripSummary() → TripSummary                  │    │
+│  │  - generateBriefing() → TripBriefingContent             │    │
 │  └─────────────────────────────────────────────────────────┘    │
 │                              │                                    │
 │                              ▼                                    │
@@ -451,19 +447,20 @@ func scheduleLoggingReminder(daysInterval: Int = 7) {
 │  │  - TravelItinerary, DayPlan                             │    │
 │  │  - GeneratedPackingList, PackingCategory                │    │
 │  │  - TripBriefingContent, QuickFacts, LocalPhrase         │    │
-│  │  - JournalEntry, StructuredNote                         │    │
-│  │  - TripSummaryContent                                   │    │
 │  └─────────────────────────────────────────────────────────┘    │
 │                              │                                    │
 │                              ▼                                    │
 │  ┌─────────────────────────────────────────────────────────┐    │
-│  │              AI Tools (Context Access)                   │    │
-│  │  - GetTripData: photos, notes, routes                   │    │
-│  │  - GetTripStatistics: distance, counts                  │    │
-│  │  - GetTodayActivity: current day activities             │    │
-│  │  - GetUserTrips: list user trips                        │    │
-│  │  - GetCurrentLocation: GPS coordinates                  │    │
-│  │  - GetPhotosForDay: photos by date                      │    │
+│  │         Chat AI with Tool Calling (TravelChatTools)      │    │
+│  │                                                          │    │
+│  │  Tools (3):                                             │    │
+│  │  - CreateTripTool: crea viaggi dall'AI                  │    │
+│  │  - AddNoteTool: aggiunge note al viaggio attivo         │    │
+│  │  - GetTripInfoTool: recupera info e statistiche         │    │
+│  │                                                          │    │
+│  │  Conversation Starters (8):                             │    │
+│  │  - 5 per travel expert (consigli, destinazioni, ecc.)   │    │
+│  │  - 3 per azioni nell'app (tool calling)                 │    │
 │  └─────────────────────────────────────────────────────────┘    │
 │                                                                   │
 └─────────────────────────────────────────────────────────────────┘
@@ -473,16 +470,52 @@ func scheduleLoggingReminder(daysInterval: Int = 7) {
 
 | # | Funzionalità | Descrizione | File di Riferimento |
 |:-:|--------------|-------------|---------------------|
-| 1 | **Smart Itinerary Generator** | Genera itinerari giorno per giorno con attività mattina/pomeriggio/sera | `ItineraryGeneratorViewController.swift`, `ItineraryDetailViewController.swift` |
-| 2 | **Smart Packing List** | Lista bagaglio categorizzata con checkbox interattivi | `PackingListViewController.swift` |
-| 3 | **Pre-Trip Briefing** | Quick facts, frasi utili, consigli culturali | `BriefingDetailViewController.swift` |
-| 4 | **Voice-to-Structured-Note** | Converte audio in nota strutturata con categoria/rating/costo | `VoiceNoteViewController.swift`, `StructuredNotePreviewViewController.swift` |
-| 5 | **Smart Travel Journal** | Genera diario giornaliero da foto/note/percorsi | `JournalGeneratorViewController.swift` |
-| 6 | **Trip Summary Generator** | Crea riassunto narrativo con highlights e statistiche | `TripSummaryViewController.swift` |
+| 1 | **Chat AI Viaggio con Tool Calling** | Chat con esperto AI che può eseguire azioni nell'app tramite 3 tool | `TravelAIChatViewController.swift`, `TravelChatTools.swift` |
+| 2 | **Smart Itinerary Generator** | Genera itinerari giorno per giorno con attività mattina/pomeriggio/sera | `ItineraryGeneratorViewController.swift`, `ItineraryDetailViewController.swift` |
+| 3 | **Smart Packing List** | Lista bagaglio categorizzata con checkbox interattivi | `PackingListViewController.swift` |
+| 4 | **Pre-Trip Briefing** | Quick facts, frasi utili, consigli culturali | `BriefingDetailViewController.swift` |
 
 ### 5.4 Dettaglio Funzionalità
 
-#### 1. Smart Itinerary Generator
+#### 1. Chat AI Viaggio con Tool Calling
+
+La funzionalità principale è una chat intelligente che utilizza:
+
+- **Custom Instructions**: Istruzioni personalizzate per comportarsi da esperto di viaggi italiano
+- **Session con Tool Calling**: `LanguageModelSession` configurata con 3 tool
+
+```swift
+// TravelChatTools.swift
+@available(iOS 26.0, *)
+struct CreateTripTool: Tool {
+    let name = "createTrip"
+    let description = "Crea un nuovo viaggio per l'utente..."
+
+    @Generable
+    struct Arguments {
+        @Guide(description: "Nome della citta o luogo di destinazione")
+        var destination: String
+        @Guide(description: "Data di inizio viaggio nel formato yyyy-MM-dd")
+        var startDate: String
+        @Guide(description: "Data di fine viaggio nel formato yyyy-MM-dd")
+        var endDate: String
+        @Guide(description: "Tipo di viaggio: locale, giornaliero, o multi-giorno")
+        var tripType: String
+    }
+
+    func call(arguments: Arguments) async throws -> [String] {
+        // Crea il viaggio nell'app
+    }
+}
+```
+
+| Tool | Input | Output |
+|------|-------|--------|
+| `CreateTripTool` | destination, startDate, endDate, tripType | Viaggio creato nell'app |
+| `AddNoteTool` | content, category | Nota aggiunta al viaggio attivo |
+| `GetTripInfoTool` | infoType (viaggio_attivo/statistiche/ultimi_viaggi) | Info formattate |
+
+#### 2. Smart Itinerary Generator
 
 ```swift
 // GenerableStructures.swift
@@ -509,7 +542,7 @@ struct DayPlan {
 |-------|--------|-------------|
 | Destinazione, durata, tipo viaggio, stile | Itinerario strutturato | Entity `Itinerary` |
 
-#### 2. Smart Packing List
+#### 3. Smart Packing List
 
 ```swift
 @Generable
@@ -528,7 +561,7 @@ struct PackingCategory {
 |-------|--------|-------------|
 | Destinazione, durata, stagione | Lista categorizzata | Entity `PackingList` + `PackingItem` |
 
-#### 3. Pre-Trip Briefing
+#### 4. Pre-Trip Briefing
 
 ```swift
 @Generable
@@ -546,58 +579,6 @@ struct TripBriefingContent {
 |-------|--------|-------------|
 | Destinazione | Briefing completo | Entity `TripBriefing` |
 
-#### 4. Voice-to-Structured-Note
-
-```swift
-@Generable
-struct StructuredNote {
-    let category: String      // Ristorante, Museo, Hotel, etc.
-    let placeName: String
-    let rating: Int           // 1-5 stelle
-    let cost: String?         // "€20 a persona"
-    let summary: String
-    let tags: [String]
-}
-```
-
-| Input | Output | Persistenza |
-|-------|--------|-------------|
-| Trascrizione audio | Nota strutturata | Entity `Note` (extended) |
-
-#### 5. Smart Travel Journal
-
-```swift
-@Generable
-struct JournalEntry {
-    let title: String
-    let narrative: String
-    let highlights: [String]
-    let mood: String
-}
-```
-
-| Input | Output | Persistenza |
-|-------|--------|-------------|
-| Dati giorno (foto, note, percorso) via Tools | Diario narrativo | Entity `Note` con `isJournalEntry = true` |
-
-#### 6. Trip Summary Generator
-
-```swift
-@Generable
-struct TripSummaryContent {
-    let title: String
-    let tagline: String
-    let narrative: String
-    let topHighlights: [String]  // Max 3
-    let statsNarrative: String
-    let nextTripSuggestion: String
-}
-```
-
-| Input | Output | Varianti |
-|-------|--------|----------|
-| Trip completato con dati | Riassunto narrativo | shorter, detailed, emotional, factual |
-
 ### 5.5 UI AI Assistant
 
 ```
@@ -610,20 +591,19 @@ struct TripSummaryContent {
 │                                          │
 ├─────────────────────────────────────────┤
 │                                          │
+│  ┌─────────────────────────────────┐    │
+│  │💬 Chat AI Viaggio               │    │
+│  │   (Tool Calling - PRIMO)        │    │
+│  └─────────────────────────────────┘    │
+│                                          │
 │  ┌─────────────┐  ┌─────────────┐       │
 │  │📋 Genera    │  │🧳 Packing   │       │
 │  │  Itinerario │  │    List     │       │
 │  └─────────────┘  └─────────────┘       │
 │                                          │
-│  ┌─────────────┐  ┌─────────────┐       │
-│  │📖 Briefing  │  │📝 Diario    │       │
-│  │Destinazione │  │  di Oggi    │       │
-│  └─────────────┘  └─────────────┘       │
-│                                          │
-│  ┌─────────────┐  ┌─────────────┐       │
-│  │🎤 Nota      │  │📊 Riassunto │       │
-│  │   Vocale    │  │   Viaggio   │       │
-│  └─────────────┘  └─────────────┘       │
+│  ┌─────────────────────────────────┐    │
+│  │📖 Briefing Destinazione         │    │
+│  └─────────────────────────────────┘    │
 │                                          │
 ├─────────────────────────────────────────┤
 │  [         Scrivi messaggio...       🎤]│
@@ -659,7 +639,7 @@ if #available(iOS 26.0, *) {
 
 | Feature | Descrizione | File | Test |
 |---------|-------------|------|:----:|
-| 🤖 **AI Assistant (6 features)** | Itinerary, Packing, Briefing, Journal, Voice Note, Summary | `Controllers/AI/` | ✅ |
+| 🤖 **AI Assistant (4 features)** | Chat AI + Tools, Itinerary, Packing, Briefing | `Controllers/AI/` | ✅ |
 | 🧪 **Unit Tests (123)** | Test completi per services e utilities | `TravelCompanionTests/` | ✅ |
 | 📱 **UI Tests (70+)** | Test automatici flussi utente | `TravelCompanionUITests/` | ✅ |
 | ♿ **Accessibility** | 100+ identificatori per UI testing e VoiceOver | `AccessibilityIdentifiers.swift` | ✅ |
@@ -710,9 +690,9 @@ TravelCompanion/
 │   ├── TripType.swift              # Enum tipi viaggio
 │   ├── GeofenceEventType.swift     # Enum eventi geofence
 │   ├── ChatMessage.swift           # Modello messaggi chat
-│   └── 📁 AI/                      # NEW - Modelli AI
+│   └── 📁 AI/                      # Modelli AI
 │       ├── GenerableStructures.swift    # @Generable types
-│       ├── AITools.swift               # Tool implementations
+│       ├── TravelChatTools.swift        # Tool Calling (3 tools)
 │       └── FoundationModelError.swift  # Error types
 │
 ├── 📁 Services/
@@ -722,8 +702,7 @@ TravelCompanion/
 │   ├── NotificationManager.swift   # Notifiche locali
 │   ├── PhotoStorageManager.swift   # Storage immagini
 │   ├── ChatService.swift           # OpenAI integration (legacy)
-│   ├── FoundationModelService.swift # NEW - Apple AI service
-│   └── SpeechRecognizerService.swift # NEW - Voice recognition
+│   └── FoundationModelService.swift # Apple AI service
 │
 ├── 📁 Controllers/
 │   ├── HomeViewController.swift        # Dashboard
@@ -733,20 +712,17 @@ TravelCompanion/
 │   ├── ActiveTripViewController.swift  # Tracking attivo
 │   ├── MapViewController.swift         # Mappa percorsi
 │   ├── StatisticsViewController.swift  # Grafici statistiche
-│   ├── ChatViewController.swift        # Chat legacy
+│   ├── ChatViewController.swift        # Chat OpenAI legacy
 │   ├── SettingsViewController.swift    # Impostazioni
 │   ├── GeofenceViewController.swift    # Gestione zone
-│   ├── AIAssistantViewController.swift     # NEW - Tab AI
-│   ├── AIAssistantFallbackViewController.swift # NEW - Fallback
-│   └── 📁 AI/                          # NEW - Controller AI
+│   ├── AIAssistantViewController.swift     # Tab AI (iOS 26+)
+│   ├── AIAssistantFallbackViewController.swift # Fallback iOS < 26
+│   └── 📁 AI/                          # Controller AI
+│       ├── TravelAIChatViewController.swift  # Chat AI + Tools
 │       ├── ItineraryGeneratorViewController.swift
 │       ├── ItineraryDetailViewController.swift
 │       ├── PackingListViewController.swift
-│       ├── BriefingDetailViewController.swift
-│       ├── VoiceNoteViewController.swift
-│       ├── StructuredNotePreviewViewController.swift
-│       ├── JournalGeneratorViewController.swift
-│       └── TripSummaryViewController.swift
+│       └── BriefingDetailViewController.swift
 │
 ├── 📁 Views/Cells/
 │   ├── TripCell.swift              # Cella viaggio
@@ -810,17 +786,17 @@ TravelCompanion/
 
 - [x] FoundationModelService singleton
 - [x] @Generable structures
-- [x] AI Tools per context access
+- [x] Chat AI Viaggio con Tool Calling
+  - [x] CreateTripTool
+  - [x] AddNoteTool
+  - [x] GetTripInfoTool
+  - [x] 8 Conversation Starters (5 expert + 3 actions)
 - [x] Smart Itinerary Generator
 - [x] Smart Packing List
 - [x] Pre-Trip Briefing
-- [x] Voice-to-Structured-Note
-- [x] Smart Travel Journal
-- [x] Trip Summary Generator
-- [x] AIAssistantViewController
+- [x] AIAssistantViewController (4 pulsanti)
 - [x] Fallback per iOS < 26
 - [x] Error handling completo
-- [x] Core Data entities per AI
 
 ---
 
@@ -832,7 +808,7 @@ TravelCompanion/
 
 3. **Geofencing vs Activity Recognition**: È stata scelta l'opzione Geofencing come operazione background aggiuntiva, implementando un sistema completo di monitoraggio zone con eventi entry/exit salvati separatamente.
 
-4. **Apple Foundation Models**: Le 6 funzionalità AI sono state implementate utilizzando il framework nativo Apple Foundation Models (iOS 26+), garantendo processing on-device e privacy-first. Il framework utilizza macro Swift (`@Generable`, `@Guide`) per structured output type-safe.
+4. **Apple Foundation Models con Tool Calling**: Le 4 funzionalità AI sono state implementate utilizzando il framework nativo Apple Foundation Models (iOS 26+), garantendo processing on-device e privacy-first. La funzionalità principale è la **Chat AI con Tool Calling** che permette all'AI di eseguire azioni concrete nell'app (creare viaggi, aggiungere note, recuperare statistiche). Il framework utilizza macro Swift (`@Generable`, `@Guide`) per structured output type-safe e il protocollo `Tool` per le azioni.
 
 5. **Test Coverage**: Il progetto include 123 unit test e 70+ UI test per garantire stabilità e prevenire regressioni.
 
@@ -840,7 +816,7 @@ TravelCompanion/
 
 ---
 
-> **Documento aggiornato:** Gennaio 2026 | **Versione:** 2.0
+> **Documento aggiornato:** Gennaio 2026 | **Versione:** 3.0 (con Tool Calling)
 >
 > **Corso:** Laboratorio di Applicazioni Mobili (LAM) 2025
 >

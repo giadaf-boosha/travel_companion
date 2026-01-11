@@ -156,22 +156,28 @@ L'applicazione segue il pattern architetturale **MVC (Model-View-Controller)** e
 
 <table>
 <tr>
-<td width="33%" align="center">
+<td width="25%" align="center">
+
+### 💬 Chat AI Viaggio
+Chat con esperto AI di viaggi con **Tool Calling** per eseguire azioni nell'app
+
+</td>
+<td width="25%" align="center">
 
 ### 📋 Smart Itinerary
-Genera itinerari personalizzati giorno per giorno con attività, orari e consigli
+Genera itinerari personalizzati giorno per giorno con attività e consigli
 
 </td>
-<td width="33%" align="center">
+<td width="25%" align="center">
 
 ### 🧳 Packing List
-Lista valigia intelligente basata su destinazione, durata e tipo viaggio
+Lista valigia intelligente basata su destinazione e durata
 
 </td>
-<td width="33%" align="center">
+<td width="25%" align="center">
 
 ### 🌍 Destination Briefing
-Info culturali, frasi utili, clima, cucina e consigli di sicurezza
+Info culturali, frasi utili, clima e consigli di sicurezza
 
 </td>
 </tr>
@@ -183,33 +189,36 @@ Info culturali, frasi utili, clima, cucina e consigli di sicurezza
 ┌─────────────────────────────────────────────────────────┐
 │                  AI ASSISTANT TAB                        │
 │                                                          │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐             │
-│   │Itinerario│  │ Packing  │  │ Briefing │             │
-│   └────┬─────┘  └────┬─────┘  └────┬─────┘             │
-│        │             │             │                    │
-│        └─────────────┴─────────────┘                    │
-│                      │                                   │
-│              ┌───────▼───────┐                          │
-│              │FoundationModel│                          │
-│              │   Service     │                          │
-│              └───────────────┘                          │
-│                      │                                   │
-│              ┌───────▼───────┐                          │
-│              │Apple Foundation│                         │
-│              │    Models     │                          │
-│              │  (On-Device)  │                          │
-│              └───────────────┘                          │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────┐ │
+│   │ Chat AI  │  │Itinerario│  │ Packing  │  │Briefing│ │
+│   │(+ Tools) │  └────┬─────┘  └────┬─────┘  └───┬────┘ │
+│   └────┬─────┘       │             │            │       │
+│        │             └─────────────┴────────────┘       │
+│        │                           │                    │
+│        ▼                   ┌───────▼───────┐           │
+│  ┌───────────────┐         │FoundationModel│           │
+│  │ Tool Calling  │         │   Service     │           │
+│  │ - CreateTrip  │         └───────────────┘           │
+│  │ - AddNote     │                │                    │
+│  │ - GetTripInfo │                │                    │
+│  └───────────────┘         ┌──────▼───────┐            │
+│                            │Apple Foundation│           │
+│                            │    Models     │           │
+│                            │  (On-Device)  │           │
+│                            └───────────────┘           │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Strutture @Generable
+### Strutture @Generable e Tools
 
-| Struttura | Descrizione | Attributi Principali |
-|-----------|-------------|---------------------|
-| `TravelItinerary` | Itinerario completo | `dailyPlans`, `generalTips` |
-| `GeneratedPackingList` | Lista valigia | `categories`, `items` |
-| `TripBriefing` | Briefing destinazione | `quickFacts`, `phrases`, `tips` |
-| `StructuredNote` | Nota strutturata | `category`, `rating`, `tags` |
+| Struttura/Tool | Tipo | Descrizione |
+|----------------|------|-------------|
+| `TravelItinerary` | @Generable | Itinerario con `dailyPlans`, `generalTips` |
+| `GeneratedPackingList` | @Generable | Lista con `categories`, `items` |
+| `TripBriefingContent` | @Generable | Briefing con `quickFacts`, `phrases`, `tips` |
+| `CreateTripTool` | Tool | Crea viaggi dall'AI Chat |
+| `AddNoteTool` | Tool | Aggiunge note al viaggio attivo |
+| `GetTripInfoTool` | Tool | Recupera info e statistiche viaggi |
 
 ---
 
@@ -225,9 +234,9 @@ Info culturali, frasi utili, clima, cucina e consigli di sicurezza
 |:------------:|:--------------:|:-----------:|
 | Filtri e ricerca | Polylines colorate | Charts interattivi |
 
-| AI Assistant | Itinerario AI | Packing List |
-|:------------:|:-------------:|:------------:|
-| Hub funzionalità | Piano giornaliero | Checklist interattiva |
+| AI Assistant | Chat AI | Itinerario AI | Packing List |
+|:------------:|:-------:|:-------------:|:------------:|
+| Hub funzionalità | Tool Calling | Piano giornaliero | Checklist interattiva |
 
 </div>
 
@@ -317,8 +326,8 @@ TravelCompanion/
 │   │   ├── TripType.swift                 # Enum local/day/multi-day
 │   │   └── 📂 AI/
 │   │       ├── GenerableStructures.swift  # @Generable per Foundation Models
-│   │       ├── FoundationModelError.swift # Errori AI custom
-│   │       └── AITools.swift              # Tool protocol implementations
+│   │       ├── TravelChatTools.swift      # Tool Calling (CreateTrip, AddNote, GetTripInfo)
+│   │       └── FoundationModelError.swift # Errori AI custom
 │   │
 │   ├── 📂 Services/
 │   │   ├── CoreDataManager.swift          # CRUD Core Data (500+ linee)
@@ -326,9 +335,8 @@ TravelCompanion/
 │   │   ├── PhotoStorageManager.swift      # Salvataggio foto
 │   │   ├── NotificationManager.swift      # Notifiche locali
 │   │   ├── GeofenceManager.swift          # Monitoraggio zone
-│   │   ├── ChatService.swift              # Integrazione OpenAI
-│   │   ├── FoundationModelService.swift   # Apple AI (iOS 26+)
-│   │   └── SpeechRecognizerService.swift  # Riconoscimento vocale
+│   │   ├── ChatService.swift              # Integrazione OpenAI (legacy)
+│   │   └── FoundationModelService.swift   # Apple AI (iOS 26+)
 │   │
 │   ├── 📂 Controllers/
 │   │   ├── HomeViewController.swift           # Dashboard principale
@@ -343,14 +351,11 @@ TravelCompanion/
 │   │   ├── GeofenceViewController.swift       # Gestione zone
 │   │   ├── AIAssistantViewController.swift    # Hub AI (iOS 26+)
 │   │   └── 📂 AI/
+│   │       ├── TravelAIChatViewController.swift     # Chat AI con Tool Calling
 │   │       ├── ItineraryGeneratorViewController.swift
 │   │       ├── ItineraryDetailViewController.swift
 │   │       ├── PackingListViewController.swift
-│   │       ├── BriefingDetailViewController.swift
-│   │       ├── VoiceNoteViewController.swift
-│   │       ├── StructuredNotePreviewViewController.swift
-│   │       ├── JournalGeneratorViewController.swift
-│   │       └── TripSummaryViewController.swift
+│   │       └── BriefingDetailViewController.swift
 │   │
 │   ├── 📂 Views/Cells/
 │   │   ├── TripCell.swift                 # Cella lista viaggi
@@ -568,7 +573,8 @@ L'applicazione soddisfa **tutti i 34 requisiti** specificati nel progetto "Trave
 | **Display Charts** | 6 | 6 | 🟢 100% |
 | **Background Jobs** | 8 | 8 | 🟢 100% |
 | **Requisiti Tecnici** | 6 | 6 | 🟢 100% |
-| **TOTALE** | **34** | **34** | 🟢 **100%** |
+| **Funzionalità AI Extra** | 4 | 4 | 🟢 EXTRA |
+| **TOTALE** | **34+4** | **34+4** | 🟢 **100%** |
 
 ### Requisiti Chiave
 
