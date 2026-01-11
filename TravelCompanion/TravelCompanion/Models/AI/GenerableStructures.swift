@@ -81,10 +81,10 @@ struct GeneratedPackingList: Codable, Sendable {
 
 // MARK: - Trip Briefing Structures
 
-/// Briefing informativo sulla destinazione
+/// Briefing informativo sulla destinazione generato dall'AI
 @available(iOS 26.0, *)
 @Generable
-struct TripBriefing: Codable, Sendable {
+struct GeneratedTripBriefing: Codable, Sendable {
     @Guide(description: "Destinazione")
     let destination: String
 

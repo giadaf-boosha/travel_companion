@@ -281,7 +281,7 @@ final class FoundationModelService {
     }
 
     /// Genera un briefing sulla destinazione
-    func generateBriefing(destination: String) async throws -> TripBriefing {
+    func generateBriefing(destination: String) async throws -> GeneratedTripBriefing {
         #if canImport(FoundationModels)
         guard !isGenerating else {
             throw FoundationModelError.alreadyGenerating
@@ -306,7 +306,7 @@ final class FoundationModelService {
         return try await executeWithRetry {
             let response = try await self.session!.respond(
                 to: prompt,
-                generating: TripBriefing.self
+                generating: GeneratedTripBriefing.self
             )
 
             #if DEBUG
