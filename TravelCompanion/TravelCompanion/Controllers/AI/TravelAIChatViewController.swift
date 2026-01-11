@@ -43,12 +43,13 @@ final class TravelAIChatViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 12
         layout.minimumInteritemSpacing = 12
-        layout.sectionInset = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
+        layout.sectionInset = UIEdgeInsets(top: 12, left: 16, bottom: 24, right: 16)
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.backgroundColor = .systemBackground
-        cv.showsVerticalScrollIndicator = false
+        cv.showsVerticalScrollIndicator = true
+        cv.alwaysBounceVertical = true
         return cv
     }()
 
@@ -73,7 +74,7 @@ final class TravelAIChatViewController: UIViewController {
     private let inputContainerView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = .systemBackground
+        v.backgroundColor = .secondarySystemBackground
         return v
     }()
 
@@ -116,6 +117,7 @@ final class TravelAIChatViewController: UIViewController {
     }()
 
     private var inputContainerBottomConstraint: NSLayoutConstraint!
+    private var inputTextFieldBottomConstraint: NSLayoutConstraint!
     private var showingStarters = true
 
     // Starters combinati
@@ -193,7 +195,11 @@ final class TravelAIChatViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        inputContainerBottomConstraint = inputContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        // Bottom constraint for input container - initially at safe area bottom
+        inputContainerBottomConstraint = inputContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+
+        // Bottom constraint for text field - changes based on keyboard
+        inputTextFieldBottomConstraint = inputTextField.bottomAnchor.constraint(equalTo: inputContainerView.bottomAnchor, constant: -12)
 
         NSLayoutConstraint.activate([
             // Starters header
@@ -203,11 +209,11 @@ final class TravelAIChatViewController: UIViewController {
             startersSubtitleLabel.topAnchor.constraint(equalTo: startersHeaderLabel.bottomAnchor, constant: 4),
             startersSubtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
 
-            // Starters collection
+            // Starters collection - with bottom padding
             startersCollectionView.topAnchor.constraint(equalTo: startersSubtitleLabel.bottomAnchor, constant: 8),
             startersCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             startersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            startersCollectionView.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor),
+            startersCollectionView.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -8),
 
             // TableView
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -215,20 +221,19 @@ final class TravelAIChatViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor),
 
-            // Input container
+            // Input container - fixed height for visibility
             inputContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             inputContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             inputContainerBottomConstraint,
-            inputContainerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
 
             // Input field
             inputTextField.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor, constant: 16),
-            inputTextField.topAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: 10),
-            inputTextField.bottomAnchor.constraint(equalTo: inputContainerView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            inputTextField.heightAnchor.constraint(equalToConstant: 40),
+            inputTextField.topAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: 12),
+            inputTextFieldBottomConstraint,
+            inputTextField.heightAnchor.constraint(equalToConstant: 44),
 
             // Send button
-            sendButton.leadingAnchor.constraint(equalTo: inputTextField.trailingAnchor, constant: 8),
+            sendButton.leadingAnchor.constraint(equalTo: inputTextField.trailingAnchor, constant: 10),
             sendButton.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor, constant: -16),
             sendButton.centerYAnchor.constraint(equalTo: inputTextField.centerYAnchor),
             sendButton.widthAnchor.constraint(equalToConstant: 36),
@@ -358,10 +363,15 @@ final class TravelAIChatViewController: UIViewController {
             return
         }
 
-        let keyboardHeight = keyboardFrame.height - view.safeAreaInsets.bottom
+        // Deactivate safe area constraint and activate bottom constraint
+        inputContainerBottomConstraint.isActive = false
+        inputContainerBottomConstraint = inputContainerView.bottomAnchor.constraint(
+            equalTo: view.bottomAnchor,
+            constant: -keyboardFrame.height
+        )
+        inputContainerBottomConstraint.isActive = true
 
         UIView.animate(withDuration: duration) {
-            self.inputContainerBottomConstraint.constant = -keyboardHeight
             self.view.layoutIfNeeded()
         }
 
@@ -373,8 +383,14 @@ final class TravelAIChatViewController: UIViewController {
             return
         }
 
+        // Restore to safe area bottom
+        inputContainerBottomConstraint.isActive = false
+        inputContainerBottomConstraint = inputContainerView.bottomAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.bottomAnchor
+        )
+        inputContainerBottomConstraint.isActive = true
+
         UIView.animate(withDuration: duration) {
-            self.inputContainerBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
     }

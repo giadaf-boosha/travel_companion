@@ -1,0 +1,1986 @@
+Standard output and standard error from com.unibo.lam.TravelCompanion with process ID 23088 beginning at 2026-01-10 17:42:17 +0000
+
+2026-01-10 18:42:18.303208+0100 TravelCompanion[23088:69303248] You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+AppDelegate: Application did finish launching
+2026-01-10 18:42:18.362317+0100 TravelCompanion[23088:69303411] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x600000024070>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-01-10 18:42:18.365121+0100 TravelCompanion[23088:69303411] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:42:18.365357+0100 TravelCompanion[23088:69303411] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:42:18.365898+0100 TravelCompanion[23088:69303411] [Default] Received request to notify when animations are idle
+2026-01-10 18:42:18.366001+0100 TravelCompanion[23088:69303411] [Default] Sending animations idle reply with error: (null)
+SceneDelegate: Scene connected
+SceneDelegate: Scene will enter foreground
+AppDelegate: Notification authorization status: 0
+AppDelegate: Geofencing synced. Monitoring 0 regions
+SceneDelegate: Scene became active
+2026-01-10 18:42:20.209883+0100 TravelCompanion[23088:69303248] [Default] Idle notifier run loop observer fired
+2026-01-10 18:42:20.209972+0100 TravelCompanion[23088:69303248] [Default] Sending main run loop idle reply
+GeofenceManager: Authorization changed to 0
+2026-01-10 18:42:21.239069+0100 TravelCompanion[23088:69303315] [Default] Received request to fetch matches for query:
+2026-01-10 18:42:21.240059+0100 TravelCompanion[23088:69303411] [Default] Evaluating query:
+2026-01-10 18:42:21.240175+0100 TravelCompanion[23088:69303411] [Default] Getting root element snapshot
+2026-01-10 18:42:21.240582+0100 TravelCompanion[23088:69303411] [Default] Getting snapshot for App element pid: 23088 for query
+2026-01-10 18:42:21.240786+0100 TravelCompanion[23088:69303411] [Default] Query requires iOS snapshot attributes .
+2026-01-10 18:42:21.240951+0100 TravelCompanion[23088:69303411] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:21.241117+0100 TravelCompanion[23088:69303248] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:21.241124+0100 TravelCompanion[23088:69303411] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:21.241224+0100 TravelCompanion[23088:69303248] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:21.241302+0100 TravelCompanion[23088:69303411] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:21.263742+0100 TravelCompanion[23088:69303248] [Default] Got main window <AXUIElementRef 0x600000df5230> {pid=23088} {uid=[ID:4 hash:0x105a084b0]}
+2026-01-10 18:42:21.263975+0100 TravelCompanion[23088:69303248] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeParent, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits
+2026-01-10 18:42:21.264088+0100 TravelCompanion[23088:69303248] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5003,
+        5004,
+        5002,
+        5019,
+        5058,
+        2004
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:21.264151+0100 TravelCompanion[23088:69303248] [Default] Snapshot attributes 5003, 5004, 5002, 5019, 5058, 2004
+2026-01-10 18:42:21.309059+0100 TravelCompanion[23088:69303248] [Default] Got snapshot for <AXUIElementRef 0x600000dd8600> {pid=23088} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:21.309369+0100 TravelCompanion[23088:69303248] [Default] Got app orientation 0
+2026-01-10 18:42:22.442952+0100 TravelCompanion[23088:69303248] [Default] Captured accessibility snapshot data in 1.19s
+2026-01-10 18:42:22.444036+0100 TravelCompanion[23088:69303411] [Default] Found main window: Window
+2026-01-10 18:42:22.444433+0100 TravelCompanion[23088:69303411] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:22.445261+0100 TravelCompanion[23088:69303411] [Default] Query  found matching snapshots: {(
+    Application, pid: 23088
+)} (error: (null))
+2026-01-10 18:42:22.445597+0100 TravelCompanion[23088:69303411] [Default] Replying to query  with results: <XCTElementQueryResults: 0x600000d46ee0> (error: (null))
+2026-01-10 18:42:22.466718+0100 TravelCompanion[23088:69303411] [Default] Received attributes request for element: App element pid: 23088. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-01-10 18:42:22.539273+0100 TravelCompanion[23088:69303411] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:22.539451+0100 TravelCompanion[23088:69303248] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:22.539450+0100 TravelCompanion[23088:69303411] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:22.539547+0100 TravelCompanion[23088:69303248] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:22.539614+0100 TravelCompanion[23088:69303411] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:22.539655+0100 TravelCompanion[23088:69303248] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for App element pid: 23088
+2026-01-10 18:42:22.540082+0100 TravelCompanion[23088:69303248] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:22.541625+0100 TravelCompanion[23088:69303411] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 874;
+        Width = 402;
+        X = 0;
+        Y = 0;
+    };
+    "XC_kAXXCAttributeWindowContextId" = 2430153068;
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+2026-01-10 18:42:22.567441+0100 TravelCompanion[23088:69303411] [Default] Received attributes request for element: App element pid: 23088. Attributes: (
+    "XC_kAXXCAttributeWindowDisplayId"
+)
+2026-01-10 18:42:22.567680+0100 TravelCompanion[23088:69303312] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:22.568195+0100 TravelCompanion[23088:69303248] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:22.568216+0100 TravelCompanion[23088:69303312] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:22.568280+0100 TravelCompanion[23088:69303248] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:22.568292+0100 TravelCompanion[23088:69303312] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:22.614856+0100 TravelCompanion[23088:69303248] [Default] Fetching AX attributes XC_kAXXCAttributeWindowDisplayId for App element pid: 23088
+2026-01-10 18:42:22.614970+0100 TravelCompanion[23088:69303248] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:22.615066+0100 TravelCompanion[23088:69303312] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+Standard output and standard error from com.unibo.lam.TravelCompanion with process ID 23236 beginning at 2026-01-10 17:42:27 +0000
+
+2026-01-10 18:42:31.269288+0100 TravelCompanion[23236:69304628] You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+2026-01-10 18:42:31.410199+0100 TravelCompanion[23236:69305022] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x6000000043f0>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-01-10 18:42:31.413833+0100 TravelCompanion[23236:69305022] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:42:31.413896+0100 TravelCompanion[23236:69305022] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:42:31.413967+0100 TravelCompanion[23236:69305022] [Default] Received request to notify when animations are idle
+2026-01-10 18:42:31.414013+0100 TravelCompanion[23236:69305022] [Default] Sending animations idle reply with error: (null)
+AppDelegate: Application did finish launching
+SceneDelegate: Scene connected
+SceneDelegate: Scene will enter foreground
+AppDelegate: Notification authorization status: 0
+AppDelegate: Geofencing synced. Monitoring 0 regions
+GeofenceManager: Authorization changed to 0
+SceneDelegate: Scene became active
+2026-01-10 18:42:33.242061+0100 TravelCompanion[23236:69304628] [Default] Idle notifier run loop observer fired
+2026-01-10 18:42:33.242230+0100 TravelCompanion[23236:69304628] [Default] Sending main run loop idle reply
+2026-01-10 18:42:35.481252+0100 TravelCompanion[23236:69305023] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:35.481705+0100 TravelCompanion[23236:69305021] [Default] Evaluating query:
+ ↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:35.481758+0100 TravelCompanion[23236:69305021] [Default] Getting root element snapshot
+2026-01-10 18:42:35.481800+0100 TravelCompanion[23236:69305021] [Default] Returning faulting root node. Data source will be attached when needed on MT.
+2026-01-10 18:42:35.481894+0100 TravelCompanion[23236:69305021] [Default] Decomposed transformers into first match sequences:
+↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:39.660903+0100 TravelCompanion[23236:69305039] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:43.667924+0100 TravelCompanion[23236:69305021] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:43.668552+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:43.668545+0100 TravelCompanion[23236:69305021] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:43.668677+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:43.668720+0100 TravelCompanion[23236:69305021] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:43.668939+0100 TravelCompanion[23236:69304628] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002609920>
+2026-01-10 18:42:43.677787+0100 TravelCompanion[23236:69304628] [Default] Beginning first match sequence for input App element pid: 23236 with transformers 
+↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:43.683553+0100 TravelCompanion[23236:69304628] [Default] Current tree:
+0x102404e70 <App element pid: 23236>
+2026-01-10 18:42:43.687810+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for App element pid: 23236
+2026-01-10 18:42:43.857998+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.859596+0100 TravelCompanion[23236:69304628] [Default] App element pid: 23236 (App element pid: 23236) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4333835456.4"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.859900+0100 TravelCompanion[23236:69304628] [Default] [First Match] iteration with input App element pid: 23236 and transformer `Descendants matching type TabBar`
+2026-01-10 18:42:43.862502+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4333835456.4
+2026-01-10 18:42:43.912260+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.912571+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4333835456.4 (AX element pid: 23236, elementOrHash.elementID: 4333835456.4) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 2;
+    "XC_kAXXCAttributeElementBaseType" = UIWindow;
+    "XC_kAXXCAttributeElementType" = UIWindow;
+    "XC_kAXXCAttributeTraits" = 0;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.912642+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Window.
+2026-01-10 18:42:43.912728+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4333835456.4
+2026-01-10 18:42:43.913032+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.913087+0100 TravelCompanion[23236:69304628] [Default] Window (AX element pid: 23236, elementOrHash.elementID: 4333835456.4) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4324496048.5"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.915558+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4324496048.5
+2026-01-10 18:42:43.916051+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.916278+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4324496048.5 (AX element pid: 23236, elementOrHash.elementID: 4324496048.5) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UITransitionView;
+    "XC_kAXXCAttributeElementType" = UITransitionView;
+    "XC_kAXXCAttributeTraits" = 0;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.917010+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.917068+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4324496048.5
+2026-01-10 18:42:43.917218+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.917297+0100 TravelCompanion[23236:69304628] [Default] Other (AX element pid: 23236, elementOrHash.elementID: 4324496048.5) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4330804928.6"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.917365+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4330804928.6
+2026-01-10 18:42:43.919869+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.919981+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4330804928.6 (AX element pid: 23236, elementOrHash.elementID: 4330804928.6) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UIDropShadowView;
+    "XC_kAXXCAttributeElementType" = UIDropShadowView;
+    "XC_kAXXCAttributeTraits" = 0;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.920070+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.920122+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4330804928.6
+2026-01-10 18:42:43.920251+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.920308+0100 TravelCompanion[23236:69304628] [Default] Other (AX element pid: 23236, elementOrHash.elementID: 4330804928.6) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4334845648.7"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.920369+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4334845648.7
+2026-01-10 18:42:43.925725+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.926008+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4334845648.7 (AX element pid: 23236, elementOrHash.elementID: 4334845648.7) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UILayoutContainerView;
+    "XC_kAXXCAttributeElementType" = UILayoutContainerView;
+    "XC_kAXXCAttributeTraits" = 8589934592;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.926079+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.926130+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4334845648.7
+2026-01-10 18:42:43.933083+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.933320+0100 TravelCompanion[23236:69304628] [Default] Other (AX element pid: 23236, elementOrHash.elementID: 4334845648.7) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4332733248.8",
+        "AX element pid: 23236, elementOrHash.elementID: 4334842624.9"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.933457+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4332733248.8
+2026-01-10 18:42:43.933882+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.934048+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4332733248.8 (AX element pid: 23236, elementOrHash.elementID: 4332733248.8) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UITransitionView;
+    "XC_kAXXCAttributeElementType" = UITransitionView;
+    "XC_kAXXCAttributeTraits" = 8589934592;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.934277+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.934331+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4334842624.9
+2026-01-10 18:42:43.935208+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.935349+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4334842624.9 (AX element pid: 23236, elementOrHash.elementID: 4334842624.9) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 22;
+    "XC_kAXXCAttributeElementBaseType" = UITabBar;
+    "XC_kAXXCAttributeElementType" = UITabBar;
+    "XC_kAXXCAttributeTraits" = 8589934592;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.936437+0100 TravelCompanion[23236:69304628] [Default] Computed elementType TabBar.
+2026-01-10 18:42:43.936667+0100 TravelCompanion[23236:69304628] [Default] [First Match] match found and no more transformers in the current sequence - done, returning TabBar
+2026-01-10 18:42:43.936766+0100 TravelCompanion[23236:69304628] [Default] [First Match] unioned related elements {(
+)} from {(
+)}
+2026-01-10 18:42:43.937073+0100 TravelCompanion[23236:69305021] [Default] Current tree:
+0x102404e70 <App element pid: 23236>
+  Window, 0x101c13b10 <AX element pid: 23236, elementOrHash.elementID: 4333835456.4>
+    Other, 0x1024105d0 <AX element pid: 23236, elementOrHash.elementID: 4324496048.5>
+      Other, 0x10223c1c0 <AX element pid: 23236, elementOrHash.elementID: 4330804928.6>
+        Other, 0x102242410 <AX element pid: 23236, elementOrHash.elementID: 4334845648.7>
+          Other, 0x1025248b0 <AX element pid: 23236, elementOrHash.elementID: 4332733248.8>
+          TabBar, 0x102529a30 <AX element pid: 23236, elementOrHash.elementID: 4334842624.9>
+2026-01-10 18:42:43.937510+0100 TravelCompanion[23236:69305021] [Default] Query ↪︎ Descendants matching type TabBar (First Match) found matching snapshots: {(
+    TabBar
+)} (error: (null))
+2026-01-10 18:42:43.937657+0100 TravelCompanion[23236:69305021] [Default] Replying to query ↪︎ Descendants matching type TabBar (First Match) with results: <XCTElementQueryResults: 0x600000cb5890> (error: (null))
+2026-01-10 18:42:43.938491+0100 TravelCompanion[23236:69305021] [Default] Evaluating query:
+ ↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:43.938566+0100 TravelCompanion[23236:69305021] [Default] Getting root element snapshot
+2026-01-10 18:42:43.938603+0100 TravelCompanion[23236:69305021] [Default] Returning faulting root node. Data source will be attached when needed on MT.
+2026-01-10 18:42:43.938651+0100 TravelCompanion[23236:69305021] [Default] Decomposed transformers into first match sequences:
+↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:43.938696+0100 TravelCompanion[23236:69305021] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:43.938745+0100 TravelCompanion[23236:69305021] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:43.938747+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:43.938785+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:43.932026-01-10 18:42:43.938820+0100 TravelCompanion[23236:69304628] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002609920>
+8788+0100 TravelCompanion[23236:69305021] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:43.939397+0100 TravelCompanion[23236:69304628] [Default] Beginning first match sequence for input App element pid: 23236 with transformers 
+↪︎ Descendants matching type TabBar (First Match)
+2026-01-10 18:42:43.939447+0100 TravelCompanion[23236:69304628] [Default] Current tree:
+0x102334340 <App element pid: 23236>
+2026-01-10 18:42:43.939500+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for App element pid: 23236
+2026-01-10 18:42:43.939666+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.939731+0100 TravelCompanion[23236:69304628] [Default] App element pid: 23236 (App element pid: 23236) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4333835456.4"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.939777+0100 TravelCompanion[23236:69304628] [Default] [First Match] iteration with input App element pid: 23236 and transformer `Descendants matching type TabBar`
+2026-01-10 18:42:43.939833+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4333835456.4
+2026-01-10 18:42:43.939915+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.940086+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4333835456.4 (AX element pid: 23236, elementOrHash.elementID: 4333835456.4) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 2;
+    "XC_kAXXCAttributeElementBaseType" = UIWindow;
+    "XC_kAXXCAttributeElementType" = UIWindow;
+    "XC_kAXXCAttributeTraits" = 0;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.940126+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Window.
+2026-01-10 18:42:43.940165+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4333835456.4
+2026-01-10 18:42:43.940286+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.940340+0100 TravelCompanion[23236:69304628] [Default] Window (AX element pid: 23236, elementOrHash.elementID: 4333835456.4) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4324496048.5"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.940472+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4324496048.5
+2026-01-10 18:42:43.940552+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.940605+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4324496048.5 (AX element pid: 23236, elementOrHash.elementID: 4324496048.5) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UITransitionView;
+    "XC_kAXXCAttributeElementType" = UITransitionView;
+    "XC_kAXXCAttributeTraits" = 0;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.940769+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.940811+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4324496048.5
+2026-01-10 18:42:43.940878+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.940928+0100 TravelCompanion[23236:69304628] [Default] Other (AX element pid: 23236, elementOrHash.elementID: 4324496048.5) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4330804928.6"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.942207+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4330804928.6
+2026-01-10 18:42:43.942492+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.942587+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4330804928.6 (AX element pid: 23236, elementOrHash.elementID: 4330804928.6) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UIDropShadowView;
+    "XC_kAXXCAttributeElementType" = UIDropShadowView;
+    "XC_kAXXCAttributeTraits" = 0;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.943006+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.943058+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4330804928.6
+2026-01-10 18:42:43.943203+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.943290+0100 TravelCompanion[23236:69304628] [Default] Other (AX element pid: 23236, elementOrHash.elementID: 4330804928.6) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4334845648.7"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.944086+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4334845648.7
+2026-01-10 18:42:43.944210+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.944274+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4334845648.7 (AX element pid: 23236, elementOrHash.elementID: 4334845648.7) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UILayoutContainerView;
+    "XC_kAXXCAttributeElementType" = UILayoutContainerView;
+    "XC_kAXXCAttributeTraits" = 8589934592;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.944318+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.945005+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeChildren for AX element pid: 23236, elementOrHash.elementID: 4334845648.7
+2026-01-10 18:42:43.945192+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.945255+0100 TravelCompanion[23236:69304628] [Default] Other (AX element pid: 23236, elementOrHash.elementID: 4334845648.7) faulted in {
+    "XC_kAXXCAttributeChildren" =     (
+        "AX element pid: 23236, elementOrHash.elementID: 4332733248.8",
+        "AX element pid: 23236, elementOrHash.elementID: 4334842624.9"
+    );
+}: (no error) for children using XC_kAXXCAttributeChildren
+2026-01-10 18:42:43.945313+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4332733248.8
+2026-01-10 18:42:43.950964+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.951059+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4332733248.8 (AX element pid: 23236, elementOrHash.elementID: 4332733248.8) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = UITransitionView;
+    "XC_kAXXCAttributeElementType" = UITransitionView;
+    "XC_kAXXCAttributeTraits" = 8589934592;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.951106+0100 TravelCompanion[23236:69304628] [Default] Computed elementType Other.
+2026-01-10 18:42:43.951178+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType for AX element pid: 23236, elementOrHash.elementID: 4334842624.9
+2026-01-10 18:42:43.952581+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:43.952900+0100 TravelCompanion[23236:69304628] [Default] AX element pid: 23236, elementOrHash.elementID: 4334842624.9 (AX element pid: 23236, elementOrHash.elementID: 4334842624.9) faulted in {
+    "XC_kAXXCAttributeAutomationType" = 22;
+    "XC_kAXXCAttributeElementBaseType" = UITabBar;
+    "XC_kAXXCAttributeElementType" = UITabBar;
+    "XC_kAXXCAttributeTraits" = 8589934592;
+}: (no error) for elementType using XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeTraits, XC_kAXXCAttributeAutomationType
+2026-01-10 18:42:43.952994+0100 TravelCompanion[23236:69304628] [Default] Computed elementType TabBar.
+2026-01-10 18:42:43.953136+0100 TravelCompanion[23236:69304628] [Default] [First Match] match found and no more transformers in the current sequence - done, returning TabBar
+2026-01-10 18:42:43.955120+0100 TravelCompanion[23236:69304628] [Default] [First Match] unioned related elements {(
+)} from {(
+)}
+2026-01-10 18:42:43.955338+0100 TravelCompanion[23236:69305021] [Default] Current tree:
+0x102334340 <App element pid: 23236>
+  Window, 0x102326bd0 <AX element pid: 23236, elementOrHash.elementID: 4333835456.4>
+    Other, 0x1025248b0 <AX element pid: 23236, elementOrHash.elementID: 4324496048.5>
+      Other, 0x102334a20 <AX element pid: 23236, elementOrHash.elementID: 4330804928.6>
+        Other, 0x101c13b10 <AX element pid: 23236, elementOrHash.elementID: 4334845648.7>
+          Other, 0x102404e70 <AX element pid: 23236, elementOrHash.elementID: 4332733248.8>
+          TabBar, 0x1024105d0 <AX element pid: 23236, elementOrHash.elementID: 4334842624.9>
+2026-01-10 18:42:43.955482+0100 TravelCompanion[23236:69305021] [Default] Query ↪︎ Descendants matching type TabBar (First Match) found matching snapshots: {(
+    TabBar
+)} (error: (null))
+2026-01-10 18:42:43.955864+0100 TravelCompanion[23236:69305021] [Default] Replying to query ↪︎ Descendants matching type TabBar (First Match) with results: <XCTElementQueryResults: 0x600000ca8ff0> (error: (null))
+2026-01-10 18:42:43.974372+0100 TravelCompanion[23236:69305032] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type TabBar
+    ↪︎ Descendants matching type Button
+2026-01-10 18:42:43.974601+0100 TravelCompanion[23236:69305039] [Default] Evaluating query:
+ ↪︎ Descendants matching type TabBar
+    ↪︎ Descendants matching type Button
+2026-01-10 18:42:43.974700+0100 TravelCompanion[23236:69305039] [Default] Getting root element snapshot
+2026-01-10 18:42:43.974798+0100 TravelCompanion[23236:69305039] [Default] Getting snapshot for App element pid: 23236 for query ↪︎ Descendants matching type TabBar
+    ↪︎ Descendants matching type Button
+2026-01-10 18:42:43.974947+0100 TravelCompanion[23236:69305039] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits.
+2026-01-10 18:42:43.975396+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:43.976654+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:43.976670+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:43.976742+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:43.976774+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:43.977614+0100 TravelCompanion[23236:69304628] [Default] Got main window <AXUIElementRef 0x600000ca6fd0> {pid=23236} {uid=[ID:4 hash:0x1025114c0]}
+2026-01-10 18:42:43.977877+0100 TravelCompanion[23236:69304628] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeParent, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits
+2026-01-10 18:42:43.985304+0100 TravelCompanion[23236:69304628] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5003,
+        5004,
+        5002,
+        5019,
+        5058,
+        2004
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:43.985463+0100 TravelCompanion[23236:69304628] [Default] Snapshot attributes 5003, 5004, 5002, 5019, 5058, 2004
+2026-01-10 18:42:44.006222+0100 TravelCompanion[23236:69304628] [Default] Got snapshot for <AXUIElementRef 0x600000d19bf0> {pid=23236} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:44.006328+0100 TravelCompanion[23236:69304628] [Default] Got app orientation 0
+2026-01-10 18:42:44.006379+0100 TravelCompanion[23236:69304628] [Default] Captured accessibility snapshot data in 0.03s
+2026-01-10 18:42:44.006483+0100 TravelCompanion[23236:69305039] [Default] Found main window: Window
+2026-01-10 18:42:44.006559+0100 TravelCompanion[23236:69305039] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:44.008744+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:44.008890+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:44.008890+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop2026-01-10 18:42:44.008941+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:44.009028+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:44.009041+0100 TravelCompanion[23236:69304628] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002609920>
+2026-01-10 18:42:44.009173+0100 TravelCompanion[23236:69305039] [Default] Finding all matches with input Application, pid: 23236 using transformers 
+↪︎ Descendants matching type TabBar
+    ↪︎ Descendants matching type Button
+2026-01-10 18:42:44.009603+0100 TravelCompanion[23236:69305039] [Default] [Match All] applied transformer `Descendants matching type TabBar` to input {(
+    Application, pid: 23236
+)}, found {(
+    TabBar
+)}
+2026-01-10 18:42:44.009709+0100 TravelCompanion[23236:69305039] [Default] [Match All] applied transformer `Descendants matching type Button` to input {(
+    TabBar
+)}, found {(
+    Button, Selected,
+    Button,
+    Button,
+    Button,
+    Button, identifier: 'tabBar_tab_aiAssistant'
+)}
+2026-01-10 18:42:44.011413+0100 TravelCompanion[23236:69305039] [Default] [Match All] setting out related elements {(
+)}
+2026-01-10 18:42:44.011874+0100 TravelCompanion[23236:69305039] [Default] Current tree:
+Application, 0x102334a20, pid: 23236 <App element pid: 23236>
+  Window (Main), 0x10232c6d0 <AX element pid: 23236, elementOrHash.elementID: 4333835456.4>
+    Other, 0x102242e50 <AX element pid: 23236, elementOrHash.elementID: 4324496048.5>
+      Other, 0x102242710 <AX element pid: 23236, elementOrHash.elementID: 4330804928.6>
+        Other, 0x102242830 <AX element pid: 23236, elementOrHash.elementID: 4334845648.7>
+          Other, 0x102242950 <AX element pid: 23236, elementOrHash.elementID: 4332733248.8>
+            Other, 0x102242a70 <AX element pid: 23236, elementOrHash.elementID: 4324489520.10>
+              Other, 0x102242f80 <AX element pid: 23236, elementOrHash.elementID: 4333807312.16>
+                NavigationBar, 0x1022430a0, identifier: 'Travel Companion' <AX element pid: 23236, elementOrHash.elementID: 4333809824.22>
+                  Button, 0x1022431c0 <AX element pid: 23236, elementOrHash.elementID: 4332806416.24>
+                  StaticText, 0x1022432e0 <AX element pid: 23236, elementOrHash.elementID: 4332763296.25>
+                Other, 0x102334300 <AX element pid: 23236, elementOrHash.elementID: 4332766512.23>
+                  Other, 0x102326bd0 <AX element pid: 23236, elementOrHash.elementID: 4323321440.26>
+                    Other, 0x102334d50 <AX element pid: 23236, elementOrHash.elementID: 4332756048.27>
+                      ScrollView, 0x1023350a0 <AX element pid: 23236, elementOrHash.elementID: 4370511872.28>
+                        Other, 0x102335ba0 <AX element pid: 23236, elementOrHash.elementID: 4324378176.29>
+                          Button, 0x102335f20, identifier: 'home_button_newTrip' <AX element pid: 23236, elementOrHash.elementID: 4331694928.32>
+                            StaticText, 0x102336270 <AX element pid: 23236, elementOrHash.elementID: 4332191792.36>
+                          Other, 0x1023365e0, identifier: 'home_view_emptyState' <AX element pid: 23236, elementOrHash.elementID: 4332074688.33>
+                            Image, 0x102336950, identifier: 'airplane.circle' <AX element pid: 23236, elementOrHash.elementID: 4332106832.37>
+                            StaticText, 0x102336cc0 <AX element pid: 23236, elementOrHash.elementID: 4332115056.38>
+                            StaticText, 0x102337030 <AX element pid: 23236, elementOrHash.elementID: 4332131072.39>
+                        Other, 0x102337390 <AX element pid: 23236, elementOrHash.elementID: 4333908256.30>
+                          Other, 0x1023376e0 <AX element pid: 23236, elementOrHash.elementID: 4333908720.34>
+                        Other, 0x102337a40 <AX element pid: 23236, elementOrHash.elementID: 4333895728.31>
+                          Other, 0x102337dd0 <AX element pid: 23236, elementOrHash.elementID: 4333907536.35>
+                        Other, 0x102338140 <AX element pid: 23236, elementOrHash.elementID: 4333908256.30>
+                          Other, 0x1023384b0 <AX element pid: 23236, elementOrHash.elementID: 4333908720.34>
+                        Other, 0x102338ff0 <AX element pid: 23236, elementOrHash.elementID: 4333895728.31>
+                          Other, 0x102339340 <AX element pid: 23236, elementOrHash.elementID: 4333907536.35>
+          TabBar, 0x1023396b0 <AX element pid: 23236, elementOrHash.elementID: 4334842624.9>
+            Button, 0x102339a30, Selected <AX element pid: 23236, elementOrHash.elementID: 4334869552.11>
+              Image, 0x102339db0, identifier: 'house' <AX element pid: 23236, elementOrHash.elementID: 4334872992.17>
+            Button, 0x10233a100 <AX element pid: 23236, elementOrHash.elementID: 4396717456.12>
+              Image, 0x10233a470, identifier: 'suitcase' <AX element pid: 23236, elementOrHash.elementID: 4396719984.18>
+            Button, 0x10233a800 <AX element pid: 23236, elementOrHash.elementID: 4333877040.13>
+              Image, 0x10233ab70, identifier: 'map' <AX element pid: 23236, elementOrHash.elementID: 4333879936.19>
+            Button, 0x10233aee0 <AX element pid: 23236, elementOrHash.elementID: 4333890336.14>
+              Image, 0x10233b220, identifier: 'chart.bar' <AX element pid: 23236, elementOrHash.elementID: 4324428224.20>
+            Button, 0x10233b590, identifier: 'tabBar_tab_aiAssistant' <AX element pid: 23236, elementOrHash.elementID: 4332221392.15>
+              Image, 0x10233b8e0, identifier: 'sparkles' <AX element pid: 23236, elementOrHash.elementID: 4332160576.21>
+2026-01-10 18:42:44.015473+0100 TravelCompanion[23236:69305039] [Default] Query ↪︎ Descendants matching type TabBar
+    ↪︎ Descendants matching type Button found matching snapshots: {(
+    Button, Selected,
+    Button,
+    Button,
+    Button,
+    Button, identifier: 'tabBar_tab_aiAssistant'
+)} (error: (null))
+2026-01-10 18:42:44.016197+0100 TravelCompanion[23236:69305039] [Default] Replying to query ↪︎ Descendants matching type TabBar
+    ↪︎ Descendants matching type Button with results: <XCTElementQueryResults: 0x600000d45680> (error: (null))
+2026-01-10 18:42:44.029105+0100 TravelCompanion[23236:69305039] [Default] Received request to fetch matches for query:
+2026-01-10 18:42:44.029190+0100 TravelCompanion[23236:69305039] [Default] Evaluating query:
+2026-01-10 18:42:44.029224+0100 TravelCompanion[23236:69305039] [Default] Getting root element snapshot
+2026-01-10 18:42:44.029254+0100 TravelCompanion[23236:69305039] [Default] Getting snapshot for App element pid: 23236 for query
+2026-01-10 18:42:44.029306+0100 TravelCompanion[23236:69305039] [Default] Query requires iOS snapshot attributes .
+2026-01-10 18:42:44.029436+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:44.029493+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:44.029493+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:44.029522+0100 TravelCompanion[23236:692026-01-10 18:42:44.029543+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:44.030098+0100 TravelCompanion[23236:69304628] [Default] Got main window <AXUIElementRef 0x600000c99710> {pid=23236} {uid=[ID:4 hash:0x1025114c0]}
+2026-01-10 18:42:44.030169+0100 TravelCompanion[23236:69304628] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeParent, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits
+2026-01-10 18:42:44.030236+0100 TravelCompanion[23236:69304628] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5003,
+        5004,
+        5002,
+        5019,
+        5058,
+        2004
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:44.030793+0100 TravelCompanion[23236:69304628] [Default] Snapshot attributes 5003, 5004, 5002, 5019, 5058, 2004
+2026-01-10 18:42:44.035310+0100 TravelCompanion[23236:69304628] [Default] Got snapshot for <AXUIElementRef 0x600000ca8f00> {pid=23236} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:44.035521+0100 TravelCompanion[23236:69304628] [Default] Got app orientation 0
+2026-01-10 18:42:44.035574+0100 TravelCompanion[23236:69304628] [Default] Captured accessibility snapshot data in 0.01s
+2026-01-10 18:42:44.035754+0100 TravelCompanion[23236:69305039] [Default] Found main window: Window
+2026-01-10 18:42:44.035856+0100 TravelCompanion[23236:69305039] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:44.036076+0100 TravelCompanion[23236:69305039] [Default] Query  found matching snapshots: {(
+    Application, pid: 23236
+)} (error: (null))
+2026-01-10 18:42:44.036155+0100 TravelCompanion[23236:69305039] [Default] Replying to query  with results: <XCTElementQueryResults: 0x600000c99aa0> (error: (null))
+2026-01-10 18:42:44.038242+0100 TravelCompanion[23236:69305039] [Default] Received attributes request for element: App element pid: 23236. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-01-10 18:42:44.038317+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:44.038367+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:44.038371+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:44.038418+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:44.038419+0100 TravelCompanion[23236:69305039] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:44.038456+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for App element pid: 23236
+2026-01-10 18:42:44.039544+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:44.039643+0100 TravelCompanion[23236:69305039] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 874;
+        Width = 402;
+        X = 0;
+        Y = 0;
+    };
+    "XC_kAXXCAttributeWindowContextId" = 839130630;
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+2026-01-10 18:42:44.040739+0100 TravelCompanion[23236:69305039] [Default] Received attributes request for element: App element pid: 23236. Attributes: (
+    "XC_kAXXCAttributeWindowDisplayId"
+)
+2026-01-10 18:42:44.040811+0100 TravelCompanion[23236:69305032] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:44.040854+0100 TravelCompanion[23236:69305032] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:44.040862+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:44.040901+0100 TravelCompanion[23236:69304628] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:44.040908+0100 TravelCompanion[23236:69305032] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:44.040933+0100 TravelCompanion[23236:69304628] [Default] Fetching AX attributes XC_kAXXCAttributeWindowDisplayId for App element pid: 23236
+2026-01-10 18:42:44.041827+0100 TravelCompanion[23236:69304628] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:44.041909+0100 TravelCompanion[23236:69305032] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+Standard output and standard error from com.unibo.lam.TravelCompanion with process ID 23569 beginning at 2026-01-10 17:42:49 +0000
+
+2026-01-10 18:42:50.994972+0100 TravelCompanion[23569:69308021] You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+AppDelegate: Application did finish launching
+2026-01-10 18:42:51.366064+0100 TravelCompanion[23569:69308210] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x600000008a70>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-01-10 18:42:51.369218+0100 TravelCompanion[23569:69308210] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:42:51.369434+0100 TravelCompanion[23569:69308210] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:42:51.369698+0100 TravelCompanion[23569:69308210] [Default] Received request to notify when animations are idle
+2026-01-10 18:42:51.369788+0100 TravelCompanion[23569:69308210] [Default] Sending animations idle reply with error: (null)
+SceneDelegate: Scene connected
+SceneDelegate: Scene will enter foreground
+AppDelegate: Notification authorization status: 0
+SceneDelegate: Scene became active
+2026-01-10 18:42:51.679811+0100 TravelCompanion[23569:69308021] [Default] Idle notifier run loop observer fired
+2026-01-10 18:42:51.679931+0100 TravelCompanion[23569:69308021] [Default] Sending main run loop idle reply
+AppDelegate: Geofencing synced. Monitoring 0 regions
+GeofenceManager: Authorization changed to 0
+2026-01-10 18:42:53.793029+0100 TravelCompanion[23569:69308227] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:53.793922+0100 TravelCompanion[23569:69308210] [Default] Evaluating query:
+ ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:53.794185+0100 TravelCompanion[23569:69308210] [Default] Getting root element snapshot
+2026-01-10 18:42:53.794405+0100 TravelCompanion[23569:69308210] [Default] Getting snapshot for App element pid: 23569 for query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:53.794809+0100 TravelCompanion[23569:69308210] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:42:53.795608+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:53.795828+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:53.795846+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:53.795932+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:53.795936+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:53.828809+0100 TravelCompanion[23569:69308021] [Default] Got main window <AXUIElementRef 0x600000ca2cd0> {pid=23569} {uid=[ID:4 hash:0x105a04400]}
+2026-01-10 18:42:53.829406+0100 TravelCompanion[23569:69308021] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:42:53.890973+0100 TravelCompanion[23569:69308021] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:53.891079+0100 TravelCompanion[23569:69308021] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:42:53.933298+0100 TravelCompanion[23569:69308021] [Default] Got snapshot for <AXUIElementRef 0x600000d5df50> {pid=23569} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:53.933477+0100 TravelCompanion[23569:69308021] [Default] Got app orientation 0
+2026-01-10 18:42:53.933524+0100 TravelCompanion[23569:69308021] [Default] Captured accessibility snapshot data in 0.14s
+2026-01-10 18:42:53.933668+0100 TravelCompanion[23569:69308210] [Default] Found main window: Window
+2026-01-10 18:42:53.933768+0100 TravelCompanion[23569:69308210] [Default] Checking 'gearshape' for privileged AX value slot attributes
+2026-01-10 18:42:53.933855+0100 TravelCompanion[23569:69308210] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:53.933906+0100 TravelCompanion[23569:69308210] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:53.934004+0100 TravelCompanion[23569:69308210] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:42:53.941239+0100 TravelCompanion[23569:69308210] [Default] Checking 'uso in aereo' for privileged AX value slot attributes
+2026-01-10 18:42:53.941345+0100 TravelCompanion[23569:69308210] [Default] Checking 'Nessun Viaggio' for privileged AX value slot attributes
+2026-01-10 18:42:53.941526+0100 TravelCompanion[23569:69308210] [Default] Checking 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' for privileged AX value slot attributes
+2026-01-10 18:42:53.941764+0100 TravelCompanion[23569:69308210] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:53.941835+0100 TravelCompanion[23569:69308210] [Default] Checking 'casa' for privileged AX value slot attributes
+2026-01-10 18:42:53.941878+0100 TravelCompanion[23569:69308210] [Default] Checking 'Viaggi' for privileged AX value slot attributes
+2026-01-10 18:42:53.941928+0100 TravelCompanion[23569:69308210] [Default] Checking 'suitcase' for privileged AX value slot attributes
+2026-01-10 18:42:53.941971+0100 TravelCompanion[23569:69308210] [Default] Checking 'Mappa' for privileged AX value slot attributes
+2026-01-10 18:42:53.950770+0100 TravelCompanion[23569:69308210] [Default] Checking 'mostra mappa' for privileged AX value slot attributes
+2026-01-10 18:42:53.950831+0100 TravelCompanion[23569:69308210] [Default] Checking 'Statistiche' for privileged AX value slot attributes
+2026-01-10 18:42:53.950878+0100 TravelCompanion[23569:69308210] [Default] Checking 'colonna grafico' for privileged AX value slot attributes
+2026-01-10 18:42:53.950933+0100 TravelCompanion[23569:69308210] [Default] Checking 'AI Assistente' for privileged AX value slot attributes
+2026-01-10 18:42:53.950971+0100 TravelCompanion[23569:69308210] [Default] Checking 'scintilla' for privileged AX value slot attributes
+2026-01-10 18:42:53.951055+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:53.951113+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunL2026-01-10 18:42:53.951113+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+oop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:53.956051+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:53.956072+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:53.956205+0100 TravelCompanion[23569:69308021] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002619f80>
+2026-01-10 18:42:53.956313+0100 TravelCompanion[23569:69308210] [Default] Finding all matches with input Application, pid: 23569, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:53.956979+0100 TravelCompanion[23569:69308210] [Default] [Match All] applied transformer `Descendants matching type Button` to input {(
+    Application, pid: 23569, label: 'Travel Companion'
+)}, found {(
+    Button, label: 'Travel Companion', Selected,
+    Button, label: 'Viaggi',
+    Button, label: 'Mappa',
+    Button, label: 'Statistiche',
+    Button, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente',
+    Button, label: 'gearshape',
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}
+2026-01-10 18:42:53.963971+0100 TravelCompanion[23569:69308210] [Default] [Match All] applied transformer `Elements matching predicate '"home_button_newTrip" IN identifiers'` to input {(
+    Button, label: 'Travel Companion', Selected,
+    Button, label: 'Viaggi',
+    Button, label: 'Mappa',
+    Button, label: 'Statistiche',
+    Button, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente',
+    Button, label: 'gearshape',
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}, found {(
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}
+2026-01-10 18:42:53.964164+0100 TravelCompanion[23569:69308210] [Default] [Match All] setting out related elements {(
+)}
+2026-01-10 18:42:53.964766+0100 TravelCompanion[23569:69308210] [Default] Current tree:
+Application, 0x10733d5a0, pid: 23569, label: 'Travel Companion' <App element pid: 23569>
+  Window (Main), 0x107332110 <AX element pid: 23569, elementOrHash.elementID: 4389356544.4>
+    Other, 0x10733ccf0 <AX element pid: 23569, elementOrHash.elementID: 4417896112.5>
+      Other, 0x1073069d0 <AX element pid: 23569, elementOrHash.elementID: 4416679440.6>
+        Other, 0x107306af0 <AX element pid: 23569, elementOrHash.elementID: 4415662624.7>
+          Other, 0x107306c10 <AX element pid: 23569, elementOrHash.elementID: 4390483728.8>
+            Other, 0x107306d30 <AX element pid: 23569, elementOrHash.elementID: 4415725520.10>
+              Other, 0x10733d910 <AX element pid: 23569, elementOrHash.elementID: 4389416768.16>
+                NavigationBar, 0x10733da30, identifier: 'Travel Companion' <AX element pid: 23569, elementOrHash.elementID: 4389371520.22>
+                  Button, 0x10733db50, label: 'gearshape' <AX element pid: 23569, elementOrHash.elementID: 4389440064.24>
+                  StaticText, 0x10733dc70, label: 'Travel Companion' <AX element pid: 23569, elementOrHash.elementID: 4415574896.25>
+                Other, 0x105a1e710 <AX element pid: 23569, elementOrHash.elementID: 4415661024.23>
+                  Other, 0x105a185b0 <AX element pid: 23569, elementOrHash.elementID: 4412557712.26>
+                    Other, 0x105a20320 <AX element pid: 23569, elementOrHash.elementID: 4413609856.27>
+                      ScrollView, 0x105a20440 <AX element pid: 23569, elementOrHash.elementID: 4462838784.28>
+                        Other, 0x105a20560 <AX element pid: 23569, elementOrHash.elementID: 4414551152.29>
+                          Button, 0x105a20690, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio' <AX element pid: 23569, elementOrHash.elementID: 4416676768.32>
+                            StaticText, 0x105a207b0, label: 'Nuovo Viaggio' <AX element pid: 23569, elementOrHash.elementID: 4415759008.36>
+                          Other, 0x105b26a90, identifier: 'home_view_emptyState' <AX element pid: 23569, elementOrHash.elementID: 4412455376.33>
+                            Image, 0x105b2f8f0, identifier: 'airplane.circle', label: 'uso in aereo' <AX element pid: 23569, elementOrHash.elementID: 4412479024.37>
+                            StaticText, 0x107026c00, label: 'Nessun Viaggio' <AX element pid: 23569, elementOrHash.elementID: 4412445056.38>
+                            StaticText, 0x107210240, label: 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' <AX element pid: 23569, elementOrHash.elementID: 4412491136.39>
+                        Other, 0x10770c3a0, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23569, elementOrHash.elementID: 4416618912.30>
+                          Other, 0x10770c4c0 <AX element pid: 23569, elementOrHash.elementID: 4416680016.34>
+                        Other, 0x10770c6c0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23569, elementOrHash.elementID: 4416627792.31>
+                          Other, 0x10770c7e0 <AX element pid: 23569, elementOrHash.elementID: 4416626432.35>
+                        Other, 0x10770c900, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23569, elementOrHash.elementID: 4416618912.30>
+                          Other, 0x10770ca20 <AX element pid: 23569, elementOrHash.elementID: 4416680016.34>
+                        Other, 0x10770cb40, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23569, elementOrHash.elementID: 4416627792.31>
+                          Other, 0x10770cc60 <AX element pid: 23569, elementOrHash.elementID: 4416626432.35>
+          TabBar, 0x10770cd80, label: 'Barra pannelli' <AX element pid: 23569, elementOrHash.elementID: 4390485120.9>
+            Button, 0x10770cea0, label: 'Travel Companion', Selected <AX element pid: 23569, elementOrHash.elementID: 4414555728.11>
+              Image, 0x10733e030, identifier: 'house', label: 'casa' <AX element pid: 23569, elementOrHash.elementID: 4412556256.17>
+            Button, 0x10733e150, label: 'Viaggi' <AX element pid: 23569, elementOrHash.elementID: 4412540064.12>
+              Image, 0x105a208d0, identifier: 'suitcase', label: 'suitcase' <AX element pid: 23569, elementOrHash.elementID: 4389359776.18>
+            Button, 0x105a209f0, label: 'Mappa' <AX element pid: 23569, elementOrHash.elementID: 4413594800.13>
+              Image, 0x105a20b10, identifier: 'map', label: 'mostra mappa' <AX element pid: 23569, elementOrHash.elementID: 4413596576.19>
+            Button, 0x105a20c30, label: 'Statistiche' <AX element pid: 23569, elementOrHash.elementID: 4417881328.14>
+              Image, 0x105a20d50, identifier: 'chart.bar', label: 'colonna grafico' <AX element pid: 23569, elementOrHash.elementID: 4415717440.20>
+            Button, 0x10733e270, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente' <AX element pid: 23569, elementOrHash.elementID: 4418779984.15>
+              Image, 0x10733e390, identifier: 'sparkles', label: 'scintilla' <AX element pid: 23569, elementOrHash.elementID: 4471314656.21>
+2026-01-10 18:42:53.977583+0100 TravelCompanion[23569:69308210] [Default] Query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers' found matching snapshots: {(
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)} (error: (null))
+2026-01-10 18:42:53.985765+0100 TravelCompanion[23569:69308210] [Default] Replying to query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers' with results: <XCTElementQueryResults: 0x600000ccf0f0> (error: (null))
+2026-01-10 18:42:53.991436+0100 TravelCompanion[23569:69308210] [Default] Received request to fetch matches for query:
+2026-01-10 18:42:53.991530+0100 TravelCompanion[23569:69308227] [Default] Evaluating query:
+2026-01-10 18:42:53.991576+0100 TravelCompanion[23569:69308227] [Default] Getting root element snapshot
+2026-01-10 18:42:53.991626+0100 TravelCompanion[23569:69308227] [Default] Getting snapshot for App element pid: 23569 for query
+2026-01-10 18:42:53.991672+0100 TravelCompanion[23569:69308227] [Default] Query requires iOS snapshot attributes .
+2026-01-10 18:42:53.991742+0100 TravelCompanion[23569:69308227] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:53.991781+0100 TravelCompanion[23569:69308227] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:53.991785+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:53.991820+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:53.991825+0100 TravelCompanion[23569:69308227] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:53.997677+0100 TravelCompanion[23569:69308021] [Default] Got main window <AXUIElementRef 0x600000d5db60> {pid=23569} {uid=[ID:4 hash:0x105a04400]}
+2026-01-10 18:42:53.997887+0100 TravelCompanion[23569:69308021] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeParent, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits
+2026-01-10 18:42:53.998168+0100 TravelCompanion[23569:69308021] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5003,
+        5004,
+        5002,
+        5019,
+        5058,
+        2004
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:53.998295+0100 TravelCompanion[23569:69308021] [Default] Snapshot attributes 5003, 5004, 5002, 5019, 5058, 2004
+2026-01-10 18:42:54.009041+0100 TravelCompanion[23569:69308021] [Default] Got snapshot for <AXUIElementRef 0x600000ccf420> {pid=23569} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:54.011737+0100 TravelCompanion[23569:69308021] [Default] Got app orientation 0
+2026-01-10 18:42:54.011797+0100 TravelCompanion[23569:69308021] [Default] Captured accessibility snapshot data in 0.01s
+2026-01-10 18:42:54.011895+0100 TravelCompanion[23569:69308227] [Default] Found main window: Window
+2026-01-10 18:42:54.011976+0100 TravelCompanion[23569:69308227] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:54.012189+0100 TravelCompanion[23569:69308227] [Default] Query  found matching snapshots: {(
+    Application, pid: 23569
+)} (error: (null))
+2026-01-10 18:42:54.012297+0100 TravelCompanion[23569:69308227] [Default] Replying to query  with results: <XCTElementQueryResults: 0x600000c711d0> (error: (null))
+2026-01-10 18:42:54.013561+0100 TravelCompanion[23569:69308227] [Default] Received attributes request for element: App element pid: 23569. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-01-10 18:42:54.015349+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:54.015463+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:54.015466+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:54.015532+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:54.015562+0100 TravelCompanion[23569:69308210] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:54.015585+0100 TravelCompanion[23569:69308021] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for App element pid: 23569
+2026-01-10 18:42:54.016192+0100 TravelCompanion[23569:69308021] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:54.016302+0100 TravelCompanion[23569:69308210] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 874;
+        Width = 402;
+        X = 0;
+        Y = 0;
+    };
+    "XC_kAXXCAttributeWindowContextId" = 2057421552;
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+2026-01-10 18:42:54.017250+0100 TravelCompanion[23569:69308210] [Default] Received attributes request for element: App element pid: 23569. Attributes: (
+    "XC_kAXXCAttributeWindowDisplayId"
+)
+2026-01-10 18:42:54.017332+0100 TravelCompanion[23569:69308227] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:54.017382+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:54.017373+0100 TravelCompanion[23569:69308227] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:54.017482+0100 TravelCompanion[23569:69308021] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:54.019846+0100 TravelCompanion[23569:69308227] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:54.019852+0100 TravelCompanion[23569:69308021] [Default] Fetching AX attributes XC_kAXXCAttributeWindowDisplayId for App element pid: 23569
+2026-01-10 18:42:54.019993+0100 TravelCompanion[23569:69308021] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:54.020063+0100 TravelCompanion[23569:69308227] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+Standard output and standard error from com.unibo.lam.TravelCompanion with process ID 23655 beginning at 2026-01-10 17:42:55 +0000
+
+2026-01-10 18:42:57.000689+0100 TravelCompanion[23655:69309081] You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+AppDelegate: Application did finish launching
+2026-01-10 18:42:57.060630+0100 TravelCompanion[23655:69309214] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x600000010f40>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-01-10 18:42:57.063808+0100 TravelCompanion[23655:69309214] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:42:57.063947+0100 TravelCompanion[23655:69309214] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:42:57.064383+0100 TravelCompanion[23655:69309214] [Default] Received request to notify when animations are idle
+2026-01-10 18:42:57.064474+0100 TravelCompanion[23655:69309214] [Default] Sending animations idle reply with error: (null)
+SceneDelegate: Scene connected
+SceneDelegate: Scene will enter foreground
+AppDelegate: Notification authorization status: 0
+SceneDelegate: Scene became active
+2026-01-10 18:42:57.568872+0100 TravelCompanion[23655:69309081] [Default] Idle notifier run loop observer fired
+2026-01-10 18:42:57.569005+0100 TravelCompanion[23655:69309081] [Default] Sending main run loop idle reply
+AppDelegate: Geofencing synced. Monitoring 0 regions
+GeofenceManager: Authorization changed to 0
+2026-01-10 18:42:59.626938+0100 TravelCompanion[23655:69309214] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.627662+0100 TravelCompanion[23655:69309216] [Default] Evaluating query:
+ ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.627791+0100 TravelCompanion[23655:69309216] [Default] Getting root element snapshot
+2026-01-10 18:42:59.627930+0100 TravelCompanion[23655:69309216] [Default] Getting snapshot for App element pid: 23655 for query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.628465+0100 TravelCompanion[23655:69309216] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:42:59.629832+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.629962+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.629984+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.630050+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.630066+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.641721+0100 TravelCompanion[23655:69309081] [Default] Got main window <AXUIElementRef 0x600000c5b7b0> {pid=23655} {uid=[ID:4 hash:0x103b226f0]}
+2026-01-10 18:42:59.643238+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:42:59.643579+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:59.643671+0100 TravelCompanion[23655:69309081] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:42:59.674914+0100 TravelCompanion[23655:69309081] [Default] Got snapshot for <AXUIElementRef 0x600000d32820> {pid=23655} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:59.675051+0100 TravelCompanion[23655:69309081] [Default] Got app orientation 0
+2026-01-10 18:42:59.675111+0100 TravelCompanion[23655:69309081] [Default] Captured accessibility snapshot data in 0.05s
+2026-01-10 18:42:59.675247+0100 TravelCompanion[23655:69309216] [Default] Found main window: Window
+2026-01-10 18:42:59.675381+0100 TravelCompanion[23655:69309216] [Default] Checking 'gearshape' for privileged AX value slot attributes
+2026-01-10 18:42:59.675460+0100 TravelCompanion[23655:69309216] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:59.675532+0100 TravelCompanion[23655:69309216] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:59.675646+0100 TravelCompanion[23655:69309216] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:42:59.676303+0100 TravelCompanion[23655:69309216] [Default] Checking 'uso in aereo' for privileged AX value slot attributes
+2026-01-10 18:42:59.676365+0100 TravelCompanion[23655:69309216] [Default] Checking 'Nessun Viaggio' for privileged AX value slot attributes
+2026-01-10 18:42:59.676426+0100 TravelCompanion[23655:69309216] [Default] Checking 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' for privileged AX value slot attributes
+2026-01-10 18:42:59.676530+0100 TravelCompanion[23655:69309216] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:59.676573+0100 TravelCompanion[23655:69309216] [Default] Checking 'casa' for privileged AX value slot attributes
+2026-01-10 18:42:59.676725+0100 TravelCompanion[23655:69309216] [Default] Checking 'Viaggi' for privileged AX value slot attributes
+2026-01-10 18:42:59.676798+0100 TravelCompanion[23655:69309216] [Default] Checking 'suitcase' for privileged AX value slot attributes
+2026-01-10 18:42:59.676866+0100 TravelCompanion[23655:69309216] [Default] Checking 'Mappa' for privileged AX value slot attributes
+2026-01-10 18:42:59.676910+0100 TravelCompanion[23655:69309216] [Default] Checking 'mostra mappa' for privileged AX value slot attributes
+2026-01-10 18:42:59.676965+0100 TravelCompanion[23655:69309216] [Default] Checking 'Statistiche' for privileged AX value slot attributes
+2026-01-10 18:42:59.677069+0100 TravelCompanion[23655:69309216] [Default] Checking 'colonna grafico' for privileged AX value slot attributes
+2026-01-10 18:42:59.677239+0100 TravelCompanion[23655:69309216] [Default] Checking 'AI Assistente' for privileged AX value slot attributes
+2026-01-10 18:42:59.677283+0100 TravelCompanion[23655:69309216] [Default] Checking 'scintilla' for privileged AX value slot attributes
+2026-01-10 18:42:59.677373+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.677414+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.677417+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.687154+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.687161+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.687246+0100 TravelCompanion[23655:69309081] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x6000026282a0>
+2026-01-10 18:42:59.687361+0100 TravelCompanion[23655:69309216] [Default] Finding all matches with input Application, pid: 23655, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.687664+0100 TravelCompanion[23655:69309216] [Default] [Match All] applied transformer `Descendants matching type Button` to input {(
+    Application, pid: 23655, label: 'Travel Companion'
+)}, found {(
+    Button, label: 'Travel Companion', Selected,
+    Button, label: 'Viaggi',
+    Button, label: 'Mappa',
+    Button, label: 'Statistiche',
+    Button, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente',
+    Button, label: 'gearshape',
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}
+2026-01-10 18:42:59.687837+0100 TravelCompanion[23655:69309216] [Default] [Match All] applied transformer `Elements matching predicate '"home_button_newTrip" IN identifiers'` to input {(
+    Button, label: 'Travel Companion', Selected,
+    Button, label: 'Viaggi',
+    Button, label: 'Mappa',
+    Button, label: 'Statistiche',
+    Button, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente',
+    Button, label: 'gearshape',
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}, found {(
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}
+2026-01-10 18:42:59.689866+0100 TravelCompanion[23655:69309216] [Default] [Match All] setting out related elements {(
+)}
+2026-01-10 18:42:59.690479+0100 TravelCompanion[23655:69309216] [Default] Current tree:
+Application, 0x103b41ea0, pid: 23655, label: 'Travel Companion' <App element pid: 23655>
+  Window (Main), 0x103b421d0 <AX element pid: 23655, elementOrHash.elementID: 4356974320.4>
+    Other, 0x104338700 <AX element pid: 23655, elementOrHash.elementID: 4357035024.5>
+      Other, 0x1043383b0 <AX element pid: 23655, elementOrHash.elementID: 4357037296.6>
+        Other, 0x104339170 <AX element pid: 23655, elementOrHash.elementID: 4363161920.7>
+          Other, 0x10432d200 <AX element pid: 23655, elementOrHash.elementID: 4363154592.8>
+            Other, 0x10432d5a0 <AX element pid: 23655, elementOrHash.elementID: 4363376064.10>
+              Other, 0x104331470 <AX element pid: 23655, elementOrHash.elementID: 4357947856.16>
+                NavigationBar, 0x1043317f0, identifier: 'Travel Companion' <AX element pid: 23655, elementOrHash.elementID: 4357978464.22>
+                  Button, 0x104331b60, label: 'gearshape' <AX element pid: 23655, elementOrHash.elementID: 4357068288.24>
+                  StaticText, 0x104331ec0, label: 'Travel Companion' <AX element pid: 23655, elementOrHash.elementID: 4363269552.25>
+                Other, 0x10421c050 <AX element pid: 23655, elementOrHash.elementID: 4356930720.23>
+                  Other, 0x10421d680 <AX element pid: 23655, elementOrHash.elementID: 4364245616.26>
+                    Other, 0x10421d7a0 <AX element pid: 23655, elementOrHash.elementID: 4357036496.27>
+                      ScrollView, 0x10421d8c0 <AX element pid: 23655, elementOrHash.elementID: 4370611200.28>
+                        Other, 0x10421d9f0 <AX element pid: 23655, elementOrHash.elementID: 4365521360.29>
+                          Button, 0x10421db10, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4363230992.32>
+                            StaticText, 0x10421dc30, label: 'Nuovo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4365667952.36>
+                          Other, 0x103b42f00, identifier: 'home_view_emptyState' <AX element pid: 23655, elementOrHash.elementID: 4363244880.33>
+                            Image, 0x103b43020, identifier: 'airplane.circle', label: 'uso in aereo' <AX element pid: 23655, elementOrHash.elementID: 4363245296.37>
+                            StaticText, 0x10421dd50, label: 'Nessun Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4363246320.38>
+                            StaticText, 0x103c05ce0, label: 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' <AX element pid: 23655, elementOrHash.elementID: 4363247424.39>
+                        Other, 0x10421de70, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364274992.30>
+                          Other, 0x10421df90 <AX element pid: 23655, elementOrHash.elementID: 4364275456.34>
+                        Other, 0x10421e0b0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364273296.31>
+                          Other, 0x10421e1d0 <AX element pid: 23655, elementOrHash.elementID: 4364274272.35>
+                        Other, 0x10421e2f0, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364274992.30>
+                          Other, 0x10421e410 <AX element pid: 23655, elementOrHash.elementID: 4364275456.34>
+                        Other, 0x10421e530, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364273296.31>
+                          Other, 0x10421e650 <AX element pid: 23655, elementOrHash.elementID: 4364274272.35>
+          TabBar, 0x10421e770, label: 'Barra pannelli' <AX element pid: 23655, elementOrHash.elementID: 4356934832.9>
+            Button, 0x10421e890, label: 'Travel Companion', Selected <AX element pid: 23655, elementOrHash.elementID: 4357064544.11>
+              Image, 0x103c251a0, identifier: 'house', label: 'casa' <AX element pid: 23655, elementOrHash.elementID: 4358018944.17>
+            Button, 0x1045099b0, label: 'Viaggi' <AX element pid: 23655, elementOrHash.elementID: 4363307968.12>
+              Image, 0x104332900, identifier: 'suitcase', label: 'suitcase' <AX element pid: 23655, elementOrHash.elementID: 4358008192.18>
+            Button, 0x104332580, label: 'Mappa' <AX element pid: 23655, elementOrHash.elementID: 4363312096.13>
+              Image, 0x103c04a90, identifier: 'map', label: 'mostra mappa' <AX element pid: 23655, elementOrHash.elementID: 4365648720.19>
+            Button, 0x1043363d0, label: 'Statistiche' <AX element pid: 23655, elementOrHash.elementID: 4358016768.14>
+              Image, 0x104334870, identifier: 'chart.bar', label: 'colonna grafico' <AX element pid: 23655, elementOrHash.elementID: 4364200560.20>
+            Button, 0x10421e9b0, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente' <AX element pid: 23655, elementOrHash.elementID: 4363361680.15>
+              Image, 0x10421ead0, identifier: 'sparkles', label: 'scintilla' <AX element pid: 23655, elementOrHash.elementID: 4363365776.21>
+2026-01-10 18:42:59.698831+0100 TravelCompanion[23655:69309216] [Default] Query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers' found matching snapshots: {(
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)} (error: (null))
+2026-01-10 18:42:59.699038+0100 TravelCompanion[23655:69309216] [Default] Replying to query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers' with results: <XCTElementQueryResults: 0x600000c8ba80> (error: (null))
+2026-01-10 18:42:59.707875+0100 TravelCompanion[23655:69309216] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:42:59.708045+0100 TravelCompanion[23655:69309216] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:42:59.708065+0100 TravelCompanion[23655:69309081] [Default] Idle notifier run loop observer fired
+2026-01-10 18:42:59.708169+0100 TravelCompanion[23655:69309081] [Default] Sending main run loop idle reply
+2026-01-10 18:42:59.708209+0100 TravelCompanion[23655:69309216] [Default] Received request to notify when animations are idle
+2026-01-10 18:42:59.708312+0100 TravelCompanion[23655:69309216] [Default] Sending animations idle reply with error: (null)
+2026-01-10 18:42:59.818262+0100 TravelCompanion[23655:69309216] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.818470+0100 TravelCompanion[23655:69309214] [Default] Evaluating query:
+ ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.818562+0100 TravelCompanion[23655:69309214] [Default] Getting root element snapshot
+2026-01-10 18:42:59.818685+0100 TravelCompanion[23655:69309214] [Default] Getting snapshot for App element pid: 23655 for query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.818844+0100 TravelCompanion[23655:69309214] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:42:59.819413+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.819462+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.819469+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.819521+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.819521+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.819891+0100 TravelCompanion[23655:69309081] [Default] Got main window <AXUIElementRef 0x600000c8bb10> {pid=23655} {uid=[ID:4 hash:0x103b226f0]}
+2026-01-10 18:42:59.819993+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:42:59.821015+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:59.821088+0100 TravelCompanion[23655:69309081] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:42:59.828157+0100 TravelCompanion[23655:69309081] [Default] Got snapshot for <AXUIElementRef 0x600000d242a0> {pid=23655} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:59.828330+0100 TravelCompanion[23655:69309081] [Default] Got app orientation 0
+2026-01-10 18:42:59.828396+0100 TravelCompanion[23655:69309081] [Default] Captured accessibility snapshot data in 0.01s
+2026-01-10 18:42:59.828655+0100 TravelCompanion[23655:69309214] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:59.828800+0100 TravelCompanion[23655:69309214] [Default] Found main window: Window
+2026-01-10 18:42:59.829019+0100 TravelCompanion[23655:69309214] [Default] Checking 'gearshape' for privileged AX value slot attributes
+2026-01-10 18:42:59.829178+0100 TravelCompanion[23655:69309214] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:59.829322+0100 TravelCompanion[23655:69309214] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:59.829649+0100 TravelCompanion[23655:69309214] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:42:59.830304+0100 TravelCompanion[23655:69309214] [Default] Checking 'uso in aereo' for privileged AX value slot attributes
+2026-01-10 18:42:59.830420+0100 TravelCompanion[23655:69309214] [Default] Checking 'Nessun Viaggio' for privileged AX value slot attributes
+2026-01-10 18:42:59.830660+0100 TravelCompanion[23655:69309214] [Default] Checking 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' for privileged AX value slot attributes
+2026-01-10 18:42:59.838274+0100 TravelCompanion[23655:69309214] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:42:59.838381+0100 TravelCompanion[23655:69309214] [Default] Checking 'casa' for privileged AX value slot attributes
+2026-01-10 18:42:59.838506+0100 TravelCompanion[23655:69309214] [Default] Checking 'Viaggi' for privileged AX value slot attributes
+2026-01-10 18:42:59.838682+0100 TravelCompanion[23655:69309214] [Default] Checking 'suitcase' for privileged AX value slot attributes
+2026-01-10 18:42:59.838759+0100 TravelCompanion[23655:69309214] [Default] Checking 'Mappa' for privileged AX value slot attributes
+2026-01-10 18:42:59.838889+0100 TravelCompanion[23655:69309214] [Default] Checking 'mostra mappa' for privileged AX value slot attributes
+2026-01-10 18:42:59.838958+0100 TravelCompanion[23655:69309214] [Default] Checking 'Statistiche' for privileged AX value slot attributes
+2026-01-10 18:42:59.839004+0100 TravelCompanion[23655:69309214] [Default] Checking 'colonna grafico' for privileged AX value slot attributes
+2026-01-10 18:42:59.847873+0100 TravelCompanion[23655:69309214] [Default] Checking 'AI Assistente' for privileged AX value slot attributes
+2026-01-10 18:42:59.847973+0100 TravelCompanion[23655:69309214] [Default] Checking 'scintilla' for privileged AX value slot attributes
+2026-01-10 18:42:59.848087+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.848140+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.848137+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.848219+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.848261+0100 TravelCompanion[23655:69309214] [Default] X2026-01-10 18:42:59.848270+0100 TravelCompanion[23655:69309081] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x6000026282a0>
+CTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.849103+0100 TravelCompanion[23655:69309214] [Default] Finding all matches with input Application, pid: 23655, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers'
+2026-01-10 18:42:59.849315+0100 TravelCompanion[23655:69309214] [Default] [Match All] applied transformer `Descendants matching type Button` to input {(
+    Application, pid: 23655, label: 'Travel Companion'
+)}, found {(
+    Button, label: 'Travel Companion', Selected,
+    Button, label: 'Viaggi',
+    Button, label: 'Mappa',
+    Button, label: 'Statistiche',
+    Button, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente',
+    Button, label: 'gearshape',
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}
+2026-01-10 18:42:59.852788+0100 TravelCompanion[23655:69309214] [Default] [Match All] applied transformer `Elements matching predicate '"home_button_newTrip" IN identifiers'` to input {(
+    Button, label: 'Travel Companion', Selected,
+    Button, label: 'Viaggi',
+    Button, label: 'Mappa',
+    Button, label: 'Statistiche',
+    Button, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente',
+    Button, label: 'gearshape',
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}, found {(
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)}
+2026-01-10 18:42:59.852851+0100 TravelCompanion[23655:69309214] [Default] [Match All] setting out related elements {(
+)}
+2026-01-10 18:42:59.853314+0100 TravelCompanion[23655:69309214] [Default] Current tree:
+Application, 0x104404570, pid: 23655, label: 'Travel Companion' <App element pid: 23655>
+  Window (Main), 0x10411ae50 <AX element pid: 23655, elementOrHash.elementID: 4356974320.4>
+    Other, 0x1047159f0 <AX element pid: 23655, elementOrHash.elementID: 4357035024.5>
+      Other, 0x1047136a0 <AX element pid: 23655, elementOrHash.elementID: 4357037296.6>
+        Other, 0x10470f7e0 <AX element pid: 23655, elementOrHash.elementID: 4363161920.7>
+          Other, 0x10470a560 <AX element pid: 23655, elementOrHash.elementID: 4363154592.8>
+            Other, 0x1047088e0 <AX element pid: 23655, elementOrHash.elementID: 4363376064.10>
+              Other, 0x104708a00 <AX element pid: 23655, elementOrHash.elementID: 4357947856.16>
+                NavigationBar, 0x104708b20, identifier: 'Travel Companion' <AX element pid: 23655, elementOrHash.elementID: 4357978464.22>
+                  Button, 0x104708c40, label: 'gearshape' <AX element pid: 23655, elementOrHash.elementID: 4357068288.24>
+                  StaticText, 0x104406080, label: 'Travel Companion' <AX element pid: 23655, elementOrHash.elementID: 4363269552.25>
+                Other, 0x10421c050 <AX element pid: 23655, elementOrHash.elementID: 4356930720.23>
+                  Other, 0x10421d680 <AX element pid: 23655, elementOrHash.elementID: 4364245616.26>
+                    Other, 0x10421d7a0 <AX element pid: 23655, elementOrHash.elementID: 4357036496.27>
+                      ScrollView, 0x10421d8c0 <AX element pid: 23655, elementOrHash.elementID: 4370611200.28>
+                        Other, 0x10421d9e0 <AX element pid: 23655, elementOrHash.elementID: 4365521360.29>
+                          Button, 0x10421db00, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4363230992.32>
+                            StaticText, 0x10421dc20, label: 'Nuovo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4365667952.36>
+                          Other, 0x103b41ea0, identifier: 'home_view_emptyState' <AX element pid: 23655, elementOrHash.elementID: 4363244880.33>
+                            Image, 0x1098089b0, identifier: 'airplane.circle', label: 'uso in aereo' <AX element pid: 23655, elementOrHash.elementID: 4363245296.37>
+                            StaticText, 0x104145830, label: 'Nessun Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4363246320.38>
+                            StaticText, 0x10414a220, label: 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' <AX element pid: 23655, elementOrHash.elementID: 4363247424.39>
+                        Other, 0x104705c80, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364274992.30>
+                          Other, 0x104705da0 <AX element pid: 23655, elementOrHash.elementID: 4364275456.34>
+                        Other, 0x104705ec0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364273296.31>
+                          Other, 0x104705fe0 <AX element pid: 23655, elementOrHash.elementID: 4364274272.35>
+                        Other, 0x104706100, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364274992.30>
+                          Other, 0x104706220 <AX element pid: 23655, elementOrHash.elementID: 4364275456.34>
+                        Other, 0x104709800, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364273296.31>
+                          Other, 0x104709920 <AX element pid: 23655, elementOrHash.elementID: 4364274272.35>
+          TabBar, 0x104709a40, label: 'Barra pannelli' <AX element pid: 23655, elementOrHash.elementID: 4356934832.9>
+            Button, 0x104709b60, label: 'Travel Companion', Selected <AX element pid: 23655, elementOrHash.elementID: 4357064544.11>
+              Image, 0x10414a340, identifier: 'house', label: 'casa' <AX element pid: 23655, elementOrHash.elementID: 4358018944.17>
+            Button, 0x104331b60, label: 'Viaggi' <AX element pid: 23655, elementOrHash.elementID: 4363307968.12>
+              Image, 0x104509f60, identifier: 'suitcase', label: 'suitcase' <AX element pid: 23655, elementOrHash.elementID: 4358008192.18>
+            Button, 0x103c05ce0, label: 'Mappa' <AX element pid: 23655, elementOrHash.elementID: 4363312096.13>
+              Image, 0x10440b710, identifier: 'map', label: 'mostra mappa' <AX element pid: 23655, elementOrHash.elementID: 4365648720.19>
+            Button, 0x104331ec0, label: 'Statistiche' <AX element pid: 23655, elementOrHash.elementID: 4358016768.14>
+              Image, 0x104146460, identifier: 'chart.bar', label: 'colonna grafico' <AX element pid: 23655, elementOrHash.elementID: 4364200560.20>
+            Button, 0x103c251a0, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente' <AX element pid: 23655, elementOrHash.elementID: 4363361680.15>
+              Image, 0x103c04a90, identifier: 'sparkles', label: 'scintilla' <AX element pid: 23655, elementOrHash.elementID: 4363365776.21>
+2026-01-10 18:42:59.873882+0100 TravelCompanion[23655:69309214] [Default] Query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers' found matching snapshots: {(
+    Button, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio'
+)} (error: (null))
+2026-01-10 18:42:59.879718+0100 TravelCompanion[23655:69309214] [Default] Replying to query ↪︎ Descendants matching type Button
+    ↪︎ Elements matching predicate '"home_button_newTrip" IN identifiers' with results: <XCTElementQueryResults: 0x600000d325b0> (error: (null))
+2026-01-10 18:42:59.883659+0100 TravelCompanion[23655:69309214] [Default] Received attributes request for element: AX element pid: 23655, elementOrHash.elementID: 4363230992.32. Attributes: (
+    "XC_kAXXCAttributeValue"
+)
+2026-01-10 18:42:59.883899+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.884017+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.884025+0100 TravelCompanion[23655:69309216] [Default] XCTPerfo2026-01-10 18:42:59.884068+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+rmOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.885847+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.885855+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeValue for AX element pid: 23655, elementOrHash.elementID: 4363230992.32
+2026-01-10 18:42:59.886018+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:59.886079+0100 TravelCompanion[23655:69309216] [Default] Replying with attribute values: {
+}
+2026-01-10 18:42:59.887396+0100 TravelCompanion[23655:69309216] [Default] Received attributes request for element: AX element pid: 23655, elementOrHash.elementID: 4363230992.32. Attributes: (
+    "XC_kAXXCAttributePlaceholderValue"
+)
+2026-01-10 18:42:59.898929+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.899031+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.899080+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.899089+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.899130+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.899150+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributePlaceholderValue for AX element pid: 23655, elementOrHash.elementID: 4363230992.32
+2026-01-10 18:42:59.899238+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:59.910922+0100 TravelCompanion[23655:69309214] [Default] Replying with attribute values: {
+}
+2026-01-10 18:42:59.913875+0100 TravelCompanion[23655:69309214] [Default] Received attributes request for element: AX element pid: 23655, elementOrHash.elementID: 4363230992.32. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-01-10 18:42:59.914042+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.914127+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.914138+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.914212+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.914220+0100 Tr2026-01-10 18:42:59.914303+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for AX element pid: 23655, elementOrHash.elementID: 4363230992.32
+avelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.919170+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:42:59.919419+0100 TravelCompanion[23655:69309216] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 56;
+        Width = 362;
+        X = 20;
+        Y = "172.3333333333333";
+    };
+    "XC_kAXXCAttributeWindowContextId" = 3700766751;
+    "XC_kAXXCAttributeWindowDisplayId" = 1;
+}
+2026-01-10 18:42:59.971183+0100 TravelCompanion[23655:69309216] [Default] Received request to fetch matches for query: ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7
+2026-01-10 18:42:59.971432+0100 TravelCompanion[23655:69309214] [Default] Evaluating query:
+ ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7
+2026-01-10 18:42:59.971491+0100 TravelCompanion[23655:69309214] [Default] Getting root element snapshot
+2026-01-10 18:42:59.971604+0100 TravelCompanion[23655:69309214] [Default] Getting snapshot for App element pid: 23655 for query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7
+2026-01-10 18:42:59.971830+0100 TravelCompanion[23655:69309214] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits.
+2026-01-10 18:42:59.971934+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.972726+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.972728+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.972840+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.972885+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.973362+0100 TravelCompanion[23655:69309081] [Default] Got main window <AXUIElementRef 0x600000c8d290> {pid=23655} {uid=[ID:4 hash:0x103b226f0]}
+2026-01-10 18:42:59.973456+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeParent, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits
+2026-01-10 18:42:59.977620+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5003,
+        5004,
+        5002,
+        5019,
+        5058,
+        2004
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:42:59.977691+0100 TravelCompanion[23655:69309081] [Default] Snapshot attributes 5003, 5004, 5002, 5019, 5058, 2004
+2026-01-10 18:42:59.989108+0100 TravelCompanion[23655:69309081] [Default] Got snapshot for <AXUIElementRef 0x600000c8d4a0> {pid=23655} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:42:59.989225+0100 TravelCompanion[23655:69309081] [Default] Got app orientation 0
+2026-01-10 18:42:59.989275+0100 TravelCompanion[23655:69309081] [Default] Captured accessibility snapshot data in 0.02s
+2026-01-10 18:42:59.989366+0100 TravelCompanion[23655:69309214] [Default] Found main window: Window
+2026-01-10 18:42:59.989457+0100 TravelCompanion[23655:69309214] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:42:59.993818+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:42:59.993875+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:42:59.993882+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:42:59.993927+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:42:59.993930+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:42:59.993960+0100 TravelCompanion[23655:69309081] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x6000026282a0>
+2026-01-10 18:42:59.999568+0100 TravelCompanion[23655:69309214] [Default] Finding all matches with input Application, pid: 23655 using transformers 
+↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7
+2026-01-10 18:42:59.999862+0100 TravelCompanion[23655:69309214] [Default] [Match All] applied transformer `Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7` to input {(
+    Application, pid: 23655
+)}, found {(
+)}
+2026-01-10 18:42:59.999912+0100 TravelCompanion[23655:69309214] [Default] [Match All] setting out related elements in early return {(
+)}
+2026-01-10 18:43:00.000327+0100 TravelCompanion[23655:69309214] [Default] Current tree:
+Application, 0x10411ae50, pid: 23655 <App element pid: 23655>
+  Window (Main), 0x104145830 <AX element pid: 23655, elementOrHash.elementID: 4356974320.4>
+    Other, 0x103c05ce0 <AX element pid: 23655, elementOrHash.elementID: 4357035024.5>
+      Other, 0x103c251a0 <AX element pid: 23655, elementOrHash.elementID: 4357037296.6>
+        Other, 0x103c04a90 <AX element pid: 23655, elementOrHash.elementID: 4363161920.7>
+          Other, 0x103c27450 <AX element pid: 23655, elementOrHash.elementID: 4363154592.8>
+            Other, 0x103c27570 <AX element pid: 23655, elementOrHash.elementID: 4363376064.10>
+              Other, 0x103c27690 <AX element pid: 23655, elementOrHash.elementID: 4357947856.16>
+                NavigationBar, 0x103c25ed0, identifier: 'Travel Companion' <AX element pid: 23655, elementOrHash.elementID: 4357978464.22>
+                  Button, 0x103c25ff0 <AX element pid: 23655, elementOrHash.elementID: 4357068288.24>
+                  StaticText, 0x103c26110 <AX element pid: 23655, elementOrHash.elementID: 4363269552.25>
+                Other, 0x10414a220 <AX element pid: 23655, elementOrHash.elementID: 4356930720.23>
+                  Other, 0x10414a340 <AX element pid: 23655, elementOrHash.elementID: 4364245616.26>
+                    Other, 0x104146460 <AX element pid: 23655, elementOrHash.elementID: 4357036496.27>
+                      ScrollView, 0x104146580 <AX element pid: 23655, elementOrHash.elementID: 4370611200.28>
+                        Other, 0x1041466a0 <AX element pid: 23655, elementOrHash.elementID: 4365521360.29>
+                          Button, 0x1041467c0, identifier: 'home_button_newTrip' <AX element pid: 23655, elementOrHash.elementID: 4363230992.32>
+                            StaticText, 0x1041468e0 <AX element pid: 23655, elementOrHash.elementID: 4365667952.36>
+                          Other, 0x104146a00, identifier: 'home_view_emptyState' <AX element pid: 23655, elementOrHash.elementID: 4363244880.33>
+                            Image, 0x104146b20, identifier: 'airplane.circle' <AX element pid: 23655, elementOrHash.elementID: 4363245296.37>
+                            StaticText, 0x104146c40 <AX element pid: 23655, elementOrHash.elementID: 4363246320.38>
+                            StaticText, 0x104146d60 <AX element pid: 23655, elementOrHash.elementID: 4363247424.39>
+                        Other, 0x104144520 <AX element pid: 23655, elementOrHash.elementID: 4364274992.30>
+                          Other, 0x104144640 <AX element pid: 23655, elementOrHash.elementID: 4364275456.34>
+                        Other, 0x104144760 <AX element pid: 23655, elementOrHash.elementID: 4364273296.31>
+                          Other, 0x104144880 <AX element pid: 23655, elementOrHash.elementID: 4364274272.35>
+                        Other, 0x1041449a0 <AX element pid: 23655, elementOrHash.elementID: 4364274992.30>
+                          Other, 0x104144ac0 <AX element pid: 23655, elementOrHash.elementID: 4364275456.34>
+                        Other, 0x104144be0 <AX element pid: 23655, elementOrHash.elementID: 4364273296.31>
+                          Other, 0x104144d00 <AX element pid: 23655, elementOrHash.elementID: 4364274272.35>
+          TabBar, 0x104144e20 <AX element pid: 23655, elementOrHash.elementID: 4356934832.9>
+            Button, 0x104144f40, Selected <AX element pid: 23655, elementOrHash.elementID: 4357064544.11>
+              Image, 0x104145060, identifier: 'house' <AX element pid: 23655, elementOrHash.elementID: 4358018944.17>
+            Button, 0x104145180 <AX element pid: 23655, elementOrHash.elementID: 4363307968.12>
+              Image, 0x1041452a0, identifier: 'suitcase' <AX element pid: 23655, elementOrHash.elementID: 4358008192.18>
+            Button, 0x10413cf40 <AX element pid: 23655, elementOrHash.elementID: 4363312096.13>
+              Image, 0x10413d060, identifier: 'map' <AX element pid: 23655, elementOrHash.elementID: 4365648720.19>
+            Button, 0x10413d180 <AX element pid: 23655, elementOrHash.elementID: 4358016768.14>
+              Image, 0x10413d2a0, identifier: 'chart.bar' <AX element pid: 23655, elementOrHash.elementID: 4364200560.20>
+            Button, 0x10413d3c0, identifier: 'tabBar_tab_aiAssistant' <AX element pid: 23655, elementOrHash.elementID: 4363361680.15>
+              Image, 0x10412d7a0, identifier: 'sparkles' <AX element pid: 23655, elementOrHash.elementID: 4363365776.21>
+2026-01-10 18:43:00.032941+0100 TravelCompanion[23655:69309214] [Default] Query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 found matching snapshots: {(
+)} (error: (null))
+2026-01-10 18:43:00.057982+0100 TravelCompanion[23655:69309214] [Default] Replying to query ↪︎ Descendants matching predicate identifier == "NotificationShortLookView" OR elementType == 7 with results: <XCTElementQueryResults: 0x600000c7fb40> (error: (null))
+2026-01-10 18:43:00.341706+0100 TravelCompanion[23655:69309217] [Default] Received attributes request for element: AX element pid: 23655, elementOrHash.elementID: 4363230992.32. Attributes: (
+    "XC_kAXXCAttributeVisiblePoint"
+)
+2026-01-10 18:43:00.342002+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:00.342051+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:00.342054+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:00.342134+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:00.342174+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeVisiblePoint for AX element pid: 23655, elementOrHash.elementID: 4363230992.32
+2026-01-10 18:43:00.342176+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:00.568986+0100 TravelCompanion[23655:69309081] [AXRuntimeCommon] Unknown client: TravelCompanion
+2026-01-10 18:43:02.086683+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:43:02.087320+0100 TravelCompanion[23655:69309214] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeVisiblePoint" =     {
+        X = 201;
+        Y = "200.3333333333333";
+    };
+}
+2026-01-10 18:43:02.099220+0100 TravelCompanion[23655:69309214] [Default] Received attributes request for element: AX element pid: 23655, elementOrHash.elementID: 4363230992.32. Attributes: (
+    "XC_kAXXCAttributeSystemAutomationProperties"
+)
+2026-01-10 18:43:02.099415+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:02.099548+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:02.099568+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:02.099611+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:02.099715+0100 TravelCompanion[23655:69309216] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:02.124307+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeSystemAutomationProperties for AX element pid: 23655, elementOrHash.elementID: 4363230992.32
+2026-01-10 18:43:02.124431+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:43:02.124488+0100 TravelCompanion[23655:69309216] [Default] Replying with attribute values: {
+}
+2026-01-10 18:43:02.125800+0100 TravelCompanion[23655:69309216] [Default] Received attributes request for element: AX element pid: 23655, elementOrHash.elementID: 4356974320.4. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-01-10 18:43:02.125857+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:02.140291+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:02.140291+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:02.140336+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:02.140366+0100 TravelCompanion[23655:69309214] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:02.140420+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for AX element pid: 23655, elementOrHash.elementID: 4356974320.4
+2026-01-10 18:43:02.140554+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:43:02.147301+0100 TravelCompanion[23655:69309214] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 874;
+        Width = 402;
+        X = 0;
+        Y = 0;
+    };
+    "XC_kAXXCAttributeWindowContextId" = 3700766751;
+    "XC_kAXXCAttributeWindowDisplayId" = 1;
+}
+2026-01-10 18:43:02.561824+0100 TravelCompanion[23655:69310370] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:43:02.561919+0100 TravelCompanion[23655:69310370] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:43:02.562134+0100 TravelCompanion[23655:69310370] [Default] Received request to notify when animations are idle
+2026-01-10 18:43:02.562176+0100 TravelCompanion[23655:69310370] [Default] Sending animations idle reply with error: (null)
+2026-01-10 18:43:02.794013+0100 TravelCompanion[23655:69309081] [Default] Idle notifier run loop observer fired
+2026-01-10 18:43:02.794091+0100 TravelCompanion[23655:69309081] [Default] Sending main run loop idle reply
+2026-01-10 18:43:04.887400+0100 TravelCompanion[23655:69309222] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type TextField
+    ↪︎ Elements matching predicate '"newTrip_textField_destination" IN identifiers'
+2026-01-10 18:43:04.888621+0100 TravelCompanion[23655:69309215] [Default] Evaluating query:
+ ↪︎ Descendants matching type TextField
+    ↪︎ Elements matching predicate '"newTrip_textField_destination" IN identifiers'
+2026-01-10 18:43:04.888846+0100 TravelCompanion[23655:69309215] [Default] Getting root element snapshot
+2026-01-10 18:43:04.888994+0100 TravelCompanion[23655:69309215] [Default] Getting snapshot for App element pid: 23655 for query ↪︎ Descendants matching type TextField
+    ↪︎ Elements matching predicate '"newTrip_textField_destination" IN identifiers'
+2026-01-10 18:43:04.889374+0100 TravelCompanion[23655:69309215] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:43:04.889671+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:04.889879+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:04.889883+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:04.891148+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:04.891153+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:04.892900+0100 TravelCompanion[23655:69309081] [Default] Got main window <AXUIElementRef 0x600000d17690> {pid=23655} {uid=[ID:4 hash:0x103b226f0]}
+2026-01-10 18:43:04.893238+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:43:04.893597+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:43:04.893755+0100 TravelCompanion[23655:69309081] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:43:04.934277+0100 TravelCompanion[23655:69309081] [Default] Got snapshot for <AXUIElementRef 0x600000c57ed0> {pid=23655} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:43:04.934498+0100 TravelCompanion[23655:69309081] [Default] Got app orientation 0
+2026-01-10 18:43:04.934570+0100 TravelCompanion[23655:69309081] [Default] Captured accessibility snapshot data in 0.04s
+2026-01-10 18:43:04.934684+0100 TravelCompanion[23655:69309215] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:04.934863+0100 TravelCompanion[23655:69309215] [Default] Found main window: Window
+2026-01-10 18:43:04.934995+0100 TravelCompanion[23655:69309215] [Default] Checking 'Annulla' for privileged AX value slot attributes
+2026-01-10 18:43:04.935047+0100 TravelCompanion[23655:69309215] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:04.935123+0100 TravelCompanion[23655:69309215] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:43:04.935216+0100 TravelCompanion[23655:69309215] [Default] Checking 'Destinazione' for privileged AX value slot attributes
+2026-01-10 18:43:04.935387+0100 TravelCompanion[23655:69309215] [Default] Checking 'Es. Roma, Parigi, Tokyo' for privileged AX value slot attributes
+2026-01-10 18:43:04.935570+0100 TravelCompanion[23655:69309215] [Default] Checking 'Es. Roma, Parigi, Tokyo' for privileged AX value slot attributes
+2026-01-10 18:43:04.935687+0100 TravelCompanion[23655:69309215] [Default] Checking 'Data Inizio' for privileged AX value slot attributes
+2026-01-10 18:43:04.936008+0100 TravelCompanion[23655:69309215] [Default] Preferring automation type 38 instead of legacy element type OTHER derived from class/trait: _UIDatePickerView:_UIDatePickerView 8589934592
+2026-01-10 18:43:04.936060+0100 TravelCompanion[23655:69309215] [Default] Checking '10' for privileged AX value slot attributes
+2026-01-10 18:43:04.936220+0100 TravelCompanion[23655:69309215] [Default] Checking 'Gennaio' for privileged AX value slot attributes
+2026-01-10 18:43:04.936357+0100 TravelCompanion[23655:69309215] [Default] Checking '2026' for privileged AX value slot attributes
+2026-01-10 18:43:04.936536+0100 TravelCompanion[23655:69309215] [Default] Checking 'Data Fine' for privileged AX value slot attributes
+2026-01-10 18:43:04.936610+0100 TravelCompanion[23655:69309215] [Default] Preferring automation type 38 instead of legacy element type OTHER derived from class/trait: _UIDatePickerView:_UIDatePickerView 8589934592
+2026-01-10 18:43:04.936672+0100 TravelCompanion[23655:69309215] [Default] Checking '17' for privileged AX value slot attributes
+2026-01-10 18:43:04.936750+0100 TravelCompanion[23655:69309215] [Default] Checking 'Gennaio' for privileged AX value slot attributes
+2026-01-10 18:43:04.936795+0100 TravelCompanion[23655:69309215] [Default] Checking '2026' for privileged AX value slot attributes
+2026-01-10 18:43:04.936837+0100 TravelCompanion[23655:69309215] [Default] Checking 'Tipo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:04.936918+0100 TravelCompanion[23655:69309215] [Default] Checking 'Inizia tracking automaticamente' for privileged AX value slot attributes
+2026-01-10 18:43:04.936968+0100 TravelCompanion[23655:69309215] [Default] Checking 'Crea Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:04.937111+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:04.937153+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:04.937149+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:04.937252+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:04.937316+0100 TravelCompanion[23655:69309081] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x6000026282a0>
+2026-01-10 18:43:04.937352+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:04.937458+0100 TravelCompanion[23655:69309215] [Default] Finding all matches with input Application, pid: 23655, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type TextField
+    ↪︎ Elements matching predicate '"newTrip_textField_destination" IN identifiers'
+2026-01-10 18:43:04.937833+0100 TravelCompanion[23655:69309215] [Default] [Match All] applied transformer `Descendants matching type TextField` to input {(
+    Application, pid: 23655, label: 'Travel Companion'
+)}, found {(
+    TextField, identifier: 'newTrip_textField_destination', placeholderValue: 'Es. Roma, Parigi, Tokyo'
+)}
+2026-01-10 18:43:04.937911+0100 TravelCompanion[23655:69309215] [Default] [Match All] applied transformer `Elements matching predicate '"newTrip_textField_destination" IN identifiers'` to input {(
+    TextField, identifier: 'newTrip_textField_destination', placeholderValue: 'Es. Roma, Parigi, Tokyo'
+)}, found {(
+    TextField, identifier: 'newTrip_textField_destination', placeholderValue: 'Es. Roma, Parigi, Tokyo'
+)}
+2026-01-10 18:43:04.937952+0100 TravelCompanion[23655:69309215] [Default] [Match All] setting out related elements {(
+)}
+2026-01-10 18:43:04.938606+0100 TravelCompanion[23655:69309215] [Default] Current tree:
+Application, 0x103b94700, pid: 23655, label: 'Travel Companion' <App element pid: 23655>
+  Window (Main), 0x10450db10 <AX element pid: 23655, elementOrHash.elementID: 4356974320.4>
+    Other, 0x103c36120 <AX element pid: 23655, elementOrHash.elementID: 4357035024.5>
+      Other, 0x103c2c080 <AX element pid: 23655, elementOrHash.elementID: 4357037296.6>
+    Other, 0x103c460c0 <AX element pid: 23655, elementOrHash.elementID: 4367364672.40>
+      Other, 0x103c469d0 <AX element pid: 23655, elementOrHash.elementID: 4358173040.41>
+        NavigationBar, 0x103c47040, identifier: 'Nuovo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4358174000.42>
+          Button, 0x103c49600, label: 'Annulla' <AX element pid: 23655, elementOrHash.elementID: 4364497392.44>
+          StaticText, 0x103c49a80, label: 'Nuovo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4364386416.45>
+        Other, 0x10432d200 <AX element pid: 23655, elementOrHash.elementID: 4358183136.43>
+          Other, 0x104350580 <AX element pid: 23655, elementOrHash.elementID: 4358084368.46>
+            Other, 0x104353240 <AX element pid: 23655, elementOrHash.elementID: 4364340720.47>
+              ScrollView, 0x104353fd0, identifier: 'newTrip_scrollView' <AX element pid: 23655, elementOrHash.elementID: 4395703808.48>
+                Other, 0x104355ab0 <AX element pid: 23655, elementOrHash.elementID: 4364298656.49>
+                  StaticText, 0x10434f7e0, label: 'Destinazione' <AX element pid: 23655, elementOrHash.elementID: 4358060896.52>
+                  TextField, 0x10310bfb0, identifier: 'newTrip_textField_destination', placeholderValue: 'Es. Roma, Parigi, Tokyo' <AX element pid: 23655, elementOrHash.elementID: 4395706368.53>
+                  StaticText, 0x1044183c0, label: 'Data Inizio' <AX element pid: 23655, elementOrHash.elementID: 4364351568.54>
+                  DatePicker, 0x103b92320, identifier: 'newTrip_datePicker_startDate' <AX element pid: 23655, elementOrHash.elementID: 4358062512.55>
+                    Picker, 0x103b916a0 <AX element pid: 23655, elementOrHash.elementID: 4357261472.64>
+                      PickerWheel, 0x103c2c6e0, value: 10, Selected <AX element pid: 23655, elementOrHash.elementID: 105553151551408.72>
+                      PickerWheel, 0x104351700, value: Gennaio, Selected <AX element pid: 23655, elementOrHash.elementID: 105553151551488.73>
+                      PickerWheel, 0x10441b040, value: 2026, Selected <AX element pid: 23655, elementOrHash.elementID: 105553151551568.74>
+                  StaticText, 0x1047159f0, label: 'Data Fine' <AX element pid: 23655, elementOrHash.elementID: 4364569680.56>
+                  DatePicker, 0x1043535c0, identifier: 'newTrip_datePicker_endDate' <AX element pid: 23655, elementOrHash.elementID: 4364349584.57>
+                    Picker, 0x104355760 <AX element pid: 23655, elementOrHash.elementID: 4346395952.65>
+                      PickerWheel, 0x103b90a20, value: 17, Selected <AX element pid: 23655, elementOrHash.elementID: 105553151551648.75>
+                      PickerWheel, 0x104173a70, value: Gennaio, Selected <AX element pid: 23655, elementOrHash.elementID: 105553151551728.76>
+                      PickerWheel, 0x103b8fda0, value: 2026, Selected <AX element pid: 23655, elementOrHash.elementID: 105553151551808.77>
+                  StaticText, 0x103b8f120, label: 'Tipo Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4363357136.58>
+                  SegmentedControl, 0x104356510, identifier: 'newTrip_segment_tripType' <AX element pid: 23655, elementOrHash.elementID: 4364570480.59>
+                    Button, 0x10435e0e0, label: 'Locale', Selected <AX element pid: 23655, elementOrHash.elementID: 4364571120.66>
+                    Button, 0x10435fc10, label: 'Giornaliero' <AX element pid: 23655, elementOrHash.elementID: 4365932448.67>
+                    Button, 0x10435ff80, label: 'Multi-giorno' <AX element pid: 23655, elementOrHash.elementID: 4366057712.68>
+                  Other, 0x104360970 <AX element pid: 23655, elementOrHash.elementID: 4358169072.60>
+                    StaticText, 0x10434e690, label: 'Inizia tracking automaticamente' <AX element pid: 23655, elementOrHash.elementID: 4358167968.69>
+                    Switch, 0x10433cf30, identifier: 'newTrip_switch_startTracking', value: 1 <AX element pid: 23655, elementOrHash.elementID: 4363641888.70>
+                  Button, 0x104352ee0, identifier: 'newTrip_button_create', label: 'Crea Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4358170032.61>
+                    StaticText, 0x104357d30, label: 'Crea Viaggio' <AX element pid: 23655, elementOrHash.elementID: 4358171392.71>
+                Other, 0x104355400, label: 'Barra di scorrimento verticale, 2 pagine', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364671360.50>
+                  Other, 0x10435a690 <AX element pid: 23655, elementOrHash.elementID: 4364671824.62>
+                Other, 0x10435f8c0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364669952.51>
+                  Other, 0x10435cfb0 <AX element pid: 23655, elementOrHash.elementID: 4364670416.63>
+                Other, 0x1043613f0, label: 'Barra di scorrimento verticale, 2 pagine', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364671360.50>
+                  Other, 0x104346d60 <AX element pid: 23655, elementOrHash.elementID: 4364671824.62>
+                Other, 0x10434ce30, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23655, elementOrHash.elementID: 4364669952.51>
+                  Other, 0x104332900 <AX element pid: 23655, elementOrHash.elementID: 4364670416.63>
+2026-01-10 18:43:04.940054+0100 TravelCompanion[23655:69309215] [Default] Query ↪︎ Descendants matching type TextField
+    ↪︎ Elements matching predicate '"newTrip_textField_destination" IN identifiers' found matching snapshots: {(
+    TextField, identifier: 'newTrip_textField_destination', placeholderValue: 'Es. Roma, Parigi, Tokyo'
+)} (error: (null))
+2026-01-10 18:43:04.941153+0100 TravelCompanion[23655:69309215] [Default] Replying to query ↪︎ Descendants matching type TextField
+    ↪︎ Elements matching predicate '"newTrip_textField_destination" IN identifiers' with results: <XCTElementQueryResults: 0x600000d27ed0> (error: (null))
+2026-01-10 18:43:05.155781+0100 TravelCompanion[23655:69309215] [Default] Received request to fetch matches for query:
+2026-01-10 18:43:05.155957+0100 TravelCompanion[23655:69309222] [Default] Evaluating query:
+2026-01-10 18:43:05.156037+0100 TravelCompanion[23655:69309222] [Default] Getting root element snapshot
+2026-01-10 18:43:05.156115+0100 TravelCompanion[23655:69309222] [Default] Getting snapshot for App element pid: 23655 for query
+2026-01-10 18:43:05.156213+0100 TravelCompanion[23655:69309222] [Default] Query requires iOS snapshot attributes .
+2026-01-10 18:43:05.156340+0100 TravelCompanion[23655:69309222] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:05.156447+0100 TravelCompanion[23655:69309222] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:05.156456+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:05.156549+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:05.156558+0100 TravelCompanion[23655:69309222] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:05.158166+0100 TravelCompanion[23655:69309081] [Default] Got main window <AXUIElementRef 0x600000d00060> {pid=23655} {uid=[ID:4 hash:0x103b226f0]}
+2026-01-10 18:43:05.158451+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementType, XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeParent, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeTraits
+2026-01-10 18:43:05.158687+0100 TravelCompanion[23655:69309081] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5003,
+        5004,
+        5002,
+        5019,
+        5058,
+        2004
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:43:05.158972+0100 TravelCompanion[23655:69309081] [Default] Snapshot attributes 5003, 5004, 5002, 5019, 5058, 2004
+2026-01-10 18:43:05.174187+0100 TravelCompanion[23655:69309081] [Default] Got snapshot for <AXUIElementRef 0x600000d00390> {pid=23655} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:43:05.174354+0100 TravelCompanion[23655:69309081] [Default] Got app orientation 0
+2026-01-10 18:43:05.174447+0100 TravelCompanion[23655:69309081] [Default] Captured accessibility snapshot data in 0.02s
+2026-01-10 18:43:05.174686+0100 TravelCompanion[23655:69309222] [Default] Found main window: Window
+2026-01-10 18:43:05.174836+0100 TravelCompanion[23655:69309222] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:43:05.175245+0100 TravelCompanion[23655:69309222] [Default] Preferring automation type 38 instead of legacy element type OTHER derived from class/trait: _UIDatePickerView:_UIDatePickerView 8589934592
+2026-01-10 18:43:05.175584+0100 TravelCompanion[23655:69309222] [Default] Preferring automation type 38 instead of legacy element type OTHER derived from class/trait: _UIDatePickerView:_UIDatePickerView 8589934592
+2026-01-10 18:43:05.179061+0100 TravelCompanion[23655:69309222] [Default] Query  found matching snapshots: {(
+    Application, pid: 23655
+)} (error: (null))
+2026-01-10 18:43:05.179202+0100 TravelCompanion[23655:69309222] [Default] Replying to query  with results: <XCTElementQueryResults: 0x600000c914d0> (error: (null))
+2026-01-10 18:43:05.191505+0100 TravelCompanion[23655:69309222] [Default] Received attributes request for element: App element pid: 23655. Attributes: (
+    "XC_kAXXCAttributeFrame",
+    "XC_kAXXCAttributeWindowDisplayId",
+    "XC_kAXXCAttributeWindowContextId"
+)
+2026-01-10 18:43:05.191589+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:05.191698+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:05.191761+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:05.191711+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:05.191832+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeFrame, XC_kAXXCAttributeWindowDisplayId, XC_kAXXCAttributeWindowContextId for App element pid: 23655
+2026-01-10 18:43:05.191865+0100 TravelCompanion[23655:69309215] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:05.192855+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:43:05.192955+0100 TravelCompanion[23655:69309215] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeFrame" =     {
+        Height = 874;
+        Width = 402;
+        X = 0;
+        Y = 0;
+    };
+    "XC_kAXXCAttributeWindowContextId" = 3700766751;
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+2026-01-10 18:43:05.196671+0100 TravelCompanion[23655:69309215] [Default] Received attributes request for element: App element pid: 23655. Attributes: (
+    "XC_kAXXCAttributeWindowDisplayId"
+)
+2026-01-10 18:43:05.196831+0100 TravelCompanion[23655:69309222] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:05.197148+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:05.197166+0100 TravelCompanion[23655:69309222] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:05.197212+0100 TravelCompanion[23655:69309081] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:05.197285+0100 TravelCompanion[23655:69309222] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:05.197301+0100 TravelCompanion[23655:69309081] [Default] Fetching AX attributes XC_kAXXCAttributeWindowDisplayId for App element pid: 23655
+2026-01-10 18:43:05.199164+0100 TravelCompanion[23655:69309081] [Default] Got attributes, transferring to dictionary for return.
+2026-01-10 18:43:05.199400+0100 TravelCompanion[23655:69309222] [Default] Replying with attribute values: {
+    "XC_kAXXCAttributeWindowDisplayId" = 0;
+}
+Standard output and standard error from com.unibo.lam.TravelCompanion with process ID 23849 beginning at 2026-01-10 17:43:07 +0000
+
+2026-01-10 18:43:08.154764+0100 TravelCompanion[23849:69311113] You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+AppDelegate: Application did finish launching
+2026-01-10 18:43:08.929578+0100 TravelCompanion[23849:69311164] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x6000000141d0>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-01-10 18:43:08.933933+0100 TravelCompanion[23849:69311159] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:43:08.934195+0100 TravelCompanion[23849:69311159] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:43:08.938624+0100 TravelCompanion[23849:69311159] [Default] Received request to notify when animations are idle
+2026-01-10 18:43:08.939020+0100 TravelCompanion[23849:69311159] [Default] Sending animations idle reply with error: (null)
+SceneDelegate: Scene connected
+SceneDelegate: Scene will enter foreground
+AppDelegate: Notification authorization status: 0
+SceneDelegate: Scene became active
+AppDelegate: Geofencing synced. Monitoring 0 regions
+2026-01-10 18:43:09.179064+0100 TravelCompanion[23849:69311113] [Default] Idle notifier run loop observer fired
+2026-01-10 18:43:09.179132+0100 TravelCompanion[23849:69311113] [Default] Sending main run loop idle reply
+GeofenceManager: Authorization changed to 0
+2026-01-10 18:43:11.307017+0100 TravelCompanion[23849:69311161] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:11.307261+0100 TravelCompanion[23849:69311160] [Default] Evaluating query:
+ ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:11.307322+0100 TravelCompanion[23849:69311160] [Default] Getting root element snapshot
+2026-01-10 18:43:11.307435+0100 TravelCompanion[23849:69311160] [Default] Getting snapshot for App element pid: 23849 for query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:11.307576+0100 TravelCompanion[23849:69311160] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:43:11.310259+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:11.310325+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:11.799592+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:11.799696+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:11.799705+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:11.839479+0100 TravelCompanion[23849:69311113] [Default] Got main window <AXUIElementRef 0x600000cb4f30> {pid=23849} {uid=[ID:4 hash:0x103e2aa50]}
+2026-01-10 18:43:11.868587+0100 TravelCompanion[23849:69311113] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:43:11.868815+0100 TravelCompanion[23849:69311113] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:43:11.868872+0100 TravelCompanion[23849:69311113] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:43:11.959747+0100 TravelCompanion[23849:69311113] [Default] Got snapshot for <AXUIElementRef 0x600000c60c60> {pid=23849} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:43:11.959872+0100 TravelCompanion[23849:69311113] [Default] Got app orientation 0
+2026-01-10 18:43:11.959926+0100 TravelCompanion[23849:69311113] [Default] Captured accessibility snapshot data in 0.16s
+2026-01-10 18:43:11.960196+0100 TravelCompanion[23849:69311160] [Default] Found main window: Window
+2026-01-10 18:43:11.960334+0100 TravelCompanion[23849:69311160] [Default] Checking 'gearshape' for privileged AX value slot attributes
+2026-01-10 18:43:11.960969+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:11.961066+0100 TravelCompanion[23849:69311160] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:43:11.961178+0100 TravelCompanion[23849:69311160] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:11.962768+0100 TravelCompanion[23849:69311160] [Default] Checking 'uso in aereo' for privileged AX value slot attributes
+2026-01-10 18:43:11.962825+0100 TravelCompanion[23849:69311160] [Default] Checking 'Nessun Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:11.962898+0100 TravelCompanion[23849:69311160] [Default] Checking 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' for privileged AX value slot attributes
+2026-01-10 18:43:11.963005+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:11.963086+0100 TravelCompanion[23849:69311160] [Default] Checking 'casa' for privileged AX value slot attributes
+2026-01-10 18:43:11.963161+0100 TravelCompanion[23849:69311160] [Default] Checking 'Viaggi' for privileged AX value slot attributes
+2026-01-10 18:43:11.963204+0100 TravelCompanion[23849:69311160] [Default] Checking 'suitcase' for privileged AX value slot attributes
+2026-01-10 18:43:11.969898+0100 TravelCompanion[23849:69311160] [Default] Checking 'Mappa' for privileged AX value slot attributes
+2026-01-10 18:43:11.970013+0100 TravelCompanion[23849:69311160] [Default] Checking 'mostra mappa' for privileged AX value slot attributes
+2026-01-10 18:43:11.970078+0100 TravelCompanion[23849:69311160] [Default] Checking 'Statistiche' for privileged AX value slot attributes
+2026-01-10 18:43:11.970120+0100 TravelCompanion[23849:69311160] [Default] Checking 'colonna grafico' for privileged AX value slot attributes
+2026-01-10 18:43:11.970158+0100 TravelCompanion[23849:69311160] [Default] Checking 'AI Assistente' for privileged AX value slot attributes
+2026-01-10 18:43:11.970191+0100 TravelCompanion[23849:69311160] [Default] Checking 'scintilla' for privileged AX value slot attributes
+2026-01-10 18:43:11.970292+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:11.970331+0100 Tra2026-01-10 18:43:11.975622+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+velCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:11.977105+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:11.977219+0100 TravelCompanion[23849:69311113] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002628600>
+2026-01-10 18:43:11.977222+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:11.977498+0100 TravelCompanion[23849:69311160] [Default] Finding all matches with input Application, pid: 23849, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:11.978714+0100 TravelCompanion[23849:69311160] [Default] [Match All] applied transformer `Descendants matching type Other` to input {(
+    Application, pid: 23849, label: 'Travel Companion'
+)}, found {(
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other, label: 'Barra di scorrimento verticale, 1 pagina', value: 0%,
+    Other, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0%,
+    Other, identifier: 'home_view_emptyState',
+    Other,
+    Other
+)}
+2026-01-10 18:43:11.986620+0100 TravelCompanion[23849:69311160] [Default] [Match All] applied transformer `Elements matching predicate '"home_card_stats" IN identifiers'` to input {(
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other, label: 'Barra di scorrimento verticale, 1 pagina', value: 0%,
+    Other, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0%,
+    Other, identifier: 'home_view_emptyState',
+    Other,
+    Other
+)}, found {(
+)}
+2026-01-10 18:43:11.991390+0100 TravelCompanion[23849:69311160] [Default] [Match All] setting out related elements in early return {(
+)}
+2026-01-10 18:43:11.991993+0100 TravelCompanion[23849:69311160] [Default] Current tree:
+Application, 0x103a18de0, pid: 23849, label: 'Travel Companion' <App element pid: 23849>
+  Window (Main), 0x102f0a870 <AX element pid: 23849, elementOrHash.elementID: 4360153680.4>
+    Other, 0x103a1f990 <AX element pid: 23849, elementOrHash.elementID: 4360118560.5>
+      Other, 0x103a28090 <AX element pid: 23849, elementOrHash.elementID: 4349616736.6>
+        Other, 0x103a281b0 <AX element pid: 23849, elementOrHash.elementID: 4355808592.7>
+          Other, 0x103a282d0 <AX element pid: 23849, elementOrHash.elementID: 4357277472.8>
+            Other, 0x103a283f0 <AX element pid: 23849, elementOrHash.elementID: 4355974448.10>
+              Other, 0x103a28510 <AX element pid: 23849, elementOrHash.elementID: 4349574288.16>
+                NavigationBar, 0x103a28630, identifier: 'Travel Companion' <AX element pid: 23849, elementOrHash.elementID: 4349578032.22>
+                  Button, 0x103a28750, label: 'gearshape' <AX element pid: 23849, elementOrHash.elementID: 4349764176.24>
+                  StaticText, 0x103e2c8a0, label: 'Travel Companion' <AX element pid: 23849, elementOrHash.elementID: 4360196528.25>
+                Other, 0x103e2c570 <AX element pid: 23849, elementOrHash.elementID: 4355807232.23>
+                  Other, 0x103e2cbd0 <AX element pid: 23849, elementOrHash.elementID: 4360104048.26>
+                    Other, 0x103e28dd0 <AX element pid: 23849, elementOrHash.elementID: 4358002384.27>
+                      ScrollView, 0x103e28ef0 <AX element pid: 23849, elementOrHash.elementID: 4370531328.28>
+                        Other, 0x103e29010 <AX element pid: 23849, elementOrHash.elementID: 4355824512.29>
+                          Button, 0x103e29130, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4360209168.32>
+                            StaticText, 0x103e29250, label: 'Nuovo Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4349608864.36>
+                          Other, 0x103e29370, identifier: 'home_view_emptyState' <AX element pid: 23849, elementOrHash.elementID: 4360109200.33>
+                            Image, 0x103e29490, identifier: 'airplane.circle', label: 'uso in aereo' <AX element pid: 23849, elementOrHash.elementID: 4360199728.37>
+                            StaticText, 0x103e295b0, label: 'Nessun Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4349572176.38>
+                            StaticText, 0x103c1ac10, label: 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' <AX element pid: 23849, elementOrHash.elementID: 4349575088.39>
+                        Other, 0x103c39140, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349759888.30>
+                          Other, 0x103c2b410 <AX element pid: 23849, elementOrHash.elementID: 4349760352.34>
+                        Other, 0x103c1b090, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349716960.31>
+                          Other, 0x103c1b850 <AX element pid: 23849, elementOrHash.elementID: 4349759472.35>
+                        Other, 0x103c08800, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349759888.30>
+                          Other, 0x103c22af0 <AX element pid: 23849, elementOrHash.elementID: 4349760352.34>
+                        Other, 0x103c233c0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349716960.31>
+                          Other, 0x103c29930 <AX element pid: 23849, elementOrHash.elementID: 4349759472.35>
+          TabBar, 0x103c24cc0, label: 'Barra pannelli' <AX element pid: 23849, elementOrHash.elementID: 4356853664.9>
+            Button, 0x103c2c070, label: 'Travel Companion', Selected <AX element pid: 23849, elementOrHash.elementID: 4349698448.11>
+              Image, 0x103b1bb40, identifier: 'house', label: 'casa' <AX element pid: 23849, elementOrHash.elementID: 4349598848.17>
+            Button, 0x103b1bec0, label: 'Viaggi' <AX element pid: 23849, elementOrHash.elementID: 4358064112.12>
+              Image, 0x103b1c9e0, identifier: 'suitcase', label: 'suitcase' <AX element pid: 23849, elementOrHash.elementID: 4358050896.18>
+            Button, 0x103b0f260, label: 'Mappa' <AX element pid: 23849, elementOrHash.elementID: 4355837776.13>
+              Image, 0x103b1d7c0, identifier: 'map', label: 'mostra mappa' <AX element pid: 23849, elementOrHash.elementID: 4355840304.19>
+            Button, 0x103c39650, label: 'Statistiche' <AX element pid: 23849, elementOrHash.elementID: 4355850048.14>
+              Image, 0x103b1db10, identifier: 'chart.bar', label: 'colonna grafico' <AX element pid: 23849, elementOrHash.elementID: 4355853744.20>
+            Button, 0x103b1de80, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente' <AX element pid: 23849, elementOrHash.elementID: 4355914688.15>
+              Image, 0x103b1e1e0, identifier: 'sparkles', label: 'scintilla' <AX element pid: 23849, elementOrHash.elementID: 4355917296.21>
+2026-01-10 18:43:11.995645+0100 TravelCompanion[23849:69311160] [Default] Query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers' found matching snapshots: {(
+)} (error: (null))
+2026-01-10 18:43:11.995815+0100 TravelCompanion[23849:69311160] [Default] Replying to query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers' with results: <XCTElementQueryResults: 0x600000c7afd0> (error: (null))
+2026-01-10 18:43:12.326041+0100 TravelCompanion[23849:69311163] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:12.326565+0100 TravelCompanion[23849:69311160] [Default] Evaluating query:
+ ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:12.326736+0100 TravelCompanion[23849:69311160] [Default] Getting root element snapshot
+2026-01-10 18:43:12.326951+0100 TravelCompanion[23849:69311160] [Default] Getting snapshot for App element pid: 23849 for query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:12.327243+0100 TravelCompanion[23849:69311160] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:43:12.341075+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:12.341227+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:12.341239+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:12.341304+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:12.341351+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:12.342697+0100 TravelCompanion[23849:69311113] [Default] Got main window <AXUIElementRef 0x600000c60b70> {pid=23849} {uid=[ID:4 hash:0x103e2aa50]}
+2026-01-10 18:43:12.343122+0100 TravelCompanion[23849:69311113] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:43:12.352095+0100 TravelCompanion[23849:69311113] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:43:12.352233+0100 TravelCompanion[23849:69311113] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:43:12.387143+0100 TravelCompanion[23849:69311113] [Default] Got snapshot for <AXUIElementRef 0x600000c60c60> {pid=23849} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:43:12.387317+0100 TravelCompanion[23849:69311113] [Default] Got app orientation 0
+2026-01-10 18:43:12.387409+0100 TravelCompanion[23849:69311113] [Default] Captured accessibility snapshot data in 0.05s
+2026-01-10 18:43:12.387507+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:12.387636+0100 TravelCompanion[23849:69311160] [Default] Found main window: Window
+2026-01-10 18:43:12.387771+0100 TravelCompanion[23849:69311160] [Default] Checking 'gearshape' for privileged AX value slot attributes
+2026-01-10 18:43:12.387930+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:12.387999+0100 TravelCompanion[23849:69311160] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:43:12.388783+0100 TravelCompanion[23849:69311160] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:12.388844+0100 TravelCompanion[23849:69311160] [Default] Checking 'uso in aereo' for privileged AX value slot attributes
+2026-01-10 18:43:12.388893+0100 TravelCompanion[23849:69311160] [Default] Checking 'Nessun Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:12.388949+0100 TravelCompanion[23849:69311160] [Default] Checking 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' for privileged AX value slot attributes
+2026-01-10 18:43:12.389055+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:12.389104+0100 TravelCompanion[23849:69311160] [Default] Checking 'casa' for privileged AX value slot attributes
+2026-01-10 18:43:12.389146+0100 TravelCompanion[23849:69311160] [Default] Checking 'Viaggi' for privileged AX value slot attributes
+2026-01-10 18:43:12.389189+0100 TravelCompanion[23849:69311160] [Default] Checking 'suitcase' for privileged AX value slot attributes
+2026-01-10 18:43:12.390143+0100 TravelCompanion[23849:69311160] [Default] Checking 'Mappa' for privileged AX value slot attributes
+2026-01-10 18:43:12.390219+0100 TravelCompanion[23849:69311160] [Default] Checking 'mostra mappa' for privileged AX value slot attributes
+2026-01-10 18:43:12.390268+0100 TravelCompanion[23849:69311160] [Default] Checking 'Statistiche' for privileged AX value slot attributes
+2026-01-10 18:43:12.390322+0100 TravelCompanion[23849:69311160] [Default] Checking 'colonna grafico' for privileged AX value slot attributes
+2026-01-10 18:43:12.390364+0100 TravelCompanion[23849:69311160] [Default] Checking 'AI Assistente' for privileged AX value slot attributes
+2026-01-10 18:43:12.390404+0100 TravelCompanion[23849:69311160] [Default] Checking 'scintilla' for privileged AX value slot attributes
+2026-01-10 18:43:12.390481+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:13.578415+0100 TravelCompanion[23849:69311166] [Default] Received request to fetch matches for query: ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:14.776805+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:14.777051+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:14.777329+0100 TravelCompanion[23849:69311113] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002628600>
+2026-01-10 18:43:14.779851+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:14.782144+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:14.782303+0100 TravelCompanion[23849:69311160] [Default] Finding all matches with input Application, pid: 23849, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:14.785041+0100 TravelCompanion[23849:69311160] [Default] [Match All] applied transformer `Descendants matching type Other` to input {(
+    Application, pid: 23849, label: 'Travel Companion'
+)}, found {(
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other, label: 'Barra di scorrimento verticale, 1 pagina', value: 0%,
+    Other, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0%,
+    Other, identifier: 'home_view_emptyState',
+    Other,
+    Other
+)}
+2026-01-10 18:43:14.785444+0100 TravelCompanion[23849:69311160] [Default] [Match All] applied transformer `Elements matching predicate '"home_card_stats" IN identifiers'` to input {(
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other, label: 'Barra di scorrimento verticale, 1 pagina', value: 0%,
+    Other, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0%,
+    Other, identifier: 'home_view_emptyState',
+    Other,
+    Other
+)}, found {(
+)}
+2026-01-10 18:43:14.785566+0100 TravelCompanion[23849:69311160] [Default] [Match All] setting out related elements in early return {(
+)}
+2026-01-10 18:43:14.786114+0100 TravelCompanion[23849:69311160] [Default] Current tree:
+Application, 0x103b0f260, pid: 23849, label: 'Travel Companion' <App element pid: 23849>
+  Window (Main), 0x103c39650 <AX element pid: 23849, elementOrHash.elementID: 4360153680.4>
+    Other, 0x103c1ac10 <AX element pid: 23849, elementOrHash.elementID: 4360118560.5>
+      Other, 0x103b6c370 <AX element pid: 23849, elementOrHash.elementID: 4349616736.6>
+        Other, 0x103b11900 <AX element pid: 23849, elementOrHash.elementID: 4355808592.7>
+          Other, 0x103b3bc50 <AX element pid: 23849, elementOrHash.elementID: 4357277472.8>
+            Other, 0x103b7bac0 <AX element pid: 23849, elementOrHash.elementID: 4355974448.10>
+              Other, 0x103b1bb40 <AX element pid: 23849, elementOrHash.elementID: 4349574288.16>
+                NavigationBar, 0x103b1c9e0, identifier: 'Travel Companion' <AX element pid: 23849, elementOrHash.elementID: 4349578032.22>
+                  Button, 0x103b1bec0, label: 'gearshape' <AX element pid: 23849, elementOrHash.elementID: 4349764176.24>
+                  StaticText, 0x1034212b0, label: 'Travel Companion' <AX element pid: 23849, elementOrHash.elementID: 4360196528.25>
+                Other, 0x103b1d7c0 <AX element pid: 23849, elementOrHash.elementID: 4355807232.23>
+                  Other, 0x103b1db10 <AX element pid: 23849, elementOrHash.elementID: 4360104048.26>
+                    Other, 0x103b1e1e0 <AX element pid: 23849, elementOrHash.elementID: 4358002384.27>
+                      ScrollView, 0x103b1de80 <AX element pid: 23849, elementOrHash.elementID: 4370531328.28>
+                        Other, 0x103b0d060 <AX element pid: 23849, elementOrHash.elementID: 4355824512.29>
+                          Button, 0x103b1e540, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4360209168.32>
+                            StaticText, 0x103b1e8b0, label: 'Nuovo Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4349608864.36>
+                          Other, 0x103b1ec10, identifier: 'home_view_emptyState' <AX element pid: 23849, elementOrHash.elementID: 4360109200.33>
+                            Image, 0x103b1ef80, identifier: 'airplane.circle', label: 'uso in aereo' <AX element pid: 23849, elementOrHash.elementID: 4360199728.37>
+                            StaticText, 0x103b1f4d0, label: 'Nessun Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4349572176.38>
+                            StaticText, 0x103e2c8a0, label: 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' <AX element pid: 23849, elementOrHash.elementID: 4349575088.39>
+                        Other, 0x103b1f840, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349759888.30>
+                          Other, 0x103b1fbc0 <AX element pid: 23849, elementOrHash.elementID: 4349760352.34>
+                        Other, 0x103b1ff40, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349716960.31>
+                          Other, 0x103b20290 <AX element pid: 23849, elementOrHash.elementID: 4349759472.35>
+                        Other, 0x103b20610, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349759888.30>
+                          Other, 0x103b20990 <AX element pid: 23849, elementOrHash.elementID: 4349760352.34>
+                        Other, 0x103b20ce0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349716960.31>
+                          Other, 0x103b21070 <AX element pid: 23849, elementOrHash.elementID: 4349759472.35>
+          TabBar, 0x103b213c0, label: 'Barra pannelli' <AX element pid: 23849, elementOrHash.elementID: 4356853664.9>
+            Button, 0x103b21720, label: 'Travel Companion', Selected <AX element pid: 23849, elementOrHash.elementID: 4349698448.11>
+              Image, 0x103c2b410, identifier: 'house', label: 'casa' <AX element pid: 23849, elementOrHash.elementID: 4349598848.17>
+            Button, 0x103c39140, label: 'Viaggi' <AX element pid: 23849, elementOrHash.elementID: 4358064112.12>
+              Image, 0x103e24c50, identifier: 'suitcase', label: 'suitcase' <AX element pid: 23849, elementOrHash.elementID: 4358050896.18>
+            Button, 0x10341c270, label: 'Mappa' <AX element pid: 23849, elementOrHash.elementID: 4355837776.13>
+              Image, 0x103b21aa0, identifier: 'map', label: 'mostra mappa' <AX element pid: 23849, elementOrHash.elementID: 4355840304.19>
+            Button, 0x103a18de0, label: 'Statistiche' <AX element pid: 23849, elementOrHash.elementID: 4355850048.14>
+              Image, 0x103c1b850, identifier: 'chart.bar', label: 'colonna grafico' <AX element pid: 23849, elementOrHash.elementID: 4355853744.20>
+            Button, 0x103c1b090, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente' <AX element pid: 23849, elementOrHash.elementID: 4355914688.15>
+              Image, 0x103a29d90, identifier: 'sparkles', label: 'scintilla' <AX element pid: 23849, elementOrHash.elementID: 4355917296.21>
+2026-01-10 18:43:14.799649+0100 TravelCompanion[23849:69311160] [Default] Query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers' found matching snapshots: {(
+)} (error: (null))
+2026-01-10 18:43:14.799805+0100 TravelCompanion[23849:69311160] [Default] Replying to query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers' with results: <XCTElementQueryResults: 0x600000c73990> (error: (null))
+2026-01-10 18:43:14.800153+0100 TravelCompanion[23849:69311160] [Default] Evaluating query:
+ ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:14.800209+0100 TravelCompanion[23849:69311160] [Default] Getting root element snapshot
+2026-01-10 18:43:14.800254+0100 TravelCompanion[23849:69311160] [Default] Getting snapshot for App element pid: 23849 for query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:14.800326+0100 TravelCompanion[23849:69311160] [Default] Query requires iOS snapshot attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeValue, XC_kAXXCAttributeTraits, XC_kAXXCAttributePlaceholderValue.
+2026-01-10 18:43:14.800379+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:14.800448+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:14.800449+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:14.800490+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:14.800496+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:14.801016+0100 TravelCompanion[23849:69311113] [Default] Got main window <AXUIElementRef 0x600000c87900> {pid=23849} {uid=[ID:4 hash:0x103e2aa50]}
+2026-01-10 18:43:14.801104+0100 TravelCompanion[23849:69311113] [Default] Capturing hierarchy with attributes XC_kAXXCAttributeElementBaseType, XC_kAXXCAttributeIdentifier, XC_kAXXCAttributeElementType, XC_kAXXCAttributeAutomationType, XC_kAXXCAttributeLabel, XC_kAXXCAttributeTraits, XC_kAXXCAttributeTruncatedValue, XC_kAXXCAttributeParent, XC_kAXXCAttributePlaceholderValue
+2026-01-10 18:43:14.801205+0100 TravelCompanion[23849:69311113] [Default] Capturing hierarchy with parameters {
+    attributes =     (
+        5004,
+        5019,
+        5003,
+        5058,
+        2001,
+        2004,
+        2158,
+        5002,
+        5043
+    );
+    maxArrayCount = 2147483647;
+    maxChildren = 2147483647;
+    maxDepth = 2147483647;
+    snapshotKeyHonorModalViews = 0;
+    traverseFromParentsToChildren = 1;
+}
+2026-01-10 18:43:14.801243+0100 TravelCompanion[23849:69311113] [Default] Snapshot attributes 5004, 5019, 5003, 5058, 2001, 2004, 2158, 5002, 5043
+2026-01-10 18:43:16.347280+0100 TravelCompanion[23849:69311113] [Default] Got snapshot for <AXUIElementRef 0x600000c60f30> {pid=23849} {uid=[ID:1 hash:0x0]}
+2026-01-10 18:43:16.347544+0100 TravelCompanion[23849:69311113] [Default] Got app orientation 0
+2026-01-10 18:43:16.347600+0100 TravelCompanion[23849:69311113] [Default] Captured accessibility snapshot data in 1.55s
+2026-01-10 18:43:16.348173+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:16.348427+0100 TravelCompanion[23849:69311160] [Default] Found main window: Window
+2026-01-10 18:43:16.348618+0100 TravelCompanion[23849:69311160] [Default] Checking 'gearshape' for privileged AX value slot attributes
+2026-01-10 18:43:16.348856+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:16.348905+0100 TravelCompanion[23849:69311160] [Default] Preferring automation type 48 instead of legacy element type OTHER derived from class/trait: UILabel:UILabel 8590000128
+2026-01-10 18:43:16.354364+0100 TravelCompanion[23849:69311160] [Default] Checking 'Nuovo Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:16.354619+0100 TravelCompanion[23849:69311160] [Default] Checking 'uso in aereo' for privileged AX value slot attributes
+2026-01-10 18:43:16.354766+0100 TravelCompanion[23849:69311160] [Default] Checking 'Nessun Viaggio' for privileged AX value slot attributes
+2026-01-10 18:43:16.354899+0100 TravelCompanion[23849:69311160] [Default] Checking 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' for privileged AX value slot attributes
+2026-01-10 18:43:16.355742+0100 TravelCompanion[23849:69311160] [Default] Checking 'Travel Companion' for privileged AX value slot attributes
+2026-01-10 18:43:16.355884+0100 TravelCompanion[23849:69311160] [Default] Checking 'casa' for privileged AX value slot attributes
+2026-01-10 18:43:16.355958+0100 TravelCompanion[23849:69311160] [Default] Checking 'Viaggi' for privileged AX value slot attributes
+2026-01-10 18:43:16.370583+0100 TravelCompanion[23849:69311160] [Default] Checking 'suitcase' for privileged AX value slot attributes
+2026-01-10 18:43:16.370679+0100 TravelCompanion[23849:69311160] [Default] Checking 'Mappa' for privileged AX value slot attributes
+2026-01-10 18:43:16.370725+0100 TravelCompanion[23849:69311160] [Default] Checking 'mostra mappa' for privileged AX value slot attributes
+2026-01-10 18:43:16.370767+0100 TravelCompanion[23849:69311160] [Default] Checking 'Statistiche' for privileged AX value slot attributes
+2026-01-10 18:43:16.370806+0100 TravelCompanion[23849:69311160] [Default] Checking 'colonna grafico' for privileged AX value slot attributes
+2026-01-10 18:43:16.370897+0100 TravelCompanion[23849:69311160] [Default] Checking 'AI Assistente' for privileged AX value slot attributes
+2026-01-10 18:43:16.370944+0100 TravelCompanion[23849:69311160] [Default] Checking 'scintilla' for privileged AX value slot attributes
+2026-01-10 18:43:16.371034+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: about to CFRunLoopPerform
+2026-01-10 18:43:16.372031+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: inside CFRunLoopPerform
+2026-01-10 18:43:16.372030+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting with 30.00s responsiveness timeout
+2026-01-10 18:43:16.372072+0100 TravelCompanion[23849:69311113] [Default] XCTPerformOnMainRunLoop[MT]: MT responded in time (won the race to the busy flag)
+2026-01-10 18:43:16.372111+0100 TravelCompanion[23849:69311160] [Default] XCTPerformOnMainRunLoop[not MT]: waiting 60.00s for work to complete
+2026-01-10 18:43:16.372121+0100 TravelCompanion[23849:69311113] [Default] XCTElementQuery: set data source for rootElementSnapshot to <XCTAutomationSession: 0x600002628600>
+2026-01-10 18:43:16.372201+0100 TravelCompanion[23849:69311160] [Default] Finding all matches with input Application, pid: 23849, label: 'Travel Companion' using transformers 
+↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers'
+2026-01-10 18:43:16.372655+0100 TravelCompanion[23849:69311160] [Default] [Match All] applied transformer `Descendants matching type Other` to input {(
+    Application, pid: 23849, label: 'Travel Companion'
+)}, found {(
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other, label: 'Barra di scorrimento verticale, 1 pagina', value: 0%,
+    Other, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0%,
+    Other, identifier: 'home_view_emptyState',
+    Other,
+    Other
+)}
+2026-01-10 18:43:16.372833+0100 TravelCompanion[23849:69311160] [Default] [Match All] applied transformer `Elements matching predicate '"home_card_stats" IN identifiers'` to input {(
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other,
+    Other, label: 'Barra di scorrimento verticale, 1 pagina', value: 0%,
+    Other, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0%,
+    Other, identifier: 'home_view_emptyState',
+    Other,
+    Other
+)}, found {(
+)}
+2026-01-10 18:43:16.372889+0100 TravelCompanion[23849:69311160] [Default] [Match All] setting out related elements in early return {(
+)}
+2026-01-10 18:43:16.374011+0100 TravelCompanion[23849:69311160] [Default] Current tree:
+Application, 0x103e2c8a0, pid: 23849, label: 'Travel Companion' <App element pid: 23849>
+  Window (Main), 0x103d049f0 <AX element pid: 23849, elementOrHash.elementID: 4360153680.4>
+    Other, 0x103c39650 <AX element pid: 23849, elementOrHash.elementID: 4360118560.5>
+      Other, 0x103c2b410 <AX element pid: 23849, elementOrHash.elementID: 4349616736.6>
+        Other, 0x103c39140 <AX element pid: 23849, elementOrHash.elementID: 4355808592.7>
+          Other, 0x103c1b850 <AX element pid: 23849, elementOrHash.elementID: 4357277472.8>
+            Other, 0x103c1b090 <AX element pid: 23849, elementOrHash.elementID: 4355974448.10>
+              Other, 0x103c1ac10 <AX element pid: 23849, elementOrHash.elementID: 4349574288.16>
+                NavigationBar, 0x103c22af0, identifier: 'Travel Companion' <AX element pid: 23849, elementOrHash.elementID: 4349578032.22>
+                  Button, 0x103c08800, label: 'gearshape' <AX element pid: 23849, elementOrHash.elementID: 4349764176.24>
+                  StaticText, 0x103c233c0, label: 'Travel Companion' <AX element pid: 23849, elementOrHash.elementID: 4360196528.25>
+                Other, 0x1031083b0 <AX element pid: 23849, elementOrHash.elementID: 4355807232.23>
+                  Other, 0x103109400 <AX element pid: 23849, elementOrHash.elementID: 4360104048.26>
+                    Other, 0x103109520 <AX element pid: 23849, elementOrHash.elementID: 4358002384.27>
+                      ScrollView, 0x103108b30 <AX element pid: 23849, elementOrHash.elementID: 4370531328.28>
+                        Other, 0x103108c50 <AX element pid: 23849, elementOrHash.elementID: 4355824512.29>
+                          Button, 0x103108d70, identifier: 'home_button_newTrip', label: 'Nuovo Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4360209168.32>
+                            StaticText, 0x103109690, label: 'Nuovo Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4349608864.36>
+                          Other, 0x103519f90, identifier: 'home_view_emptyState' <AX element pid: 23849, elementOrHash.elementID: 4360109200.33>
+                            Image, 0x103519580, identifier: 'airplane.circle', label: 'uso in aereo' <AX element pid: 23849, elementOrHash.elementID: 4360199728.37>
+                            StaticText, 0x103519bf0, label: 'Nessun Viaggio' <AX element pid: 23849, elementOrHash.elementID: 4349572176.38>
+                            StaticText, 0x10351ab70, label: 'Inizia il tuo primo viaggio
+toccando il pulsante qui sopra' <AX element pid: 23849, elementOrHash.elementID: 4349575088.39>
+                        Other, 0x102f0a870, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349759888.30>
+                          Other, 0x102f0a990 <AX element pid: 23849, elementOrHash.elementID: 4349760352.34>
+                        Other, 0x102f0aab0, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349716960.31>
+                          Other, 0x102f0abd0 <AX element pid: 23849, elementOrHash.elementID: 4349759472.35>
+                        Other, 0x1088067a0, label: 'Barra di scorrimento verticale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349759888.30>
+                          Other, 0x103f087e0 <AX element pid: 23849, elementOrHash.elementID: 4349760352.34>
+                        Other, 0x103f08e10, label: 'Barra di scorrimento orizzontale, 1 pagina', value: 0% <AX element pid: 23849, elementOrHash.elementID: 4349716960.31>
+                          Other, 0x103f08f30 <AX element pid: 23849, elementOrHash.elementID: 4349759472.35>
+          TabBar, 0x108819c90, label: 'Barra pannelli' <AX element pid: 23849, elementOrHash.elementID: 4356853664.9>
+            Button, 0x108819db0, label: 'Travel Companion', Selected <AX element pid: 23849, elementOrHash.elementID: 4349698448.11>
+              Image, 0x103a18de0, identifier: 'house', label: 'casa' <AX element pid: 23849, elementOrHash.elementID: 4349598848.17>
+            Button, 0x103e24c50, label: 'Viaggi' <AX element pid: 23849, elementOrHash.elementID: 4358064112.12>
+              Image, 0x103e2c570, identifier: 'suitcase', label: 'suitcase' <AX element pid: 23849, elementOrHash.elementID: 4358050896.18>
+            Button, 0x103e2cbd0, label: 'Mappa' <AX element pid: 23849, elementOrHash.elementID: 4355837776.13>
+              Image, 0x103e37c80, identifier: 'map', label: 'mostra mappa' <AX element pid: 23849, elementOrHash.elementID: 4355840304.19>
+            Button, 0x103e25ff0, label: 'Statistiche' <AX element pid: 23849, elementOrHash.elementID: 4355850048.14>
+              Image, 0x103e24340, identifier: 'chart.bar', label: 'colonna grafico' <AX element pid: 23849, elementOrHash.elementID: 4355853744.20>
+            Button, 0x103435080, identifier: 'tabBar_tab_aiAssistant', label: 'AI Assistente' <AX element pid: 23849, elementOrHash.elementID: 4355914688.15>
+              Image, 0x103434c10, identifier: 'sparkles', label: 'scintilla' <AX element pid: 23849, elementOrHash.elementID: 4355917296.21>
+2026-01-10 18:43:16.383125+0100 TravelCompanion[23849:69311160] [Default] Query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers' found matching snapshots: {(
+)} (error: (null))
+2026-01-10 18:43:16.383269+0100 TravelCompanion[23849:69311160] [Default] Replying to query ↪︎ Descendants matching type Other
+    ↪︎ Elements matching predicate '"home_card_stats" IN identifiers' with results: <XCTElementQueryResults: 0x600000ce92c0> (error: (null))
+Standard output and standard error from com.unibo.lam.TravelCompanion with process ID 24028 beginning at 2026-01-10 17:43:22 +0000
+
+2026-01-10 18:43:23.458157+0100 TravelCompanion[24028:69313413] You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+AppDelegate: Application did finish launching
+2026-01-10 18:43:23.538844+0100 TravelCompanion[24028:69313530] [Default] Received request to exchange capabilities, remote interface capabilities are: <XCTCapabilities: 0x600000014920>: {
+    "query runtime issue reporting" = 1;
+    "query runtime issue reporting/automation type mismatch" = 1;
+}
+2026-01-10 18:43:23.583295+0100 TravelCompanion[24028:69313542] [Default] Received request to notify when the main run loop is idle
+2026-01-10 18:43:23.583378+0100 TravelCompanion[24028:69313542] [Default] Idle notifier finished setting up run loop observer
+2026-01-10 18:43:23.589872+0100 TravelCompanion[24028:69313542] [Default] Received request to notify when animations are idle
+2026-01-10 18:43:23.589958+0100 TravelCompanion[24028:69313542] [Default] Sending animations idle reply with error: (null)
+SceneDelegate: Scene connected
+SceneDelegate: Scene will enter foreground
+AppDelegate: Notification authorization status: 0
+SceneDelegate: Scene became active
+2026-01-10 18:43:24.027648+0100 TravelCompanion[24028:69313413] [Default] Idle notifier run loop observer fired
+2026-01-10 18:43:24.027755+0100 TravelCompanion[24028:69313413] [Default] Sending main run loop idle reply
+AppDelegate: Geofencing synced. Monitoring 0 regions
+GeofenceManager: Authorization changed to 0

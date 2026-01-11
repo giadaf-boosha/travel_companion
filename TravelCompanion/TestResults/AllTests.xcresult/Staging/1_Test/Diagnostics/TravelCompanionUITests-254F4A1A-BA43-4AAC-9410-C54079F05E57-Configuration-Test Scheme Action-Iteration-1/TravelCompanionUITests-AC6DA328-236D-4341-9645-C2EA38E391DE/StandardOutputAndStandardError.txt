@@ -1,0 +1,93 @@
+2026-01-10 18:42:16.866655+0100 TravelCompanionUITests-Runner[23045:69303088] [Default] Running tests...
+2026-01-10 18:42:16.884681+0100 TravelCompanionUITests-Runner[23045:69303220] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-01-10 18:42:20.802572+0100 TravelCompanionUITests-Runner[23045:69303221] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'TravelCompanionUITestsLaunchTests' started at 2026-01-10 18:42:22.617.
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' started.
+    t =     0.00s Setting device orientation to Portrait
+    t =     0.11s     Device orientation changed to Portrait
+    t =     0.23s     Wait for com.apple.springboard to idle
+    t =     0.32s Setting appearance mode to Light
+    t =     0.34s     Wait for com.apple.springboard to idle
+    t =     0.35s Start Test at 2026-01-10 18:42:22.975
+    t =     1.19s Set Up
+    t =     1.20s Open com.unibo.lam.TravelCompanion
+    t =     1.20s     Launch com.unibo.lam.TravelCompanion
+    t =     4.86s         Setting up automation session
+    t =     8.80s         Wait for com.unibo.lam.TravelCompanion to idle
+    t =    11.66s Find the Target Application 'com.unibo.lam.TravelCompanion'
+    t =    21.85s Added attachment named 'Launch Screen'
+    t =    21.85s Tear Down
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' passed (22.256 seconds).
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' started.
+    t =     0.00s Setting device orientation to Landscape Right
+    t =     0.09s     Device orientation changed to Landscape Right
+    t =     0.22s     Interface orientation changed to Landscape Left
+    t =     0.58s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     0.83s Setting appearance mode to Light
+    t =     0.88s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     1.19s Start Test at 2026-01-10 18:42:46.073
+    t =     1.27s Set Up
+    t =     1.28s Open com.unibo.lam.TravelCompanion
+    t =     1.28s     Launch com.unibo.lam.TravelCompanion
+    t =     1.28s         Terminate com.unibo.lam.TravelCompanion:23216
+    t =     4.09s             Interface orientation changed to Portrait
+    t =     4.82s         Interface orientation changed to Landscape Left
+    t =     5.19s         Setting up automation session
+    t =     6.21s         Wait for com.unibo.lam.TravelCompanion to idle
+    t =     7.84s Find the Target Application 'com.unibo.lam.TravelCompanion'
+    t =     8.04s Added attachment named 'Launch Screen'
+    t =     8.04s Tear Down
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' passed (8.364 seconds).
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' started.
+    t =     0.00s Setting device orientation to Portrait
+    t =     0.02s     Device orientation changed to Portrait
+    t =     0.31s     Interface orientation changed to Portrait
+    t =     0.32s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     0.65s Setting appearance mode to Dark
+    t =     2.71s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     2.76s Start Test at 2026-01-10 18:42:55.999
+    t =     2.79s Set Up
+    t =     2.79s Open com.unibo.lam.TravelCompanion
+    t =     2.80s     Launch com.unibo.lam.TravelCompanion
+    t =     2.80s         Terminate com.unibo.lam.TravelCompanion:23568
+    t =     4.51s         Setting up automation session
+    t =     5.43s         Wait for com.unibo.lam.TravelCompanion to idle
+    t =     6.60s Find the Target Application 'com.unibo.lam.TravelCompanion'
+    t =     6.77s Added attachment named 'Launch Screen'
+    t =     6.77s Tear Down
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' passed (7.246 seconds).
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' started.
+    t =     0.00s Setting device orientation to Landscape Right
+    t =     0.02s     Device orientation changed to Landscape Right
+    t =     0.08s     Interface orientation changed to Landscape Left
+    t =     1.66s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     1.80s Setting appearance mode to Dark
+    t =     1.83s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     2.17s Start Test at 2026-01-10 18:43:02.662
+    t =     2.22s Set Up
+    t =     2.22s Open com.unibo.lam.TravelCompanion
+    t =     2.22s     Launch com.unibo.lam.TravelCompanion
+    t =     2.22s         Terminate com.unibo.lam.TravelCompanion:23693
+    t =     2.28s             Interface orientation changed to Portrait
+    t =     4.80s         Interface orientation changed to Landscape Left
+    t =     5.33s         Setting up automation session
+    t =     6.65s         Wait for com.unibo.lam.TravelCompanion to idle
+    t =     8.03s Find the Target Application 'com.unibo.lam.TravelCompanion'
+    t =     8.24s Added attachment named 'Launch Screen'
+    t =     8.24s Tear Down
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunch]' passed (8.509 seconds).
+Test Case '-[TravelCompanionUITests.TravelCompanionUITestsLaunchTests testLaunchPerformance]' started.
+    t =     0.00s Setting device orientation to Portrait
+    t =     0.02s     Device orientation changed to Portrait
+    t =     0.11s     Interface orientation changed to Portrait
+    t =     0.14s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     0.44s Setting appearance mode to Light
+    t =     2.60s     Wait for com.unibo.lam.TravelCompanion to idle
+    t =     2.65s Start Test at 2026-01-10 18:43:11.649
+    t =     2.71s Set Up
+    t =     2.80s Open com.unibo.lam.TravelCompanion
+    t =     2.80s     Launch com.unibo.lam.TravelCompanion
+    t =     2.80s         Terminate com.unibo.lam.TravelCompanion:23816
+    t =    13.93s         Setting up automation session
+    t =    14.59s         Wait for com.unibo.lam.TravelCompanion to idle
