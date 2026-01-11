@@ -108,6 +108,14 @@ final class AIAssistantViewController: UIViewController {
         accessibilityId: AccessibilityIdentifiers.AIAssistant.briefingButton
     )
 
+    private lazy var chatButton: UIButton = createStarterButton(
+        title: "Chat AI Viaggio",
+        subtitle: "Chatta con l'esperto di viaggi AI",
+        icon: "bubble.left.and.bubble.right.fill",
+        color: .systemGreen,
+        accessibilityId: AccessibilityIdentifiers.AIAssistant.chatButton
+    )
+
 
     // Availability Warning
     private let availabilityWarningView: UIView = {
@@ -165,6 +173,7 @@ final class AIAssistantViewController: UIViewController {
 
         // Buttons
         contentView.addSubview(buttonsStackView)
+        buttonsStackView.addArrangedSubview(chatButton)
         buttonsStackView.addArrangedSubview(itineraryButton)
         buttonsStackView.addArrangedSubview(packingListButton)
         buttonsStackView.addArrangedSubview(briefingButton)
@@ -236,7 +245,7 @@ final class AIAssistantViewController: UIViewController {
         ])
 
         // Button heights
-        [itineraryButton, packingListButton, briefingButton].forEach { button in
+        [chatButton, itineraryButton, packingListButton, briefingButton].forEach { button in
             button.heightAnchor.constraint(equalToConstant: 72).isActive = true
         }
     }
@@ -247,6 +256,7 @@ final class AIAssistantViewController: UIViewController {
     }
 
     private func setupActions() {
+        chatButton.addTarget(self, action: #selector(chatTapped), for: .touchUpInside)
         itineraryButton.addTarget(self, action: #selector(itineraryTapped), for: .touchUpInside)
         packingListButton.addTarget(self, action: #selector(packingListTapped), for: .touchUpInside)
         briefingButton.addTarget(self, action: #selector(briefingTapped), for: .touchUpInside)
@@ -366,6 +376,21 @@ final class AIAssistantViewController: UIViewController {
     }
 
     // MARK: - Actions
+
+    @objc private func chatTapped() {
+        #if canImport(FoundationModels)
+        if #available(iOS 26.0, *) {
+            let chatVC = TravelAIChatViewController()
+            let nav = UINavigationController(rootViewController: chatVC)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
+        } else {
+            showNotAvailableAlert()
+        }
+        #else
+        showNotAvailableAlert()
+        #endif
+    }
 
     @objc private func itineraryTapped() {
         #if canImport(FoundationModels)

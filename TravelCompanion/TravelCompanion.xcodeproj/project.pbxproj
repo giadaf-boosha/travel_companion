@@ -41,6 +41,8 @@
 		MDL_AI001 /* GenerableStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC043 /* GenerableStructures.swift */; };
 		MDL_AI002 /* AITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC044 /* AITools.swift */; };
 		MDL_AI003 /* FoundationModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC045 /* FoundationModelError.swift */; };
+		MDL_AI004 /* TravelChatTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC054 /* TravelChatTools.swift */; };
+		CTR_AI010 /* TravelAIChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC055 /* TravelAIChatViewController.swift */; };
 		RES001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = RSC001 /* Assets.xcassets */; };
 		RES002 /* TravelCompanion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = RSC002 /* TravelCompanion.xcdatamodeld */; };
 		SVC001 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC006 /* CoreDataManager.swift */; };
@@ -132,6 +134,8 @@
 		SRC047 /* ItineraryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailViewController.swift; sourceTree = "<group>"; };
 		SRC048 /* PackingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListViewController.swift; sourceTree = "<group>"; };
 		SRC049 /* BriefingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingDetailViewController.swift; sourceTree = "<group>"; };
+		SRC054 /* TravelChatTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelChatTools.swift; sourceTree = "<group>"; };
+		SRC055 /* TravelAIChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAIChatViewController.swift; sourceTree = "<group>"; };
 		TSRC001 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		TSRC002 /* DistanceCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCalculatorTests.swift; sourceTree = "<group>"; };
 		TSRC003 /* TripTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTypeTests.swift; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				SRC043 /* GenerableStructures.swift */,
 				SRC044 /* AITools.swift */,
 				SRC045 /* FoundationModelError.swift */,
+				SRC054 /* TravelChatTools.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				SRC047 /* ItineraryDetailViewController.swift */,
 				SRC048 /* PackingListViewController.swift */,
 				SRC049 /* BriefingDetailViewController.swift */,
+				SRC055 /* TravelAIChatViewController.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -534,6 +540,8 @@
 				CTR_AI003 /* ItineraryDetailViewController.swift in Sources */,
 				CTR_AI004 /* PackingListViewController.swift in Sources */,
 				CTR_AI005 /* BriefingDetailViewController.swift in Sources */,
+				MDL_AI004 /* TravelChatTools.swift in Sources */,
+				CTR_AI010 /* TravelAIChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

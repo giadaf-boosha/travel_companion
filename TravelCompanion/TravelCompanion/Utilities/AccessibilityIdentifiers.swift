@@ -162,6 +162,17 @@ struct AccessibilityIdentifiers {
         static let itineraryButton = "aiAssistant_button_itinerary"
         static let packingListButton = "aiAssistant_button_packingList"
         static let briefingButton = "aiAssistant_button_briefing"
+        static let chatButton = "aiAssistant_button_chat"
+    }
+
+    // MARK: - Travel AI Chat Screen
+    struct TravelAIChat {
+        static let tableView = "travelAIChat_tableView"
+        static let inputTextField = "travelAIChat_textField_input"
+        static let sendButton = "travelAIChat_button_send"
+        static let clearButton = "travelAIChat_button_clear"
+        static let loadingIndicator = "travelAIChat_indicator_loading"
+        static let starterCell = "travelAIChat_cell_starter"
     }
 
     // MARK: - Itinerary Generator Screen
