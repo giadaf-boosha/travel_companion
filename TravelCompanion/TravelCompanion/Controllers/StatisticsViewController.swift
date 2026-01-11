@@ -45,6 +45,7 @@ final class StatisticsViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
+        view.clipsToBounds = true
         return view
     }()
 
@@ -52,6 +53,7 @@ final class StatisticsViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
+        view.clipsToBounds = true
         return view
     }()
 
@@ -80,6 +82,12 @@ final class StatisticsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadStatistics()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Ridisegna i grafici quando i bounds cambiano (es. rotazione)
+        loadYearlyStatistics()
     }
 
     // MARK: - Setup
@@ -265,6 +273,9 @@ final class StatisticsViewController: UIViewController {
     // MARK: - Charts Drawing
 
     private func drawTripsChart(data: [Int: Int]) {
+        // Guard: non disegnare se bounds non validi
+        guard tripsChartView.bounds.width > 0, tripsChartView.bounds.height > 0 else { return }
+
         // Rimuovi layer precedenti
         tripsChartView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
 
@@ -334,6 +345,9 @@ final class StatisticsViewController: UIViewController {
     }
 
     private func drawDistanceChart(data: [Int: Double]) {
+        // Guard: non disegnare se bounds non validi
+        guard distanceChartView.bounds.width > 0, distanceChartView.bounds.height > 0 else { return }
+
         // Rimuovi layer precedenti
         distanceChartView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
 

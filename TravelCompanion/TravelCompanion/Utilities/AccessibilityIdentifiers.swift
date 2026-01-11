@@ -98,7 +98,6 @@ struct AccessibilityIdentifiers {
         static let aiItineraryButton = "tripDetail_button_aiItinerary"
         static let aiPackingListButton = "tripDetail_button_aiPackingList"
         static let aiBriefingButton = "tripDetail_button_aiBriefing"
-        static let aiSummaryButton = "tripDetail_button_aiSummary"
     }
 
     // MARK: - Map Screen
@@ -163,9 +162,6 @@ struct AccessibilityIdentifiers {
         static let itineraryButton = "aiAssistant_button_itinerary"
         static let packingListButton = "aiAssistant_button_packingList"
         static let briefingButton = "aiAssistant_button_briefing"
-        static let journalButton = "aiAssistant_button_journal"
-        static let voiceNoteButton = "aiAssistant_button_voiceNote"
-        static let summaryButton = "aiAssistant_button_summary"
     }
 
     // MARK: - Itinerary Generator Screen
@@ -219,50 +215,4 @@ struct AccessibilityIdentifiers {
         static let loadingIndicator = "briefingDetail_indicator_loading"
     }
 
-    // MARK: - Voice Note Screen
-    struct VoiceNote {
-        static let microphoneButton = "voiceNote_button_microphone"
-        static let waveformView = "voiceNote_view_waveform"
-        static let transcriptionLabel = "voiceNote_label_transcription"
-        static let textFallbackField = "voiceNote_textField_fallback"
-        static let processButton = "voiceNote_button_process"
-        static let cancelButton = "voiceNote_button_cancel"
-    }
-
-    // MARK: - Structured Note Preview Screen
-    struct StructuredNotePreview {
-        static let scrollView = "structuredNotePreview_scrollView"
-        static let categoryPicker = "structuredNotePreview_picker_category"
-        static let placeNameTextField = "structuredNotePreview_textField_placeName"
-        static let ratingPicker = "structuredNotePreview_picker_rating"
-        static let costTextField = "structuredNotePreview_textField_cost"
-        static let summaryTextView = "structuredNotePreview_textView_summary"
-        static let tagsView = "structuredNotePreview_view_tags"
-        static let saveButton = "structuredNotePreview_button_save"
-        static let cancelButton = "structuredNotePreview_button_cancel"
-    }
-
-    // MARK: - Journal Generator Screen
-    struct JournalGenerator {
-        static let dayPicker = "journalGenerator_picker_day"
-        static let generateButton = "journalGenerator_button_generate"
-        static let previewView = "journalGenerator_view_preview"
-        static let saveButton = "journalGenerator_button_save"
-        static let loadingIndicator = "journalGenerator_indicator_loading"
-        static let emptyStateView = "journalGenerator_view_emptyState"
-    }
-
-    // MARK: - Trip Summary Screen
-    struct TripSummary {
-        static let scrollView = "tripSummary_scrollView"
-        static let titleLabel = "tripSummary_label_title"
-        static let taglineLabel = "tripSummary_label_tagline"
-        static let narrativeView = "tripSummary_view_narrative"
-        static let highlightsSection = "tripSummary_section_highlights"
-        static let statsSection = "tripSummary_section_stats"
-        static let suggestionSection = "tripSummary_section_suggestion"
-        static let variantPicker = "tripSummary_picker_variant"
-        static let regenerateButton = "tripSummary_button_regenerate"
-        static let loadingIndicator = "tripSummary_indicator_loading"
-    }
 }

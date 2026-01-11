@@ -36,14 +36,12 @@ final class FoundationModelService {
 
     REGOLE FONDAMENTALI:
     - Rispondi SEMPRE in italiano
-    - Usa la TERZA PERSONA per narrativa e journal
     - Sii conciso ma informativo
     - Non inventare informazioni specifiche (prezzi, orari esatti)
     - Suggerisci sempre di verificare informazioni pratiche
 
     TONO:
     - Professionale ma amichevole
-    - Bilanciato tra fatti ed emozioni
     - Mai eccessivamente entusiasta o freddo
     """
 
@@ -429,73 +427,6 @@ final class FoundationModelService {
         throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
-    /// Genera un'entry del diario di viaggio
-    func generateJournalEntry(tripData: TripDayData) async throws -> JournalEntryData {
-        #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) {
-            guard !isGenerating else {
-                throw FoundationModelError.alreadyGenerating
-            }
-
-            guard tripData.hasData else {
-                throw FoundationModelError.validationFailed(reason: "Nessun dato disponibile per questa giornata")
-            }
-
-            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            let dateString = dateFormatter.string(from: tripData.date)
-
-            let notesContext = tripData.noteContents.isEmpty
-                ? "Nessuna nota"
-                : tripData.noteContents.joined(separator: "; ")
-
-            let placesContext = tripData.placesVisited.isEmpty
-                ? "Non specificati"
-                : tripData.placesVisited.joined(separator: ", ")
-
-            let distanceKm = tripData.totalDistance / 1000
-
-            let prompt = """
-            Genera un'entry di diario di viaggio per la giornata del \(dateString).
-
-            DATI DELLA GIORNATA:
-            - Foto scattate: \(tripData.photoCount)
-            - Note registrate: \(notesContext)
-            - Distanza percorsa: \(String(format: "%.1f", distanceKm)) km
-            - Luoghi visitati: \(placesContext)
-
-            STILE:
-            - Scrivi in TERZA PERSONA
-            - Tono bilanciato tra fatti ed emozioni
-            - 150-250 parole per il racconto
-            """
-
-            return try await executeWithRetry {
-                let response = try await self.sessionHelper.session!.respond(
-                    to: prompt,
-                    generating: JournalEntry.self
-                )
-
-                #if DEBUG
-                self.logResponse(response.content)
-                #endif
-
-                let entry = response.content
-                return JournalEntryData(
-                    title: entry.title,
-                    date: entry.date,
-                    narrative: entry.narrative,
-                    highlight: entry.highlight,
-                    statsNarrative: entry.statsNarrative
-                )
-            }
-        }
-        #endif
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
-    }
-
     /// Struttura una nota da testo libero
     func structureNote(rawText: String) async throws -> StructuredNoteData {
         #if canImport(FoundationModels)
@@ -537,73 +468,6 @@ final class FoundationModelService {
                     cost: note.cost,
                     summary: note.summary,
                     tags: note.tags
-                )
-            }
-        }
-        #endif
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
-    }
-
-    /// Genera un riassunto completo del viaggio
-    func generateTripSummary(
-        destination: String,
-        duration: Int,
-        photoCount: Int,
-        noteCount: Int,
-        totalDistance: Double,
-        highlights: [String],
-        variant: SummaryVariant = .standard
-    ) async throws -> TripSummaryData {
-        #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) {
-            guard !isGenerating else {
-                throw FoundationModelError.alreadyGenerating
-            }
-
-            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
-
-            let distanceKm = totalDistance / 1000
-            let highlightsText = highlights.isEmpty
-                ? "Non specificati"
-                : highlights.joined(separator: "; ")
-
-            let variantModifier = variant.promptModifier
-
-            let prompt = """
-            Genera un riassunto narrativo completo per il viaggio completato.
-
-            DATI DEL VIAGGIO:
-            - Destinazione: \(destination)
-            - Durata: \(duration) giorni
-            - Foto scattate: \(photoCount)
-            - Note registrate: \(noteCount)
-            - Distanza totale: \(String(format: "%.1f", distanceKm)) km
-            - Momenti salienti: \(highlightsText)
-
-            STILE:
-            - Scrivi in TERZA PERSONA
-            - Tono evocativo ma non eccessivo
-            \(variantModifier)
-            """
-
-            return try await executeWithRetry {
-                let response = try await self.sessionHelper.session!.respond(
-                    to: prompt,
-                    generating: TripSummaryGenerated.self
-                )
-
-                #if DEBUG
-                self.logResponse(response.content)
-                #endif
-
-                let summary = response.content
-                return TripSummaryData(
-                    title: summary.title,
-                    tagline: summary.tagline,
-                    narrative: summary.narrative,
-                    highlights: summary.highlights,
-                    statsNarrative: summary.statsNarrative,
-                    nextTripSuggestion: summary.nextTripSuggestion
                 )
             }
         }

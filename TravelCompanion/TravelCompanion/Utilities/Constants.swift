@@ -119,10 +119,6 @@ struct Constants {
         static let packingListGenerated = Notification.Name("packingListGenerated")
         /// Notifica: briefing destinazione AI generato
         static let briefingGenerated = Notification.Name("briefingGenerated")
-        /// Notifica: journal entry AI generata
-        static let journalGenerated = Notification.Name("journalGenerated")
-        /// Notifica: riassunto viaggio AI generato
-        static let summaryGenerated = Notification.Name("summaryGenerated")
     }
 
     // MARK: - Identificatori Notifiche Locali

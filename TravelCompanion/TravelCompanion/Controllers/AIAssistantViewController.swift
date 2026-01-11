@@ -1,13 +1,12 @@
 import UIKit
 
 /// Controller principale per il tab AI Assistente
-/// Mostra 6 pulsanti per le funzionalita AI disponibili
+/// Mostra i pulsanti per le funzionalita AI disponibili
 final class AIAssistantViewController: UIViewController {
 
     // MARK: - Properties
 
     private var activeTrip: Trip?
-    private var completedTrips: [Trip] = []
 
     // MARK: - UI Components
 
@@ -57,7 +56,7 @@ final class AIAssistantViewController: UIViewController {
     private let welcomeSubtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Posso aiutarti a pianificare viaggi, creare liste, generare diari e molto altro. Scegli una delle opzioni qui sotto per iniziare."
+        label.text = "Posso aiutarti a pianificare viaggi, creare liste e ottenere informazioni sulle destinazioni. Scegli una delle opzioni qui sotto per iniziare."
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .secondaryLabel
         label.numberOfLines = 0
@@ -109,29 +108,6 @@ final class AIAssistantViewController: UIViewController {
         accessibilityId: AccessibilityIdentifiers.AIAssistant.briefingButton
     )
 
-    private lazy var journalButton: UIButton = createStarterButton(
-        title: "Diario di Oggi",
-        subtitle: "Genera un'entry del diario di viaggio",
-        icon: "book.fill",
-        color: .systemGreen,
-        accessibilityId: AccessibilityIdentifiers.AIAssistant.journalButton
-    )
-
-    private lazy var voiceNoteButton: UIButton = createStarterButton(
-        title: "Nota Vocale",
-        subtitle: "Registra e struttura una nota",
-        icon: "mic.fill",
-        color: .systemRed,
-        accessibilityId: AccessibilityIdentifiers.AIAssistant.voiceNoteButton
-    )
-
-    private lazy var summaryButton: UIButton = createStarterButton(
-        title: "Riassunto Viaggio",
-        subtitle: "Genera un riassunto del viaggio completato",
-        icon: "text.document.fill",
-        color: .systemTeal,
-        accessibilityId: AccessibilityIdentifiers.AIAssistant.summaryButton
-    )
 
     // Availability Warning
     private let availabilityWarningView: UIView = {
@@ -192,9 +168,6 @@ final class AIAssistantViewController: UIViewController {
         buttonsStackView.addArrangedSubview(itineraryButton)
         buttonsStackView.addArrangedSubview(packingListButton)
         buttonsStackView.addArrangedSubview(briefingButton)
-        buttonsStackView.addArrangedSubview(journalButton)
-        buttonsStackView.addArrangedSubview(voiceNoteButton)
-        buttonsStackView.addArrangedSubview(summaryButton)
 
         // Availability warning
         contentView.addSubview(availabilityWarningView)
@@ -263,7 +236,7 @@ final class AIAssistantViewController: UIViewController {
         ])
 
         // Button heights
-        [itineraryButton, packingListButton, briefingButton, journalButton, voiceNoteButton, summaryButton].forEach { button in
+        [itineraryButton, packingListButton, briefingButton].forEach { button in
             button.heightAnchor.constraint(equalToConstant: 72).isActive = true
         }
     }
@@ -277,16 +250,12 @@ final class AIAssistantViewController: UIViewController {
         itineraryButton.addTarget(self, action: #selector(itineraryTapped), for: .touchUpInside)
         packingListButton.addTarget(self, action: #selector(packingListTapped), for: .touchUpInside)
         briefingButton.addTarget(self, action: #selector(briefingTapped), for: .touchUpInside)
-        journalButton.addTarget(self, action: #selector(journalTapped), for: .touchUpInside)
-        voiceNoteButton.addTarget(self, action: #selector(voiceNoteTapped), for: .touchUpInside)
-        summaryButton.addTarget(self, action: #selector(summaryTapped), for: .touchUpInside)
     }
 
     // MARK: - Data Loading
 
     private func loadTrips() {
         activeTrip = CoreDataManager.shared.fetchActiveTrip()
-        completedTrips = CoreDataManager.shared.fetchTrips(filteredBy: nil).filter { !$0.isActive }
     }
 
     private func checkAvailability() {
@@ -307,14 +276,7 @@ final class AIAssistantViewController: UIViewController {
     }
 
     private func updateButtonStates() {
-        // Journal requires active trip
-        let hasActiveTrip = activeTrip != nil
-        updateButtonEnabled(journalButton, enabled: hasActiveTrip, reason: "Richiede un viaggio attivo")
-        updateButtonEnabled(voiceNoteButton, enabled: hasActiveTrip, reason: "Richiede un viaggio attivo")
-
-        // Summary requires completed trip with data
-        let hasCompletedTrip = !completedTrips.isEmpty
-        updateButtonEnabled(summaryButton, enabled: hasCompletedTrip, reason: "Richiede un viaggio completato")
+        // All remaining buttons are always enabled
     }
 
     private func updateButtonEnabled(_ button: UIButton, enabled: Bool, reason: String) {
@@ -441,57 +403,6 @@ final class AIAssistantViewController: UIViewController {
         #endif
     }
 
-    @objc private func journalTapped() {
-        #if canImport(FoundationModels)
-        guard let trip = activeTrip else {
-            showAlert(title: "Viaggio Richiesto", message: "Per generare il diario devi avere un viaggio attivo.")
-            return
-        }
-
-        let journalVC = JournalGeneratorViewController()
-        journalVC.associatedTrip = trip
-        let nav = UINavigationController(rootViewController: journalVC)
-        present(nav, animated: true)
-        #else
-        showNotAvailableAlert()
-        #endif
-    }
-
-    @objc private func voiceNoteTapped() {
-        #if canImport(FoundationModels)
-        guard let trip = activeTrip else {
-            showAlert(title: "Viaggio Richiesto", message: "Per registrare una nota vocale devi avere un viaggio attivo.")
-            return
-        }
-
-        let voiceVC = VoiceNoteViewController()
-        voiceVC.associatedTrip = trip
-        let nav = UINavigationController(rootViewController: voiceVC)
-        present(nav, animated: true)
-        #else
-        showNotAvailableAlert()
-        #endif
-    }
-
-    @objc private func summaryTapped() {
-        #if canImport(FoundationModels)
-        if completedTrips.isEmpty {
-            showAlert(title: "Nessun Viaggio Completato", message: "Completa un viaggio per poter generare il riassunto.")
-            return
-        }
-
-        if completedTrips.count == 1 {
-            presentSummary(for: completedTrips[0])
-        } else {
-            presentTripSelector { [weak self] selectedTrip in
-                self?.presentSummary(for: selectedTrip)
-            }
-        }
-        #else
-        showNotAvailableAlert()
-        #endif
-    }
-
     // MARK: - Navigation Helpers
 
     #if canImport(FoundationModels)
@@ -523,44 +434,6 @@ final class AIAssistantViewController: UIViewController {
         })
 
         present(alert, animated: true)
-    }
-
-    private func presentTripSelector(completion: @escaping (Trip) -> Void) {
-        let alert = UIAlertController(
-            title: "Seleziona Viaggio",
-            message: "Scegli il viaggio per cui generare il riassunto",
-            preferredStyle: .actionSheet
-        )
-
-        for trip in completedTrips {
-            let title = trip.destination ?? "Viaggio senza nome"
-            alert.addAction(UIAlertAction(title: title, style: .default) { _ in
-                completion(trip)
-            })
-        }
-
-        alert.addAction(UIAlertAction(title: "Annulla", style: .cancel))
-
-        // iPad support
-        if let popover = alert.popoverPresentationController {
-            popover.sourceView = summaryButton
-            popover.sourceRect = summaryButton.bounds
-        }
-
-        present(alert, animated: true)
-    }
-
-    private func presentSummary(for trip: Trip) {
-        let summaryVC = TripSummaryViewController()
-        summaryVC.associatedTrip = trip
-
-        // Check if summary already exists
-        if let existingSummary = CoreDataManager.shared.fetchSummary(for: trip) {
-            summaryVC.existingSummary = existingSummary
-        }
-
-        let nav = UINavigationController(rootViewController: summaryVC)
-        present(nav, animated: true)
     }
     #endif
 

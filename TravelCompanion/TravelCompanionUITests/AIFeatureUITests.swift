@@ -22,9 +22,6 @@ final class AIFeatureUITests: XCTestCase {
         static let itineraryButton = "aiAssistant_button_itinerary"
         static let packingListButton = "aiAssistant_button_packingList"
         static let briefingButton = "aiAssistant_button_briefing"
-        static let journalButton = "aiAssistant_button_journal"
-        static let voiceNoteButton = "aiAssistant_button_voiceNote"
-        static let summaryButton = "aiAssistant_button_summary"
     }
 
     struct TripDetailAIIDs {
@@ -32,7 +29,6 @@ final class AIFeatureUITests: XCTestCase {
         static let aiItineraryButton = "tripDetail_button_aiItinerary"
         static let aiPackingListButton = "tripDetail_button_aiPackingList"
         static let aiBriefingButton = "tripDetail_button_aiBriefing"
-        static let aiSummaryButton = "tripDetail_button_aiSummary"
     }
 
     struct ItineraryIDs {
@@ -280,70 +276,6 @@ final class AIFeatureUITests: XCTestCase {
         takeScreenshot(name: "07_AfterBriefingButtonTap")
 
         XCTAssertTrue(app.exists, "Tapping briefing button should not crash")
-    }
-
-    func test08_AIAssistant_JournalButtonTap() {
-        // Given
-        navigateToAIAssistantTab()
-        sleep(1)
-
-        // When
-        let journalButton = app.buttons[AIIDs.journalButton]
-        let journalByText = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'diario' OR label CONTAINS[c] 'Diario' OR label CONTAINS[c] 'journal'")).firstMatch
-
-        if waitForElement(journalButton, timeout: 2) {
-            journalButton.tap()
-        } else if waitForElement(journalByText, timeout: 2) {
-            journalByText.tap()
-        }
-
-        sleep(1)
-        takeScreenshot(name: "08_AfterJournalButtonTap")
-
-        // Should show message about needing active trip or open journal
-        XCTAssertTrue(app.exists, "Tapping journal button should not crash")
-    }
-
-    func test09_AIAssistant_VoiceNoteButtonTap() {
-        // Given
-        navigateToAIAssistantTab()
-        sleep(1)
-
-        // When
-        let voiceButton = app.buttons[AIIDs.voiceNoteButton]
-        let voiceByText = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'voce' OR label CONTAINS[c] 'Voce' OR label CONTAINS[c] 'vocale'")).firstMatch
-
-        if waitForElement(voiceButton, timeout: 2) {
-            voiceButton.tap()
-        } else if waitForElement(voiceByText, timeout: 2) {
-            voiceByText.tap()
-        }
-
-        sleep(1)
-        takeScreenshot(name: "09_AfterVoiceButtonTap")
-
-        XCTAssertTrue(app.exists, "Tapping voice note button should not crash")
-    }
-
-    func test10_AIAssistant_SummaryButtonTap() {
-        // Given
-        navigateToAIAssistantTab()
-        sleep(1)
-
-        // When
-        let summaryButton = app.buttons[AIIDs.summaryButton]
-        let summaryByText = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'riassunto' OR label CONTAINS[c] 'Riassunto' OR label CONTAINS[c] 'summary'")).firstMatch
-
-        if waitForElement(summaryButton, timeout: 2) {
-            summaryButton.tap()
-        } else if waitForElement(summaryByText, timeout: 2) {
-            summaryByText.tap()
-        }
-
-        sleep(1)
-        takeScreenshot(name: "10_AfterSummaryButtonTap")
-
-        XCTAssertTrue(app.exists, "Tapping summary button should not crash")
     }
 
     // MARK: - 3. Trip Detail AI Section Tests
@@ -630,62 +562,7 @@ final class AIFeatureUITests: XCTestCase {
         XCTAssertTrue(app.exists, "Complete AI journey should finish without crash")
     }
 
-    // MARK: - 9. Alert Handling Tests
-
-    func test21_AIAssistant_HandleNoActiveTrip_Journal() {
-        // Given - Make sure no active trip
-        navigateToAIAssistantTab()
-        sleep(1)
-
-        // When - Tap journal button (requires active trip)
-        let journalByText = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'diario'")).firstMatch
-        if waitForElement(journalByText, timeout: 2) {
-            journalByText.tap()
-            sleep(1)
-        }
-
-        // Then - Should show alert or message
-        let alert = app.alerts.firstMatch
-        if alert.exists {
-            takeScreenshot(name: "21_JournalNoActiveTrip_Alert")
-
-            // Dismiss alert
-            let okButton = alert.buttons.firstMatch
-            if okButton.exists {
-                okButton.tap()
-            }
-        }
-
-        XCTAssertTrue(app.exists, "Journal without active trip should handle gracefully")
-    }
-
-    func test22_AIAssistant_HandleNoCompletedTrip_Summary() {
-        // Given
-        navigateToAIAssistantTab()
-        sleep(1)
-
-        // When - Tap summary button (requires completed trip)
-        let summaryByText = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'riassunto'")).firstMatch
-        if waitForElement(summaryByText, timeout: 2) {
-            summaryByText.tap()
-            sleep(1)
-        }
-
-        // Then - Should show alert or message
-        let alert = app.alerts.firstMatch
-        if alert.exists {
-            takeScreenshot(name: "22_SummaryNoTrip_Alert")
-
-            let okButton = alert.buttons.firstMatch
-            if okButton.exists {
-                okButton.tap()
-            }
-        }
-
-        XCTAssertTrue(app.exists, "Summary without completed trip should handle gracefully")
-    }
-
-    // MARK: - 10. Performance Tests
+    // MARK: - 9. Performance Tests
 
     func test23_AITab_LaunchPerformance() throws {
         // Navigate to AI tab and measure time

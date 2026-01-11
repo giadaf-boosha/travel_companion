@@ -30,10 +30,6 @@
 		CTR_AI003 /* ItineraryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC047 /* ItineraryDetailViewController.swift */; };
 		CTR_AI004 /* PackingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC048 /* PackingListViewController.swift */; };
 		CTR_AI005 /* BriefingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC049 /* BriefingDetailViewController.swift */; };
-		CTR_AI006 /* JournalGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC050 /* JournalGeneratorViewController.swift */; };
-		CTR_AI007 /* VoiceNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC051 /* VoiceNoteViewController.swift */; };
-		CTR_AI008 /* TripSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC052 /* TripSummaryViewController.swift */; };
-		CTR_AI009 /* StructuredNotePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC053 /* StructuredNotePreviewViewController.swift */; };
 		EXT001 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC012 /* Date+Extensions.swift */; };
 		EXT002 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC013 /* CLLocation+Extensions.swift */; };
 		EXT003 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC014 /* UIViewController+Extensions.swift */; };
@@ -54,7 +50,6 @@
 		SVC005 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC010 /* NotificationManager.swift */; };
 		SVC006 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC011 /* ChatService.swift */; };
 		SVC007 /* FoundationModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC041 /* FoundationModelService.swift */; };
-		SVC008 /* SpeechRecognizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = SRC042 /* SpeechRecognizerService.swift */; };
 		TST001 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC001 /* CoreDataManagerTests.swift */; };
 		TST002 /* DistanceCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC002 /* DistanceCalculatorTests.swift */; };
 		TST003 /* TripTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TSRC003 /* TripTypeTests.swift */; };
@@ -88,6 +83,7 @@
 /* Begin PBXFileReference section */
 		AIFTSRC001 /* AIFeatureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFeatureUITests.swift; sourceTree = "<group>"; };
 		B4B40C22ACA548E3A42D9B8B /* AIAssistantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantViewController.swift; sourceTree = "<group>"; };
+		ENT001 /* TravelCompanion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TravelCompanion.entitlements; sourceTree = "<group>"; };
 		PRD001 /* TravelCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		PRD002 /* TravelCompanionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelCompanionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		PRD003 /* TravelCompanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelCompanionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +125,6 @@
 		SRC033 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		SRC040 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		SRC041 /* FoundationModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelService.swift; sourceTree = "<group>"; };
-		SRC042 /* SpeechRecognizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerService.swift; sourceTree = "<group>"; };
 		SRC043 /* GenerableStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerableStructures.swift; sourceTree = "<group>"; };
 		SRC044 /* AITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITools.swift; sourceTree = "<group>"; };
 		SRC045 /* FoundationModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelError.swift; sourceTree = "<group>"; };
@@ -137,10 +132,6 @@
 		SRC047 /* ItineraryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryDetailViewController.swift; sourceTree = "<group>"; };
 		SRC048 /* PackingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingListViewController.swift; sourceTree = "<group>"; };
 		SRC049 /* BriefingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingDetailViewController.swift; sourceTree = "<group>"; };
-		SRC050 /* JournalGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalGeneratorViewController.swift; sourceTree = "<group>"; };
-		SRC051 /* VoiceNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteViewController.swift; sourceTree = "<group>"; };
-		SRC052 /* TripSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
-		SRC053 /* StructuredNotePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredNotePreviewViewController.swift; sourceTree = "<group>"; };
 		TSRC001 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		TSRC002 /* DistanceCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCalculatorTests.swift; sourceTree = "<group>"; };
 		TSRC003 /* TripTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTypeTests.swift; sourceTree = "<group>"; };
@@ -149,7 +140,6 @@
 		TSRC006 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		UISRC001 /* TravelCompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCompanionUITests.swift; sourceTree = "<group>"; };
 		UISRC002 /* TravelCompanionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCompanionUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		ENT001 /* TravelCompanion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TravelCompanion.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +251,6 @@
 				SRC010 /* NotificationManager.swift */,
 				SRC011 /* ChatService.swift */,
 				SRC041 /* FoundationModelService.swift */,
-				SRC042 /* SpeechRecognizerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -334,10 +323,6 @@
 				SRC047 /* ItineraryDetailViewController.swift */,
 				SRC048 /* PackingListViewController.swift */,
 				SRC049 /* BriefingDetailViewController.swift */,
-				SRC050 /* JournalGeneratorViewController.swift */,
-				SRC051 /* VoiceNoteViewController.swift */,
-				SRC052 /* TripSummaryViewController.swift */,
-				SRC053 /* StructuredNotePreviewViewController.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -439,7 +424,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					TGT001 = {
 						CreatedOnToolsVersion = 15.2;
@@ -542,7 +527,6 @@
 				CEL004 /* ChatMessageCell.swift in Sources */,
 				RES002 /* TravelCompanion.xcdatamodeld in Sources */,
 				SVC007 /* FoundationModelService.swift in Sources */,
-				SVC008 /* SpeechRecognizerService.swift in Sources */,
 				MDL_AI001 /* GenerableStructures.swift in Sources */,
 				MDL_AI002 /* AITools.swift in Sources */,
 				MDL_AI003 /* FoundationModelError.swift in Sources */,
@@ -550,10 +534,6 @@
 				CTR_AI003 /* ItineraryDetailViewController.swift in Sources */,
 				CTR_AI004 /* PackingListViewController.swift in Sources */,
 				CTR_AI005 /* BriefingDetailViewController.swift in Sources */,
-				CTR_AI006 /* JournalGeneratorViewController.swift in Sources */,
-				CTR_AI007 /* VoiceNoteViewController.swift in Sources */,
-				CTR_AI008 /* TripSummaryViewController.swift in Sources */,
-				CTR_AI009 /* StructuredNotePreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +581,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -648,12 +629,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -664,6 +646,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -705,11 +688,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};

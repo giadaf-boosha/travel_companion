@@ -175,26 +175,6 @@ Info culturali, frasi utili, clima, cucina e consigli di sicurezza
 
 </td>
 </tr>
-<tr>
-<td width="33%" align="center">
-
-### 🎙️ Voice Notes
-Trascrizione vocale e strutturazione automatica delle note
-
-</td>
-<td width="33%" align="center">
-
-### 📔 Smart Journal
-Genera diario di viaggio dalle attività e foto del giorno
-
-</td>
-<td width="33%" align="center">
-
-### 📝 Trip Summary
-Narrativa completa del viaggio concluso con highlights
-
-</td>
-</tr>
 </table>
 
 ### Architettura AI
@@ -206,11 +186,6 @@ Narrativa completa del viaggio concluso con highlights
 │   ┌──────────┐  ┌──────────┐  ┌──────────┐             │
 │   │Itinerario│  │ Packing  │  │ Briefing │             │
 │   └────┬─────┘  └────┬─────┘  └────┬─────┘             │
-│        │             │             │                    │
-│   ┌────┴─────┐  ┌────┴─────┐  ┌────┴─────┐             │
-│   │ Voice    │  │ Journal  │  │ Summary  │             │
-│   │ Note     │  │          │  │          │             │
-│   └────┬─────┘  └────┬─────┘  └────┴─────┘             │
 │        │             │             │                    │
 │        └─────────────┴─────────────┘                    │
 │                      │                                   │
@@ -234,9 +209,7 @@ Narrativa completa del viaggio concluso con highlights
 | `TravelItinerary` | Itinerario completo | `dailyPlans`, `generalTips` |
 | `GeneratedPackingList` | Lista valigia | `categories`, `items` |
 | `TripBriefing` | Briefing destinazione | `quickFacts`, `phrases`, `tips` |
-| `JournalEntry` | Entry diario | `narrative`, `highlights` |
 | `StructuredNote` | Nota strutturata | `category`, `rating`, `tags` |
-| `TripSummary` | Riassunto viaggio | `tagline`, `narrative`, `stats` |
 
 ---
 

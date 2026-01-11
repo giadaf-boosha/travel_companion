@@ -138,28 +138,6 @@ struct LocalPhrase: Codable, Sendable {
     let pronunciation: String
 }
 
-// MARK: - Journal Entry Structure
-
-/// Entry del diario di viaggio generata dall'AI
-@available(iOS 26.0, *)
-@Generable
-struct JournalEntry: Codable, Sendable {
-    @Guide(description: "Titolo evocativo della giornata")
-    let title: String
-
-    @Guide(description: "Data della giornata in formato dd/MM/yyyy")
-    let date: String
-
-    @Guide(description: "Racconto in TERZA PERSONA, 150-250 parole, tono bilanciato")
-    let narrative: String
-
-    @Guide(description: "Momento piu memorabile della giornata")
-    let highlight: String
-
-    @Guide(description: "Statistiche in formato narrativo")
-    let statsNarrative: String
-}
-
 // MARK: - Structured Note
 
 /// Nota strutturata generata dall'AI a partire da testo o voce
@@ -183,31 +161,6 @@ struct StructuredNote: Codable, Sendable {
 
     @Guide(description: "Tag estratti dal contenuto, massimo 5", .count(1...5))
     let tags: [String]
-}
-
-// MARK: - Trip Summary Structure
-
-/// Riassunto narrativo del viaggio
-@available(iOS 26.0, *)
-@Generable
-struct TripSummaryGenerated: Codable, Sendable {
-    @Guide(description: "Titolo evocativo del viaggio")
-    let title: String
-
-    @Guide(description: "Sottotitolo/tagline che cattura essenza")
-    let tagline: String
-
-    @Guide(description: "Racconto narrativo in TERZA PERSONA, 200-400 parole")
-    let narrative: String
-
-    @Guide(description: "Top 3 momenti memorabili", .count(3))
-    let highlights: [String]
-
-    @Guide(description: "Statistiche in formato narrativo coinvolgente")
-    let statsNarrative: String
-
-    @Guide(description: "Suggerimento per un prossimo viaggio simile")
-    let nextTripSuggestion: String
 }
 
 #endif
@@ -269,15 +222,6 @@ struct LocalPhraseData: Codable {
     let pronunciation: String
 }
 
-/// Struttura per il journal entry (fallback per iOS < 26)
-struct JournalEntryData: Codable {
-    let title: String
-    let date: String
-    let narrative: String
-    let highlight: String
-    let statsNarrative: String
-}
-
 /// Struttura per la nota strutturata (fallback per iOS < 26)
 struct StructuredNoteData: Codable {
     let category: String
@@ -286,52 +230,6 @@ struct StructuredNoteData: Codable {
     let cost: String?
     let summary: String
     let tags: [String]
-}
-
-/// Struttura per il riassunto viaggio (fallback per iOS < 26)
-struct TripSummaryData: Codable {
-    let title: String
-    let tagline: String
-    let narrative: String
-    let highlights: [String]
-    let statsNarrative: String
-    let nextTripSuggestion: String
-}
-
-// MARK: - Variant Enum for Summary Generation
-
-/// Varianti disponibili per la generazione del riassunto
-enum SummaryVariant: String, CaseIterable {
-    case standard = "standard"
-    case shorter = "shorter"
-    case detailed = "detailed"
-    case emotional = "emotional"
-    case factual = "factual"
-
-    var displayName: String {
-        switch self {
-        case .standard: return "Standard"
-        case .shorter: return "Piu breve"
-        case .detailed: return "Piu dettagliato"
-        case .emotional: return "Tono emotivo"
-        case .factual: return "Tono fattuale"
-        }
-    }
-
-    var promptModifier: String {
-        switch self {
-        case .standard:
-            return ""
-        case .shorter:
-            return "Limita il racconto a 100-150 parole."
-        case .detailed:
-            return "Espandi il racconto a 400-500 parole con piu dettagli."
-        case .emotional:
-            return "Enfatizza le emozioni e i sentimenti vissuti durante il viaggio."
-        case .factual:
-            return "Concentrati sui fatti, luoghi visitati e attivita svolte."
-        }
-    }
 }
 
 // MARK: - Note Category Enum

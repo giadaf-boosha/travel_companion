@@ -91,7 +91,6 @@
         <relationship name="packingList" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PackingList" inverseName="trip" inverseEntity="PackingList"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="trip" inverseEntity="Photo"/>
         <relationship name="routes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Route" inverseName="trip" inverseEntity="Route"/>
-        <relationship name="summary" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TripSummary" inverseName="trip" inverseEntity="TripSummary"/>
     </entity>
     <entity name="TripBriefing" representedClassName="TripBriefing" syncable="YES" codeGenerationType="class">
         <attribute name="climateInfo" attributeType="String"/>
@@ -104,17 +103,5 @@
         <attribute name="safetyNotes" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="usefulPhrasesJSON" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="briefing" inverseEntity="Trip"/>
-    </entity>
-    <entity name="TripSummary" representedClassName="TripSummary" syncable="YES" codeGenerationType="class">
-        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="highlights" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
-        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="narrative" attributeType="String"/>
-        <attribute name="nextTripSuggestion" attributeType="String"/>
-        <attribute name="statsNarrative" attributeType="String"/>
-        <attribute name="tagline" attributeType="String"/>
-        <attribute name="title" attributeType="String"/>
-        <attribute name="variant" optional="YES" attributeType="String"/>
-        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="summary" inverseEntity="Trip"/>
     </entity>
 </model>

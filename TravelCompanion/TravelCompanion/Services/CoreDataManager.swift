@@ -833,52 +833,6 @@ final class CoreDataManager {
         saveContext()
     }
 
-    // MARK: - TripSummary Operations
-
-    /// Crea un nuovo riassunto del viaggio
-    func createTripSummary(
-        title: String,
-        tagline: String,
-        narrative: String,
-        highlights: [String],
-        statsNarrative: String,
-        nextTripSuggestion: String,
-        variant: String?,
-        for trip: Trip
-    ) -> TripSummary {
-        // Rimuovi summary esistente se presente
-        if let existingSummary = trip.summary {
-            context.delete(existingSummary)
-        }
-
-        let summary = TripSummary(context: context)
-        summary.id = UUID()
-        summary.title = title
-        summary.tagline = tagline
-        summary.narrative = narrative
-        summary.highlights = highlights as NSObject
-        summary.statsNarrative = statsNarrative
-        summary.nextTripSuggestion = nextTripSuggestion
-        summary.variant = variant
-        summary.createdAt = Date()
-        summary.trip = trip
-
-        saveContext()
-        NotificationCenter.default.post(name: Constants.NotificationName.summaryGenerated, object: summary)
-        return summary
-    }
-
-    /// Recupera il riassunto per un viaggio
-    func fetchSummary(for trip: Trip) -> TripSummary? {
-        return trip.summary
-    }
-
-    /// Elimina un riassunto
-    func deleteSummary(_ summary: TripSummary) {
-        context.delete(summary)
-        saveContext()
-    }
-
     // MARK: - Structured Note Operations
 
     /// Crea una nota strutturata
@@ -901,7 +855,6 @@ final class CoreDataManager {
         note.cost = cost
         note.tags = tags as NSObject
         note.isStructured = true
-        note.isJournalEntry = false
         note.timestamp = Date()
         note.trip = trip
 
@@ -918,49 +871,10 @@ final class CoreDataManager {
         return note
     }
 
-    /// Crea una journal entry
-    func createJournalEntry(
-        for trip: Trip,
-        title: String,
-        narrative: String,
-        highlight: String,
-        statsNarrative: String,
-        date: Date
-    ) -> Note {
-        // Formatta il contenuto del journal
-        let content = """
-        # \(title)
-
-        \(narrative)
-
-        **Momento memorabile:** \(highlight)
-
-        **Statistiche:** \(statsNarrative)
-        """
-
-        let note = Note(context: context)
-        note.id = UUID()
-        note.content = content
-        note.category = "journal"
-        note.isStructured = true
-        note.isJournalEntry = true
-        note.timestamp = date
-        note.trip = trip
-
-        if let currentLocation = LocationManager.shared.currentLocation {
-            note.latitude = currentLocation.coordinate.latitude
-            note.longitude = currentLocation.coordinate.longitude
-        }
-
-        saveContext()
-        NotificationCenter.default.post(name: Constants.NotificationName.journalGenerated, object: note)
-        return note
-    }
-
     /// Recupera le note strutturate per un viaggio
     func fetchStructuredNotes(for trip: Trip) -> [Note] {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
-        request.predicate = NSPredicate(format: "trip == %@ AND isStructured == YES AND isJournalEntry == NO", trip)
+        request.predicate = NSPredicate(format: "trip == %@ AND isStructured == YES", trip)
         request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
 
         do {
@@ -968,42 +882,6 @@ final class CoreDataManager {
         } catch {
             print("Error fetching structured notes: \(error)")
             return []
-        }
-    }
-
-    /// Recupera le journal entries per un viaggio
-    func fetchJournalEntries(for trip: Trip) -> [Note] {
-        let request: NSFetchRequest<Note> = Note.fetchRequest()
-        request.predicate = NSPredicate(format: "trip == %@ AND isJournalEntry == YES", trip)
-        request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Error fetching journal entries: \(error)")
-            return []
-        }
-    }
-
-    /// Verifica se esiste gia una journal entry per una data specifica
-    func hasJournalEntry(for trip: Trip, date: Date) -> Bool {
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: date)
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
-
-        let request: NSFetchRequest<Note> = Note.fetchRequest()
-        request.predicate = NSPredicate(
-            format: "trip == %@ AND isJournalEntry == YES AND timestamp >= %@ AND timestamp < %@",
-            trip, startOfDay as NSDate, endOfDay as NSDate
-        )
-        request.fetchLimit = 1
-
-        do {
-            let count = try context.count(for: request)
-            return count > 0
-        } catch {
-            print("Error checking journal entry: \(error)")
-            return false
         }
     }
 }

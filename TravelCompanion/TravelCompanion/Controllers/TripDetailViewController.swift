@@ -211,18 +211,6 @@ class TripDetailViewController: UIViewController {
         return button
     }()
 
-    private let summaryAIButton: UIButton = {
-        var config = UIButton.Configuration.plain()
-        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
-        config.baseForegroundColor = .systemTeal
-        let button = UIButton(configuration: config)
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .systemTeal.withAlphaComponent(0.1)
-        button.contentHorizontalAlignment = .left
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.accessibilityIdentifier = AccessibilityIdentifiers.TripDetail.aiSummaryButton
-        return button
-    }()
 
     // MARK: - Properties
     var trip: Trip!
@@ -296,7 +284,6 @@ class TripDetailViewController: UIViewController {
         aiButtonsStackView.addArrangedSubview(itineraryAIButton)
         aiButtonsStackView.addArrangedSubview(packingListAIButton)
         aiButtonsStackView.addArrangedSubview(briefingAIButton)
-        aiButtonsStackView.addArrangedSubview(summaryAIButton)
         contentView.addSubview(separator4)
         #endif
 
@@ -428,7 +415,7 @@ class TripDetailViewController: UIViewController {
         ])
 
         // Height constraints for AI buttons
-        [itineraryAIButton, packingListAIButton, briefingAIButton, summaryAIButton].forEach { button in
+        [itineraryAIButton, packingListAIButton, briefingAIButton].forEach { button in
             button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         }
 
@@ -509,7 +496,6 @@ class TripDetailViewController: UIViewController {
         itineraryAIButton.addTarget(self, action: #selector(itineraryAIButtonTapped), for: .touchUpInside)
         packingListAIButton.addTarget(self, action: #selector(packingListAIButtonTapped), for: .touchUpInside)
         briefingAIButton.addTarget(self, action: #selector(briefingAIButtonTapped), for: .touchUpInside)
-        summaryAIButton.addTarget(self, action: #selector(summaryAIButtonTapped), for: .touchUpInside)
         #endif
     }
 
@@ -550,14 +536,6 @@ class TripDetailViewController: UIViewController {
         // Check if briefing exists
         let hasBriefing = CoreDataManager.shared.fetchBriefing(for: trip) != nil
         briefingAIButton.setTitle(hasBriefing ? "Vedi Briefing" : "Genera Briefing", for: .normal)
-
-        // Summary only available for completed trips
-        let isCompleted = !trip.isActive
-        summaryAIButton.isHidden = trip.isActive
-        if isCompleted {
-            let hasSummary = CoreDataManager.shared.fetchSummary(for: trip) != nil
-            summaryAIButton.setTitle(hasSummary ? "Vedi Riassunto" : "Genera Riassunto", for: .normal)
-        }
     }
     #endif
 
@@ -745,23 +723,6 @@ class TripDetailViewController: UIViewController {
         present(nav, animated: true)
     }
 
-    @objc private func summaryAIButtonTapped() {
-        guard !trip.isActive else {
-            showAlert(title: "Viaggio in Corso", message: "Completa il viaggio per generare il riassunto.")
-            return
-        }
-
-        let summaryVC = TripSummaryViewController()
-        summaryVC.associatedTrip = trip
-
-        // Check if summary already exists
-        if let existingSummary = CoreDataManager.shared.fetchSummary(for: trip) {
-            summaryVC.existingSummary = existingSummary
-        }
-
-        let nav = UINavigationController(rootViewController: summaryVC)
-        present(nav, animated: true)
-    }
     #else
     // Fallback per iOS < 26 o SDK non disponibile
     @objc private func itineraryAIButtonTapped() {
@@ -773,10 +734,6 @@ class TripDetailViewController: UIViewController {
     }
 
     @objc private func briefingAIButtonTapped() {
-        showAlert(title: "Non Disponibile", message: "Le funzionalita AI richiedono iOS 26 o successivo.")
-    }
-
-    @objc private func summaryAIButtonTapped() {
         showAlert(title: "Non Disponibile", message: "Le funzionalita AI richiedono iOS 26 o successivo.")
     }
     #endif
