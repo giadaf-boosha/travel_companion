@@ -87,9 +87,17 @@ final class FoundationModelService {
         }
 
         func checkAvailability() -> ModelAvailabilityResult {
+            #if DEBUG
+            print("FoundationModelService: Checking model availability...")
+            print("FoundationModelService: Model availability = \(model.availability)")
+            #endif
+
             #if targetEnvironment(simulator)
             // Apple Intelligence is not available in the simulator
             if model.availability != .available {
+                #if DEBUG
+                print("FoundationModelService: Running in simulator with unavailable model")
+                #endif
                 return .unavailable(
                     title: "Simulatore Non Supportato",
                     message: "Apple Intelligence non e disponibile nel simulatore iOS. Testa su un dispositivo fisico con chip A17 Pro o successivo.",
@@ -100,9 +108,15 @@ final class FoundationModelService {
 
             switch model.availability {
             case .available:
+                #if DEBUG
+                print("FoundationModelService: Model is AVAILABLE")
+                #endif
                 return .available
 
             case .unavailable(.appleIntelligenceNotEnabled):
+                #if DEBUG
+                print("FoundationModelService: Apple Intelligence NOT ENABLED")
+                #endif
                 return .unavailable(
                     title: "Apple Intelligence Disabilitata",
                     message: "Attiva Apple Intelligence nelle Impostazioni per usare le funzioni AI.",
@@ -110,6 +124,9 @@ final class FoundationModelService {
                 )
 
             case .unavailable(.deviceNotEligible):
+                #if DEBUG
+                print("FoundationModelService: Device NOT ELIGIBLE")
+                #endif
                 return .unavailable(
                     title: "Dispositivo Non Supportato",
                     message: "Questa funzione richiede iPhone con chip A17 Pro o successivo.",
@@ -117,6 +134,9 @@ final class FoundationModelService {
                 )
 
             case .unavailable(.modelNotReady):
+                #if DEBUG
+                print("FoundationModelService: Model NOT READY (downloading)")
+                #endif
                 return .unavailable(
                     title: "Modello in Preparazione",
                     message: "Il modello AI e in fase di download. Riprova tra qualche minuto.",
@@ -124,6 +144,9 @@ final class FoundationModelService {
                 )
 
             @unknown default:
+                #if DEBUG
+                print("FoundationModelService: Unknown availability status")
+                #endif
                 #if targetEnvironment(simulator)
                 return .unavailable(
                     title: "Simulatore Non Supportato",
@@ -133,8 +156,8 @@ final class FoundationModelService {
                 #else
                 return .unavailable(
                     title: "Funzione Non Disponibile",
-                    message: "Apple Intelligence non e attualmente disponibile.",
-                    action: nil
+                    message: "Apple Intelligence non e attualmente disponibile. Verifica che Apple Intelligence sia attiva nelle Impostazioni > Apple Intelligence e Siri.",
+                    action: .openSettings
                 )
                 #endif
             }
