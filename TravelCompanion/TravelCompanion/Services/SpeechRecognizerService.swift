@@ -160,14 +160,16 @@ final class SpeechRecognizerService: NSObject {
 
     /// Verifica l'autorizzazione al microfono
     func checkMicrophonePermission(completion: @escaping (Bool) -> Void) {
-        switch AVAudioSession.sharedInstance().recordPermission {
+        let permission = AVAudioApplication.shared.recordPermission
+        switch permission {
         case .granted:
             completion(true)
         case .denied:
             completion(false)
         case .undetermined:
-            AVAudioSession.sharedInstance().requestRecordPermission { granted in
-                DispatchQueue.main.async {
+            Task {
+                let granted = await AVAudioApplication.requestRecordPermission()
+                await MainActor.run {
                     completion(granted)
                 }
             }

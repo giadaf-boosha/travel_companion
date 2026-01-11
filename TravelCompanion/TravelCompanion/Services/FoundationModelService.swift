@@ -23,7 +23,7 @@ final class FoundationModelService {
     var isGenerating: Bool {
         #if canImport(FoundationModels)
         if #available(iOS 26.0, *) {
-            return (sessionHelper as? SessionHelper)?.isResponding ?? false
+            return sessionHelper.isResponding
         }
         #endif
         return false
@@ -87,6 +87,17 @@ final class FoundationModelService {
         }
 
         func checkAvailability() -> ModelAvailabilityResult {
+            #if targetEnvironment(simulator)
+            // Apple Intelligence is not available in the simulator
+            if model.availability != .available {
+                return .unavailable(
+                    title: "Simulatore Non Supportato",
+                    message: "Apple Intelligence non e disponibile nel simulatore iOS. Testa su un dispositivo fisico con chip A17 Pro o successivo.",
+                    action: nil
+                )
+            }
+            #endif
+
             switch model.availability {
             case .available:
                 return .available
@@ -113,11 +124,19 @@ final class FoundationModelService {
                 )
 
             @unknown default:
+                #if targetEnvironment(simulator)
+                return .unavailable(
+                    title: "Simulatore Non Supportato",
+                    message: "Apple Intelligence non e disponibile nel simulatore iOS. Testa su un dispositivo fisico con chip A17 Pro o successivo.",
+                    action: nil
+                )
+                #else
                 return .unavailable(
                     title: "Funzione Non Disponibile",
                     message: "Apple Intelligence non e attualmente disponibile.",
                     action: nil
                 )
+                #endif
             }
         }
 
