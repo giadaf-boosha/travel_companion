@@ -1,4 +1,0 @@
-
-
-*** If you believe this error represents a bug, please attach the result bundle at /Users/giadafranceschini/code/uni/LAM/travel_companion/TravelCompanion/TestResults/AllTests.xcresult
-

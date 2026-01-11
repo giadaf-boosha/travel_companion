@@ -63,3 +63,15 @@ DerivedData/
 .env
 .env.local
 .env.*.local
+
+# Test Results - generated files
+**/TestResults/
+*.xcresult
+
+# Serena IDE config
+**/.serena/
+
+# Spec and instruction files (local only)
+spec.md
+ISTRUZIONI_CONSEGNA.md
+*.txt
