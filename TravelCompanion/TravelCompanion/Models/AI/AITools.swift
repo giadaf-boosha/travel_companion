@@ -1,7 +1,11 @@
 import Foundation
 import CoreLocation
 
-#if canImport(FoundationModels)
+// NOTE: Tool protocol implementation is temporarily disabled as ToolOutput type
+// is not available in the current FoundationModels SDK version.
+// These tools can be re-enabled when the API becomes stable.
+
+#if false // canImport(FoundationModels) - disabled until Tool API is stable
 import FoundationModels
 
 // MARK: - Get Trip Data Tool

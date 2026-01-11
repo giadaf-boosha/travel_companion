@@ -13,10 +13,8 @@ final class FoundationModelService {
 
     // MARK: - Properties
 
-    #if canImport(FoundationModels)
-    private var session: LanguageModelSession?
-    private let model = SystemLanguageModel.default
-    #endif
+    /// Session helper stored as Any to avoid availability issues at property declaration
+    private var _sessionHelper: Any?
 
     private let maxRetryAttempts = 3
     private let retryDelay: TimeInterval = 0.5
@@ -24,10 +22,11 @@ final class FoundationModelService {
     /// Indica se il modello sta generando una risposta
     var isGenerating: Bool {
         #if canImport(FoundationModels)
-        return session?.isResponding ?? false
-        #else
-        return false
+        if #available(iOS 26.0, *) {
+            return (sessionHelper as? SessionHelper)?.isResponding ?? false
+        }
         #endif
+        return false
     }
 
     // MARK: - System Prompts
@@ -48,6 +47,105 @@ final class FoundationModelService {
     - Mai eccessivamente entusiasta o freddo
     """
 
+    // MARK: - Session Helper (iOS 26+)
+
+    #if canImport(FoundationModels)
+    @available(iOS 26.0, *)
+    private final class SessionHelper {
+        var session: LanguageModelSession?
+        let model = SystemLanguageModel.default
+
+        var isResponding: Bool {
+            return session?.isResponding ?? false
+        }
+
+        func ensureSession(systemPrompt: String) throws {
+            guard model.availability == .available else {
+                throw FoundationModelError.modelNotAvailable(reason: mapUnavailabilityReason())
+            }
+
+            if session == nil {
+                session = LanguageModelSession {
+                    systemPrompt
+                }
+            }
+        }
+
+        func mapUnavailabilityReason() -> UnavailabilityReason {
+            switch model.availability {
+            case .available:
+                return .unknown
+            case .unavailable(.appleIntelligenceNotEnabled):
+                return .appleIntelligenceNotEnabled
+            case .unavailable(.deviceNotEligible):
+                return .deviceNotEligible
+            case .unavailable(.modelNotReady):
+                return .modelNotReady
+            @unknown default:
+                return .unknown
+            }
+        }
+
+        func checkAvailability() -> ModelAvailabilityResult {
+            switch model.availability {
+            case .available:
+                return .available
+
+            case .unavailable(.appleIntelligenceNotEnabled):
+                return .unavailable(
+                    title: "Apple Intelligence Disabilitata",
+                    message: "Attiva Apple Intelligence nelle Impostazioni per usare le funzioni AI.",
+                    action: .openSettings
+                )
+
+            case .unavailable(.deviceNotEligible):
+                return .unavailable(
+                    title: "Dispositivo Non Supportato",
+                    message: "Questa funzione richiede iPhone con chip A17 Pro o successivo.",
+                    action: nil
+                )
+
+            case .unavailable(.modelNotReady):
+                return .unavailable(
+                    title: "Modello in Preparazione",
+                    message: "Il modello AI e in fase di download. Riprova tra qualche minuto.",
+                    action: .retry
+                )
+
+            @unknown default:
+                return .unavailable(
+                    title: "Funzione Non Disponibile",
+                    message: "Apple Intelligence non e attualmente disponibile.",
+                    action: nil
+                )
+            }
+        }
+
+        func prewarm() async {
+            guard model.availability == .available else { return }
+
+            // Initialize session without prewarm as API may vary
+            session = LanguageModelSession()
+
+            #if DEBUG
+            print("FoundationModelService: Session initialized")
+            #endif
+        }
+
+        func reset() {
+            session = nil
+        }
+    }
+
+    @available(iOS 26.0, *)
+    private var sessionHelper: SessionHelper {
+        if _sessionHelper == nil {
+            _sessionHelper = SessionHelper()
+        }
+        return _sessionHelper as! SessionHelper
+    }
+    #endif
+
     // MARK: - Initialization
 
     private init() {
@@ -61,104 +159,27 @@ final class FoundationModelService {
     /// Verifica la disponibilita del modello
     func checkAvailability() -> ModelAvailabilityResult {
         #if canImport(FoundationModels)
-        switch model.availability {
-        case .available:
-            return .available
-
-        case .unavailable(.appleIntelligenceNotEnabled):
-            return .unavailable(
-                title: "Apple Intelligence Disabilitata",
-                message: "Attiva Apple Intelligence nelle Impostazioni per usare le funzioni AI.",
-                action: .openSettings
-            )
-
-        case .unavailable(.deviceNotEligible):
-            return .unavailable(
-                title: "Dispositivo Non Supportato",
-                message: "Questa funzione richiede iPhone con chip A17 Pro o successivo.",
-                action: nil
-            )
-
-        case .unavailable(.modelNotReady):
-            return .unavailable(
-                title: "Modello in Preparazione",
-                message: "Il modello AI e in fase di download. Riprova tra qualche minuto.",
-                action: .retry
-            )
-
-        @unknown default:
-            return .unavailable(
-                title: "Funzione Non Disponibile",
-                message: "Apple Intelligence non e attualmente disponibile.",
-                action: nil
-            )
+        if #available(iOS 26.0, *) {
+            return sessionHelper.checkAvailability()
         }
-        #else
+        #endif
         return .unavailable(
             title: "Non Disponibile",
             message: "Le funzionalita AI richiedono iOS 26 o successivo.",
             action: nil
         )
-        #endif
     }
 
     /// Esegue il prewarm del modello se disponibile
     func prewarmIfAvailable() {
         #if canImport(FoundationModels)
-        guard model.availability == .available else { return }
-
-        Task(priority: .utility) {
-            do {
-                self.session = LanguageModelSession()
-                try await self.session?.prewarm(promptPrefix: "Sei Travel Companion")
-
-                #if DEBUG
-                print("FoundationModelService: Session prewarmed successfully")
-                #endif
-            } catch {
-                #if DEBUG
-                print("FoundationModelService: Prewarm failed - \(error.localizedDescription)")
-                #endif
+        if #available(iOS 26.0, *) {
+            Task(priority: .utility) {
+                await self.sessionHelper.prewarm()
             }
         }
         #endif
     }
-
-    // MARK: - Session Management
-
-    /// Assicura che la sessione sia inizializzata
-    private func ensureSession() throws {
-        #if canImport(FoundationModels)
-        guard model.availability == .available else {
-            throw FoundationModelError.modelNotAvailable(reason: mapUnavailabilityReason())
-        }
-
-        if session == nil {
-            session = LanguageModelSession {
-                self.baseSystemPrompt
-            }
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
-        #endif
-    }
-
-    #if canImport(FoundationModels)
-    private func mapUnavailabilityReason() -> UnavailabilityReason {
-        switch model.availability {
-        case .available:
-            return .unknown
-        case .unavailable(.appleIntelligenceNotEnabled):
-            return .appleIntelligenceNotEnabled
-        case .unavailable(.deviceNotEligible):
-            return .deviceNotEligible
-        case .unavailable(.modelNotReady):
-            return .modelNotReady
-        @unknown default:
-            return .unknown
-        }
-    }
-    #endif
 
     // MARK: - Retry Logic
 
@@ -200,43 +221,63 @@ final class FoundationModelService {
         days: Int,
         tripType: String,
         travelStyle: String? = nil
-    ) async throws -> TravelItinerary {
+    ) async throws -> TravelItineraryData {
         #if canImport(FoundationModels)
-        guard !isGenerating else {
-            throw FoundationModelError.alreadyGenerating
+        if #available(iOS 26.0, *) {
+            guard !isGenerating else {
+                throw FoundationModelError.alreadyGenerating
+            }
+
+            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
+
+            let styleInfo = travelStyle.map { "Stile preferito: \($0)." } ?? ""
+            let longTripNote = days > 7 ? "Genera un overview sintetico per aree/zone invece di dettagli giornalieri completi." : ""
+
+            let prompt = """
+            Genera un itinerario di viaggio per:
+            - Destinazione: \(destination)
+            - Durata: \(days) giorni
+            - Tipo viaggio: \(tripType)
+            \(styleInfo)
+            \(longTripNote)
+
+            Considera: logistica spostamenti, attivita appropriate per il tipo di viaggio.
+            """
+
+            return try await executeWithRetry {
+                let response = try await self.sessionHelper.session!.respond(
+                    to: prompt,
+                    generating: TravelItinerary.self
+                )
+
+                #if DEBUG
+                self.logResponse(response.content)
+                #endif
+
+                // Convert to Data structure for compatibility
+                let itinerary = response.content
+                return TravelItineraryData(
+                    destination: itinerary.destination,
+                    totalDays: itinerary.totalDays,
+                    travelStyle: itinerary.travelStyle,
+                    dailyPlans: itinerary.dailyPlans.map { plan in
+                        DayPlanData(
+                            dayNumber: plan.dayNumber,
+                            theme: plan.theme,
+                            morningActivity: plan.morningActivity,
+                            lunchArea: plan.lunchArea,
+                            afternoonActivity: plan.afternoonActivity,
+                            dinnerArea: plan.dinnerArea,
+                            eveningActivity: plan.eveningActivity,
+                            transportNotes: plan.transportNotes
+                        )
+                    },
+                    generalTips: itinerary.generalTips
+                )
+            }
         }
-
-        try ensureSession()
-
-        let styleInfo = travelStyle.map { "Stile preferito: \($0)." } ?? ""
-        let longTripNote = days > 7 ? "Genera un overview sintetico per aree/zone invece di dettagli giornalieri completi." : ""
-
-        let prompt = """
-        Genera un itinerario di viaggio per:
-        - Destinazione: \(destination)
-        - Durata: \(days) giorni
-        - Tipo viaggio: \(tripType)
-        \(styleInfo)
-        \(longTripNote)
-
-        Considera: logistica spostamenti, attivita appropriate per il tipo di viaggio.
-        """
-
-        return try await executeWithRetry {
-            let response = try await self.session!.respond(
-                to: prompt,
-                generating: TravelItinerary.self
-            )
-
-            #if DEBUG
-            self.logResponse(response.content)
-            #endif
-
-            return response.content
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
         #endif
+        throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
     /// Genera una packing list
@@ -245,177 +286,220 @@ final class FoundationModelService {
         duration: Int,
         tripType: String,
         season: String
-    ) async throws -> GeneratedPackingList {
+    ) async throws -> GeneratedPackingListData {
         #if canImport(FoundationModels)
-        guard !isGenerating else {
-            throw FoundationModelError.alreadyGenerating
+        if #available(iOS 26.0, *) {
+            guard !isGenerating else {
+                throw FoundationModelError.alreadyGenerating
+            }
+
+            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
+
+            let prompt = """
+            Genera una lista di oggetti da mettere in valigia per:
+            - Destinazione: \(destination)
+            - Durata: \(duration) giorni
+            - Tipo viaggio: \(tripType)
+            - Stagione: \(season)
+
+            Includi solo articoli essenziali e pertinenti.
+            """
+
+            return try await executeWithRetry {
+                let response = try await self.sessionHelper.session!.respond(
+                    to: prompt,
+                    generating: GeneratedPackingList.self
+                )
+
+                #if DEBUG
+                self.logResponse(response.content)
+                #endif
+
+                let packingList = response.content
+                return GeneratedPackingListData(
+                    documents: packingList.documents,
+                    clothing: packingList.clothing,
+                    toiletries: packingList.toiletries,
+                    electronics: packingList.electronics,
+                    specialItems: packingList.specialItems,
+                    healthKit: packingList.healthKit
+                )
+            }
         }
-
-        try ensureSession()
-
-        let prompt = """
-        Genera una lista di oggetti da mettere in valigia per:
-        - Destinazione: \(destination)
-        - Durata: \(duration) giorni
-        - Tipo viaggio: \(tripType)
-        - Stagione: \(season)
-
-        Includi solo articoli essenziali e pertinenti.
-        """
-
-        return try await executeWithRetry {
-            let response = try await self.session!.respond(
-                to: prompt,
-                generating: GeneratedPackingList.self
-            )
-
-            #if DEBUG
-            self.logResponse(response.content)
-            #endif
-
-            return response.content
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
         #endif
+        throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
     /// Genera un briefing sulla destinazione
-    func generateBriefing(destination: String) async throws -> GeneratedTripBriefing {
+    func generateBriefing(destination: String) async throws -> TripBriefingData {
         #if canImport(FoundationModels)
-        guard !isGenerating else {
-            throw FoundationModelError.alreadyGenerating
+        if #available(iOS 26.0, *) {
+            guard !isGenerating else {
+                throw FoundationModelError.alreadyGenerating
+            }
+
+            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
+
+            let prompt = """
+            Genera un briefing informativo per un viaggio a: \(destination)
+
+            INCLUDI SOLO informazioni stabili e generali:
+            - Usi e costumi culturali
+            - Frasi utili nella lingua locale
+            - Clima tipico per stagione
+            - Consigli generali di sicurezza
+            - Usanze per le mance
+            - Cucina tipica
+
+            ESCLUDI informazioni che possono cambiare (visti, prezzi, restrizioni sanitarie).
+            """
+
+            return try await executeWithRetry {
+                let response = try await self.sessionHelper.session!.respond(
+                    to: prompt,
+                    generating: GeneratedTripBriefing.self
+                )
+
+                #if DEBUG
+                self.logResponse(response.content)
+                #endif
+
+                let briefing = response.content
+                return TripBriefingData(
+                    destination: briefing.destination,
+                    quickFacts: QuickFactsData(
+                        language: briefing.quickFacts.language,
+                        currency: briefing.quickFacts.currency,
+                        timeZone: briefing.quickFacts.timeZone,
+                        electricalOutlet: briefing.quickFacts.electricalOutlet
+                    ),
+                    culturalTips: briefing.culturalTips,
+                    usefulPhrases: briefing.usefulPhrases.map {
+                        LocalPhraseData(italian: $0.italian, local: $0.local, pronunciation: $0.pronunciation)
+                    },
+                    climateInfo: briefing.climateInfo,
+                    foodCulture: briefing.foodCulture,
+                    safetyNotes: briefing.safetyNotes
+                )
+            }
         }
-
-        try ensureSession()
-
-        let prompt = """
-        Genera un briefing informativo per un viaggio a: \(destination)
-
-        INCLUDI SOLO informazioni stabili e generali:
-        - Usi e costumi culturali
-        - Frasi utili nella lingua locale
-        - Clima tipico per stagione
-        - Consigli generali di sicurezza
-        - Usanze per le mance
-        - Cucina tipica
-
-        ESCLUDI informazioni che possono cambiare (visti, prezzi, restrizioni sanitarie).
-        """
-
-        return try await executeWithRetry {
-            let response = try await self.session!.respond(
-                to: prompt,
-                generating: GeneratedTripBriefing.self
-            )
-
-            #if DEBUG
-            self.logResponse(response.content)
-            #endif
-
-            return response.content
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
         #endif
+        throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
     /// Genera un'entry del diario di viaggio
-    func generateJournalEntry(tripData: TripDayData) async throws -> JournalEntry {
+    func generateJournalEntry(tripData: TripDayData) async throws -> JournalEntryData {
         #if canImport(FoundationModels)
-        guard !isGenerating else {
-            throw FoundationModelError.alreadyGenerating
+        if #available(iOS 26.0, *) {
+            guard !isGenerating else {
+                throw FoundationModelError.alreadyGenerating
+            }
+
+            guard tripData.hasData else {
+                throw FoundationModelError.validationFailed(reason: "Nessun dato disponibile per questa giornata")
+            }
+
+            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateString = dateFormatter.string(from: tripData.date)
+
+            let notesContext = tripData.noteContents.isEmpty
+                ? "Nessuna nota"
+                : tripData.noteContents.joined(separator: "; ")
+
+            let placesContext = tripData.placesVisited.isEmpty
+                ? "Non specificati"
+                : tripData.placesVisited.joined(separator: ", ")
+
+            let distanceKm = tripData.totalDistance / 1000
+
+            let prompt = """
+            Genera un'entry di diario di viaggio per la giornata del \(dateString).
+
+            DATI DELLA GIORNATA:
+            - Foto scattate: \(tripData.photoCount)
+            - Note registrate: \(notesContext)
+            - Distanza percorsa: \(String(format: "%.1f", distanceKm)) km
+            - Luoghi visitati: \(placesContext)
+
+            STILE:
+            - Scrivi in TERZA PERSONA
+            - Tono bilanciato tra fatti ed emozioni
+            - 150-250 parole per il racconto
+            """
+
+            return try await executeWithRetry {
+                let response = try await self.sessionHelper.session!.respond(
+                    to: prompt,
+                    generating: JournalEntry.self
+                )
+
+                #if DEBUG
+                self.logResponse(response.content)
+                #endif
+
+                let entry = response.content
+                return JournalEntryData(
+                    title: entry.title,
+                    date: entry.date,
+                    narrative: entry.narrative,
+                    highlight: entry.highlight,
+                    statsNarrative: entry.statsNarrative
+                )
+            }
         }
-
-        guard tripData.hasData else {
-            throw FoundationModelError.validationFailed(reason: "Nessun dato disponibile per questa giornata")
-        }
-
-        try ensureSession()
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let dateString = dateFormatter.string(from: tripData.date)
-
-        let notesContext = tripData.noteContents.isEmpty
-            ? "Nessuna nota"
-            : tripData.noteContents.joined(separator: "; ")
-
-        let placesContext = tripData.placesVisited.isEmpty
-            ? "Non specificati"
-            : tripData.placesVisited.joined(separator: ", ")
-
-        let distanceKm = tripData.totalDistance / 1000
-
-        let prompt = """
-        Genera un'entry di diario di viaggio per la giornata del \(dateString).
-
-        DATI DELLA GIORNATA:
-        - Foto scattate: \(tripData.photoCount)
-        - Note registrate: \(notesContext)
-        - Distanza percorsa: \(String(format: "%.1f", distanceKm)) km
-        - Luoghi visitati: \(placesContext)
-
-        STILE:
-        - Scrivi in TERZA PERSONA
-        - Tono bilanciato tra fatti ed emozioni
-        - 150-250 parole per il racconto
-        """
-
-        return try await executeWithRetry {
-            let response = try await self.session!.respond(
-                to: prompt,
-                generating: JournalEntry.self
-            )
-
-            #if DEBUG
-            self.logResponse(response.content)
-            #endif
-
-            return response.content
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
         #endif
+        throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
     /// Struttura una nota da testo libero
-    func structureNote(rawText: String) async throws -> StructuredNote {
+    func structureNote(rawText: String) async throws -> StructuredNoteData {
         #if canImport(FoundationModels)
-        guard !isGenerating else {
-            throw FoundationModelError.alreadyGenerating
+        if #available(iOS 26.0, *) {
+            guard !isGenerating else {
+                throw FoundationModelError.alreadyGenerating
+            }
+
+            let sanitizedText = sanitizeInput(rawText)
+            guard !sanitizedText.isEmpty else {
+                throw FoundationModelError.validationFailed(reason: "Testo vuoto")
+            }
+
+            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
+
+            let prompt = """
+            Analizza e struttura la seguente nota di viaggio:
+
+            "\(sanitizedText)"
+
+            Estrai: categoria, nome luogo (se presente), valutazione implicita (1-5), costo (se menzionato), riassunto pulito, tag pertinenti.
+            """
+
+            return try await executeWithRetry {
+                let response = try await self.sessionHelper.session!.respond(
+                    to: prompt,
+                    generating: StructuredNote.self
+                )
+
+                #if DEBUG
+                self.logResponse(response.content)
+                #endif
+
+                let note = response.content
+                return StructuredNoteData(
+                    category: note.category,
+                    placeName: note.placeName,
+                    rating: note.rating,
+                    cost: note.cost,
+                    summary: note.summary,
+                    tags: note.tags
+                )
+            }
         }
-
-        let sanitizedText = sanitizeInput(rawText)
-        guard !sanitizedText.isEmpty else {
-            throw FoundationModelError.validationFailed(reason: "Testo vuoto")
-        }
-
-        try ensureSession()
-
-        let prompt = """
-        Analizza e struttura la seguente nota di viaggio:
-
-        "\(sanitizedText)"
-
-        Estrai: categoria, nome luogo (se presente), valutazione implicita (1-5), costo (se menzionato), riassunto pulito, tag pertinenti.
-        """
-
-        return try await executeWithRetry {
-            let response = try await self.session!.respond(
-                to: prompt,
-                generating: StructuredNote.self
-            )
-
-            #if DEBUG
-            self.logResponse(response.content)
-            #endif
-
-            return response.content
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
         #endif
+        throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
     /// Genera un riassunto completo del viaggio
@@ -427,53 +511,62 @@ final class FoundationModelService {
         totalDistance: Double,
         highlights: [String],
         variant: SummaryVariant = .standard
-    ) async throws -> TripSummaryGenerated {
+    ) async throws -> TripSummaryData {
         #if canImport(FoundationModels)
-        guard !isGenerating else {
-            throw FoundationModelError.alreadyGenerating
+        if #available(iOS 26.0, *) {
+            guard !isGenerating else {
+                throw FoundationModelError.alreadyGenerating
+            }
+
+            try sessionHelper.ensureSession(systemPrompt: baseSystemPrompt)
+
+            let distanceKm = totalDistance / 1000
+            let highlightsText = highlights.isEmpty
+                ? "Non specificati"
+                : highlights.joined(separator: "; ")
+
+            let variantModifier = variant.promptModifier
+
+            let prompt = """
+            Genera un riassunto narrativo completo per il viaggio completato.
+
+            DATI DEL VIAGGIO:
+            - Destinazione: \(destination)
+            - Durata: \(duration) giorni
+            - Foto scattate: \(photoCount)
+            - Note registrate: \(noteCount)
+            - Distanza totale: \(String(format: "%.1f", distanceKm)) km
+            - Momenti salienti: \(highlightsText)
+
+            STILE:
+            - Scrivi in TERZA PERSONA
+            - Tono evocativo ma non eccessivo
+            \(variantModifier)
+            """
+
+            return try await executeWithRetry {
+                let response = try await self.sessionHelper.session!.respond(
+                    to: prompt,
+                    generating: TripSummaryGenerated.self
+                )
+
+                #if DEBUG
+                self.logResponse(response.content)
+                #endif
+
+                let summary = response.content
+                return TripSummaryData(
+                    title: summary.title,
+                    tagline: summary.tagline,
+                    narrative: summary.narrative,
+                    highlights: summary.highlights,
+                    statsNarrative: summary.statsNarrative,
+                    nextTripSuggestion: summary.nextTripSuggestion
+                )
+            }
         }
-
-        try ensureSession()
-
-        let distanceKm = totalDistance / 1000
-        let highlightsText = highlights.isEmpty
-            ? "Non specificati"
-            : highlights.joined(separator: "; ")
-
-        let variantModifier = variant.promptModifier
-
-        let prompt = """
-        Genera un riassunto narrativo completo per il viaggio completato.
-
-        DATI DEL VIAGGIO:
-        - Destinazione: \(destination)
-        - Durata: \(duration) giorni
-        - Foto scattate: \(photoCount)
-        - Note registrate: \(noteCount)
-        - Distanza totale: \(String(format: "%.1f", distanceKm)) km
-        - Momenti salienti: \(highlightsText)
-
-        STILE:
-        - Scrivi in TERZA PERSONA
-        - Tono evocativo ma non eccessivo
-        \(variantModifier)
-        """
-
-        return try await executeWithRetry {
-            let response = try await self.session!.respond(
-                to: prompt,
-                generating: TripSummaryGenerated.self
-            )
-
-            #if DEBUG
-            self.logResponse(response.content)
-            #endif
-
-            return response.content
-        }
-        #else
-        throw FoundationModelError.modelNotAvailable(reason: .unknown)
         #endif
+        throw FoundationModelError.modelNotAvailable(reason: .unknown)
     }
 
     // MARK: - Input Validation
@@ -495,46 +588,16 @@ final class FoundationModelService {
     /// Gestisce un errore di generazione e restituisce un UserFacingError
     func handleGenerationError(_ error: Error) -> UserFacingError {
         #if canImport(FoundationModels)
-        // Errori specifici di LanguageModelSession
-        if let generationError = error as? LanguageModelSession.GenerationError {
-            switch generationError {
-            case .contextLimitExceeded:
-                return UserFacingError(
-                    title: "Richiesta Troppo Lunga",
-                    message: "Prova con una richiesta piu breve.",
-                    canRetry: false
-                )
-            case .unsupportedLanguage:
-                return UserFacingError(
-                    title: "Lingua Non Supportata",
-                    message: "L'assistente funziona meglio in italiano o inglese.",
-                    canRetry: false
-                )
-            case .guardrailViolation:
-                return UserFacingError(
-                    title: "Richiesta Non Elaborabile",
-                    message: "Prova a riformulare la richiesta.",
-                    canRetry: false
-                )
-            @unknown default:
+        if #available(iOS 26.0, *) {
+            // Errori specifici di LanguageModelSession
+            // Note: Error types may vary between SDK versions, using generic handling
+            if error is LanguageModelSession.GenerationError {
                 return UserFacingError(
                     title: "Errore di Generazione",
-                    message: "Si e verificato un problema. Riprova.",
+                    message: "Si e verificato un problema con la generazione. Riprova.",
                     canRetry: true
                 )
             }
-        }
-
-        // Errori di chiamata Tool
-        if let toolError = error as? LanguageModelSession.ToolCallError {
-            #if DEBUG
-            print("Tool error: \(toolError.tool) - \(toolError.underlyingError)")
-            #endif
-            return UserFacingError(
-                title: "Errore Recupero Dati",
-                message: "Impossibile accedere ai dati del viaggio.",
-                canRetry: true
-            )
         }
         #endif
 
@@ -566,10 +629,12 @@ final class FoundationModelService {
     /// Resetta la sessione corrente
     func resetSession() {
         #if canImport(FoundationModels)
-        session = nil
-        #if DEBUG
-        print("FoundationModelService: Session reset")
-        #endif
+        if #available(iOS 26.0, *) {
+            sessionHelper.reset()
+            #if DEBUG
+            print("FoundationModelService: Session reset")
+            #endif
+        }
         #endif
     }
 }

@@ -6,7 +6,7 @@ final class ItineraryDetailViewController: UIViewController {
     // MARK: - Properties
 
     /// L'itinerario da visualizzare (impostato prima della presentazione)
-    var itinerary: TravelItinerary?
+    var itinerary: TravelItineraryData?
 
     /// Trip associato (opzionale, per salvare l'itinerario)
     var associatedTrip: Trip?
@@ -269,14 +269,14 @@ final class ItineraryDetailViewController: UIViewController {
         }
     }
 
-    private func populateFromGenerated(_ itinerary: TravelItinerary) {
+    private func populateFromGenerated(_ itinerary: TravelItineraryData) {
         destinationLabel.text = itinerary.destination
         daysLabel.text = "\(itinerary.totalDays) giorni"
         styleLabel.text = itinerary.travelStyle.capitalized
 
         // Popola i giorni
         for dayPlan in itinerary.dailyPlans {
-            let dayCard = createDayCard(for: dayPlan)
+            let dayCard = createDayCardFromData(dayPlan)
             daysStackView.addArrangedSubview(dayCard)
         }
 
@@ -317,57 +317,6 @@ final class ItineraryDetailViewController: UIViewController {
     }
 
     // MARK: - UI Creation Helpers
-
-    private func createDayCard(for dayPlan: DayPlan) -> UIView {
-        let card = UIView()
-        card.translatesAutoresizingMaskIntoConstraints = false
-        card.backgroundColor = .secondarySystemBackground
-        card.layer.cornerRadius = 12
-        card.accessibilityIdentifier = "\(AccessibilityIdentifiers.ItineraryDetail.dayCard)_\(dayPlan.dayNumber)"
-
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 12
-        card.addSubview(stackView)
-
-        // Header con giorno e tema
-        let headerView = createDayHeader(dayNumber: dayPlan.dayNumber, theme: dayPlan.theme)
-        stackView.addArrangedSubview(headerView)
-
-        // Attivita
-        let morningView = createActivityRow(icon: "sunrise.fill", title: "Mattina", text: dayPlan.morningActivity)
-        stackView.addArrangedSubview(morningView)
-
-        let lunchView = createActivityRow(icon: "fork.knife", title: "Pranzo", text: dayPlan.lunchArea)
-        stackView.addArrangedSubview(lunchView)
-
-        let afternoonView = createActivityRow(icon: "sun.max.fill", title: "Pomeriggio", text: dayPlan.afternoonActivity)
-        stackView.addArrangedSubview(afternoonView)
-
-        let dinnerView = createActivityRow(icon: "moon.stars.fill", title: "Cena", text: dayPlan.dinnerArea)
-        stackView.addArrangedSubview(dinnerView)
-
-        if let evening = dayPlan.eveningActivity, !evening.isEmpty {
-            let eveningView = createActivityRow(icon: "sparkles", title: "Sera", text: evening)
-            stackView.addArrangedSubview(eveningView)
-        }
-
-        // Note trasporti
-        if !dayPlan.transportNotes.isEmpty {
-            let transportView = createTransportNote(dayPlan.transportNotes)
-            stackView.addArrangedSubview(transportView)
-        }
-
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: card.topAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -16)
-        ])
-
-        return card
-    }
 
     private func createDayCardFromData(_ dayPlan: DayPlanData) -> UIView {
         let card = UIView()
@@ -564,22 +513,8 @@ final class ItineraryDetailViewController: UIViewController {
     @objc private func saveTapped() {
         guard let trip = associatedTrip, let itinerary = itinerary else { return }
 
-        // Converti i piani giornalieri in Data
-        let dailyPlansData: Data? = {
-            let dataPlans = itinerary.dailyPlans.map { plan in
-                DayPlanData(
-                    dayNumber: plan.dayNumber,
-                    theme: plan.theme,
-                    morningActivity: plan.morningActivity,
-                    lunchArea: plan.lunchArea,
-                    afternoonActivity: plan.afternoonActivity,
-                    dinnerArea: plan.dinnerArea,
-                    eveningActivity: plan.eveningActivity,
-                    transportNotes: plan.transportNotes
-                )
-            }
-            return try? JSONEncoder().encode(dataPlans)
-        }()
+        // Encode daily plans to Data
+        let dailyPlansData = try? JSONEncoder().encode(itinerary.dailyPlans)
 
         let _ = CoreDataManager.shared.createItinerary(
             destination: itinerary.destination,

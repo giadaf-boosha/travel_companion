@@ -706,7 +706,7 @@ class TripDetailViewController: UIViewController {
         if let existingItinerary = CoreDataManager.shared.fetchItinerary(for: trip) {
             // Show existing itinerary
             let detailVC = ItineraryDetailViewController()
-            detailVC.existingItinerary = existingItinerary
+            detailVC.savedItinerary = existingItinerary
             detailVC.associatedTrip = trip
             navigationController?.pushViewController(detailVC, animated: true)
         } else {
@@ -724,7 +724,7 @@ class TripDetailViewController: UIViewController {
 
         // Check if packing list already exists
         if let existingList = CoreDataManager.shared.fetchPackingList(for: trip) {
-            packingVC.existingPackingList = existingList
+            packingVC.savedPackingList = existingList
         }
 
         let nav = UINavigationController(rootViewController: packingVC)
@@ -738,7 +738,7 @@ class TripDetailViewController: UIViewController {
 
         // Check if briefing already exists
         if let existingBriefing = CoreDataManager.shared.fetchBriefing(for: trip) {
-            briefingVC.existingBriefing = existingBriefing
+            briefingVC.savedBriefing = existingBriefing
         }
 
         let nav = UINavigationController(rootViewController: briefingVC)

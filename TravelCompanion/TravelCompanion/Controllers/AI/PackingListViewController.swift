@@ -276,7 +276,7 @@ final class PackingListViewController: UIViewController {
         updateUI()
     }
 
-    private func loadFromGenerated(_ generated: GeneratedPackingList) {
+    private func loadFromGenerated(_ generated: GeneratedPackingListData) {
         items = [
             ("documents", generated.documents.map { PackingItemModel(id: UUID(), name: $0, isChecked: false, isCustom: false, coreDataItem: nil) }),
             ("clothing", generated.clothing.map { PackingItemModel(id: UUID(), name: $0, isChecked: false, isCustom: false, coreDataItem: nil) }),
@@ -303,7 +303,7 @@ final class PackingListViewController: UIViewController {
         // Crea nuova lista
         let packingList = CoreDataManager.shared.createPackingList(
             destination: destination ?? trip.destination ?? "Unknown",
-            duration: Int16(duration),
+            duration: duration,
             for: trip
         )
 

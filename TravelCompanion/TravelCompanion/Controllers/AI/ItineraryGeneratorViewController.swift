@@ -500,7 +500,7 @@ final class ItineraryGeneratorViewController: UIViewController {
         }
     }
 
-    private func navigateToDetail(with itinerary: TravelItinerary) {
+    private func navigateToDetail(with itinerary: TravelItineraryData) {
         let detailVC = ItineraryDetailViewController()
         detailVC.itinerary = itinerary
         detailVC.associatedTrip = associatedTrip
