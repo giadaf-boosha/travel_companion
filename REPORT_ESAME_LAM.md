@@ -3,7 +3,7 @@
 
 ---
 
-## Informazioni Studente
+## Informazioni studente
 
 | Campo | Valore |
 |-------|--------|
@@ -14,15 +14,15 @@
 
 ---
 
-## 1. Introduzione e Panoramica
+## 1. Introduzione e panoramica
 
-### 1.1 Descrizione del Progetto
+### 1.1 Descrizione del progetto
 
 **Travel Companion** e un'applicazione iOS nativa sviluppata interamente in **Swift** con **UIKit** che assiste gli utenti nella pianificazione, tracciamento e documentazione delle proprie esperienze di viaggio. L'applicazione rappresenta un sistema completo di gestione viaggi che integra funzionalita di tracking GPS, memorizzazione multimediale e, come caratteristica distintiva, intelligenza artificiale on-device attraverso il framework **Apple Foundation Models**.
 
 L'obiettivo principale e stato creare un'applicazione che non solo soddisfacesse tutti i requisiti del progetto, ma che esplorasse anche le potenzialita delle tecnologie piu avanzate disponibili per iOS, in particolare le funzionalita di Apple Intelligence introdotte con iOS 26.
 
-### 1.2 Funzionalita Principali
+### 1.2 Funzionalita principali
 
 L'applicazione permette di:
 
@@ -33,7 +33,7 @@ L'applicazione permette di:
 - **Ricevere notifiche** su punti di interesse vicini e promemoria di logging
 - **Interagire con un assistente AI** capace di eseguire azioni nell'app (iOS 26+)
 
-### 1.3 Requisiti Tecnici e Scelte di Base
+### 1.3 Requisiti tecnici e scelte di base
 
 | Requisito | Valore | Motivazione |
 |-----------|--------|-------------|
@@ -93,7 +93,7 @@ L'applicazione adotta il pattern **Model-View-Controller (MVC)** esteso con un *
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.2 Motivazione dei Design Pattern Utilizzati
+### 2.2 Motivazione dei Design Pattern utilizzati
 
 #### Singleton per i Manager
 
@@ -142,7 +142,7 @@ NotificationCenter.default.addObserver(self,
 
 ---
 
-## 3. Implementazione delle Funzionalita Core
+## 3. Implementazione delle funzionalita core
 
 ### 3.1 Record the Activities
 
@@ -233,7 +233,7 @@ L'uso di colori distinti per tipo permette un riconoscimento visivo immediato ne
 
 ### 3.2 Display Charts
 
-#### 3.2.1 Map View con Percorsi
+#### 3.2.1 Map View con percorsi
 
 **File di riferimento:** `MapViewController.swift`
 
@@ -308,7 +308,7 @@ La scelta di Core Animation invece di una libreria come Charts e motivata da:
 
 ### 3.3 Perform Background Jobs
 
-#### 3.3.1 Notifiche Periodiche
+#### 3.3.1 Notifiche periodiche
 
 **File di riferimento:** `NotificationManager.swift` (~340 linee)
 
@@ -456,7 +456,7 @@ struct DayPlan: Codable, Sendable {
 
 Il modello genera automaticamente un array di `DayPlan` con il numero corretto di elementi basandosi su `totalDays`, garantendo coerenza strutturale.
 
-#### Altre Strutture Generable Implementate
+#### Altre strutture Generable implementate
 
 **Packing List:**
 ```swift
@@ -509,7 +509,7 @@ struct LocalPhrase: Codable, Sendable {
 
 Le **Custom Instructions** definiscono la personalita e il comportamento dell'assistente AI. In Travel Companion, ho definito istruzioni dettagliate per garantire risposte appropriate al contesto di un'app di viaggi.
 
-#### Struttura delle Istruzioni
+#### Struttura delle istruzioni
 
 ```swift
 chatSession = LanguageModelSession(tools: [createTripTool, addNoteTool, getTripInfoTool]) {
@@ -542,7 +542,7 @@ chatSession = LanguageModelSession(tools: [createTripTool, addNoteTool, getTripI
 }
 ```
 
-#### Perche Queste Istruzioni?
+#### Perche queste istruzioni?
 
 Le istruzioni sono strutturate in sezioni per massimizzare l'efficacia:
 
@@ -553,7 +553,7 @@ Le istruzioni sono strutturate in sezioni per massimizzare l'efficacia:
 
 Le istruzioni includono anche vincoli linguistici ("Rispondi SEMPRE in italiano") perche il modello Foundation potrebbe altrimenti rispondere nella lingua del prompt o mescolare lingue.
 
-### 4.4 Tool Calling: L'AI che Agisce nell'App
+### 4.4 Tool Calling: L'AI che agisce nell'App
 
 **File di riferimento:** `TravelChatTools.swift`
 
@@ -787,7 +787,7 @@ struct TravelChatStarters {
 
 Gli starter di tipo "action" sono visivamente distinti (sfondo verde) per indicare che attiveranno un'azione nell'app.
 
-### 4.6 Gestione della Sessione e degli Errori
+### 4.6 Gestione della sessione e degli errori
 
 **File di riferimento:** `FoundationModelService.swift`
 
@@ -918,14 +918,14 @@ func deleteTrip(_ trip: Trip)
 
 ## 6. Testing
 
-### 6.1 Strategia di Testing
+### 6.1 Strategia di testing
 
 | Tipo | Test | Scopo |
 |------|------|-------|
 | **Unit Test** | 123 | Logica di business, calcoli, validazione |
 | **UI Test** | 70+ | Flussi utente, interazione UI |
 
-### 6.2 Copertura per Modulo
+### 6.2 Copertura per modulo
 
 | Suite | Test | Copertura |
 |-------|------|-----------|
@@ -937,7 +937,7 @@ func deleteTrip(_ trip: Trip)
 
 ---
 
-## 7. Conformita ai Requisiti
+## 7. Conformita ai requisiti
 
 | Requisito | Stato | Implementazione |
 |-----------|:-----:|-----------------|
@@ -970,7 +970,7 @@ func deleteTrip(_ trip: Trip)
 
 ## 8. Conclusioni
 
-### 8.1 Obiettivi Raggiunti
+### 8.1 Obiettivi raggiunti
 
 Questo progetto ha raggiunto tutti gli obiettivi prefissati:
 
@@ -990,7 +990,7 @@ L'integrazione di Apple Foundation Models rappresenta l'aspetto piu innovativo d
 
 Questa implementazione mostra come l'AI on-device possa migliorare significativamente l'esperienza utente mantenendo la privacy e funzionando offline.
 
-### 8.3 Competenze Acquisite
+### 8.3 Competenze acquisite
 
 Lo sviluppo di Travel Companion ha permesso di approfondire:
 
