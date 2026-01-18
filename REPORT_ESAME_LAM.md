@@ -18,11 +18,11 @@
 
 ### 1.1 Descrizione del progetto
 
-**Travel Companion** e un'applicazione iOS nativa sviluppata interamente in **Swift** con **UIKit** che assiste gli utenti nella pianificazione, tracciamento e documentazione delle proprie esperienze di viaggio. L'applicazione rappresenta un sistema completo di gestione viaggi che integra funzionalita di tracking GPS, memorizzazione multimediale e, come caratteristica distintiva, intelligenza artificiale on-device attraverso il framework **Apple Foundation Models**.
+**Travel Companion** è un'applicazione iOS nativa sviluppata interamente in **Swift** con **UIKit** che assiste gli utenti nella pianificazione, tracciamento e documentazione delle proprie esperienze di viaggio. L'applicazione rappresenta un sistema completo di gestione viaggi che integra funzionalità di tracking GPS, memorizzazione multimediale e, come caratteristica distintiva, intelligenza artificiale on-device attraverso il framework **Apple Foundation Models**.
 
-L'obiettivo principale e stato creare un'applicazione che non solo soddisfacesse tutti i requisiti del progetto, ma che esplorasse anche le potenzialita delle tecnologie piu avanzate disponibili per iOS, in particolare le funzionalita di Apple Intelligence introdotte con iOS 26.
+L'obiettivo principale è stato creare un'applicazione che non solo soddisfacesse tutti i requisiti del progetto, ma che esplorasse anche le potenzialità delle tecnologie più avanzate disponibili per iOS, in particolare le funzionalità di Apple Intelligence introdotte con iOS 26.
 
-### 1.2 Funzionalita principali
+### 1.2 Funzionalità principali
 
 L'applicazione permette di:
 
@@ -37,19 +37,19 @@ L'applicazione permette di:
 
 | Requisito | Valore | Motivazione |
 |-----------|--------|-------------|
-| **Piattaforma minima** | iOS 17.0 | Compatibilita con dispositivi recenti, accesso a API moderne |
+| **Piattaforma minima** | iOS 17.0 | Compatibilità con dispositivi recenti, accesso a API moderne |
 | **Target AI** | iOS 26.0+ | Necessario per Apple Foundation Models |
 | **Linguaggio** | Swift 5.9+ | Linguaggio nativo Apple, type-safety, performance |
-| **Framework UI** | UIKit (100% programmatico) | Controllo totale, migliore manutenibilita, evita conflitti merge |
+| **Framework UI** | UIKit (100% programmatico) | Controllo totale, migliore manutenibilità, evita conflitti merge |
 | **Persistenza** | Core Data | Framework nativo Apple, integrazione ottimale con l'ecosistema |
 
-La scelta di **UIKit programmatico** invece di SwiftUI o Storyboard e stata dettata da tre fattori principali:
+La scelta di **UIKit programmatico** invece di SwiftUI o Storyboard è stata dettata da tre fattori principali:
 
 1. **Controllo granulare**: UIKit permette un controllo preciso su ogni aspetto del layout e del comportamento, fondamentale per implementazioni complesse come le animazioni dei grafici o la gestione della tastiera nella chat AI.
 
-2. **Manutenibilita del codice**: Il codice Swift puro e piu facile da leggere, modificare e debuggare rispetto ai file XML dei Storyboard o alla sintassi dichiarativa di SwiftUI (ancora in evoluzione).
+2. **Manutenibilità del codice**: Il codice Swift puro è più facile da leggere, modificare e debuggare rispetto ai file XML dei Storyboard o alla sintassi dichiarativa di SwiftUI (ancora in evoluzione).
 
-3. **Compatibilita Git**: I file Storyboard sono XML binari che generano frequenti conflitti durante i merge. Con UIKit programmatico, ogni modifica e tracciata chiaramente nel version control.
+3. **Compatibilità Git**: I file Storyboard sono XML binari che generano frequenti conflitti durante i merge. Con UIKit programmatico, ogni modifica è tracciata chiaramente nel version control.
 
 ---
 
@@ -57,7 +57,7 @@ La scelta di **UIKit programmatico** invece di SwiftUI o Storyboard e stata dett
 
 ### 2.1 Pattern Architetturale: MVC con Services Layer
 
-L'applicazione adotta il pattern **Model-View-Controller (MVC)** esteso con un **Services Layer** per la separazione delle responsabilita. Questa scelta segue le linee guida Apple per lo sviluppo iOS, garantendo al contempo una chiara separazione tra logica di business, presentazione e accesso ai dati.
+L'applicazione adotta il pattern **Model-View-Controller (MVC)** esteso con un **Services Layer** per la separazione delle responsabilità. Questa scelta segue le linee guida Apple per lo sviluppo iOS, garantendo al contempo una chiara separazione tra logica di business, presentazione e accesso ai dati.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -97,11 +97,11 @@ L'applicazione adotta il pattern **Model-View-Controller (MVC)** esteso con un *
 
 #### Singleton per i Manager
 
-Tutti i servizi dell'applicazione (`CoreDataManager`, `LocationManager`, `NotificationManager`, `GeofenceManager`, `FoundationModelService`) sono implementati come **Singleton**. Questa scelta e motivata da:
+Tutti i servizi dell'applicazione (`CoreDataManager`, `LocationManager`, `NotificationManager`, `GeofenceManager`, `FoundationModelService`) sono implementati come **Singleton**. Questa scelta è motivata da:
 
 - **Stato condiviso consistente**: Servizi come `LocationManager` mantengono uno stato (`isTracking`, `currentLocation`) che deve essere accessibile e consistente da qualsiasi punto dell'app.
 - **Inizializzazione lazy**: Le risorse costose (come la connessione al database Core Data o la sessione AI) vengono allocate solo quando necessario.
-- **Accesso centralizzato**: Evita la necessita di passare riferimenti attraverso catene di view controller.
+- **Accesso centralizzato**: Evita la necessità di passare riferimenti attraverso catene di view controller.
 
 ```swift
 // File: CoreDataManager.swift
@@ -142,7 +142,7 @@ NotificationCenter.default.addObserver(self,
 
 ---
 
-## 3. Implementazione delle funzionalita core
+## 3. Implementazione delle funzionalità core
 
 ### 3.1 Record the Activities
 
@@ -150,7 +150,7 @@ NotificationCenter.default.addObserver(self,
 
 **File di riferimento:** `NewTripViewController.swift`
 
-La schermata di creazione viaggio implementa un form completo con validazione in tempo reale. La scelta di usare `UIDatePicker` con stile `.wheels` e stata dettata dalla necessita di un'esperienza utente intuitiva per la selezione delle date.
+La schermata di creazione viaggio implementa un form completo con validazione in tempo reale. La scelta di usare `UIDatePicker` con stile `.wheels` è stata dettata dalla necessità di un'esperienza utente intuitiva per la selezione delle date.
 
 ```swift
 private func validateInput() -> (isValid: Bool, errorMessage: String?) {
@@ -168,13 +168,13 @@ private func validateInput() -> (isValid: Bool, errorMessage: String?) {
 }
 ```
 
-La validazione e **sincrona** e avviene al tap sul pulsante "Crea Viaggio", evitando validazioni troppo aggressive che potrebbero frustrare l'utente durante la digitazione.
+La validazione è **sincrona** e avviene al tap sul pulsante "Crea Viaggio", evitando validazioni troppo aggressive che potrebbero frustrare l'utente durante la digitazione.
 
 #### 3.1.2 Journey Logging con GPS
 
 **File di riferimento:** `LocationManager.swift` (~320 linee)
 
-Il tracking GPS e gestito da un singleton che incapsula tutta la logica di posizionamento. La scelta architetturale chiave e stata implementare un **filtro di qualita** per eliminare dati GPS anomali:
+Il tracking GPS è gestito da un singleton che incapsula tutta la logica di posizionamento. La scelta architetturale chiave è stata implementare un **filtro di qualità** per eliminare dati GPS anomali:
 
 ```swift
 private func shouldRecordLocation(_ location: CLLocation) -> Bool {
@@ -184,7 +184,7 @@ private func shouldRecordLocation(_ location: CLLocation) -> Bool {
         return false
     }
 
-    // Filtra velocita impossibili (> 200 km/h = ~55 m/s)
+    // Filtra velocità impossibili (> 200 km/h = ~55 m/s)
     if let lastLocation = recordedLocations.last {
         let timeDiff = location.timestamp.timeIntervalSince(lastLocation.timestamp)
         if timeDiff > 0 {
@@ -197,13 +197,13 @@ private func shouldRecordLocation(_ location: CLLocation) -> Bool {
 }
 ```
 
-Questo filtro anti-rumore e essenziale perche il GPS puo fornire letture errate, specialmente in ambienti urbani con riflessi dei segnali (multipath). Senza questo filtro, le polyline sulla mappa mostrerebbero "salti" irrealistici.
+Questo filtro anti-rumore è essenziale perché il GPS può fornire letture errate, specialmente in ambienti urbani con riflessi dei segnali (multipath). Senza questo filtro, le polyline sulla mappa mostrerebbero "salti" irrealistici.
 
 #### 3.1.3 Tipi di Viaggio
 
 **File di riferimento:** `TripType.swift`
 
-I tre tipi di viaggio obbligatori sono implementati come `enum` Swift con proprieta computed, una scelta che garantisce type-safety e centralizza la logica di presentazione:
+I tre tipi di viaggio obbligatori sono implementati come `enum` Swift con proprietà computed, una scelta che garantisce type-safety e centralizza la logica di presentazione:
 
 ```swift
 enum TripType: String, CaseIterable, Codable {
@@ -253,7 +253,7 @@ func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayR
 }
 ```
 
-La **heatmap** delle zone visitate e implementata aggregando i punti GPS in una griglia:
+La **heatmap** delle zone visitate è implementata aggregando i punti GPS in una griglia:
 
 ```swift
 private func createHeatmapOverlay(from coordinates: [CLLocationCoordinate2D]) -> MKPolygon {
@@ -300,7 +300,7 @@ private func drawTripsChart(data: [Int: Int]) {
 }
 ```
 
-La scelta di Core Animation invece di una libreria come Charts e motivata da:
+La scelta di Core Animation invece di una libreria come Charts è motivata da:
 - Nessuna dipendenza esterna
 - Controllo totale sulle animazioni
 - Performance native
@@ -339,7 +339,7 @@ func scheduleLoggingReminder(daysInterval: Int = 7) {
 
 **File di riferimento:** `GeofenceManager.swift` (~360 linee)
 
-Il geofencing e stato scelto come background operation aggiuntiva perche rappresenta un caso d'uso reale per un'app di viaggi (notifiche quando si arriva a destinazione, quando si lascia casa, ecc.).
+Il geofencing è stato scelto come background operation aggiuntiva perché rappresenta un caso d'uso reale per un'app di viaggi (notifiche quando si arriva a destinazione, quando si lascia casa, ecc.).
 
 ```swift
 func addGeofence(for zone: GeofenceZone) -> Bool {
@@ -363,34 +363,34 @@ func addGeofence(for zone: GeofenceZone) -> Bool {
 }
 ```
 
-La gestione del **limite di 20 regioni** imposto da iOS e fondamentale: l'app tiene traccia delle regioni attive e avvisa l'utente se il limite viene raggiunto.
+La gestione del **limite di 20 regioni** imposto da iOS è fondamentale: l'app tiene traccia delle regioni attive e avvisa l'utente se il limite viene raggiunto.
 
 ---
 
 ## 4. Apple Foundation Models: Intelligenza Artificiale On-Device
 
-Questa sezione rappresenta il cuore dell'estensione del progetto oltre i requisiti minimi. L'integrazione di **Apple Foundation Models** (disponibile da iOS 26) permette all'applicazione di offrire funzionalita AI avanzate che vengono eseguite **interamente on-device**, garantendo privacy e funzionamento offline.
+Questa sezione rappresenta il cuore dell'estensione del progetto oltre i requisiti minimi. L'integrazione di **Apple Foundation Models** (disponibile da iOS 26) permette all'applicazione di offrire funzionalità AI avanzate che vengono eseguite **interamente on-device**, garantendo privacy e funzionamento offline.
 
 ### 4.1 Introduzione al Framework
 
-Apple Foundation Models e il framework introdotto con iOS 26 che permette agli sviluppatori di sfruttare i modelli di linguaggio di Apple Intelligence direttamente nelle proprie app. Le caratteristiche principali sono:
+Apple Foundation Models è il framework introdotto con iOS 26 che permette agli sviluppatori di sfruttare i modelli di linguaggio di Apple Intelligence direttamente nelle proprie app. Le caratteristiche principali sono:
 
 - **Esecuzione on-device**: Nessun dato viene inviato a server esterni
 - **Privacy by design**: I dati dell'utente non lasciano mai il dispositivo
 - **Integrazione nativa**: Accesso tramite API Swift type-safe
-- **Guided Generation**: Possibilita di generare output strutturati conformi a schemi definiti
+- **Guided Generation**: Possibilità di generare output strutturati conformi a schemi definiti
 
-L'utilizzo di questo framework per Travel Companion e motivato dalla volonta di esplorare le piu recenti tecnologie Apple e di offrire un'esperienza utente differenziante rispetto ad app che dipendono da servizi cloud esterni.
+L'utilizzo di questo framework per Travel Companion è motivato dalla volontà di esplorare le più recenti tecnologie Apple e di offrire un'esperienza utente differenziante rispetto ad app che dipendono da servizi cloud esterni.
 
 ### 4.2 Guided Generation e la Macro @Generable
 
 **File di riferimento:** `GenerableStructures.swift`
 
-Una delle funzionalita piu potenti di Foundation Models e la **Guided Generation**, che permette al modello di generare output conformi a strutture Swift predefinite. Questo si ottiene attraverso la macro `@Generable`.
+Una delle funzionalità più potenti di Foundation Models è la **Guided Generation**, che permette al modello di generare output conformi a strutture Swift predefinite. Questo si ottiene attraverso la macro `@Generable`.
 
-#### Perche Guided Generation?
+#### Perché Guided Generation?
 
-Senza Guided Generation, l'output di un LLM e testo non strutturato che richiede parsing manuale, con tutti i rischi di errore che ne conseguono. Con Guided Generation, il modello e **vincolato** a produrre output che rispetta esattamente lo schema definito.
+Senza Guided Generation, l'output di un LLM è testo non strutturato che richiede parsing manuale, con tutti i rischi di errore che ne conseguono. Con Guided Generation, il modello è **vincolato** a produrre output che rispetta esattamente lo schema definito.
 
 #### Esempio: Itinerario di Viaggio
 
@@ -421,7 +421,7 @@ L'attributo `@Guide` fornisce al modello indicazioni su:
 - **count**: Limita il numero di elementi in un array (es. `1...5` consigli)
 - **anyOf**: Enumera i valori possibili per un campo
 
-Questa annotazione semantica guida il modello durante la generazione, migliorando drasticamente la qualita e conformita dell'output.
+Questa annotazione semantica guida il modello durante la generazione, migliorando drasticamente la qualità e conformità dell'output.
 
 #### Strutture Annidate
 
@@ -437,19 +437,19 @@ struct DayPlan: Codable, Sendable {
     @Guide(description: "Tema della giornata")
     let theme: String
 
-    @Guide(description: "Attivita della mattina")
+    @Guide(description: "Attività della mattina")
     let morningActivity: String
 
     @Guide(description: "Zona consigliata per il pranzo")
     let lunchArea: String
 
-    @Guide(description: "Attivita del pomeriggio")
+    @Guide(description: "Attività del pomeriggio")
     let afternoonActivity: String
 
-    @Guide(description: "Attivita serale opzionale")
+    @Guide(description: "Attività serale opzionale")
     let eveningActivity: String?
 
-    @Guide(description: "Note sui trasporti tra le attivita")
+    @Guide(description: "Note sui trasporti tra le attività")
     let transportNotes: String
 }
 ```
@@ -507,7 +507,7 @@ struct LocalPhrase: Codable, Sendable {
 
 **File di riferimento:** `TravelAIChatViewController.swift`, `FoundationModelService.swift`
 
-Le **Custom Instructions** definiscono la personalita e il comportamento dell'assistente AI. In Travel Companion, ho definito istruzioni dettagliate per garantire risposte appropriate al contesto di un'app di viaggi.
+Le **Custom Instructions** definiscono la personalità e il comportamento dell'assistente AI. In Travel Companion, ho definito istruzioni dettagliate per garantire risposte appropriate al contesto di un'app di viaggi.
 
 #### Struttura delle istruzioni
 
@@ -516,7 +516,7 @@ chatSession = LanguageModelSession(tools: [createTripTool, addNoteTool, getTripI
     """
     Sei Travel Companion AI, un assistente di viaggio esperto e amichevole.
 
-    IDENTITA:
+    IDENTITÀ:
     - Sei un esperto di viaggi con vasta conoscenza di destinazioni, culture e logistica
     - Rispondi SEMPRE in italiano
     - Sii conciso ma informativo, evita risposte troppo lunghe
@@ -542,22 +542,22 @@ chatSession = LanguageModelSession(tools: [createTripTool, addNoteTool, getTripI
 }
 ```
 
-#### Perche queste istruzioni?
+#### Perché queste istruzioni?
 
 Le istruzioni sono strutturate in sezioni per massimizzare l'efficacia:
 
-1. **IDENTITA**: Definisce chi e l'assistente, fondamentale per la coerenza delle risposte
+1. **IDENTITÀ**: Definisce chi è l'assistente, fondamentale per la coerenza delle risposte
 2. **COMPETENZE**: Specifica le aree di expertise, aiutando il modello a capire cosa sa fare
 3. **STRUMENTI DISPONIBILI**: Elenca i tool accessibili, cruciale per il Tool Calling
 4. **REGOLE**: Vincoli comportamentali per evitare risposte inappropriate (es. non inventare prezzi)
 
-Le istruzioni includono anche vincoli linguistici ("Rispondi SEMPRE in italiano") perche il modello Foundation potrebbe altrimenti rispondere nella lingua del prompt o mescolare lingue.
+Le istruzioni includono anche vincoli linguistici ("Rispondi SEMPRE in italiano") perché il modello Foundation potrebbe altrimenti rispondere nella lingua del prompt o mescolare lingue.
 
 ### 4.4 Tool Calling: L'AI che agisce nell'App
 
 **File di riferimento:** `TravelChatTools.swift`
 
-Il **Tool Calling** e la funzionalita che distingue Travel Companion da una semplice chat: l'AI puo **eseguire azioni concrete** nell'applicazione, non solo rispondere a domande.
+Il **Tool Calling** è la funzionalità che distingue Travel Companion da una semplice chat: l'AI può **eseguire azioni concrete** nell'applicazione, non solo rispondere a domande.
 
 #### Architettura del Tool Calling
 
@@ -583,7 +583,7 @@ struct CreateTripTool: Tool {
 
     @Generable
     struct Arguments {
-        @Guide(description: "Nome della citta o luogo di destinazione")
+        @Guide(description: "Nome della città o luogo di destinazione")
         var destination: String
 
         @Guide(description: "Data di inizio viaggio nel formato yyyy-MM-dd")
@@ -645,11 +645,11 @@ struct CreateTripTool: Tool {
 
 **Aspetti chiave dell'implementazione:**
 
-1. **Uso di `MainActor.run`**: Core Data non e thread-safe, quindi le operazioni devono avvenire sul main thread. Il tool usa `await MainActor.run` per garantire la sicurezza.
+1. **Uso di `MainActor.run`**: Core Data non è thread-safe, quindi le operazioni devono avvenire sul main thread. Il tool usa `await MainActor.run` per garantire la sicurezza.
 
 2. **Gestione errori robusta**: Il tool restituisce messaggi di errore user-friendly invece di lanciare eccezioni, permettendo all'AI di comunicare il problema all'utente.
 
-3. **Feedback strutturato**: L'output e un array di stringhe che l'AI puo elaborare per formulare una risposta naturale.
+3. **Feedback strutturato**: L'output è un array di stringhe che l'AI può elaborare per formulare una risposta naturale.
 
 #### Tool 2: AddNoteTool
 
@@ -706,7 +706,7 @@ struct AddNoteTool: Tool {
 
 #### Tool 3: GetTripInfoTool
 
-Questo tool permette all'AI di recuperare informazioni sui viaggi dell'utente per rispondere a domande come "Quanti viaggi ho fatto?" o "Qual e il mio viaggio attivo?".
+Questo tool permette all'AI di recuperare informazioni sui viaggi dell'utente per rispondere a domande come "Quanti viaggi ho fatto?" o "Qual è il mio viaggio attivo?".
 
 ```swift
 @available(iOS 26.0, *)
@@ -791,9 +791,9 @@ Gli starter di tipo "action" sono visivamente distinti (sfondo verde) per indica
 
 **File di riferimento:** `FoundationModelService.swift`
 
-La gestione della sessione AI e centralizzata in `FoundationModelService`, che implementa:
+La gestione della sessione AI è centralizzata in `FoundationModelService`, che implementa:
 
-#### Verifica Disponibilita
+#### Verifica Disponibilità
 
 ```swift
 func checkAvailability() -> ModelAvailabilityResult {
@@ -820,7 +820,7 @@ func checkAvailability() -> ModelAvailabilityResult {
     case .unavailable(.modelNotReady):
         return .unavailable(
             title: "Modello in Preparazione",
-            message: "Il modello AI e in download. Riprova tra poco.",
+            message: "Il modello AI è in download. Riprova tra poco.",
             action: .retry
         )
     }
@@ -859,7 +859,7 @@ private func executeWithRetry<T>(operation: () async throws -> T) async throws -
 
 ## 5. Modello Dati (Core Data)
 
-### 5.1 Schema Entita
+### 5.1 Schema Entità
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -885,7 +885,7 @@ private func executeWithRetry<T>(operation: () async throws -> T) async throws -
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-La scelta di usare Core Data invece di alternative come Realm o SQLite diretto e motivata da:
+La scelta di usare Core Data invece di alternative come Realm o SQLite diretto è motivata da:
 - Integrazione nativa con l'ecosistema Apple
 - Supporto per relazioni e fetch request tipizzate
 - Migrazione automatica degli schemi
@@ -929,7 +929,7 @@ func deleteTrip(_ trip: Trip)
 
 | Suite | Test | Copertura |
 |-------|------|-----------|
-| `CoreDataManagerTests` | 28 | CRUD completo per tutte le entita |
+| `CoreDataManagerTests` | 28 | CRUD completo per tutte le entità |
 | `LocationManagerTests` | 15 | Permessi, tracking, calcolo distanze |
 | `NotificationManagerTests` | 12 | Autorizzazioni, scheduling, categorie |
 | `DistanceCalculatorTests` | 18 | Formula Haversine, formattazione |
@@ -937,7 +937,7 @@ func deleteTrip(_ trip: Trip)
 
 ---
 
-## 7. Conformita ai requisiti
+## 7. Conformità ai requisiti
 
 | Requisito | Stato | Implementazione |
 |-----------|:-----:|-----------------|
@@ -960,7 +960,7 @@ func deleteTrip(_ trip: Trip)
 
 **Totale: 34/34 requisiti rispettati (100%)**
 
-**Funzionalita extra implementate:**
+**Funzionalità extra implementate:**
 - Chat AI con Tool Calling (3 tool)
 - Genera Itinerario (Guided Generation)
 - Packing List (Guided Generation)
@@ -974,7 +974,7 @@ func deleteTrip(_ trip: Trip)
 
 Questo progetto ha raggiunto tutti gli obiettivi prefissati:
 
-1. **Funzionalita complete**: Tutti i 34 requisiti del progetto sono stati implementati e testati
+1. **Funzionalità complete**: Tutti i 34 requisiti del progetto sono stati implementati e testati
 2. **Architettura solida**: Pattern MVC con Services Layer, codice modulare e manutenibile
 3. **UI professionale**: Interfaccia UIKit programmatica, responsive, con supporto dark mode
 4. **Testing**: 123 unit test + 70+ UI test per copertura completa
@@ -982,10 +982,10 @@ Questo progetto ha raggiunto tutti gli obiettivi prefissati:
 
 ### 8.2 Innovazione: Apple Foundation Models
 
-L'integrazione di Apple Foundation Models rappresenta l'aspetto piu innovativo del progetto. Le funzionalita implementate dimostrano:
+L'integrazione di Apple Foundation Models rappresenta l'aspetto più innovativo del progetto. Le funzionalità implementate dimostrano:
 
 - **Guided Generation**: Output strutturato e type-safe per itinerari, packing list e briefing
-- **Custom Instructions**: Personalita AI coerente e comportamento appropriato al contesto
+- **Custom Instructions**: Personalità AI coerente e comportamento appropriato al contesto
 - **Tool Calling**: AI che non solo risponde ma **agisce** nell'app, creando viaggi e note
 
 Questa implementazione mostra come l'AI on-device possa migliorare significativamente l'esperienza utente mantenendo la privacy e funzionando offline.
